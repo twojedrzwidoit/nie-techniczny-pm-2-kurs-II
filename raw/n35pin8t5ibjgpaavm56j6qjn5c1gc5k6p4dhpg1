@@ -1,0 +1,616 @@
+Return-Path: <mjuralowicz@virtuslab.com>
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+ by inbound-smtp.eu-west-1.amazonaws.com with SMTP id n35pin8t5ibjgpaavm56j6qjn5c1gc5k6p4dhpg1
+ for newsletter@ds.vived.io;
+ Fri, 22 Oct 2021 09:23:02 +0000 (UTC)
+X-SES-Spam-Verdict: PASS
+X-SES-Virus-Verdict: PASS
+Received-SPF: pass (spfCheck: domain of virtuslab.com designates 209.85.167.47 as permitted sender) client-ip=209.85.167.47; envelope-from=mjuralowicz@virtuslab.com; helo=mail-lf1-f47.google.com;
+Authentication-Results: amazonses.com;
+ spf=pass (spfCheck: domain of virtuslab.com designates 209.85.167.47 as permitted sender) client-ip=209.85.167.47; envelope-from=mjuralowicz@virtuslab.com; helo=mail-lf1-f47.google.com;
+ dkim=pass header.i=@virtuslab.com;
+ dmarc=pass header.from=virtuslab.com;
+X-SES-RECEIPT: AEFBQUFBQUFBQUFHQXE2M01tUms2bkJnN3pza0VxREw5WWpURUowWnFPRXFQUHZiZ1lMRStBVWdFeXBIVWk2YkRjeVVLVDg0S2tpNDJ5L2h0Z3lwMUFNeklBUU03OXFRd21XM2NiVTYzZ3dQSUtPb3FvU0JRcXZrSThNQ2VZbitNUDlOOU5CQVR1VnBZaVBwczhyZTNkcDhPb3FpbkI0WTFtRVUvTHZnc0xBV2FMYSs4cGNlR3NjdXNoYUdUcnRSNDBrQVd2eW1xNExoU1N5MGhROXdMQnpPY1dCMjlmVWVDYW1lRjZ0b2ZNRFRZMU9VM2J3VHZ4OVN1K1ErR281SFU1bTR6ZSs2ZTZTT2xwcjdXUEhRMlJCdWdkRXZmT3ZFUWxXMEhleVNxM29GSnlFYTRBREVQanc9PQ==
+X-SES-DKIM-SIGNATURE: a=rsa-sha256; q=dns/txt; b=LVGQtj70YxcfuAwxE46LaZ5g2Tmq2eurOIy04TXQIPNeic3J7YKQgDnWuyVZD7ql/E3frbfZZxLlQMv5sO6o7waVcwklDllhlORuIBxAYiDuTiHEtBO3ULIAGRydOAUFCnU+qZxUeCe/795aYcsgfvHIKbi8X9sLLRWU9JwA5lo=; c=relaxed/simple; s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1634894582; v=1; bh=+irbViR6RHguWosKaG1NsSv35jafGNguC/5PmYI+l6w=; h=From:To:Cc:Bcc:Subject:Date:Message-ID:MIME-Version:Content-Type:X-SES-RECEIPT;
+Received: by mail-lf1-f47.google.com with SMTP id u21so2215673lff.8
+        for <newsletter@ds.vived.io>; Fri, 22 Oct 2021 02:23:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=virtuslab.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=kTjKVACGuIbVf3osNKDCU0Ep51GSUofozwXOGmCpk3I=;
+        b=XaNiXUanl449k/sr7CTcJTPaqcDtwqE8pFIoaFSSu15TxkNwB/dSMfw+yrMUkfS7SG
+         x2j21zmBeXit1WnUMxHKlB3I2ocQKyaRiTiE2O09aJY2uN/7h2ySYbqps6ZsaFBQ4PK3
+         qeqfFrgEisjnlWS2HQa0XOX5FsYqXenWoPy3pTH+hE9wxjfyVVtmYG518wYrYg8cBkbi
+         XWQHcCvsyf5BVQC1DAHjYDSOOOhmm7fdhUtdwWuZmmizCnasXyySfP2BRUTj6AEzGvRW
+         TzVy+RnbyjrLQVjXGr0e9fcM7aFS7QcDqCd5F6bLaQnlDl7faawkXLwCfynU4bCJf8MD
+         pU6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=kTjKVACGuIbVf3osNKDCU0Ep51GSUofozwXOGmCpk3I=;
+        b=lWZb/7i31qRPIdwyylaATKudKOEHSF6e92l2QTdHA4GuWaTAB8+ql61gpm23uZyE1j
+         +xJMEgN2hSoKqM5ie/2jnrwKRIc2VZWztBEhLD9NogIF7OrIfDP7XX0Jv4wkzpMkFsa/
+         yRdIyEMf+K57fE0I4Ira5G9lHxvvn30R40Kdl7Ha+Ub7GSj8bgLaOGr6uuwYJvC2RQbO
+         +LupTD7mIjlMpjoBBIekAL+d0B6pEiT5N0ax6OCBjvt33fFBFmlKRmqZluX/K8F1Bk5A
+         LBOsrh/0oduAHqoqpm6USyyAW0edoS1gOKQ7gDDzOtjzvMGDXFqH2dzfbgartulKdxfM
+         Pn9Q==
+X-Gm-Message-State: AOAM531BYWBBmtw+R/EHlnlYb4bnx41tXENLpBvoLBGTOG88jN2E3SkO
+	M51a0wMZr2ZTpACCS9vYzr+6ylihk0Lpo3Q1ikWGxCmubguYZ2Iw
+X-Google-Smtp-Source: ABdhPJx6wNEwl1mNa7Sr3eVi1mPszMFwS0+A/gFH/WEKj1Gg7QhjbRtotsojtuGgapnNkXx8MY8tjxUTgpmV9IYl3h8=
+X-Received: by 2002:a19:761a:: with SMTP id c26mr10789971lff.242.1634894580765;
+ Fri, 22 Oct 2021 02:23:00 -0700 (PDT)
+MIME-Version: 1.0
+References: <606c8a338261c_42b0068e265c42614b7@90d1ab58-e1e4-4e05-8426-502c7f10c606.mail>
+In-Reply-To: <606c8a338261c_42b0068e265c42614b7@90d1ab58-e1e4-4e05-8426-502c7f10c606.mail>
+From: =?UTF-8?Q?Micha=C5=82_Jura=C5=82owicz?= <mjuralowicz@virtuslab.com>
+Date: Fri, 22 Oct 2021 11:22:50 +0200
+Message-ID: <CALdb2WwoZ0UUTL8DgyuUTavXaA=GgEApn1weXO7Ey=LwLMt=sQ@mail.gmail.com>
+Subject: =?UTF-8?Q?Fwd=3A_=F0=9F=8E=89_Hellonext_changelog_=2D_Context_menus=2C_user_?=
+	=?UTF-8?Q?profile_cards_=26_more?=
+To: newsletter@ds.vived.io
+Content-Type: multipart/alternative; boundary="000000000000bb6b0305ceed8e16"
+
+--000000000000bb6b0305ceed8e16
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+---------- Forwarded message ---------
+Od: Hellonext team <hellonext@getrevue.co>
+Date: wt., 6 kwi 2021 o 18:20
+Subject: =F0=9F=8E=89 Hellonext changelog - Context menus, user profile car=
+ds & more
+To: <mjuralowicz@virtuslab.com>
+
+
+=F0=9F=93=A3 OUT NOW: New features to help you manage feedback faster &
+better. =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C
+[image: Hellonext team]
+<http://click.revue.email/ss/c/2fVGm-9a_FyZubtxRY0IlilgwDecGivwW818gflFxvz7=
+mzgPb3awu5fJv96_OlBE/3au/4CVVk9diSNuJcxP6tx64mA/h0/neRUkb80FXztfWkIlF8lmlyX=
+g1va1s6bCPKjHTRdzEA>
+
+Hellonext team
+@hellonexthq
+<http://click.revue.email/ss/c/2fVGm-9a_FyZubtxRY0IlilgwDecGivwW818gflFxvz7=
+mzgPb3awu5fJv96_OlBE/3au/4CVVk9diSNuJcxP6tx64mA/h1/xBrgHuYslsrXqGTIUHv47hVJ=
+q3PTW8LvEFXWBRpa7FM>
+[image: A preview of Context Menus in Hellonext]
+
+A preview of Context Menus in Hellonext
+We have added new right-click menus (context menus) to Hellonext. The new
+context menus allow you to right-click on any post in your Admin Dashboard
+to perform quick actions, cutting down your time to manage posts even
+further. Things like Pin posts, Disable comments, and Change status all
+become quick and easy to manage your customer feedback.
+We are also expanding contextual menus to other parts of the platform:
+boards, changelog, roadmap, and such. The expansion will roll out over the
+next couple of weeks to all users of the platform.
+See a demo of context menus on Twitter =E2=86=92
+<http://click.revue.email/ss/c/OvZMTmFNG_ogo9mVNMFA3wYyEW6MCXs4cTGG3JHKOKqU=
+OKR9zHBjF37iWbLfwL9ZRpyW-HufKkZG2G4VofAzkaiq2G_RPnXWdVSPp_09phL8JCKK60T9Xhx=
+ZIgXZtb-rDpA5oxRteZ0Ch8YdwtfSMNdNUYpWqaCw2HLbQ-PGbySZmRCHlgGQO_nxQTo0CeV_6r=
+GeS0S9ATf5LF0xIIGrKg/3au/4CVVk9diSNuJcxP6tx64mA/h2/tOAL1Z8REgem-ncshpOiFEEt=
+oqYsAVk__ijZ8-n7pHA>
+Other small features
+
+   - Implemented restrictions to features based on the plans to make sure
+   the platform is not abused
+   - You can now see who reacted to a comment by hovering your mouse
+   pointer over it
+
+Fixes & improvements
+
+   - Fixed an issue that showed a =E2=80=9Ctoo much traffic to handle=E2=80=
+=9D message for
+   users
+   - Fixed a bunch of UI issues that crept in across the platform
+   - Fixed a bug which prevented some users from commenting when using SSO
+   - Speed improvements across the platform & fixed a cold-start problem
+   - Improved rendering of Favicons in Admin Dashboard =E2=86=92 Organizati=
+on
+   Settings page
+   - Fixed some layout issues that might have made the platform look bad on
+   some large screens
+
+Features we=E2=80=99re prototyping
+We are prototyping some features with some of our customers. These might
+make it to all our customers, or we might part it for later depending on
+the response and value-add.
+
+   - *User profile pop-up cards* =E2=86=92 when you hover over a person=E2=
+=80=99s profile
+   picture/name, a beautiful card would show up with some
+   essential information about them;
+   - *Improved merge posts handling* =E2=86=92 we have re-written the merge=
+ post
+   algorithm and improved the messaging to make it easy for you to manage
+   merging and un-merging posts;
+
+You can read more Hellonext Changelog here =E2=86=92
+<http://click.revue.email/ss/c/TzfyQfvFfgo-vTkXDZQg18DFz1uLAnfCOLUiMZjcwoNU=
+u0v93wE5gcpnZZYEMMd_hpOLVX4eEkfLGDb1_hsq-jkaOzw9iRhtoZbGwF1w5DfcfLhs5bTb_Le=
+hSxjZ-iPOxxxRxQvGWOGTKtBKT68DWSflZRRXg2TVz_vlu2JwrDxX2ZvJ67SBHAGnuVATBm2uvV=
+mZT2sRjqIiH4jh0XnIqA/3au/4CVVk9diSNuJcxP6tx64mA/h3/bz1VYZI68Xn5pWj3_TCYt6c-=
+qfHQPb5YQmpN-LnBWM8>
+Did you enjoy this issue? Yes
+<http://click.revue.email/ss/c/XN2t88CAhalHja1RClwc6nfV-nStt3kVsgZH5NOVlm0z=
+gPs3zXPxCHqon_KAZi0Mc9r2lcMdPwDntgsTHPPR_2sEAlP7Zf-b4pXjaeGA5jU1e26kbNzQ_z2=
+0plBPTanQlbLhaHXfeHP2lSYCA4d5a_V0HrAykJqVq42hk-CCjGiWCjIOivL4wg3vmmcp5bA4eC=
+3R8WMQAT_7X7V_KdAYENRGsh79iP1uX2adOqCUARQ/3au/4CVVk9diSNuJcxP6tx64mA/h4/SHL=
+dd5ZWi9JZc4JyPctXN9KSLOUo1oTkIIyP4yv_iUw>
+No
+<http://click.revue.email/ss/c/XN2t88CAhalHja1RClwc6nfV-nStt3kVsgZH5NOVlm0z=
+gPs3zXPxCHqon_KAZi0Mc9r2lcMdPwDntgsTHPPR_2sEAlP7Zf-b4pXjaeGA5jU1e26kbNzQ_z2=
+0plBPTanQlbLhaHXfeHP2lSYCA4d5a_V0HrAykJqVq42hk-CCjGiWCjIOivL4wg3vmmcp5bA4eC=
+3R8WMQAT_7X7V_KdAYEJfUJBoWrHwy4ijdVni0Spg/3au/4CVVk9diSNuJcxP6tx64mA/h5/hPH=
+ax7EQW73HdqPFYK3PfDhjMS-F3j7CtnTMxac9s2Q>
+[image: Hellonext team]
+<http://click.revue.email/ss/c/N2JF6XoklMBMrSHq7MdGqMRZZ7DP4JT1vNXZ-StQH9qF=
+xOTCmjD8QpcUi-V1S1ELgJ2jqA7LcLu4pqjj-LfZojLK47fbi59INuRm1_r_N15Q44D2Q9MUrIC=
+9xmQTKBdCri5Y8UERmrHtfSRvg8r_Q5RlrDouO7utIa-muWxDdl9X8DSqMxdDOD0cmJg2nq37/3=
+au/4CVVk9diSNuJcxP6tx64mA/h6/EuW8YdLA_NlZ1wXnOKMp6zeN-QZgDnUMBm2zAQMkm0M>
+Hellonext team @hellonexthq
+<http://click.revue.email/ss/c/2fVGm-9a_FyZubtxRY0IlilgwDecGivwW818gflFxvz7=
+mzgPb3awu5fJv96_OlBE/3au/4CVVk9diSNuJcxP6tx64mA/h7/sRjrtQ0iIrcd72GbRLDpBxqc=
+Z3z-4KjPzYYYZMQDhlA>
+
+Hellonext changelog & updates
+If you don't want these updates anymore, please unsubscribe here
+<http://click.revue.email/ss/c/N2JF6XoklMBMrSHq7MdGqMRZZ7DP4JT1vNXZ-StQH9p7=
+58klRMCS2uiJY-3tlYKdES-j-ZIJu6Mg6RrXvzesz7KdMpsEqCsWY7zuDqfw2N7DpP7BHgphx0c=
+3cN4kvmzWE3Vmtw8UaY_4EjyR1xK5jWndNmdEDNpshJTEfPX_DDIhQEE3WyMl6aENRKbhymxt17=
+_LYbiKwr-GrPUfKiHruPTssopkxLTEFL9edWZHqPc/3au/4CVVk9diSNuJcxP6tx64mA/h8/vcN=
+l9dfpAlSB2Fxz5cEfZq62iR6RQmJh_6BAbACcLZ0>
+.
+If you were forwarded this newsletter and you like it, you can subscribe
+here
+<http://click.revue.email/ss/c/N2JF6XoklMBMrSHq7MdGqMRZZ7DP4JT1vNXZ-StQH9qF=
+xOTCmjD8QpcUi-V1S1ELgJ2jqA7LcLu4pqjj-LfZokVbS_oFkr-5wESMYj-9khYGiypR1gHeXNo=
+aQCrXn5Shx35BP2EiRN3ti8JMKJOHoBGlXfvXDzRngjP9JWWa5hU/3au/4CVVk9diSNuJcxP6tx=
+64mA/h9/3HiZVK7RiMVxjU92346gxpD20vDytThuBwTrooyzUks>
+.
+Created with Revue by Twitter
+<http://click.revue.email/ss/c/XN2t88CAhalHja1RClwc6mILlQpYBkhbWNj6JJ8IdY32=
+35Z3HTNnTqDBBAWsSyAi0Z-wMRVMFr6HYC7XNeKBpAPyKfTjszpyzvG4LrIQQjsrui5irhV7UY0=
+6rJ6ZPks-dwxD3R5zZxfA8C7_oedDXyuGNG7S6F33xu_IhHMqYUI/3au/4CVVk9diSNuJcxP6tx=
+64mA/h10/ZCGEDs9Swk_c0lKV1tW2WnTTzpEBFXC15AMSlyN5zFk>
+
+--000000000000bb6b0305ceed8e16
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">---------- Forwarded message ---------<br>Od: <strong class=
+=3D"gmail_sendername" dir=3D"auto">Hellonext team</strong> <span dir=3D"aut=
+o">&lt;<a href=3D"mailto:hellonext@getrevue.co">hellonext@getrevue.co</a>&g=
+t;</span><br>Date: wt., 6 kwi 2021 o 18:20<br>Subject: =F0=9F=8E=89 Hellone=
+xt changelog - Context menus, user profile cards &amp; more<br>To:  &lt;<a =
+href=3D"mailto:mjuralowicz@virtuslab.com">mjuralowicz@virtuslab.com</a>&gt;=
+<br></div><br><br><u></u>
+
+
+
+
+
+ =20
+
+ =20
+
+ =20
+
+ =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>
+
+  <div>
+
+    <div style=3D"display:none;font-size:1px;color:#fff;line-height:1px;max=
+-height:0px;max-width:0px;opacity:0;overflow:hidden">=F0=9F=93=A3 OUT NOW: =
+New features to help you manage feedback faster &amp; better.=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C</div>
+
+
+
+    <img src=3D"http://click.revue.email/ss/o/4zhbXw4N7nVC8pF3l0xuWg/3au/4C=
+VVk9diSNuJcxP6tx64mA/ho.gif" alt=3D"" width=3D"1" height=3D"1" border=3D"0"=
+ style=3D"height:1px!important;width:1px!important;border-width:0!important=
+;margin-top:0!important;margin-bottom:0!important;margin-right:0!important;=
+margin-left:0!important;padding-top:0!important;padding-bottom:0!important;=
+padding-right:0!important;padding-left:0!important">
+
+
+
+   =20
+
+
+
+   =20
+
+<div style=3D"margin:0px 20px;max-width:650px">
+
+
+
+<table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=3D"f=
+ont-size:0px;width:100%" align=3D"center" border=3D"0"><tbody><tr><td style=
+=3D"vertical-align:top;direction:ltr;font-size:0px;padding:0px;padding-left=
+:30px;padding-right:30px;padding-top:34px;padding-bottom:28px" class=3D"m_-=
+4553126702264804477indented">
+
+<table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=3D"f=
+ont-size:0px;width:100%" align=3D"center" border=3D"0"><tbody><tr><td style=
+=3D"vertical-align:top;direction:ltr;font-size:0px;padding:0px;padding-righ=
+t:12px" width=3D"56">
+
+<a href=3D"http://click.revue.email/ss/c/2fVGm-9a_FyZubtxRY0IlilgwDecGivwW8=
+18gflFxvz7mzgPb3awu5fJv96_OlBE/3au/4CVVk9diSNuJcxP6tx64mA/h0/neRUkb80FXztfW=
+kIlF8lmlyXg1va1s6bCPKjHTRdzEA" target=3D"_blank">
+
+<img alt=3D"Hellonext team" title=3D"Hellonext team" height=3D"56" width=3D=
+"56" style=3D"border:none;border-radius:0;display:block;outline:none;text-d=
+ecoration:none;width:56px;height:56px" class=3D"m_-4553126702264804477title=
+-image" src=3D"https://s3.amazonaws.com/revue/profiles/images/000/221/855/s=
+mall/logo_w_o_b_copy.png?1617628556"></a></td>
+
+<td><table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"font-size:0px;width:100%" align=3D"center" border=3D"0"><tbody>
+
+<tr><td><div style=3D"color:#14171a;font-family:-apple-system,BlinkMacSyste=
+mFont,&#39;Segoe UI&#39;,Helvetica,sans-serif;font-size:16px;line-height:22=
+px;text-align:left;font-weight:700" class=3D"m_-4553126702264804477title-te=
+xt">Hellonext team</div></td></tr>
+
+<tr><td><div style=3D"color:#657786;font-family:-apple-system,BlinkMacSyste=
+mFont,&#39;Segoe UI&#39;,Helvetica,sans-serif;font-size:16px;line-height:22=
+px;text-align:left;font-weight:400" class=3D"m_-4553126702264804477title-te=
+xt"><a style=3D"color:#657786;text-decoration:none" href=3D"http://click.re=
+vue.email/ss/c/2fVGm-9a_FyZubtxRY0IlilgwDecGivwW818gflFxvz7mzgPb3awu5fJv96_=
+OlBE/3au/4CVVk9diSNuJcxP6tx64mA/h1/xBrgHuYslsrXqGTIUHv47hVJq3PTW8LvEFXWBRpa=
+7FM" target=3D"_blank">@hellonexthq</a></div></td></tr>
+
+</tbody></table></td></tr></tbody></table>
+
+</td></tr></tbody></table></div>
+
+
+
+   =20
+
+
+
+   =20
+
+
+
+   =20
+
+
+
+      <div style=3D"margin:0px 20px;max-width:650px"><table role=3D"present=
+ation" cellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:0px;width:100=
+%" align=3D"center" border=3D"0"><tbody><tr><td style=3D"text-align:center;=
+vertical-align:top;direction:ltr;font-size:0px;padding:0px;padding-bottom:3=
+0px"><div aria-labelledby=3D"mj-column-per-100" class=3D"m_-455312670226480=
+4477mj-column-per-100" style=3D"vertical-align:top;display:inline-block;dir=
+ection:ltr;font-size:13px;text-align:left;width:100%"><table role=3D"presen=
+tation" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" border=3D"0"><tb=
+ody><tr><td style=3D"word-break:break-word;font-size:0px;padding:0px" align=
+=3D"center"><table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0=
+" style=3D"border-collapse:collapse;border-spacing:0px" align=3D"center" bo=
+rder=3D"0"><tbody><tr><td style=3D"width:650px" align=3D"center">
+
+    <img alt=3D"A preview of Context Menus in Hellonext" title=3D"A preview=
+ of Context Menus in Hellonext" height=3D"auto" src=3D"https://s3.amazonaws=
+.com/revue/items/images/008/654/978/original/changelog-context-menus.jpg?16=
+17631391" style=3D"border:none;border-radius:0;display:block;outline:none;t=
+ext-decoration:none;max-width:100%;height:auto">
+
+</td></tr></tbody></table></td></tr><tr><td style=3D"word-break:break-word;=
+font-size:0px;padding:0px;padding-top:16px" align=3D"center"><div style=3D"=
+color:#95989c;font-family:-apple-system,BlinkMacSystemFont,&#39;Segoe UI&#3=
+9;,Helvetica,sans-serif;font-weight:400;font-size:13px;line-height:21px;tex=
+t-align:center">A preview of Context Menus in Hellonext</div></td></tr></tb=
+ody></table></div></td></tr></tbody></table></div>
+
+      <div style=3D"margin:0px 20px;max-width:650px"><table role=3D"present=
+ation" cellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:0px;width:100=
+%" align=3D"center" border=3D"0"><tbody><tr><td style=3D"text-align:center;=
+vertical-align:top;direction:ltr;font-size:0px;padding:0px;padding-bottom:3=
+0px;padding-left:30px;padding-right:30px" class=3D"m_-4553126702264804477in=
+dented"><div aria-labelledby=3D"mj-column-per-100" class=3D"m_-455312670226=
+4804477mj-column-per-100" style=3D"vertical-align:top;display:inline-block;=
+direction:ltr;font-size:13px;text-align:left;width:100%"><table role=3D"pre=
+sentation" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" border=3D"0">=
+<tbody><tr><td style=3D"word-break:break-word;font-size:0px;padding:0px" al=
+ign=3D"left"><div style=3D"color:#000000;font-family:-apple-system,BlinkMac=
+SystemFont,&#39;Segoe UI&#39;,Helvetica,sans-serif;font-size:16px;line-heig=
+ht:24px;text-align:left;font-weight:400" class=3D"m_-4553126702264804477tex=
+t-default">
+
+      <div style=3D"margin:0" class=3D"m_-4553126702264804477revue-p">We ha=
+ve added new right-click menus (context menus) to Hellonext. The new contex=
+t menus allow you to right-click on any post in your Admin Dashboard to per=
+form quick actions, cutting down your time to manage posts even further. Th=
+ings like Pin posts, Disable comments, and Change status all become quick a=
+nd easy to manage your customer feedback.</div><div style=3D"margin:0" clas=
+s=3D"m_-4553126702264804477revue-p">We are also expanding contextual menus =
+to other parts of the platform: boards, changelog, roadmap, and such. The e=
+xpansion will roll out over the next couple of weeks to all users of the pl=
+atform.</div><div style=3D"margin:0" class=3D"m_-4553126702264804477revue-p=
+">See a demo of context menus <a href=3D"http://click.revue.email/ss/c/OvZM=
+TmFNG_ogo9mVNMFA3wYyEW6MCXs4cTGG3JHKOKqUOKR9zHBjF37iWbLfwL9ZRpyW-HufKkZG2G4=
+VofAzkaiq2G_RPnXWdVSPp_09phL8JCKK60T9XhxZIgXZtb-rDpA5oxRteZ0Ch8YdwtfSMNdNUY=
+pWqaCw2HLbQ-PGbySZmRCHlgGQO_nxQTo0CeV_6rGeS0S9ATf5LF0xIIGrKg/3au/4CVVk9diSN=
+uJcxP6tx64mA/h2/tOAL1Z8REgem-ncshpOiFEEtoqYsAVk__ijZ8-n7pHA" style=3D"color=
+:#3498db;text-decoration:underline" target=3D"_blank">on Twitter =E2=86=92<=
+/a>
+
+</div><div style=3D"margin:0;Margin:0;display:block;font-weight:700;padding=
+-bottom:8px" class=3D"m_-4553126702264804477revue-h2">Other small features<=
+/div><ul class=3D"m_-4553126702264804477revue-ul">
+
+<li style=3D"Margin:0">Implemented restrictions to features based on the pl=
+ans to make sure the platform is not abused</li>
+
+<li style=3D"Margin:0">You can now see who reacted to a comment by hovering=
+ your mouse pointer over it</li>
+
+</ul><div style=3D"margin:0;Margin:0;display:block;font-weight:700;padding-=
+bottom:8px" class=3D"m_-4553126702264804477revue-h2">Fixes &amp; improvemen=
+ts</div><ul class=3D"m_-4553126702264804477revue-ul">
+
+<li style=3D"Margin:0">Fixed an issue that showed a =E2=80=9Ctoo much traff=
+ic to handle=E2=80=9D message for users</li>
+
+<li style=3D"Margin:0">Fixed a bunch of UI issues that crept in across the =
+platform</li>
+
+<li style=3D"Margin:0">Fixed a bug which prevented some users from commenti=
+ng when using SSO</li>
+
+<li style=3D"Margin:0">Speed improvements across the platform &amp; fixed a=
+ cold-start problem</li>
+
+<li style=3D"Margin:0">Improved rendering of Favicons in Admin Dashboard=C2=
+=A0=E2=86=92 Organization Settings page</li>
+
+<li style=3D"Margin:0">Fixed some layout issues that might have made the pl=
+atform look bad on some large screens</li>
+
+</ul><div style=3D"margin:0;Margin:0;display:block;font-weight:700;padding-=
+bottom:8px" class=3D"m_-4553126702264804477revue-h2">Features we=E2=80=99re=
+ prototyping</div><div style=3D"margin:0" class=3D"m_-4553126702264804477re=
+vue-p">We are prototyping some features with some of our customers. These m=
+ight make it to all our customers, or we might part it for later depending =
+on the response and value-add.</div><ul class=3D"m_-4553126702264804477revu=
+e-ul">
+
+<li style=3D"Margin:0">
+
+<strong>User profile pop-up cards</strong>=C2=A0=E2=86=92 when you hover ov=
+er a person=E2=80=99s profile picture/name, a beautiful card would show up =
+with some essential=C2=A0information about them;</li>
+
+<li style=3D"Margin:0">
+
+<strong>Improved merge posts handling</strong>=C2=A0=E2=86=92 we have re-wr=
+itten the merge post algorithm and improved the messaging to make it easy f=
+or you to manage merging and un-merging posts;</li>
+
+</ul><div style=3D"margin:0" class=3D"m_-4553126702264804477revue-p">You ca=
+n <a href=3D"http://click.revue.email/ss/c/TzfyQfvFfgo-vTkXDZQg18DFz1uLAnfC=
+OLUiMZjcwoNUu0v93wE5gcpnZZYEMMd_hpOLVX4eEkfLGDb1_hsq-jkaOzw9iRhtoZbGwF1w5Df=
+cfLhs5bTb_LehSxjZ-iPOxxxRxQvGWOGTKtBKT68DWSflZRRXg2TVz_vlu2JwrDxX2ZvJ67SBHA=
+GnuVATBm2uvVmZT2sRjqIiH4jh0XnIqA/3au/4CVVk9diSNuJcxP6tx64mA/h3/bz1VYZI68Xn5=
+pWj3_TCYt6c-qfHQPb5YQmpN-LnBWM8" style=3D"color:#3498db;text-decoration:und=
+erline" target=3D"_blank">read more Hellonext Changelog here =E2=86=92</a>
+
+</div>
+
+
+
+    </div></td></tr></tbody></table></div></td></tr></tbody></table></div>
+
+
+
+   =20
+
+
+
+
+
+    <div style=3D"margin:0 20px;max-width:650px"><table role=3D"presentatio=
+n" cellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:0px;width:100%" a=
+lign=3D"left" border=3D"0"><tbody><tr><td style=3D"text-align:left;vertical=
+-align:top;direction:ltr;font-size:0px;padding:0px;padding-left:30px;paddin=
+g-right:30px" class=3D"m_-4553126702264804477indented"><div aria-labelledby=
+=3D"mj-column-per-100" class=3D"m_-4553126702264804477mj-column-per-100" st=
+yle=3D"vertical-align:top;display:inline-block;direction:ltr;font-size:13px=
+;text-align:left;width:100%"><table role=3D"presentation" cellpadding=3D"0"=
+ cellspacing=3D"0" width=3D"100%" border=3D"0"><tbody>
+
+    <tr><td style=3D"word-break:break-word;font-size:0px;padding:0px;paddin=
+g-top:40px;padding-bottom:40px" align=3D"center" colspan=3D"2"><div style=
+=3D"background-color:#e1e1e1;height:1px;width:100%"></div></td></tr>
+
+    <tr><td style=3D"word-break:break-word;font-size:0px;padding:0px" align=
+=3D"center" colspan=3D"2"><div style=3D"color:#6f7379;font-family:-apple-sy=
+stem,BlinkMacSystemFont,&#39;Segoe UI&#39;,Helvetica,sans-serif;font-size:1=
+4px;line-height:14px;text-align:center;font-weight:400">Did you enjoy this =
+issue? <a style=3D"text-decoration:underline;color:#6f7379" href=3D"http://=
+click.revue.email/ss/c/XN2t88CAhalHja1RClwc6nfV-nStt3kVsgZH5NOVlm0zgPs3zXPx=
+CHqon_KAZi0Mc9r2lcMdPwDntgsTHPPR_2sEAlP7Zf-b4pXjaeGA5jU1e26kbNzQ_z20plBPTan=
+QlbLhaHXfeHP2lSYCA4d5a_V0HrAykJqVq42hk-CCjGiWCjIOivL4wg3vmmcp5bA4eC3R8WMQAT=
+_7X7V_KdAYENRGsh79iP1uX2adOqCUARQ/3au/4CVVk9diSNuJcxP6tx64mA/h4/SHLdd5ZWi9J=
+Zc4JyPctXN9KSLOUo1oTkIIyP4yv_iUw" target=3D"_blank">Yes</a> <a style=3D"tex=
+t-decoration:underline;color:#6f7379" href=3D"http://click.revue.email/ss/c=
+/XN2t88CAhalHja1RClwc6nfV-nStt3kVsgZH5NOVlm0zgPs3zXPxCHqon_KAZi0Mc9r2lcMdPw=
+DntgsTHPPR_2sEAlP7Zf-b4pXjaeGA5jU1e26kbNzQ_z20plBPTanQlbLhaHXfeHP2lSYCA4d5a=
+_V0HrAykJqVq42hk-CCjGiWCjIOivL4wg3vmmcp5bA4eC3R8WMQAT_7X7V_KdAYEJfUJBoWrHwy=
+4ijdVni0Spg/3au/4CVVk9diSNuJcxP6tx64mA/h5/hPHax7EQW73HdqPFYK3PfDhjMS-F3j7Ct=
+nTMxac9s2Q" target=3D"_blank">No</a></div></td></tr>
+
+    <tr><td style=3D"word-break:break-word;font-size:0px;padding:0px;paddin=
+g-top:40px;padding-bottom:40px" align=3D"center" colspan=3D"2"><div style=
+=3D"background-color:#e1e1e1;height:1px;width:100%"></div></td></tr>
+
+    <tr>
+
+    <td style=3D"word-break:break-word;font-size:0px;padding:0px" align=3D"=
+left" width=3D"76" valign=3D"top">
+
+      <a style=3D"text-decoration:none" href=3D"http://click.revue.email/ss=
+/c/N2JF6XoklMBMrSHq7MdGqMRZZ7DP4JT1vNXZ-StQH9qFxOTCmjD8QpcUi-V1S1ELgJ2jqA7L=
+cLu4pqjj-LfZojLK47fbi59INuRm1_r_N15Q44D2Q9MUrIC9xmQTKBdCri5Y8UERmrHtfSRvg8r=
+_Q5RlrDouO7utIa-muWxDdl9X8DSqMxdDOD0cmJg2nq37/3au/4CVVk9diSNuJcxP6tx64mA/h6=
+/EuW8YdLA_NlZ1wXnOKMp6zeN-QZgDnUMBm2zAQMkm0M" target=3D"_blank">
+
+        <img alt=3D"Hellonext team" title=3D"Hellonext team" height=3D"56" =
+width=3D"56" style=3D"border:none;border-radius:0;display:block;outline:non=
+e;text-decoration:none;width:56px;height:56px" src=3D"https://s3.amazonaws.=
+com/revue/profiles/images/000/221/855/small/logo_w_o_b_copy.png?1617628556"=
+>
+
+</a>    </td>
+
+    <td style=3D"word-break:break-word;font-size:0px;padding:0px" align=3D"=
+left">
+
+
+
+    <div style=3D"color:#333333;font-family:-apple-system,BlinkMacSystemFon=
+t,&#39;Segoe UI&#39;,Helvetica,sans-serif;font-size:16px;line-height:16px;t=
+ext-align:left;font-weight:400;padding-bottom:8px">
+
+      <span style=3D"font-weight:700">Hellonext team</span> <a style=3D"col=
+or:#657786;text-decoration:none" href=3D"http://click.revue.email/ss/c/2fVG=
+m-9a_FyZubtxRY0IlilgwDecGivwW818gflFxvz7mzgPb3awu5fJv96_OlBE/3au/4CVVk9diSN=
+uJcxP6tx64mA/h7/sRjrtQ0iIrcd72GbRLDpBxqcZ3z-4KjPzYYYZMQDhlA" target=3D"_bla=
+nk">@hellonexthq</a>
+
+      </div>
+
+    <div style=3D"color:#6f7379;font-family:-apple-system,BlinkMacSystemFon=
+t,&#39;Segoe UI&#39;,Helvetica,sans-serif;font-size:14px;line-height:22px;t=
+ext-align:left;font-weight:400">
+
+      <p>Hellonext changelog &amp; updates</p>
+
+    </div></td></tr>
+
+  </tbody></table></div></td></tr></tbody></table></div>
+
+
+
+   =20
+
+<div style=3D"margin:0 20px;max-width:650px"><table role=3D"presentation" c=
+ellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:0px;width:100%" align=
+=3D"left" border=3D"0"><tbody><tr><td style=3D"text-align:left;vertical-ali=
+gn:top;direction:ltr;font-size:0px;padding:0px;padding-bottom:32px;padding-=
+left:30px;padding-right:30px" class=3D"m_-4553126702264804477indented"><div=
+ aria-labelledby=3D"mj-column-per-100" class=3D"m_-4553126702264804477mj-co=
+lumn-per-100" style=3D"vertical-align:top;display:inline-block;direction:lt=
+r;font-size:13px;text-align:left;width:100%"><table role=3D"presentation" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"100%" border=3D"0"><tbody>
+
+    <tr><td style=3D"word-break:break-word;font-size:0px;padding:0px;paddin=
+g-bottom:40px;padding-top:40px" align=3D"center"><div style=3D"background-c=
+olor:#e1e1e1;height:1px;width:100%"></div></td></tr>
+
+    <tr><td style=3D"word-break:break-word;font-size:0px;padding:0px" align=
+=3D"left"><div style=3D"color:#6f7379;font-family:-apple-system,BlinkMacSys=
+temFont,&#39;Segoe UI&#39;,Helvetica,sans-serif;font-size:14px;line-height:=
+22px;text-align:left;font-weight:400">If you don&#39;t want these updates a=
+nymore, please unsubscribe <a style=3D"color:#6f7379;text-decoration:underl=
+ine" href=3D"http://click.revue.email/ss/c/N2JF6XoklMBMrSHq7MdGqMRZZ7DP4JT1=
+vNXZ-StQH9p758klRMCS2uiJY-3tlYKdES-j-ZIJu6Mg6RrXvzesz7KdMpsEqCsWY7zuDqfw2N7=
+DpP7BHgphx0c3cN4kvmzWE3Vmtw8UaY_4EjyR1xK5jWndNmdEDNpshJTEfPX_DDIhQEE3WyMl6a=
+ENRKbhymxt17_LYbiKwr-GrPUfKiHruPTssopkxLTEFL9edWZHqPc/3au/4CVVk9diSNuJcxP6t=
+x64mA/h8/vcNl9dfpAlSB2Fxz5cEfZq62iR6RQmJh_6BAbACcLZ0" target=3D"_blank">her=
+e</a>.</div></td></tr>
+
+    <tr><td style=3D"word-break:break-word;font-size:0px;padding:0px" align=
+=3D"left"><div style=3D"color:#6f7379;font-family:-apple-system,BlinkMacSys=
+temFont,&#39;Segoe UI&#39;,Helvetica,sans-serif;font-size:14px;line-height:=
+22px;text-align:left;font-weight:400">If you were forwarded this newsletter=
+ and you like it, you can subscribe <a style=3D"color:#6f7379;text-decorati=
+on:underline" href=3D"http://click.revue.email/ss/c/N2JF6XoklMBMrSHq7MdGqMR=
+ZZ7DP4JT1vNXZ-StQH9qFxOTCmjD8QpcUi-V1S1ELgJ2jqA7LcLu4pqjj-LfZokVbS_oFkr-5wE=
+SMYj-9khYGiypR1gHeXNoaQCrXn5Shx35BP2EiRN3ti8JMKJOHoBGlXfvXDzRngjP9JWWa5hU/3=
+au/4CVVk9diSNuJcxP6tx64mA/h9/3HiZVK7RiMVxjU92346gxpD20vDytThuBwTrooyzUks" t=
+arget=3D"_blank">here</a>.</div></td></tr>
+
+    <tr><td style=3D"word-break:break-word;font-size:0px;padding:0px;paddin=
+g-top:8px" align=3D"left"><div style=3D"color:#6f7379;font-family:-apple-sy=
+stem,BlinkMacSystemFont,&#39;Segoe UI&#39;,Helvetica,sans-serif;font-size:1=
+4px;line-height:22px;text-align:left;font-weight:400">Created with <a style=
+=3D"color:#6f7379;text-decoration:underline" href=3D"http://click.revue.ema=
+il/ss/c/XN2t88CAhalHja1RClwc6mILlQpYBkhbWNj6JJ8IdY3235Z3HTNnTqDBBAWsSyAi0Z-=
+wMRVMFr6HYC7XNeKBpAPyKfTjszpyzvG4LrIQQjsrui5irhV7UY06rJ6ZPks-dwxD3R5zZxfA8C=
+7_oedDXyuGNG7S6F33xu_IhHMqYUI/3au/4CVVk9diSNuJcxP6tx64mA/h10/ZCGEDs9Swk_c0l=
+KV1tW2WnTTzpEBFXC15AMSlyN5zFk" target=3D"_blank">Revue by Twitter</a></div>=
+</td></tr></tbody></table></div></td></tr></tbody></table></div>
+
+
+
+
+
+  </div>
+
+</div>
+
+</div></div>
+
+--000000000000bb6b0305ceed8e16--

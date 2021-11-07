@@ -1,0 +1,812 @@
+Return-Path: <pzak@virtuslab.com>
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+ by inbound-smtp.eu-west-1.amazonaws.com with SMTP id 0o6t8ur732fb7hmqf55tuv24r8tnm2vuir258qg1
+ for newsletter@ds.vived.io;
+ Mon, 08 Nov 2021 11:10:56 +0000 (UTC)
+X-SES-Spam-Verdict: PASS
+X-SES-Virus-Verdict: PASS
+Received-SPF: pass (spfCheck: domain of virtuslab.com designates 209.85.208.181 as permitted sender) client-ip=209.85.208.181; envelope-from=pzak@virtuslab.com; helo=mail-lj1-f181.google.com;
+Authentication-Results: amazonses.com;
+ spf=pass (spfCheck: domain of virtuslab.com designates 209.85.208.181 as permitted sender) client-ip=209.85.208.181; envelope-from=pzak@virtuslab.com; helo=mail-lj1-f181.google.com;
+ dkim=pass header.i=@virtuslab.com;
+ dmarc=pass header.from=virtuslab.com;
+X-SES-RECEIPT: AEFBQUFBQUFBQUFFRlJ5NllVZmdiU0RPNkVOTElmM1pSeVpYekQxcXE3WkJMSVdUbFFQRFNUTlplZ1ZKUmJ3TS90cC93ME11cUNjcW1XTUhQdHE4eXNLR09IRW5WNVZUcjk5ejVsc3dQNVdzQVdVL2RaaTk5UXgwWkJaRHRuQ1VpNlRoM3hua0tydW1FVWR2dEl0QXk5b2JaREVBMmZxOGc1MS85QnR2V1plelUyc2JUSnRuUDVDQmY1V3YrN2s4ZHdrcDhFUkVtRmdzUlU1bk5kNVJjSGlOMWkrZVB2dHc5bE96RXdQSW4vVEwraDdWTWg4WG56QTRmUUlvTWJta0xGZG1tUUtaNXQ1NUhmaUFZbnNxVG1KNVpXYWh2UUZwQWxmeWhJbE5PV1ZLeHlIc0tUdVE0bGc9PQ==
+X-SES-DKIM-SIGNATURE: a=rsa-sha256; q=dns/txt; b=FTgFoPDRNRZhQZpqgJ3Fc8aH1bfCFlOcFuxqFelKTclXa6SDsC5Lr8GfRccu5c3XVXAajKzB2Mw9lsifdHkHsQX87jeKNo+E4kZc6EVL3xfARAEOnTsQVDvtIHIdU7wPoSS2IgfqV4v4VSHbt3XW4T/t7GnqE8/e0v5xwcOmVcc=; c=relaxed/simple; s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1636369857; v=1; bh=K1JafM6rrO+a2qJfbg0R41xn17I/nayMY6pW7F1frPc=; h=From:To:Cc:Bcc:Subject:Date:Message-ID:MIME-Version:Content-Type:X-SES-RECEIPT;
+Received: by mail-lj1-f181.google.com with SMTP id h11so28800930ljk.1
+        for <newsletter@ds.vived.io>; Mon, 08 Nov 2021 03:10:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=virtuslab.com; s=google;
+        h=from:mime-version:subject:message-id:references:to:date;
+        bh=12CB2YUx9AaaksDbMdf7Y5sutFNzpYK/uwYd5J6bEz4=;
+        b=fn1afxKwMh2EVINiB7scF0o9KpKrRJkpTdJMcHjY1IP3S0sfixHkTZVJvDoaERvAfj
+         7+RNDvJNkCAHg8u9IOPAeVt2m3JEjSv1UxClxxusHI/VGK+gOuzSbqHgRHdwmhf8uQAs
+         qfIoNISaf+5L0+0vPSStyD6saO5MWwM7kyeO17L1C2vPCgQEqIfWvAN/hP+Zna0s/4Qo
+         l7qO8EyU/96bqzLMxEd2DkgYMKvVo9RXl0nYPVC903V8ns/qlZuejCS1pZ5bElLkjFwj
+         Hf4h2Et8wNufPBk2uOURCKLjeEI+8HoajP83RrKpj5lAk5H700gJpQK9QzLs1mvGbKmf
+         unyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:mime-version:subject:message-id:references
+         :to:date;
+        bh=12CB2YUx9AaaksDbMdf7Y5sutFNzpYK/uwYd5J6bEz4=;
+        b=z5GEGYZU+AWXp5fV9xXG2Pl6VVDu/isJET1/gxLXMHhjrED3CKu+N7E+ejoEQd0xhG
+         voSLRIwJTQ+UQ12cBnquayARbvb0rK/acv6YwLH34jggneOkuKSSRuRHhTQNSsCqDi/y
+         JLUl4/oKeC9AtkHRzza5jJcSr2dZFNhLbSsdtzK1FxTRWml+9OFheFuUVNDrYAIoKQfG
+         AGpuOZDH9lx9P9CR7LmY39KSVlk2F9jD9xQBw27CUXXjc+SlUov0NNeK4vqn+FiajhAz
+         3d5xfc+NV1FR1r44xcARAPTfi9IjZpegbofUbXR0xk3WWr/ghwRIMolZZfsomN8P3Kzo
+         RmWQ==
+X-Gm-Message-State: AOAM532Zxtelx6vPJMotfuoQeEaAlad3J1iheeLlNnuu5Gjbt5mPEZMs
+	Z5vcS9vEQ3PqzcbJRHOLjSiWYplM8iO1hc+D
+X-Google-Smtp-Source: ABdhPJxwl0EkYn+hqJUdBXYqovsnRYPvdsuClhySqc53iANVmomhIHBM1+FpOIplx7I4DIrxBNxM8w==
+X-Received: by 2002:a2e:760d:: with SMTP id r13mr15341083ljc.159.1636369854680;
+        Mon, 08 Nov 2021 03:10:54 -0800 (PST)
+Return-Path: <pzak@virtuslab.com>
+Received: from [10.0.128.20] ([80.82.18.146])
+        by smtp.gmail.com with ESMTPSA id i12sm1776773lfb.234.2021.11.08.03.10.54
+        for <newsletter@ds.vived.io>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 08 Nov 2021 03:10:54 -0800 (PST)
+From: =?utf-8?Q?Paulina_=C5=BBak?= <pzak@virtuslab.com>
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_DFDC4C83-8614-47F4-A8F7-189616187925"
+Mime-Version: 1.0 (Mac OS X Mail 13.4 \(3608.120.23.2.4\))
+Subject: =?utf-8?B?RndkOiBGYWNlYm9vayBjaXJjdW12ZW50cyBBcHAgU3RvcmUg?=
+ =?utf-8?B?8J+TsSwgQmxvY2tjaGFpbiBjaXR5IPCfj5nvuI8sIEdpdEh1YidzIG5ldyBD?=
+ =?utf-8?B?RU8g8J+Suw==?=
+Message-Id: <2DFE6D59-A323-40A5-8EA3-EA0E7C82EC02@virtuslab.com>
+References: <CA+o2A14guDVZ29BYE1v6rGV1i3Xr9KkWNSTm8p7j27u6rTChog@mail.gmail.com>
+To: newsletter@ds.vived.io
+Date: Mon, 8 Nov 2021 12:10:54 +0100
+X-Mailer: Apple Mail (2.3608.120.23.2.4)
+
+
+--Apple-Mail=_DFDC4C83-8614-47F4-A8F7-189616187925
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+
+
+> Begin forwarded message:
+>=20
+> From: Artur Skowro=C5=84ski <articles.pl@gmail.com>
+> Subject: Fwd: Facebook circumvents App Store =F0=9F=93=B1, Blockchain =
+city =F0=9F=8F=99=EF=B8=8F, GitHub's new CEO =F0=9F=92=BB
+> Date: 8 November 2021 at 11:46:28 CET
+> To: pzak+newsletter@virtuslab.com
+>=20
+>=20
+>=20
+> ---------- Forwarded message ---------
+> Od: TLDR Dan <dan@tldrnewsletter.com <mailto:dan@tldrnewsletter.com>>
+> Date: czw., 4 lis 2021 o 11:10
+> Subject: Facebook circumvents App Store =F0=9F=93=B1, Blockchain city =
+=F0=9F=8F=99=EF=B8=8F, GitHub's new CEO =F0=9F=92=BB
+> To: 2196442 3d86992c20bb2fb906720d10475af5fc <articles.pl@gmail.com =
+<mailto:articles.pl@gmail.com>>
+>=20
+>=20
+> TLDR
+> Daily Update 2021-11-04
+> Find a job through Hired (Sponsor) =
+<https://tracking.tldrnewsletter.com/CL0/https:%2F%2Fhired.com%2Fjoin%2F%3=
+Futm_source=3Dnewsletter%26utm_medium=3Dsponsor%26utm_campaign=3D(b2c)(l-a=
+ll)(r-all)(tldrnewsletter)%26utm_content=3Dfind-a-job/1/0100017cea6d60d7-2=
+f09d429-04d0-4297-876c-6ec68b55e9a1-000000/i5w1AWX-cW4_fabJEpw7t2oNC3GTnQ0=
+1AHBFBiW6ipY=3D222>=20
+>=20
+> Hired is home to thousands of companies ranging from startups to =
+Fortune 500s that are actively hiring the best and brightest developers, =
+data scientists, mobile engineers, and more. Here=E2=80=99s how it =
+works: once you create a profile, hiring managers can extend interview =
+requests based on desired salary, top skills, and career preferences. =
+Sign up today - it=E2=80=99s completely free for job-seekers!
+> If you would like to sponsor TLDR, please let me know by replying to =
+this email or check out our sponsorship page =
+<https://tracking.tldrnewsletter.com/CL0/https:%2F%2Ftldr.tech%2Fsponsor/1=
+/0100017cea6d60d7-2f09d429-04d0-4297-876c-6ec68b55e9a1-000000/G8cbXjrRLDzg=
+ArxXL46wLT0Neoh0mLj0tMFxNqIAKdQ=3D222>!
+> =F0=9F=93=B1
+> Big Tech & Startups
+>=20
+> Facebook skirts Apple=E2=80=99s App Store fees with custom =
+subscription links for creators (3 minute read) =
+<https://tracking.tldrnewsletter.com/CL0/https:%2F%2Fwww.theverge.com%2F20=
+21%2F11%2F3%2F22761620%2Ffacebook-apple-app-store-fees-subscription-links-=
+creators%3Fscrolla=3D5eb6d68b7fedc32c19ef33b4%3Futm_source=3Dtldrnewslette=
+r/1/0100017cea6d60d7-2f09d429-04d0-4297-876c-6ec68b55e9a1-000000/-wZeEABwX=
+LkLm46gL1EMa3qKA_QXfOVJSjEP_SdGoXA=3D222>=20
+>=20
+> Facebook creators will soon be able to share custom web links to =
+direct their fans to pay for subscriptions using Facebook's native =
+payments system. The subscription feature is available in 27 countries =
+to creators who meet certain eligibility requirements. Creators will =
+receive all of the subscription money minus taxes if users sign up =
+through the custom web link, as opposed to using Apple's in-app =
+subscription. Apple takes a 30% cut of all in-app transactions processed =
+through its system. Facebook is not charging creators for subscription =
+transactions until at least 2023, and it will start paying creators a =
+bonus of up to $20 for every new subscriber who signs up using their =
+custom web link.
+> Coinbase is testing a subscription service that waives trading fees (1 =
+minute read) =
+<https://tracking.tldrnewsletter.com/CL0/https:%2F%2Fwww.cnet.com%2Fperson=
+al-finance%2Fcrypto%2Fcoinbase-is-testing-a-subscription-service-that-waiv=
+es-trading-fees%2F%3Futm_source=3Dtldrnewsletter/1/0100017cea6d60d7-2f09d4=
+29-04d0-4297-876c-6ec68b55e9a1-000000/ZYewRII69oetG_GNwJsNL97f0OR8mZ3wmmjc=
+ghzdkrw=3D222>=20
+>=20
+> Coinbase is testing a subscription service where users will be able to =
+trade digital currencies on the platform without a fee for each trade. =
+Spread fees will still apply. The product is still in the early stages =
+of testing. It will include features like additional account protection =
+and prioritized phone support.
+> =F0=9F=9A=80
+>=20
+> Science & Futuristic Technology
+>=20
+> 'Genetic Goldmine' in Earth's Harshest Desert Could Be The Key to =
+Feeding The Future (3 minute read) =
+<https://tracking.tldrnewsletter.com/CL0/https:%2F%2Fwww.sciencealert.com%=
+2Fgenetic-goldmine-in-earth-s-harshest-desert-could-be-the-key-to-feeding-=
+the-future%3Futm_source=3Dtldrnewsletter/1/0100017cea6d60d7-2f09d429-04d0-=
+4297-876c-6ec68b55e9a1-000000/afUrvJa4qFmgnqU_NXLRkgQU1RHB3EBu2TP4b83e12g=3D=
+222>=20
+>=20
+> An international team of researchers studied plant life in the Atacama =
+desert for 10 years to identify genes that help give the plants an =
+advantage in the desert. The Atacama desert is known for being the =
+planet's driest non-polar desert. Identifying the mechanisms behind the =
+plants' successes could reveal how to make food grow in a world affected =
+by climate change. Some of the plants in the desert are closely related =
+to staple crops, so scientists now have a better idea of how to engineer =
+more resilient crops.
+> Crypto Investors Buy 40 Acres of Land in Wyoming to Build Blockchain =
+City (5 minute read) =
+<https://tracking.tldrnewsletter.com/CL0/https:%2F%2Fwww.vice.com%2Fen%2Fa=
+rticle%2F93b5ve%2Fcrypto-investors-buy-40-acres-of-land-in-wyoming-to-buil=
+d-blockchain-city%3Futm_source=3Dtldrnewsletter/1/0100017cea6d60d7-2f09d42=
+9-04d0-4297-876c-6ec68b55e9a1-000000/csT0b04mrGexsBBEmMe4HRtOiO_aD5HuYZjtS=
+1R_uUA=3D222>=20
+>=20
+> Wyoming's DAO law allows Decentralized Autonomous Organizations to be =
+legally recognized. It recognizes two different types of DAOs: those run =
+by members, and those managed by algorithms. CityDAO has purchased a =
+piece of land in the northwestern corner of Wyoming. The project aims to =
+build a city on the Ethereum blockchain. People can become citizens =
+through the purchase of an NFT.
+> =F0=9F=92=BB
+> Programming, Design & Data Science
+>=20
+> ethereum-boilerplate (GitHub Repo) =
+<https://tracking.tldrnewsletter.com/CL0/https:%2F%2Fgithub.com%2Fethereum=
+-boilerplate%2Fethereum-boilerplate%3Futm_source=3Dtldrnewsletter/1/010001=
+7cea6d60d7-2f09d429-04d0-4297-876c-6ec68b55e9a1-000000/UE9OyoTQFlr9HWAXaQs=
+4Bv5r05zyFzWOZHtzG7GoqTU=3D222>=20
+>=20
+> ethereum-boilerplate is a full-stack Ethereum dApp boilerplate that =
+works with any EVM system. It is built on react-moralis and Moralis. The =
+boilerplate features React components and hooks that can be run without =
+a backend provider.
+> PatrickStar (GitHub Repo) =
+<https://tracking.tldrnewsletter.com/CL0/https:%2F%2Fgithub.com%2FTencent%=
+2FPatrickStar%3Futm_source=3Dtldrnewsletter/1/0100017cea6d60d7-2f09d429-04=
+d0-4297-876c-6ec68b55e9a1-000000/HyoUpyExbYoDHyLCli76FW0bMILwyepSPhdmG3kTc=
+Ks=3D222>=20
+>=20
+> Training Pre-Trained NLP Models requires enormous hardware resources, =
+but PatrickStar makes it available to everyone. PTMs are models that are =
+trained with massive data and have learned generic features of the =
+language. PatrickStar makes full use of both CPU and GPU memory to train =
+larger PTMs with fewer GPUs.
+> =F0=9F=8E=81
+> Miscellaneous
+>=20
+> The Booming Underground Market for Bots That Steal Your 2FA Codes (8 =
+minute read) =
+<https://tracking.tldrnewsletter.com/CL0/https:%2F%2Fwww.vice.com%2Fen%2Fa=
+rticle%2Fy3vz5k%2Fbooming-underground-market-bots-2fa-otp-paypal-amazon-ba=
+nk-apple-venmo%3Futm_source=3Dtldrnewsletter/1/0100017cea6d60d7-2f09d429-0=
+4d0-4297-876c-6ec68b55e9a1-000000/-xNnitXGdtqC6CVaZxIfA9uV-_KEDnumr_bSHQqu=
+-qU=3D222>=20
+>=20
+> Hackers who obtain username and password data may sometimes need to =
+also bypass two-factor authentication. There are a growing number of =
+services that help hackers bypass this barrier by using automated bots. =
+When a hacker is ready to enter an account, they can activate a bot that =
+calls the victim and convinces them to reply with a legitimate =
+two-factor code that the hacker sends at the same time. The bots can =
+cost a few hundred a month to hire, with vendors boasting thousands of =
+subscribers.
+> GitHub gets a new CEO (6 minute read) =
+<https://tracking.tldrnewsletter.com/CL0/https:%2F%2Ftechcrunch.com%2F2021=
+%2F11%2F03%2Fgithub-gets-a-new-ceo%2F%3Futm_source=3Dtldrnewsletter/1/0100=
+017cea6d60d7-2f09d429-04d0-4297-876c-6ec68b55e9a1-000000/53vxkjApREAr--EhM=
+aJwN0-gkjPatbMyiDyor2t9MWc=3D222>=20
+>=20
+> Thomas Dohmke is stepping into the CEO role at GitHub. Nat Friedman =
+will become the Chairman Emeritus of the service. Dohmke has a =
+background as a developer and open source advocate. One of his first =
+projects at GitHub was to make private repos free for all developers. =
+GitHub stayed platform-neutral during Friedman's tenure and will =
+continue to do so under Dohmke's leadership. Dohmke isn't planning any =
+major changes right away and will continue to lead GitHub on its current =
+trajectory.
+>=20
+> Thanks for reading! If you enjoy TLDR I would really appreciate you =
+spreading the word by forwarding this to your friends! =F0=9F=99=8F
+>=20
+> If you are just now finding out about TLDR, you can subscribe here =
+<https://tracking.tldrnewsletter.com/CL0/https:%2F%2Ftldr.tech%2F%3Futm_so=
+urce=3Dfwd%26utm_campaign=3D45e1423e-edd9-11eb-96e5-06b4694bee2a/1/0100017=
+cea6d60d7-2f09d429-04d0-4297-876c-6ec68b55e9a1-000000/hlAC9Pwo8LfHdcLlFloi=
+N1ezv14EQytARlMaf4l6n1g=3D222>!
+>=20
+> Give feedback by replying here or messaging me on Twitter @tldrdan =
+<https://tracking.tldrnewsletter.com/CL0/https:%2F%2Ftwitter.com%2Ftldrdan=
+/1/0100017cea6d60d7-2f09d429-04d0-4297-876c-6ec68b55e9a1-000000/iXXlPsvBZq=
+YfFDd-Gj48QyLq5PwxjjfnshJFT1mAXII=3D222>!=20
+>=20
+> If you don't want to receive future editions of TLDR, please click =
+here =
+<http://tracking.tldrnewsletter.com/CL0/http:%2F%2Factions.tldrnewsletter.=
+com%2Funsubscribe%3Fep=3D1%26l=3Dcfa2d55a-b7be-11e8-a3c9-06b79b628af2%26lc=
+=3D45e1423e-edd9-11eb-96e5-06b4694bee2a%26p=3Db240e9fb-3d25-11ec-96e5-06b4=
+694bee2a%26pt=3Dcampaign%26pv=3D4%26spa=3D1636020002%26t=3D1636020609%26s=3D=
+76a44e0125d3002d22262efdc3b946904de93400fda48eac4dd602b2b4260e6a/1/0100017=
+cea6d60d7-2f09d429-04d0-4297-876c-6ec68b55e9a1-000000/0TuSa-IpSUb0h4IrghYV=
+pAEGukJ15gWFJvIBybs_j-U=3D222>.=20
+>=20
+> =20
+>=20
+>=20
+> --=20
+> Pozdrawiam,
+> Artur Skowro=C5=84ski=20
+
+
+--Apple-Mail=_DFDC4C83-8614-47F4-A8F7-189616187925
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;" class=3D""><br =
+class=3D""><div><br class=3D""><blockquote type=3D"cite" class=3D""><div =
+class=3D"">Begin forwarded message:</div><br =
+class=3D"Apple-interchange-newline"><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px;" class=3D""><span=
+ style=3D"font-family: -webkit-system-font, Helvetica Neue, Helvetica, =
+sans-serif; color:rgba(0, 0, 0, 1.0);" class=3D""><b class=3D"">From: =
+</b></span><span style=3D"font-family: -webkit-system-font, Helvetica =
+Neue, Helvetica, sans-serif;" class=3D"">Artur Skowro=C5=84ski &lt;<a =
+href=3D"mailto:articles.pl@gmail.com" =
+class=3D"">articles.pl@gmail.com</a>&gt;<br class=3D""></span></div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px;" class=3D""><span style=3D"font-family: =
+-webkit-system-font, Helvetica Neue, Helvetica, sans-serif; =
+color:rgba(0, 0, 0, 1.0);" class=3D""><b class=3D"">Subject: =
+</b></span><span style=3D"font-family: -webkit-system-font, Helvetica =
+Neue, Helvetica, sans-serif;" class=3D""><b class=3D"">Fwd: Facebook =
+circumvents App Store =F0=9F=93=B1, Blockchain city =F0=9F=8F=99=EF=B8=8F,=
+ GitHub's new CEO =F0=9F=92=BB</b><br class=3D""></span></div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px;" class=3D""><span style=3D"font-family: =
+-webkit-system-font, Helvetica Neue, Helvetica, sans-serif; =
+color:rgba(0, 0, 0, 1.0);" class=3D""><b class=3D"">Date: =
+</b></span><span style=3D"font-family: -webkit-system-font, Helvetica =
+Neue, Helvetica, sans-serif;" class=3D"">8 November 2021 at 11:46:28 =
+CET<br class=3D""></span></div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px;" class=3D""><span=
+ style=3D"font-family: -webkit-system-font, Helvetica Neue, Helvetica, =
+sans-serif; color:rgba(0, 0, 0, 1.0);" class=3D""><b class=3D"">To: =
+</b></span><span style=3D"font-family: -webkit-system-font, Helvetica =
+Neue, Helvetica, sans-serif;" class=3D""><a =
+href=3D"mailto:pzak+newsletter@virtuslab.com" =
+class=3D"">pzak+newsletter@virtuslab.com</a><br =
+class=3D""></span></div><br class=3D""><div class=3D""><div dir=3D"ltr" =
+class=3D""><br class=3D""><br class=3D""><div class=3D"gmail_quote"><div =
+dir=3D"ltr" class=3D"gmail_attr">---------- Forwarded message =
+---------<br class=3D"">Od: <strong class=3D"gmail_sendername" =
+dir=3D"auto">TLDR Dan</strong> <span dir=3D"auto" class=3D"">&lt;<a =
+href=3D"mailto:dan@tldrnewsletter.com" =
+class=3D"">dan@tldrnewsletter.com</a>&gt;</span><br class=3D"">Date: =
+czw., 4 lis 2021 o 11:10<br class=3D"">Subject: Facebook circumvents App =
+Store =F0=9F=93=B1, Blockchain city =F0=9F=8F=99=EF=B8=8F, GitHub's new =
+CEO =F0=9F=92=BB<br class=3D"">To: 2196442 =
+3d86992c20bb2fb906720d10475af5fc &lt;<a =
+href=3D"mailto:articles.pl@gmail.com" =
+class=3D"">articles.pl@gmail.com</a>&gt;<br class=3D""></div><br =
+class=3D""><br class=3D""><u class=3D""></u><div =
+style=3D"font-family:Arial,&quot;Helvetica =
+Neue&quot;,Helvetica,sans-serif;font-size:16px" class=3D"">
+
+
+
+
+<div =
+style=3D"display:none;font-size:0px;line-height:0px;max-height:0px;max-wid=
+th:0px;opacity:0;overflow:hidden" class=3D"">Facebook creators will soon =
+be able to share custom web links to direct their fans to pay for =
+subscriptions using Facebook's native payments system.&nbsp;</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div style=3D"display:none;max-height:0px;overflow:hidden" class=3D"">
+
+</div>
+
+<table align=3D"center" class=3D"m_-6077764415709494183document"><tbody =
+class=3D""><tr class=3D""><td valign=3D"top" class=3D"">
+
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+class=3D"m_-6077764415709494183container" width=3D"600"><tbody =
+class=3D""><tr class=3D""><td class=3D"">
+
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+width=3D"100%" class=3D""><tbody class=3D""><tr class=3D""><td =
+bgcolor=3D"" class=3D"m_-6077764415709494183container">
+
+<table width=3D"100%" class=3D""><tbody class=3D""><tr class=3D""><td =
+class=3D"m_-6077764415709494183container">
+
+<table align=3D"center" bgcolor=3D"" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" style=3D"margin-top:0px" width=3D"100%" =
+class=3D""><tbody class=3D""><tr class=3D""><td style=3D"padding:0px" =
+class=3D"">
+
+<table align=3D"center" bgcolor=3D"" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" width=3D"100%" class=3D""><tbody class=3D""><tr =
+class=3D""><td class=3D"m_-6077764415709494183container" =
+style=3D"padding-top:15px;padding-bottom:15px">
+<div class=3D"">
+<div style=3D"text-align:center" class=3D""><span =
+style=3D"font-size:36px;font-family:Tahoma,Verdana,Segoe,sans-serif" =
+class=3D""><span style=3D"color:rgb(51,175,255)!important" =
+class=3D"">T</span><span style=3D"color:rgb(232,192,96)!important" =
+class=3D"">L</span><span style=3D"color:rgb(101,195,173)!important" =
+class=3D"">D</span><span style=3D"color:rgb(220,107,107)!important" =
+class=3D"">R</span></span><img =
+src=3D"https://ad.doubleclick.net/ddm/ad/N117602.3973022TLDR/B25680287.306=
+042277;sz=3D1x1;ord=3D;dc_lat=3D;dc_rdid=3D;tag_for_child_directed_treatme=
+nt=3D;tfua=3D;gdpr=3D$%7BGDPR%7D;gdpr_consent=3D$%7BGDPR_CONSENT_755%7D?" =
+border=3D"0" width=3D"1" height=3D"1" alt=3D"Advertisement" =
+class=3D""></div></div>
+</td></tr></tbody></table>
+
+<table style=3D"table-layout:fixed;width:100%" width=3D"100%" =
+class=3D""><tbody class=3D""><tr class=3D""><td =
+style=3D"padding:0;border-collapse:collapse;border-spacing:0;margin:0" =
+class=3D"">
+<div style=3D"text-align:center" class=3D""><strong class=3D"">Daily =
+Update<span style=3D"" class=3D""> </span></strong><span style=3D"" =
+class=3D""><strong class=3D"">2021-11-04</strong></span></div>
+</td></tr>
+<tr class=3D""><td class=3D"m_-6077764415709494183container" =
+style=3D"padding:15px 15px">
+<div class=3D""><span class=3D""><a =
+href=3D"https://tracking.tldrnewsletter.com/CL0/https:%2F%2Fhired.com%2Fjo=
+in%2F%3Futm_source=3Dnewsletter%26utm_medium=3Dsponsor%26utm_campaign=3D(b=
+2c)(l-all)(r-all)(tldrnewsletter)%26utm_content=3Dfind-a-job/1/0100017cea6=
+d60d7-2f09d429-04d0-4297-876c-6ec68b55e9a1-000000/i5w1AWX-cW4_fabJEpw7t2oN=
+C3GTnQ01AHBFBiW6ipY=3D222" target=3D"_blank" class=3D""><span =
+style=3D"font-size:16px" class=3D""><strong class=3D"">Find a job =
+through Hired (Sponsor)</strong></span></a>
+<br class=3D"">
+<br class=3D""><span style=3D"font-size:16px;font-family:&quot;Helvetica =
+Neue&quot;,Helvetica,Arial,Verdana,sans-serif" class=3D"">Hired is home =
+to thousands of companies ranging from startups to Fortune 500s that are =
+actively hiring the best and brightest developers, data scientists, =
+mobile engineers, and more. Here=E2=80=99s how it works: once you create =
+a profile, hiring managers can extend interview requests based on =
+desired salary, top skills, and career preferences. Sign up today - =
+it=E2=80=99s completely free for job-seekers!</span></span></div>
+</td></tr></tbody></table>
+
+<table align=3D"center" bgcolor=3D"" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" width=3D"100%" class=3D""><tbody class=3D""><tr =
+class=3D""><td class=3D"m_-6077764415709494183container" =
+style=3D"padding:15px 15px">
+<div class=3D""><span style=3D"font-family:&quot;Helvetica =
+Neue&quot;,Helvetica,Arial,Verdana,sans-serif;font-size:16px" =
+class=3D"">If you would like to sponsor TLDR, please let me know by =
+replying to this email or check out our</span><span =
+style=3D"font-size:16px" class=3D""><span =
+style=3D"font-family:&quot;Helvetica =
+Neue&quot;,Helvetica,Arial,Verdana,sans-serif" class=3D""> </span><a =
+href=3D"https://tracking.tldrnewsletter.com/CL0/https:%2F%2Ftldr.tech%2Fsp=
+onsor/1/0100017cea6d60d7-2f09d429-04d0-4297-876c-6ec68b55e9a1-000000/G8cbX=
+jrRLDzgArxXL46wLT0Neoh0mLj0tMFxNqIAKdQ=3D222" target=3D"_blank" =
+class=3D""><span style=3D"font-family:&quot;Helvetica =
+Neue&quot;,Helvetica,Arial,Verdana,sans-serif" class=3D"">sponsorship =
+page</span></a></span><span style=3D"font-family:&quot;Helvetica =
+Neue&quot;,Helvetica,Arial,Verdana,sans-serif;font-size:16px" =
+class=3D"">!<br class=3D""></span></div>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr>
+<tr bgcolor=3D"" class=3D""><td class=3D"m_-6077764415709494183container">=
+
+
+<table align=3D"center" bgcolor=3D"" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" width=3D"100%" class=3D""><tbody class=3D""><tr =
+class=3D""><td style=3D"padding:0px" class=3D"">
+
+<table align=3D"center" bgcolor=3D"" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" width=3D"100%" class=3D""><tbody class=3D""><tr =
+class=3D""><td class=3D"m_-6077764415709494183container" =
+style=3D"padding-top:0px;padding-bottom:0px">
+<div class=3D"">
+<div style=3D"text-align:center" class=3D""><span style=3D"font-size:48px"=
+ class=3D"">=F0=9F=93=B1<br class=3D""></span></div></div>
+</td></tr></tbody></table>
+
+<table align=3D"center" bgcolor=3D"" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" width=3D"100%" class=3D""><tbody class=3D""><tr =
+class=3D""><td class=3D"m_-6077764415709494183container" =
+style=3D"padding-top:15px;padding-bottom:0px">
+<div class=3D"">
+<div style=3D"text-align:center" class=3D""><span =
+style=3D"font-family:&quot;Helvetica =
+Neue&quot;,Helvetica,Arial,Verdana,sans-serif;font-size:18px" =
+class=3D""><strong class=3D"">Big Tech &amp; =
+Startups</strong></span></div>
+<br class=3D"">
+</div>
+</td></tr></tbody></table>
+
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+width=3D"100%" class=3D""><tbody class=3D""><tr class=3D""><td =
+class=3D"m_-6077764415709494183container" style=3D"padding:15px 15px">
+<div class=3D""><span class=3D""><a =
+href=3D"https://tracking.tldrnewsletter.com/CL0/https:%2F%2Fwww.theverge.c=
+om%2F2021%2F11%2F3%2F22761620%2Ffacebook-apple-app-store-fees-subscription=
+-links-creators%3Fscrolla=3D5eb6d68b7fedc32c19ef33b4%3Futm_source=3Dtldrne=
+wsletter/1/0100017cea6d60d7-2f09d429-04d0-4297-876c-6ec68b55e9a1-000000/-w=
+ZeEABwXLkLm46gL1EMa3qKA_QXfOVJSjEP_SdGoXA=3D222" target=3D"_blank" =
+class=3D""><span style=3D"font-size:16px" class=3D""><strong =
+class=3D"">Facebook skirts Apple=E2=80=99s App Store fees with custom =
+subscription links for creators (3 minute read)</strong></span></a>
+<br class=3D"">
+<br class=3D""><span style=3D"font-size:16px;font-family:&quot;Helvetica =
+Neue&quot;,Helvetica,Arial,Verdana,sans-serif" class=3D"">Facebook =
+creators will soon be able to share custom web links to direct their =
+fans to pay for subscriptions using Facebook's native payments system. =
+The subscription feature is available in 27 countries to creators who =
+meet certain eligibility requirements. Creators will receive all of the =
+subscription money minus taxes if users sign up through the custom web =
+link, as opposed to using Apple's in-app subscription. Apple takes a 30% =
+cut of all in-app transactions processed through its system. Facebook is =
+not charging creators for subscription transactions until at least 2023, =
+and it will start paying creators a bonus of up to $20 for every new =
+subscriber who signs up using their custom web link.</span></span></div>
+</td></tr></tbody></table>
+
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+width=3D"100%" class=3D""><tbody class=3D""><tr class=3D""><td =
+class=3D"m_-6077764415709494183container" style=3D"padding:15px 15px">
+<div class=3D""><span class=3D""><a =
+href=3D"https://tracking.tldrnewsletter.com/CL0/https:%2F%2Fwww.cnet.com%2=
+Fpersonal-finance%2Fcrypto%2Fcoinbase-is-testing-a-subscription-service-th=
+at-waives-trading-fees%2F%3Futm_source=3Dtldrnewsletter/1/0100017cea6d60d7=
+-2f09d429-04d0-4297-876c-6ec68b55e9a1-000000/ZYewRII69oetG_GNwJsNL97f0OR8m=
+Z3wmmjcghzdkrw=3D222" target=3D"_blank" class=3D""><span =
+style=3D"font-size:16px" class=3D""><strong class=3D"">Coinbase is =
+testing a subscription service that waives trading fees (1 minute =
+read)</strong></span></a>
+<br class=3D"">
+<br class=3D""><span style=3D"font-size:16px;font-family:&quot;Helvetica =
+Neue&quot;,Helvetica,Arial,Verdana,sans-serif" class=3D"">Coinbase is =
+testing a subscription service where users will be able to trade digital =
+currencies on the platform without a fee for each trade. Spread fees =
+will still apply. The product is still in the early stages of testing. =
+It will include features like additional account protection and =
+prioritized phone support.</span></span></div>
+</td></tr></tbody></table>
+
+<table align=3D"center" bgcolor=3D"" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" width=3D"100%" class=3D""><tbody class=3D""><tr =
+class=3D""><td class=3D"m_-6077764415709494183container" =
+style=3D"padding-top:0px;padding-bottom:0px">
+<div class=3D"">
+<div style=3D"text-align:center" class=3D""><span style=3D"font-size:48px"=
+ class=3D"">=F0=9F=9A=80</span></div>
+<br class=3D"">
+</div>
+</td></tr></tbody></table>
+
+<table align=3D"center" bgcolor=3D"" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" width=3D"100%" class=3D""><tbody class=3D""><tr =
+class=3D""><td class=3D"m_-6077764415709494183container" =
+style=3D"padding-top:15px;padding-bottom:0px">
+<div class=3D"">
+<div style=3D"text-align:center" class=3D""><span style=3D"font-size:18px"=
+ class=3D""><strong class=3D"">Science &amp; Futuristic =
+Technology</strong></span></div>
+<br class=3D"">
+</div>
+</td></tr></tbody></table>
+
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+width=3D"100%" class=3D""><tbody class=3D""><tr class=3D""><td =
+class=3D"m_-6077764415709494183container" style=3D"padding:15px 15px">
+<div class=3D""><span class=3D""><a =
+href=3D"https://tracking.tldrnewsletter.com/CL0/https:%2F%2Fwww.scienceale=
+rt.com%2Fgenetic-goldmine-in-earth-s-harshest-desert-could-be-the-key-to-f=
+eeding-the-future%3Futm_source=3Dtldrnewsletter/1/0100017cea6d60d7-2f09d42=
+9-04d0-4297-876c-6ec68b55e9a1-000000/afUrvJa4qFmgnqU_NXLRkgQU1RHB3EBu2TP4b=
+83e12g=3D222" target=3D"_blank" class=3D""><span style=3D"font-size:16px" =
+class=3D""><strong class=3D"">'Genetic Goldmine' in Earth's Harshest =
+Desert Could Be The Key to Feeding The Future (3 minute =
+read)</strong></span></a>
+<br class=3D"">
+<br class=3D""><span style=3D"font-size:16px;font-family:&quot;Helvetica =
+Neue&quot;,Helvetica,Arial,Verdana,sans-serif" class=3D"">An =
+international team of researchers studied plant life in the Atacama =
+desert for 10 years to identify genes that help give the plants an =
+advantage in the desert. The Atacama desert is known for being the =
+planet's driest non-polar desert. Identifying the mechanisms behind the =
+plants' successes could reveal how to make food grow in a world affected =
+by climate change. Some of the plants in the desert are closely related =
+to staple crops, so scientists now have a better idea of how to engineer =
+more resilient crops.</span></span></div>
+</td></tr></tbody></table>
+
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+width=3D"100%" class=3D""><tbody class=3D""><tr class=3D""><td =
+class=3D"m_-6077764415709494183container" style=3D"padding:15px 15px">
+<div class=3D""><span class=3D""><a =
+href=3D"https://tracking.tldrnewsletter.com/CL0/https:%2F%2Fwww.vice.com%2=
+Fen%2Farticle%2F93b5ve%2Fcrypto-investors-buy-40-acres-of-land-in-wyoming-=
+to-build-blockchain-city%3Futm_source=3Dtldrnewsletter/1/0100017cea6d60d7-=
+2f09d429-04d0-4297-876c-6ec68b55e9a1-000000/csT0b04mrGexsBBEmMe4HRtOiO_aD5=
+HuYZjtS1R_uUA=3D222" target=3D"_blank" class=3D""><span =
+style=3D"font-size:16px" class=3D""><strong class=3D"">Crypto Investors =
+Buy 40 Acres of Land in Wyoming to Build Blockchain City (5 minute =
+read)</strong></span></a>
+<br class=3D"">
+<br class=3D""><span style=3D"font-size:16px;font-family:&quot;Helvetica =
+Neue&quot;,Helvetica,Arial,Verdana,sans-serif" class=3D"">Wyoming's DAO =
+law allows Decentralized Autonomous Organizations to be legally =
+recognized. It recognizes two different types of DAOs: those run by =
+members, and those managed by algorithms. CityDAO has purchased a piece =
+of land in the northwestern corner of Wyoming. The project aims to build =
+a city on the Ethereum blockchain. People can become citizens through =
+the purchase of an NFT.</span></span></div>
+</td></tr></tbody></table>
+
+<table align=3D"center" bgcolor=3D"" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" width=3D"100%" class=3D""><tbody class=3D""><tr =
+class=3D""><td class=3D"m_-6077764415709494183container" =
+style=3D"padding-top:0px;padding-bottom:0px">
+<div class=3D"">
+<div style=3D"text-align:center" class=3D""><span style=3D"font-size:48px"=
+ class=3D"">=F0=9F=92=BB</span></div></div>
+</td></tr></tbody></table>
+
+<table align=3D"center" bgcolor=3D"" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" width=3D"100%" class=3D""><tbody class=3D""><tr =
+class=3D""><td class=3D"m_-6077764415709494183container" =
+style=3D"padding-top:15px;padding-bottom:0px">
+<div class=3D"">
+<div style=3D"text-align:center" class=3D""><strong class=3D""><span =
+style=3D"font-size:18px" class=3D"">Programming, Design &amp; Data =
+Science</span></strong></div>
+<br class=3D"">
+</div>
+</td></tr></tbody></table>
+
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+width=3D"100%" class=3D""><tbody class=3D""><tr class=3D""><td =
+class=3D"m_-6077764415709494183container" style=3D"padding:15px 15px">
+<div class=3D""><span class=3D""><a =
+href=3D"https://tracking.tldrnewsletter.com/CL0/https:%2F%2Fgithub.com%2Fe=
+thereum-boilerplate%2Fethereum-boilerplate%3Futm_source=3Dtldrnewsletter/1=
+/0100017cea6d60d7-2f09d429-04d0-4297-876c-6ec68b55e9a1-000000/UE9OyoTQFlr9=
+HWAXaQs4Bv5r05zyFzWOZHtzG7GoqTU=3D222" target=3D"_blank" class=3D""><span =
+style=3D"font-size:16px" class=3D""><strong =
+class=3D"">ethereum-boilerplate (GitHub Repo)</strong></span></a>
+<br class=3D"">
+<br class=3D""><span style=3D"font-size:16px;font-family:&quot;Helvetica =
+Neue&quot;,Helvetica,Arial,Verdana,sans-serif" =
+class=3D"">ethereum-boilerplate is a full-stack Ethereum dApp =
+boilerplate that works with any EVM system. It is built on react-moralis =
+and Moralis. The boilerplate features React components and hooks that =
+can be run without a backend provider.</span></span></div>
+</td></tr></tbody></table>
+
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+width=3D"100%" class=3D""><tbody class=3D""><tr class=3D""><td =
+class=3D"m_-6077764415709494183container" style=3D"padding:15px 15px">
+<div class=3D""><span class=3D""><a =
+href=3D"https://tracking.tldrnewsletter.com/CL0/https:%2F%2Fgithub.com%2FT=
+encent%2FPatrickStar%3Futm_source=3Dtldrnewsletter/1/0100017cea6d60d7-2f09=
+d429-04d0-4297-876c-6ec68b55e9a1-000000/HyoUpyExbYoDHyLCli76FW0bMILwyepSPh=
+dmG3kTcKs=3D222" target=3D"_blank" class=3D""><span =
+style=3D"font-size:16px" class=3D""><strong class=3D"">PatrickStar =
+(GitHub Repo)</strong></span></a>
+<br class=3D"">
+<br class=3D""><span style=3D"font-size:16px;font-family:&quot;Helvetica =
+Neue&quot;,Helvetica,Arial,Verdana,sans-serif" class=3D"">Training =
+Pre-Trained NLP Models requires enormous hardware resources, but =
+PatrickStar makes it available to everyone. PTMs are models that are =
+trained with massive data and have learned generic features of the =
+language. PatrickStar makes full use of both CPU and GPU memory to train =
+larger PTMs with fewer GPUs.</span></span></div>
+</td></tr></tbody></table>
+
+<table align=3D"center" bgcolor=3D"" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" width=3D"100%" class=3D""><tbody class=3D""><tr =
+class=3D""><td class=3D"m_-6077764415709494183container" =
+style=3D"padding-top:0px;padding-bottom:0px">
+<div class=3D"">
+<div style=3D"text-align:center" class=3D""><span style=3D"font-size:48px"=
+ class=3D"">=F0=9F=8E=81</span></div></div>
+</td></tr></tbody></table>
+
+<table align=3D"center" bgcolor=3D"" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" width=3D"100%" class=3D""><tbody class=3D""><tr =
+class=3D""><td class=3D"m_-6077764415709494183container" =
+style=3D"padding-top:15px;padding-bottom:0px">
+<div class=3D"">
+<div style=3D"text-align:center" class=3D""><strong class=3D""><span =
+style=3D"font-size:18px" class=3D"">Miscellaneous</span></strong></div>
+<br class=3D"">
+</div>
+</td></tr></tbody></table>
+
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+width=3D"100%" class=3D""><tbody class=3D""><tr class=3D""><td =
+class=3D"m_-6077764415709494183container" style=3D"padding:15px 15px">
+<div class=3D""><span class=3D""><a =
+href=3D"https://tracking.tldrnewsletter.com/CL0/https:%2F%2Fwww.vice.com%2=
+Fen%2Farticle%2Fy3vz5k%2Fbooming-underground-market-bots-2fa-otp-paypal-am=
+azon-bank-apple-venmo%3Futm_source=3Dtldrnewsletter/1/0100017cea6d60d7-2f0=
+9d429-04d0-4297-876c-6ec68b55e9a1-000000/-xNnitXGdtqC6CVaZxIfA9uV-_KEDnumr=
+_bSHQqu-qU=3D222" target=3D"_blank" class=3D""><span =
+style=3D"font-size:16px" class=3D""><strong class=3D"">The Booming =
+Underground Market for Bots That Steal Your 2FA Codes (8 minute =
+read)</strong></span></a>
+<br class=3D"">
+<br class=3D""><span style=3D"font-size:16px;font-family:&quot;Helvetica =
+Neue&quot;,Helvetica,Arial,Verdana,sans-serif" class=3D"">Hackers who =
+obtain username and password data may sometimes need to also bypass =
+two-factor authentication. There are a growing number of services that =
+help hackers bypass this barrier by using automated bots. When a hacker =
+is ready to enter an account, they can activate a bot that calls the =
+victim and convinces them to reply with a legitimate two-factor code =
+that the hacker sends at the same time. The bots can cost a few hundred =
+a month to hire, with vendors boasting thousands of =
+subscribers.</span></span></div>
+</td></tr></tbody></table>
+
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+width=3D"100%" class=3D""><tbody class=3D""><tr class=3D""><td =
+class=3D"m_-6077764415709494183container" style=3D"padding:15px 15px">
+<div class=3D""><span class=3D""><a =
+href=3D"https://tracking.tldrnewsletter.com/CL0/https:%2F%2Ftechcrunch.com=
+%2F2021%2F11%2F03%2Fgithub-gets-a-new-ceo%2F%3Futm_source=3Dtldrnewsletter=
+/1/0100017cea6d60d7-2f09d429-04d0-4297-876c-6ec68b55e9a1-000000/53vxkjApRE=
+Ar--EhMaJwN0-gkjPatbMyiDyor2t9MWc=3D222" target=3D"_blank" =
+class=3D""><span style=3D"font-size:16px" class=3D""><strong =
+class=3D"">GitHub gets a new CEO (6 minute read)</strong></span></a>
+<br class=3D"">
+<br class=3D""><span style=3D"font-size:16px;font-family:&quot;Helvetica =
+Neue&quot;,Helvetica,Arial,Verdana,sans-serif" class=3D"">Thomas Dohmke =
+is stepping into the CEO role at GitHub. Nat Friedman will become the =
+Chairman Emeritus of the service. Dohmke has a background as a developer =
+and open source advocate. One of his first projects at GitHub was to =
+make private repos free for all developers. GitHub stayed =
+platform-neutral during Friedman's tenure and will continue to do so =
+under Dohmke's leadership. Dohmke isn't planning any major changes right =
+away and will continue to lead GitHub on its current =
+trajectory.</span></span></div>
+</td></tr></tbody></table>
+
+<table align=3D"center" bgcolor=3D"" border=3D"0" =
+style=3D"table-layout:fixed;width:100%" width=3D"100%" class=3D""><tbody =
+class=3D""><tr class=3D""><td class=3D"m_-6077764415709494183container" =
+style=3D"padding:15px 15px">
+<br class=3D"">
+<div class=3D""><span style=3D"font-size:16px" class=3D"">Thanks for =
+reading! If you enjoy TLDR I would  really appreciate you spreading the =
+word by forwarding this to your friends!&nbsp;=F0=9F=99=8F</span></div>
+<div style=3D"text-align:left" class=3D""><span style=3D"font-size:16px" =
+class=3D""><br class=3D"">If you are just now finding out about TLDR, =
+you can subscribe <a =
+href=3D"https://tracking.tldrnewsletter.com/CL0/https:%2F%2Ftldr.tech%2F%3=
+Futm_source=3Dfwd%26utm_campaign=3D45e1423e-edd9-11eb-96e5-06b4694bee2a/1/=
+0100017cea6d60d7-2f09d429-04d0-4297-876c-6ec68b55e9a1-000000/hlAC9Pwo8LfHd=
+cLlFloiN1ezv14EQytARlMaf4l6n1g=3D222" rel=3D"noopener noreferrer" =
+target=3D"_blank" class=3D"">here</a>!</span></div>
+<span style=3D"font-size:16px" class=3D""><br class=3D"">Give feedback =
+by replying here or messaging me on Twitter <a =
+href=3D"https://tracking.tldrnewsletter.com/CL0/https:%2F%2Ftwitter.com%2F=
+tldrdan/1/0100017cea6d60d7-2f09d429-04d0-4297-876c-6ec68b55e9a1-000000/iXX=
+lPsvBZqYfFDd-Gj48QyLq5PwxjjfnshJFT1mAXII=3D222" rel=3D"noopener =
+noreferrer" target=3D"_blank" class=3D"">@tldrdan</a>!</span>
+<br class=3D"">
+<br class=3D"">
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr>
+<tr style=3D"background:none" class=3D""><td bgcolor=3D"" =
+class=3D"m_-6077764415709494183container">
+
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+width=3D"100%" class=3D""><tbody class=3D""><tr class=3D""><td class=3D"">=
+
+
+<table align=3D"center" bgcolor=3D"" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" width=3D"100%" class=3D""><tbody class=3D""><tr =
+class=3D""><td class=3D"m_-6077764415709494183container" =
+style=3D"padding:15px 15px">
+<div style=3D"font-size:11px!important" class=3D"">If you don't want to =
+receive future editions of TLDR, please&nbsp;<a =
+href=3D"http://tracking.tldrnewsletter.com/CL0/http:%2F%2Factions.tldrnews=
+letter.com%2Funsubscribe%3Fep=3D1%26l=3Dcfa2d55a-b7be-11e8-a3c9-06b79b628a=
+f2%26lc=3D45e1423e-edd9-11eb-96e5-06b4694bee2a%26p=3Db240e9fb-3d25-11ec-96=
+e5-06b4694bee2a%26pt=3Dcampaign%26pv=3D4%26spa=3D1636020002%26t=3D16360206=
+09%26s=3D76a44e0125d3002d22262efdc3b946904de93400fda48eac4dd602b2b4260e6a/=
+1/0100017cea6d60d7-2f09d429-04d0-4297-876c-6ec68b55e9a1-000000/0TuSa-IpSUb=
+0h4IrghYVpAEGukJ15gWFJvIBybs_j-U=3D222" target=3D"_blank" class=3D"">click=
+ here</a>.
+<br class=3D"">
+<br class=3D""> &nbsp;
+</div>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<img alt=3D"" =
+src=3D"http://tracking.tldrnewsletter.com/CI0/0100017cea6d60d7-2f09d429-04=
+d0-4297-876c-6ec68b55e9a1-000000/LPt-Qwwaykz0vuc5i8sK3B2UJiIEDCxVSWv98k1k1=
+hM=3D222" style=3D"display:none;width:1px;height:1px" class=3D"">
+</div>
+</div><br clear=3D"all" class=3D""><div class=3D""><br class=3D""></div>--=
+ <br class=3D""><div dir=3D"ltr" class=3D"gmail_signature" =
+data-smartmail=3D"gmail_signature">Pozdrawiam,<br class=3D"">Artur =
+Skowro=C5=84ski&nbsp;</div></div>
+</div></blockquote></div><br class=3D""></body></html>=
+
+--Apple-Mail=_DFDC4C83-8614-47F4-A8F7-189616187925--

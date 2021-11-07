@@ -1,0 +1,1121 @@
+Return-Path: <pzak@virtuslab.com>
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+ by inbound-smtp.eu-west-1.amazonaws.com with SMTP id ei1of65s3j2ang2p6ag3nal9pkm6o779152d9qg1
+ for newsletter@ds.vived.io;
+ Mon, 08 Nov 2021 11:11:27 +0000 (UTC)
+X-SES-Spam-Verdict: PASS
+X-SES-Virus-Verdict: PASS
+Received-SPF: pass (spfCheck: domain of virtuslab.com designates 209.85.208.178 as permitted sender) client-ip=209.85.208.178; envelope-from=pzak@virtuslab.com; helo=mail-lj1-f178.google.com;
+Authentication-Results: amazonses.com;
+ spf=pass (spfCheck: domain of virtuslab.com designates 209.85.208.178 as permitted sender) client-ip=209.85.208.178; envelope-from=pzak@virtuslab.com; helo=mail-lj1-f178.google.com;
+ dkim=pass header.i=@virtuslab.com;
+ dmarc=pass header.from=virtuslab.com;
+X-SES-RECEIPT: AEFBQUFBQUFBQUFHdDlSUHdhUS9LR0ozMHJtQXZaZGVLMlo2NDZCa2ZRN1NlamlXSmdUZGREdTdsNktldnlISldwU1R4RWRBTzU5MHRZeEhaelZhZ3ZXcHc2aGhsZVFJNXljaG9Odjg1VzdNSWJvcnFZd2ozelA5REtCc2VZYTRsdVRnNmZmQURjTjNZTGEwTk40R1VRd3hlbW5Zc0hxRVcxRkpBZnYxbzdpeGxJMXhaV1phVlFycFlWOFkvVzZZQ1pYTTJmRG5QblV3cmVEa1ZkT0V2azdOQmY1OFRuamJXZUp5aktvOHpxYUlDWXhVZXc4T1B6UWdJU2dJekV0ZVJRWUZQM1pPODJiaEUxNi9ISUFISXRRdkM0YXdYcTI3VHhaS2gyNkF6U1NFY3J1M0ZwWjVlM3c9PQ==
+X-SES-DKIM-SIGNATURE: a=rsa-sha256; q=dns/txt; b=hQ0zL9X7tuDIp7GfIruqXhZtirKc3Ej6OUP53X1VSfkAYd/bdPITOoNZMs7toIzTtyoDXEAug/7uDtxazwEhhbuyZ4Wxskk8M6i+ZNoYcDWfOafdXIz0kaPc8EFpXn3huLgHe6NkEYQtaGIm/URe34L6bmV5ArRqB2WkNmxNiUo=; c=relaxed/simple; s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1636369888; v=1; bh=v17x+9+0mpjr69LMq5WD6y7C0M4WRMzSDkkhEc+ND4Q=; h=From:To:Cc:Bcc:Subject:Date:Message-ID:MIME-Version:Content-Type:X-SES-RECEIPT;
+Received: by mail-lj1-f178.google.com with SMTP id h11so28803532ljk.1
+        for <newsletter@ds.vived.io>; Mon, 08 Nov 2021 03:11:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=virtuslab.com; s=google;
+        h=from:mime-version:subject:message-id:references:to:date;
+        bh=TL3pWBMJwB4Ersa+jPdy/GXWwLzFoFCum/MsGZ4YdK4=;
+        b=GrVJoO/SGFw4O6T+F8knjb67NSuGOySLvND3yaosD5guZ5kB8Ot2wuEaygAIBebYQS
+         x47uM0f4AjPdcTmWUHmwHTepf4J/mdBB44uMBRRn8KYKyIX7bBcSw2KRtuwocdntgPv9
+         U+tbGZ2Hb7sJy+n1KURaA2LoGYc+4AAyxrFU9yz0RlgDVPDEOUWXegeLFJQMn2bBiSrT
+         Vx9AycTpNfrCXLCSTcmMP/O1Wiak11vM4YFvkPbto7g3C100Je99dqikdcYCgalFn8Bh
+         AbPTy3nzm1EmUWVYKubjMEiPEYy8n/n2xAlraWUBKUvM3EnCq6TE+Ram3vNVzXPDkj9l
+         I4Ug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:mime-version:subject:message-id:references
+         :to:date;
+        bh=TL3pWBMJwB4Ersa+jPdy/GXWwLzFoFCum/MsGZ4YdK4=;
+        b=Y77k8+wTIgNF9bAeezaVrf2Ht54fdpKbuOCU6Fn8g1p0gzshYBjT36r1YDWDq6Kr1w
+         MWc2fmQT4GR1upi8Kp+W6tACyBQceZBX+OrzqSCrzbXgXRWJHx6Ll+muB6LBBnfiEw3B
+         W0E5HZeAh0GP0DFDYGxIVR2MOtWNUwC8OVQO0bfPi+ZFlcL6fk+H0DtfBtCh6pWb83D/
+         CHBnky6NsI2WfAOLYLBu2AMd4KuUcpA+E+5WDPLQ7tVxXF7y1EArCvPzXM9WT/gmSqJp
+         R6KwtSBVwnUmBQO1qYiSRVEC4AauLl2LzaAvkYRkHrvWwPjhScviLkTINonde9bS91jT
+         tzhg==
+X-Gm-Message-State: AOAM530LAvX6GiPdXlCF/myXk/TTG8YHR+apR22Y2C6YeWQK9t+SduM6
+	FYwPI/2qtwzWO1cTAlkOoht+fjm+eqyJylMR
+X-Google-Smtp-Source: ABdhPJwWUlCvoDMZIjVy8kjoErCpFJxnasE4/iNs10XM4OogEImEwqsgmozyPL28JXUYWclJTUqRQQ==
+X-Received: by 2002:a2e:9106:: with SMTP id m6mr44767020ljg.461.1636369886042;
+        Mon, 08 Nov 2021 03:11:26 -0800 (PST)
+Return-Path: <pzak@virtuslab.com>
+Received: from [10.0.128.20] ([80.82.18.146])
+        by smtp.gmail.com with ESMTPSA id i12sm1776773lfb.234.2021.11.08.03.11.25
+        for <newsletter@ds.vived.io>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 08 Nov 2021 03:11:25 -0800 (PST)
+From: =?utf-8?Q?Paulina_=C5=BBak?= <pzak@virtuslab.com>
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_7D8A90EB-F89C-4E4C-8AB4-0982D75482CF"
+Mime-Version: 1.0 (Mac OS X Mail 13.4 \(3608.120.23.2.4\))
+Subject: Fwd: Scala Times Issue #403
+Message-Id: <61FB270C-F20A-422B-9C2E-CE5A4E282FA9@virtuslab.com>
+References: <CA+o2A16Xpq0GEHD7pRx+N6YxXa2p4mRzVOv9e0dYC-CkT4=gFA@mail.gmail.com>
+To: newsletter@ds.vived.io
+Date: Mon, 8 Nov 2021 12:11:25 +0100
+X-Mailer: Apple Mail (2.3608.120.23.2.4)
+
+
+--Apple-Mail=_7D8A90EB-F89C-4E4C-8AB4-0982D75482CF
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+
+
+> Begin forwarded message:
+>=20
+> From: Artur Skowro=C5=84ski <articles.pl@gmail.com>
+> Subject: Fwd: Scala Times Issue #403
+> Date: 8 November 2021 at 11:47:11 CET
+> To: pzak+newsletter@virtuslab.com
+>=20
+>=20
+>=20
+> ---------- Forwarded message ---------
+> Od: Scala Times <scalatimes@softwaremill.com =
+<mailto:scalatimes@softwaremill.com>>
+> Date: czw., 4 lis 2021 o 17:59
+> Subject: Scala Times Issue #403
+> To: <articles.pl@gmail.com <mailto:articles.pl@gmail.com>>
+>=20
+>=20
+> Scala, Akka, Play - reading, libraries, tools and news
+>  =E2=8B=86 =E2=8B=86 Est. 2014 =E2=8B=86 =E2=8B=86=20
+> SCALA TIMES
+> WEEKLY SCALA NEWSPAPER
+> November 4th, 2021, ISSUE 403, This issue on the web =
+<https://mailchi.mp/softwaremill/scala-times-issue-2609673?e=3D5c5d70c30f>=
+. Compiled by SoftwareMill =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3D1b2f966240&e=3D5c5d70c30f>.
+> READING
+> The future of Lagom =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3Dbc01d9c8ea&e=3D5c5d70c30f>
+>=20
+> An explanation how almost everything you can do with Lagom today, you =
+can do with more developer friendly and powerful technologies that have =
+largely made Lagom redundant.
+> James Roper ( =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3D4d7c941c29&e=3D5c5d70c30f>@jroper)
+> Run a fs2-kafka stream with scala-cli and Scala 3 =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3Df414baed71&e=3D5c5d70c30f>
+>=20
+> In this blog post, I=E2=80=99m sharing a real use case that I=E2=80=99ve=
+ experienced recently in one of the projects I=E2=80=99m working on. =
+Specifically, I had to build a Kafka processing pipeline to mock a new =
+service under development.
+> Miguel Garc=C3=ADa Puyol ( =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3D9dd7763740&e=3D5c5d70c30f>@miguelpuyol)
+> Demystifying Akka Streams' Materialized Values =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3Dee6a294fe9&e=3D5c5d70c30f>
+>=20
+> n this article I=E2=80=99m gonna try to give an in-depth coverage of =
+all there is to know about materialized values using as a guide the =
+questions and doubts I had while learning the library.
+> Andrea Zito ( =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3D83b41f504d&e=3D5c5d70c30f>@nivox)
+> Asynchronous Microservices with ZIO-gRPC and Scala =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3D3e22362b1a&e=3D5c5d70c30f>
+>=20
+> Learn how to put together all the pieces into an elegant solution.
+> =CE=BB.eranga
+> An identifier, by any other name, =E2=80=A6 =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3D4f5af4f60d&e=3D5c5d70c30f>
+>=20
+> Naming values is hard, isn't it? So why not base the name on the type?
+> Robin Hillyard ( =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3D3cdc768b7b&e=3D5c5d70c30f>@Phasm1d)
+> Questions about real-world usage of ZIO =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3D7ac5e0f505&e=3D5c5d70c30f>
+>=20
+> Impressions of an experienced engineer.
+> Fran=C3=A7ois Armand ( =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3Dca77e0eff0&e=3D5c5d70c30f>@fanf42)
+> Telegram Bot In Scala 3 With Bot4s + http4s + Doobie for CI =
+notifications =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3D08c9a320a0&e=3D5c5d70c30f>
+>=20
+> In this article, I want to show you how to brew a simple Telegram bot =
+using Scala 3, cats, bot4s library and also discuss the current state of =
+the Scala ecosystem regarding Scala 3 support.
+> Vlad Kopaniev ( =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3D1c77cb7c76&e=3D5c5d70c30f>@kopaniev)
+> VIDEOS
+> Break free from your entangled code base! - Part 1 =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3Da7fb51ca59&e=3D5c5d70c30f>
+>=20
+> This video is about the Law of Demeter (#LoD) in Scala aka Principle =
+of Least Knowledge. This is part 1/2.
+> DevInsideYou ( =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3D170bf4890c&e=3D5c5d70c30f>@DevInsideYou)
+> EVENTS
+> Build Web Servers with ZIO (SF - Bay Area Edition), Nov 15th - 19th =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3Db28816bd12&e=3D5c5d70c30f>
+>=20
+> In this course, developers will use ZIO and best-in-breed libraries to =
+rapidly construct web applications that are scalable; easy to test, =
+refactor, and maintain; and which never leak resources or deadlock. Use =
+our link to get a 20% discount for Scala Times readers!
+> John A. De Goes ( =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3Da888fffb7a&e=3D5c5d70c30f>@jdegoes)
+> Functional Scala, Dec 2nd - 3rd =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3D90002c4cdb&e=3D5c5d70c30f>
+>=20
+> Functional Scala 2021 returns for another year of great talks, =
+familiar and fresh spaces, and positive energy around the power of =
+functional Scala for delivering compelling solutions to the toughest =
+technology problems. Use promo code SCALATIMES10 for a discount for our =
+readers!
+> Functional Scala ( =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3D960299fd9f&e=3D5c5d70c30f>@FunScala2021)
+> RELEASES
+> ScalikeJDBC 4.0.0 =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3D24b142cfa7&e=3D5c5d70c30f>
+>=20
+> Now available for Scala 2.12, 2.13, and Scala 3 app development!
+> scalikejdbc contributors
+> Scala 2.13.7 =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3D47903b2a50&e=3D5c5d70c30f>
+>=20
+> Updates regarding Scala 3 alignment, JDK18 support, support for JDK 16 =
+records in Java sources, and quite a few other updates!
+> VARIA
+> Scala Times banners?=20
+>=20
+> Want one? Click here =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3D4143facb9b&e=3D5c5d70c30f>=20
+> THE INTERNET =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3Ddba0a727a9&e=3D5c5d70c30f>
+> Scala Times stickers?=20
+>=20
+> Want one? Let us know =
+<mailto:scalatimes@softwaremill.com?subject=3DI%20want%20a%20Scala%20Times=
+%20sticker!> or tweet @scalatimes =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3D2f5a7fe655&e=3D5c5d70c30f>.
+> THE INTERNET =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3Df245b40835&e=3D5c5d70c30f>
+> POWERED BY SOFTWAREMILL =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3D9958f62946&e=3D5c5d70c30f>                                  =
+        =20
+>=20
+> We've been delivering software projects remotely since 2009. And =
+that's only one of the reasons why we might be the best fit to consult / =
+scale / rescue your project! #WeAreReady =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3Df0144daab8&e=3D5c5d70c30f> =
+https://softwaremill.com/services/ =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3D563952be32&e=3D5c5d70c30f>=20
+> Copyright =C2=A9 2021 SoftwareMill sp=C3=B3=C5=82ka z ograniczon=C4=85 =
+odpowiedzialno=C5=9Bci=C4=85 sp. k., All rights reserved.
+> You are receiving this email because you signed up to receive the =
+Scala Times Newspaper at the scalatimes.com <http://scalatimes.com/> =
+webpage.
+> Our mailing address is:
+> SoftwareMill sp=C3=B3=C5=82ka z ograniczon=C4=85 odpowiedzialno=C5=9Bci=C4=
+=85 sp. k.
+> Na Uboczu 8/87
+> Warsaw 02-791
+> Poland
+>=20
+> Add us to your address book =
+<https://scalatimes.us2.list-manage.com/vcard?u=3Dba834c562d82d9aba5eaf90b=
+a&id=3D32cef9ab4e>
+> Update your email address =
+<https://scalatimes.us2.list-manage.com/profile?u=3Dba834c562d82d9aba5eaf9=
+0ba&id=3D32cef9ab4e&e=3D5c5d70c30f&c=3D6a08ae2d06> or unsubscribe from =
+this list =
+<https://scalatimes.us2.list-manage.com/unsubscribe?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3D32cef9ab4e&e=3D5c5d70c30f&c=3D6a08ae2d06>
+> Follow list on twitter =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3D453edfc639&e=3D5c5d70c30f> | We are hiring =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3Dc498dc1f5f&e=3D5c5d70c30f> | And taking on projects =
+<https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d82d9aba5=
+eaf90ba&id=3D8ff07aa20f&e=3D5c5d70c30f>
+>=20
+>=20
+> --=20
+> Pozdrawiam,
+> Artur Skowro=C5=84ski=20
+
+
+--Apple-Mail=_7D8A90EB-F89C-4E4C-8AB4-0982D75482CF
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;" class=3D""><br =
+class=3D""><div><br class=3D""><blockquote type=3D"cite" class=3D""><div =
+class=3D"">Begin forwarded message:</div><br =
+class=3D"Apple-interchange-newline"><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px;" class=3D""><span=
+ style=3D"font-family: -webkit-system-font, Helvetica Neue, Helvetica, =
+sans-serif; color:rgba(0, 0, 0, 1.0);" class=3D""><b class=3D"">From: =
+</b></span><span style=3D"font-family: -webkit-system-font, Helvetica =
+Neue, Helvetica, sans-serif;" class=3D"">Artur Skowro=C5=84ski &lt;<a =
+href=3D"mailto:articles.pl@gmail.com" =
+class=3D"">articles.pl@gmail.com</a>&gt;<br class=3D""></span></div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px;" class=3D""><span style=3D"font-family: =
+-webkit-system-font, Helvetica Neue, Helvetica, sans-serif; =
+color:rgba(0, 0, 0, 1.0);" class=3D""><b class=3D"">Subject: =
+</b></span><span style=3D"font-family: -webkit-system-font, Helvetica =
+Neue, Helvetica, sans-serif;" class=3D""><b class=3D"">Fwd: Scala Times =
+Issue #403</b><br class=3D""></span></div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px;" class=3D""><span=
+ style=3D"font-family: -webkit-system-font, Helvetica Neue, Helvetica, =
+sans-serif; color:rgba(0, 0, 0, 1.0);" class=3D""><b class=3D"">Date: =
+</b></span><span style=3D"font-family: -webkit-system-font, Helvetica =
+Neue, Helvetica, sans-serif;" class=3D"">8 November 2021 at 11:47:11 =
+CET<br class=3D""></span></div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px;" class=3D""><span=
+ style=3D"font-family: -webkit-system-font, Helvetica Neue, Helvetica, =
+sans-serif; color:rgba(0, 0, 0, 1.0);" class=3D""><b class=3D"">To: =
+</b></span><span style=3D"font-family: -webkit-system-font, Helvetica =
+Neue, Helvetica, sans-serif;" class=3D""><a =
+href=3D"mailto:pzak+newsletter@virtuslab.com" =
+class=3D"">pzak+newsletter@virtuslab.com</a><br =
+class=3D""></span></div><br class=3D""><div class=3D""><div dir=3D"ltr" =
+class=3D""><br class=3D""><br class=3D""><div class=3D"gmail_quote"><div =
+dir=3D"ltr" class=3D"gmail_attr">---------- Forwarded message =
+---------<br class=3D"">Od: <strong class=3D"gmail_sendername" =
+dir=3D"auto">Scala Times</strong> <span dir=3D"auto" class=3D"">&lt;<a =
+href=3D"mailto:scalatimes@softwaremill.com" =
+class=3D"">scalatimes@softwaremill.com</a>&gt;</span><br class=3D"">Date: =
+czw., 4 lis 2021 o 17:59<br class=3D"">Subject: Scala Times Issue =
+#403<br class=3D"">To:  &lt;<a href=3D"mailto:articles.pl@gmail.com" =
+class=3D"">articles.pl@gmail.com</a>&gt;<br class=3D""></div><br =
+class=3D""><br class=3D""><u class=3D""></u>
+
+ =20
+   =20
+   =20
+   =20
+   =20
+   =20
+
+   =20
+
+ =20
+  <div marginwidth=3D"0" marginheight=3D"0" =
+style=3D"margin:0;padding:0;font-family:Arial,sans-serif;font-size:13px;li=
+ne-height:140%;color:#a9a9a9;background-color:#fafafa;width:100%!important=
+" class=3D"">
+    <center class=3D"">
+      <table id=3D"m_-8168509318385852621backgroundTable" border=3D"0" =
+cellpadding=3D"0" cellspacing=3D"0" height=3D"100%" width=3D"100%" =
+style=3D"margin:0;padding:0;background-color:#fafafa;height:100%!important=
+;width:100%!important" class=3D"">
+        <tbody class=3D""><tr class=3D"">
+          <td align=3D"center" valign=3D"top" class=3D"">
+            <table id=3D"m_-8168509318385852621newsletterTable" =
+border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+style=3D"width:100%;max-width:600px;min-width:250px" class=3D"">
+
+             =20
+              <tbody class=3D""><tr class=3D"">
+                <td id=3D"m_-8168509318385852621preheaderContent" =
+valign=3D"top" style=3D"font-size:11px" class=3D"">
+
+                  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+width=3D"100%" class=3D"">
+                    <tbody class=3D""><tr class=3D"">
+                      <td align=3D"center" valign=3D"top" class=3D"">
+                        <div id=3D"m_-8168509318385852621preheaderText" =
+style=3D"padding:15px 15px 5px" class=3D"">Scala, Akka, Play - reading, =
+libraries, tools and news</div>
+                      </td>
+                    </tr>
+                  </tbody></table>
+
+                </td>
+              </tr>
+             =20
+             =20
+             =20
+              <tr class=3D"">
+                <td id=3D"m_-8168509318385852621bodyContent" =
+valign=3D"top" class=3D"">
+
+                  <table id=3D"m_-8168509318385852621bodyTable" =
+border=3D"0" cellpadding=3D"20" cellspacing=3D"0" width=3D"100%" =
+style=3D"background-color: white; border: 1px solid rgb(231, 231, 231);" =
+class=3D"">
+
+                   =20
+                    <tbody class=3D""><tr class=3D"">
+                      <td align=3D"center" valign=3D"top" class=3D"">
+
+                        <table id=3D"m_-8168509318385852621headerTable" =
+border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" =
+class=3D"">
+
+                         =20
+                          <tbody class=3D""><tr class=3D"">
+                            <td align=3D"center" valign=3D"top" =
+class=3D"">
+                              <table id=3D"m_-8168509318385852621logo" =
+border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"240" =
+style=3D"line-height:80%" class=3D"">
+                                <tbody class=3D""><tr class=3D"">
+                                  <td id=3D"m_-8168509318385852621logoEst"=
+ align=3D"center" valign=3D"top" =
+style=3D"font-family:Georgia,TimesNewRoman,serif;font-weight:normal;font-s=
+tyle:italic;font-size:11px" class=3D"">
+                                    <span =
+style=3D"font-style:normal;font-size:15px" =
+class=3D"">&nbsp;=E2=8B=86&nbsp;=E2=8B=86&nbsp;</span>Est. 2014<span =
+style=3D"font-style:normal;font-size:15px" =
+class=3D"">&nbsp;=E2=8B=86&nbsp;=E2=8B=86&nbsp;</span>
+                                  </td>
+                                </tr>
+                                <tr class=3D"">
+                                  <td =
+id=3D"m_-8168509318385852621logoScalaTimes" align=3D"center" =
+valign=3D"top" =
+style=3D"font-family:Georgia,TimesNewRoman,serif;font-weight:bold;font-siz=
+e:30px;text-transform:uppercase;letter-spacing:1px;padding:15px 0 12px" =
+class=3D"">
+                                    SCALA TIMES
+                                  </td>
+                                </tr>
+                                <tr class=3D"">
+                                  <td =
+id=3D"m_-8168509318385852621logoNewspaper" align=3D"center" valign=3D"top"=
+ =
+style=3D"font-family:Courier,monospace;font-weight:normal;font-size:11px;p=
+adding-bottom:20px;padding-top:2px;text-transform:uppercase" class=3D"">
+                                    Weekly Scala Newspaper
+                                  </td>
+                                </tr>
+                              </tbody></table>
+                            </td>
+                          </tr>
+                         =20
+
+                         =20
+                          <tr class=3D"">
+                            <td id=3D"m_-8168509318385852621issueSection" =
+align=3D"center" valign=3D"top" style=3D"border-top:3px double =
+black;border-bottom:3px double =
+black;font-family:Georgia,TimesNewRoman,serif" class=3D"">
+                              <table border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" width=3D"100%" class=3D"">
+                                <tbody class=3D""><tr class=3D"">
+                                  <td align=3D"center" class=3D"">November=
+ 4th, 2021, ISSUE 403, <a =
+href=3D"https://mailchi.mp/softwaremill/scala-times-issue-2609673?e=3D5c5d=
+70c30f" style=3D"color:#bd0808;font-weight:normal;text-decoration:none" =
+target=3D"_blank" class=3D""><span style=3D"color:#b22222" class=3D"">This=
+ issue on the web</span></a>. Compiled by <a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3D1b2f966240&amp;e=3D5c5d70c30f" =
+style=3D"color:#bd0808;font-weight:normal;text-decoration:none" =
+target=3D"_blank" class=3D""><span style=3D"color:#b22222" =
+class=3D"">SoftwareMill</span></a>.</td>
+                                </tr>
+                              </tbody></table>
+                            </td>
+                          </tr>
+                         =20
+
+                        </tbody></table>
+
+                      </td>
+                    </tr>
+                   =20
+
+                   =20
+                    <tr class=3D"">
+                      <td align=3D"left" valign=3D"top" class=3D"">
+                        <table border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" width=3D"100%" class=3D"">
+
+
+                            <tbody class=3D""><tr class=3D"">
+    <td class=3D"">
+        <div class=3D"m_-8168509318385852621section">
+            <h1 class=3D"m_-8168509318385852621section-title" =
+style=3D"text-transform:uppercase;font-size:18px;font-family:Georgia,serif=
+;font-weight:bold;margin-top:0;padding-left:5px;display:inline-block">READ=
+ING</h1>
+            <div class=3D"">
+
+                    <table border=3D"0" cellpadding=3D"5" =
+cellspacing=3D"0" width=3D"100%" class=3D"">
+    <tbody class=3D""><tr class=3D"">
+        <td valign=3D"top" class=3D"">
+            <div class=3D"m_-8168509318385852621article-content" =
+style=3D"margin-bottom:20px"><a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3Dbc01d9c8ea&amp;e=3D5c5d70c30f" =
+style=3D"color:#bd0808;font-weight:normal;text-decoration:none" =
+target=3D"_blank" class=3D""><span style=3D"font-size:14px" =
+class=3D""><strong class=3D""><span style=3D"color:rgb(178,34,34)" =
+class=3D""><span style=3D"font-family:georgia,times,times new =
+roman,serif" class=3D"">The future of =
+Lagom</span></span></strong></span></a><br =
+style=3D"line-height:18.2000007629395px" class=3D"">
+                <br style=3D"line-height:18.2000007629395px" class=3D"">
+                <span style=3D"font-size:12px" class=3D""><em =
+class=3D"">An explanation how almost everything you can do with Lagom =
+today, you can do with more developer friendly and powerful technologies =
+that have largely made Lagom redundant.</em></span><br =
+style=3D"line-height:18.2000007629395px" class=3D"">
+                <span style=3D"color:#a9a9a9" class=3D""><span =
+style=3D"font-size:12px" class=3D""><em class=3D""><span class=3D"">James =
+Roper (<a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3D4d7c941c29&amp;e=3D5c5d70c30f" target=3D"_blank" =
+class=3D""></a>@jroper)</span></em></span></span></div>
+        </td>
+    </tr>
+</tbody></table>
+
+                    <table border=3D"0" cellpadding=3D"5" =
+cellspacing=3D"0" width=3D"100%" class=3D"">
+    <tbody class=3D""><tr class=3D"">
+        <td valign=3D"top" class=3D"">
+            <div class=3D"m_-8168509318385852621article-content" =
+style=3D"margin-bottom:20px"><a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3Df414baed71&amp;e=3D5c5d70c30f" =
+style=3D"color:#bd0808;font-weight:normal;text-decoration:none" =
+target=3D"_blank" class=3D""><span style=3D"font-size:14px" =
+class=3D""><strong class=3D""><span style=3D"color:rgb(178,34,34)" =
+class=3D""><span style=3D"font-family:georgia,times,times new =
+roman,serif" class=3D"">Run a fs2-kafka stream with scala-cli and Scala =
+3</span></span></strong></span></a><br =
+style=3D"line-height:18.2000007629395px" class=3D"">
+                <br style=3D"line-height:18.2000007629395px" class=3D"">
+                <span style=3D"font-size:12px" class=3D""><em =
+class=3D"">In this blog post, I=E2=80=99m sharing a real use case that =
+I=E2=80=99ve experienced recently in one of the projects I=E2=80=99m =
+working on. Specifically, I had to build a Kafka processing pipeline to =
+mock a new service under development.</em></span><br =
+style=3D"line-height:18.2000007629395px" class=3D"">
+                <span style=3D"color:#a9a9a9" class=3D""><span =
+style=3D"font-size:12px" class=3D""><em class=3D""><span class=3D"">Miguel=
+ Garc=C3=ADa Puyol (<a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3D9dd7763740&amp;e=3D5c5d70c30f" target=3D"_blank" =
+class=3D""></a>@miguelpuyol)</span></em></span></span></div>
+        </td>
+    </tr>
+</tbody></table>
+
+                    <table border=3D"0" cellpadding=3D"5" =
+cellspacing=3D"0" width=3D"100%" class=3D"">
+    <tbody class=3D""><tr class=3D"">
+        <td valign=3D"top" class=3D"">
+            <div class=3D"m_-8168509318385852621article-content" =
+style=3D"margin-bottom:20px"><a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3Dee6a294fe9&amp;e=3D5c5d70c30f" =
+style=3D"color:#bd0808;font-weight:normal;text-decoration:none" =
+target=3D"_blank" class=3D""><span style=3D"font-size:14px" =
+class=3D""><strong class=3D""><span style=3D"color:rgb(178,34,34)" =
+class=3D""><span style=3D"font-family:georgia,times,times new =
+roman,serif" class=3D"">Demystifying Akka Streams' Materialized =
+Values</span></span></strong></span></a><br =
+style=3D"line-height:18.2000007629395px" class=3D"">
+                <br style=3D"line-height:18.2000007629395px" class=3D"">
+                <span style=3D"font-size:12px" class=3D""><em class=3D"">n=
+ this article I=E2=80=99m gonna try to give an in-depth coverage of all =
+there is to know about materialized values using as a guide the =
+questions and doubts I had while learning the library.</em></span><br =
+style=3D"line-height:18.2000007629395px" class=3D"">
+                <span style=3D"color:#a9a9a9" class=3D""><span =
+style=3D"font-size:12px" class=3D""><em class=3D""><span class=3D"">Andrea=
+ Zito (<a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3D83b41f504d&amp;e=3D5c5d70c30f" target=3D"_blank" =
+class=3D""></a>@nivox)</span></em></span></span></div>
+        </td>
+    </tr>
+</tbody></table>
+
+                    <table border=3D"0" cellpadding=3D"5" =
+cellspacing=3D"0" width=3D"100%" class=3D"">
+    <tbody class=3D""><tr class=3D"">
+        <td valign=3D"top" class=3D"">
+            <div class=3D"m_-8168509318385852621article-content" =
+style=3D"margin-bottom:20px"><a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3D3e22362b1a&amp;e=3D5c5d70c30f" =
+style=3D"color:#bd0808;font-weight:normal;text-decoration:none" =
+target=3D"_blank" class=3D""><span style=3D"font-size:14px" =
+class=3D""><strong class=3D""><span style=3D"color:rgb(178,34,34)" =
+class=3D""><span style=3D"font-family:georgia,times,times new =
+roman,serif" class=3D"">Asynchronous Microservices with ZIO-gRPC and =
+Scala</span></span></strong></span></a><br =
+style=3D"line-height:18.2000007629395px" class=3D"">
+                <br style=3D"line-height:18.2000007629395px" class=3D"">
+                <span style=3D"font-size:12px" class=3D""><em =
+class=3D"">Learn how to put together all the pieces into an elegant =
+solution.</em></span><br style=3D"line-height:18.2000007629395px" =
+class=3D"">
+                <span style=3D"color:#a9a9a9" class=3D""><span =
+style=3D"font-size:12px" class=3D""><em class=3D""><span =
+class=3D"">=CE=BB.eranga</span></em></span></span></div>
+        </td>
+    </tr>
+</tbody></table>
+
+                    <table border=3D"0" cellpadding=3D"5" =
+cellspacing=3D"0" width=3D"100%" class=3D"">
+    <tbody class=3D""><tr class=3D"">
+        <td valign=3D"top" class=3D"">
+            <div class=3D"m_-8168509318385852621article-content" =
+style=3D"margin-bottom:20px"><a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3D4f5af4f60d&amp;e=3D5c5d70c30f" =
+style=3D"color:#bd0808;font-weight:normal;text-decoration:none" =
+target=3D"_blank" class=3D""><span style=3D"font-size:14px" =
+class=3D""><strong class=3D""><span style=3D"color:rgb(178,34,34)" =
+class=3D""><span style=3D"font-family:georgia,times,times new =
+roman,serif" class=3D"">An identifier, by any other name, =
+=E2=80=A6</span></span></strong></span></a><br =
+style=3D"line-height:18.2000007629395px" class=3D"">
+                <br style=3D"line-height:18.2000007629395px" class=3D"">
+                <span style=3D"font-size:12px" class=3D""><em =
+class=3D"">Naming values is hard, isn't it? So why not base the name on =
+the type?</em></span><br style=3D"line-height:18.2000007629395px" =
+class=3D"">
+                <span style=3D"color:#a9a9a9" class=3D""><span =
+style=3D"font-size:12px" class=3D""><em class=3D""><span class=3D"">Robin =
+Hillyard (<a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3D3cdc768b7b&amp;e=3D5c5d70c30f" target=3D"_blank" =
+class=3D""></a>@Phasm1d)</span></em></span></span></div>
+        </td>
+    </tr>
+</tbody></table>
+
+                    <table border=3D"0" cellpadding=3D"5" =
+cellspacing=3D"0" width=3D"100%" class=3D"">
+    <tbody class=3D""><tr class=3D"">
+        <td valign=3D"top" class=3D"">
+            <div class=3D"m_-8168509318385852621article-content" =
+style=3D"margin-bottom:20px"><a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3D7ac5e0f505&amp;e=3D5c5d70c30f" =
+style=3D"color:#bd0808;font-weight:normal;text-decoration:none" =
+target=3D"_blank" class=3D""><span style=3D"font-size:14px" =
+class=3D""><strong class=3D""><span style=3D"color:rgb(178,34,34)" =
+class=3D""><span style=3D"font-family:georgia,times,times new =
+roman,serif" class=3D"">Questions about real-world usage of =
+ZIO</span></span></strong></span></a><br =
+style=3D"line-height:18.2000007629395px" class=3D"">
+                <br style=3D"line-height:18.2000007629395px" class=3D"">
+                <span style=3D"font-size:12px" class=3D""><em =
+class=3D"">Impressions of an experienced engineer.</em></span><br =
+style=3D"line-height:18.2000007629395px" class=3D"">
+                <span style=3D"color:#a9a9a9" class=3D""><span =
+style=3D"font-size:12px" class=3D""><em class=3D""><span =
+class=3D"">Fran=C3=A7ois Armand  (<a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3Dca77e0eff0&amp;e=3D5c5d70c30f" target=3D"_blank" =
+class=3D""></a>@fanf42)</span></em></span></span></div>
+        </td>
+    </tr>
+</tbody></table>
+
+                    <table border=3D"0" cellpadding=3D"5" =
+cellspacing=3D"0" width=3D"100%" class=3D"">
+    <tbody class=3D""><tr class=3D"">
+        <td valign=3D"top" class=3D"">
+            <div class=3D"m_-8168509318385852621article-content" =
+style=3D"margin-bottom:20px"><a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3D08c9a320a0&amp;e=3D5c5d70c30f" =
+style=3D"color:#bd0808;font-weight:normal;text-decoration:none" =
+target=3D"_blank" class=3D""><span style=3D"font-size:14px" =
+class=3D""><strong class=3D""><span style=3D"color:rgb(178,34,34)" =
+class=3D""><span style=3D"font-family:georgia,times,times new =
+roman,serif" class=3D"">Telegram Bot In Scala 3 With Bot4s + http4s + =
+Doobie for CI notifications</span></span></strong></span></a><br =
+style=3D"line-height:18.2000007629395px" class=3D"">
+                <br style=3D"line-height:18.2000007629395px" class=3D"">
+                <span style=3D"font-size:12px" class=3D""><em =
+class=3D"">In this article, I want to show you how to brew a simple =
+Telegram bot using Scala 3, cats, bot4s library and also discuss the =
+current state of the Scala ecosystem regarding Scala 3 =
+support.</em></span><br style=3D"line-height:18.2000007629395px" =
+class=3D"">
+                <span style=3D"color:#a9a9a9" class=3D""><span =
+style=3D"font-size:12px" class=3D""><em class=3D""><span class=3D"">Vlad =
+Kopaniev (<a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3D1c77cb7c76&amp;e=3D5c5d70c30f" target=3D"_blank" =
+class=3D""></a>@kopaniev)</span></em></span></span></div>
+        </td>
+    </tr>
+</tbody></table>
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+                            <tr class=3D"">
+    <td class=3D"">
+        <div class=3D"m_-8168509318385852621section">
+            <h1 class=3D"m_-8168509318385852621section-title" =
+style=3D"text-transform:uppercase;font-size:18px;font-family:Georgia,serif=
+;font-weight:bold;margin-top:0;padding-left:5px;display:inline-block">VIDE=
+OS</h1>
+            <div class=3D"">
+
+                    <table border=3D"0" cellpadding=3D"5" =
+cellspacing=3D"0" width=3D"100%" class=3D"">
+    <tbody class=3D""><tr class=3D"">
+        <td valign=3D"top" class=3D"">
+            <div class=3D"m_-8168509318385852621article-content" =
+style=3D"margin-bottom:20px"><a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3Da7fb51ca59&amp;e=3D5c5d70c30f" =
+style=3D"color:#bd0808;font-weight:normal;text-decoration:none" =
+target=3D"_blank" class=3D""><span style=3D"font-size:14px" =
+class=3D""><strong class=3D""><span style=3D"color:rgb(178,34,34)" =
+class=3D""><span style=3D"font-family:georgia,times,times new =
+roman,serif" class=3D"">Break free from your entangled code base! - Part =
+1</span></span></strong></span></a><br =
+style=3D"line-height:18.2000007629395px" class=3D"">
+                <br style=3D"line-height:18.2000007629395px" class=3D"">
+                <span style=3D"font-size:12px" class=3D""><em =
+class=3D"">This video is about the Law of Demeter (#LoD) in Scala aka =
+Principle of Least Knowledge. This is part 1/2.</em></span><br =
+style=3D"line-height:18.2000007629395px" class=3D"">
+                <span style=3D"color:#a9a9a9" class=3D""><span =
+style=3D"font-size:12px" class=3D""><em class=3D""><span =
+class=3D"">DevInsideYou (<a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3D170bf4890c&amp;e=3D5c5d70c30f" target=3D"_blank" =
+class=3D""></a>@DevInsideYou)</span></em></span></span></div>
+        </td>
+    </tr>
+</tbody></table>
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+                            <tr class=3D"">
+    <td class=3D"">
+        <div class=3D"m_-8168509318385852621section">
+            <h1 class=3D"m_-8168509318385852621section-title" =
+style=3D"text-transform:uppercase;font-size:18px;font-family:Georgia,serif=
+;font-weight:bold;margin-top:0;padding-left:5px;display:inline-block">EVEN=
+TS</h1>
+            <div class=3D"">
+
+                    <table border=3D"0" cellpadding=3D"5" =
+cellspacing=3D"0" width=3D"100%" class=3D"">
+    <tbody class=3D""><tr class=3D"">
+        <td valign=3D"top" class=3D"">
+            <div class=3D"m_-8168509318385852621article-content" =
+style=3D"margin-bottom:20px"><a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3Db28816bd12&amp;e=3D5c5d70c30f" =
+style=3D"color:#bd0808;font-weight:normal;text-decoration:none" =
+target=3D"_blank" class=3D""><span style=3D"font-size:14px" =
+class=3D""><strong class=3D""><span style=3D"color:rgb(178,34,34)" =
+class=3D""><span style=3D"font-family:georgia,times,times new =
+roman,serif" class=3D"">Build Web Servers with ZIO  (SF - Bay Area =
+Edition), Nov 15th - 19th</span></span></strong></span></a><br =
+style=3D"line-height:18.2000007629395px" class=3D"">
+                <br style=3D"line-height:18.2000007629395px" class=3D"">
+                <span style=3D"font-size:12px" class=3D""><em =
+class=3D"">In this course, developers will use ZIO and best-in-breed =
+libraries to rapidly construct web applications that are scalable; easy =
+to test, refactor, and maintain; and which never leak resources or =
+deadlock. Use our link to get a 20% discount for Scala Times =
+readers!</em></span><br style=3D"line-height:18.2000007629395px" =
+class=3D"">
+                <span style=3D"color:#a9a9a9" class=3D""><span =
+style=3D"font-size:12px" class=3D""><em class=3D""><span class=3D"">John =
+A. De Goes (<a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3Da888fffb7a&amp;e=3D5c5d70c30f" target=3D"_blank" =
+class=3D""></a>@jdegoes)</span></em></span></span></div>
+        </td>
+    </tr>
+</tbody></table>
+
+                    <table border=3D"0" cellpadding=3D"5" =
+cellspacing=3D"0" width=3D"100%" class=3D"">
+    <tbody class=3D""><tr class=3D"">
+        <td valign=3D"top" class=3D"">
+            <div class=3D"m_-8168509318385852621article-content" =
+style=3D"margin-bottom:20px"><a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3D90002c4cdb&amp;e=3D5c5d70c30f" =
+style=3D"color:#bd0808;font-weight:normal;text-decoration:none" =
+target=3D"_blank" class=3D""><span style=3D"font-size:14px" =
+class=3D""><strong class=3D""><span style=3D"color:rgb(178,34,34)" =
+class=3D""><span style=3D"font-family:georgia,times,times new =
+roman,serif" class=3D"">Functional Scala, Dec 2nd - =
+3rd</span></span></strong></span></a><br =
+style=3D"line-height:18.2000007629395px" class=3D"">
+                <br style=3D"line-height:18.2000007629395px" class=3D"">
+                <span style=3D"font-size:12px" class=3D""><em =
+class=3D"">Functional Scala 2021 returns for another year of great =
+talks, familiar and fresh spaces, and positive energy around the power =
+of functional Scala for delivering compelling solutions to the toughest =
+technology problems. Use promo code SCALATIMES10 for a discount for our =
+readers!</em></span><br style=3D"line-height:18.2000007629395px" =
+class=3D"">
+                <span style=3D"color:#a9a9a9" class=3D""><span =
+style=3D"font-size:12px" class=3D""><em class=3D""><span =
+class=3D"">Functional Scala (<a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3D960299fd9f&amp;e=3D5c5d70c30f" target=3D"_blank" =
+class=3D""></a>@FunScala2021)</span></em></span></span></div>
+        </td>
+    </tr>
+</tbody></table>
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+                            <tr class=3D"">
+    <td class=3D"">
+        <div class=3D"m_-8168509318385852621section">
+            <h1 class=3D"m_-8168509318385852621section-title" =
+style=3D"text-transform:uppercase;font-size:18px;font-family:Georgia,serif=
+;font-weight:bold;margin-top:0;padding-left:5px;display:inline-block">RELE=
+ASES</h1>
+            <div class=3D"">
+
+                    <table border=3D"0" cellpadding=3D"5" =
+cellspacing=3D"0" width=3D"100%" class=3D"">
+    <tbody class=3D""><tr class=3D"">
+        <td valign=3D"top" class=3D"">
+            <div class=3D"m_-8168509318385852621article-content" =
+style=3D"margin-bottom:20px"><a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3D24b142cfa7&amp;e=3D5c5d70c30f" =
+style=3D"color:#bd0808;font-weight:normal;text-decoration:none" =
+target=3D"_blank" class=3D""><span style=3D"font-size:14px" =
+class=3D""><strong class=3D""><span style=3D"color:rgb(178,34,34)" =
+class=3D""><span style=3D"font-family:georgia,times,times new =
+roman,serif" class=3D"">ScalikeJDBC =
+4.0.0</span></span></strong></span></a><br =
+style=3D"line-height:18.2000007629395px" class=3D"">
+                <br style=3D"line-height:18.2000007629395px" class=3D"">
+                <span style=3D"font-size:12px" class=3D""><em =
+class=3D"">Now available for Scala 2.12, 2.13, and Scala 3 app =
+development!</em></span><br style=3D"line-height:18.2000007629395px" =
+class=3D"">
+                <span style=3D"color:#a9a9a9" class=3D""><span =
+style=3D"font-size:12px" class=3D""><em class=3D""><span =
+class=3D"">scalikejdbc contributors</span></em></span></span></div>
+        </td>
+    </tr>
+</tbody></table>
+
+                    <table border=3D"0" cellpadding=3D"5" =
+cellspacing=3D"0" width=3D"100%" class=3D"">
+    <tbody class=3D""><tr class=3D"">
+        <td valign=3D"top" class=3D"">
+            <div class=3D"m_-8168509318385852621article-content" =
+style=3D"margin-bottom:20px"><a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3D47903b2a50&amp;e=3D5c5d70c30f" =
+style=3D"color:#bd0808;font-weight:normal;text-decoration:none" =
+target=3D"_blank" class=3D""><span style=3D"font-size:14px" =
+class=3D""><strong class=3D""><span style=3D"color:rgb(178,34,34)" =
+class=3D""><span style=3D"font-family:georgia,times,times new =
+roman,serif" class=3D"">Scala =
+2.13.7</span></span></strong></span></a><br =
+style=3D"line-height:18.2000007629395px" class=3D"">
+                <br style=3D"line-height:18.2000007629395px" class=3D"">
+                <span style=3D"font-size:12px" class=3D""><em =
+class=3D"">Updates regarding Scala 3 alignment, JDK18 support, support =
+for JDK 16 records in Java sources, and quite a few other =
+updates!</em></span><br style=3D"line-height:18.2000007629395px" =
+class=3D"">
+                <span style=3D"color:#a9a9a9" class=3D""><span =
+style=3D"font-size:12px" class=3D""><em class=3D""><span =
+class=3D""></span></em></span></span></div>
+        </td>
+    </tr>
+</tbody></table>
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+                          <tr class=3D"">
+                            <td class=3D"">
+                              <div =
+class=3D"m_-8168509318385852621section">
+                                <h1 =
+class=3D"m_-8168509318385852621section-title" =
+style=3D"text-transform:uppercase;font-size:18px;font-family:Georgia,serif=
+;font-weight:bold;margin-top:0;padding-left:5px;display:inline-block">VARI=
+A</h1>
+                                <div class=3D"">
+                                  <table border=3D"0" cellpadding=3D"5" =
+cellspacing=3D"0" width=3D"100%" class=3D"">
+                                    <tbody class=3D""><tr class=3D"">
+                                      <td valign=3D"top" class=3D"">
+                                        <div =
+class=3D"m_-8168509318385852621article-content" =
+style=3D"margin-bottom:20px">
+                                          <font color=3D"#b22222" =
+face=3D"georgia, times, times new roman, serif" class=3D"">
+                                            <span style=3D"font-size:14px"=
+ class=3D"">
+                                              <strong class=3D""><span =
+style=3D"color:rgb(178,34,34)" class=3D"">Scala Times =
+banners?</span></strong>
+                                            </span>
+                                          </font>
+                                          <br =
+style=3D"font-family:Arial,sans-serif;font-size:13px;line-height:18.200000=
+762939453px" class=3D""><br =
+style=3D"font-family:Arial,sans-serif;font-size:13px;line-height:18.200000=
+762939453px" class=3D"">
+                                          Want one? Click&nbsp;<a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3D4143facb9b&amp;e=3D5c5d70c30f" target=3D"_blank" =
+class=3D"">here</a>
+                                          <br =
+style=3D"font-family:Arial,sans-serif;font-size:13px;line-height:18.200000=
+762939453px" class=3D"">
+                                          <a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3Ddba0a727a9&amp;e=3D5c5d70c30f" target=3D"_blank" =
+class=3D"">
+                                            <span =
+style=3D"line-height:18.200000762939453px" class=3D""><span =
+style=3D"color:rgb(169,169,169)" class=3D""><em class=3D"">THE =
+INTERNET</em></span></span>
+                                          </a>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr class=3D"">
+                                      <td valign=3D"top" class=3D"">
+                                        <div =
+class=3D"m_-8168509318385852621article-content" =
+style=3D"margin-bottom:20px">
+                                          <font color=3D"#b22222" =
+face=3D"georgia, times, times new roman, serif" class=3D"">
+                                            <span style=3D"font-size:14px"=
+ class=3D""><strong class=3D""><span style=3D"color:rgb(178,34,34)" =
+class=3D"">Scala Times stickers?</span></strong></span>
+                                          </font>
+                                          <br =
+style=3D"font-family:Arial,sans-serif;font-size:13px;line-height:18.200000=
+762939453px" class=3D""><br =
+style=3D"font-family:Arial,sans-serif;font-size:13px;line-height:18.200000=
+762939453px" class=3D"">
+                                          W<span =
+style=3D"font-family:arial,helvetica neue,helvetica,sans-serif" =
+class=3D""><span style=3D"font-size:12px" class=3D"">ant one?&nbsp;<a =
+href=3D"mailto:scalatimes@softwaremill.com?subject=3DI%20want%20a%20Scala%=
+20Times%20sticker!" target=3D"_blank" class=3D"">Let us know</a>&nbsp;or =
+<span style=3D"color:#b22222" class=3D""><a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3D2f5a7fe655&amp;e=3D5c5d70c30f" target=3D"_blank" =
+class=3D"">tweet @scalatimes</a>.</span><br =
+style=3D"font-family:Arial,sans-serif;font-size:13px;line-height:18.200000=
+762939453px" class=3D"">
+                                          <a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3Df245b40835&amp;e=3D5c5d70c30f" target=3D"_blank" =
+class=3D""><span style=3D"line-height:18.200000762939453px" =
+class=3D""><span style=3D"color:rgb(169,169,169)" class=3D""><em =
+class=3D"">THE INTERNET</em></span></span></a></span></span></div>
+                                      </td>
+                                    </tr>
+                                    <tr class=3D"">
+                                      <td valign=3D"top" class=3D"">
+                                        <div =
+class=3D"m_-8168509318385852621section">
+                                          <hr style=3D"color:#ff0000" =
+class=3D"">
+                                          <h1 =
+class=3D"m_-8168509318385852621section-title" =
+style=3D"text-transform:uppercase;color:#ec2323;font-size:18px;font-family=
+:Georgia,serif;font-weight:bold;margin-top:0;padding-left:5px;display:inli=
+ne-block">
+                                            <a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3D9958f62946&amp;e=3D5c5d70c30f" target=3D"_blank" =
+class=3D"">POWERED BY SOFTWAREMILL</a>
+                                          </h1>
+                                          <div class=3D"">
+                                            <br =
+style=3D"font-family:Arial,sans-serif;font-size:13px;line-height:18.200000=
+762939453px" class=3D""><span style=3D"font-family:arial,helvetica =
+neue,helvetica,sans-serif" class=3D""><span style=3D"font-size:12px" =
+class=3D""><a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3Df0144daab8&amp;e=3D5c5d70c30f" style=3D"font-size:=
+ 14px;" target=3D"_blank" class=3D"">We've
+                                            been delivering software =
+projects remotely since 2009. And that's only
+                                            one of the reasons why we =
+might be the best fit to consult / scale /
+                                            rescue your project!
+                                            #WeAreReady</a></span>
+                                            <span style=3D"font-size:12px"=
+ class=3D""><a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3D563952be32&amp;e=3D5c5d70c30f" =
+style=3D"color:#ec2323;text-decoration:underline;font-size:14px" =
+target=3D"_blank" class=3D"">
+                                              =
+https://softwaremill.com/services/</a></span>
+                                              <br =
+style=3D"font-family:Arial,sans-serif;font-size:13px;line-height:18.200000=
+762939453px" class=3D""></span>
+                                          </div>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody></table>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+
+                        </tbody></table>
+                      </td>
+                    </tr>
+                   =20
+
+                  </tbody></table>
+
+                </td>
+              </tr>
+             =20
+             =20
+             =20
+              <tr class=3D"">
+                <td id=3D"m_-8168509318385852621footerContent" =
+valign=3D"top" class=3D"">
+
+                  <table border=3D"0" cellpadding=3D"5" cellspacing=3D"0" =
+width=3D"100%" class=3D"">
+                    <tbody class=3D""><tr class=3D"">
+                      <td align=3D"left" valign=3D"top" class=3D"">
+                        <div class=3D"">
+<em class=3D"">Copyright =C2=A9 2021 SoftwareMill sp=C3=B3=C5=82ka z =
+ograniczon=C4=85 odpowiedzialno=C5=9Bci=C4=85 sp. k., All rights =
+reserved.</em><br class=3D"">You are receiving this email because you =
+signed up to receive the Scala Times Newspaper at the <a =
+href=3D"http://scalatimes.com/" target=3D"_blank" =
+class=3D"">scalatimes.com</a> webpage.<br class=3D"">Our mailing address =
+is:<br class=3D""><div class=3D""><span class=3D"">SoftwareMill sp=C3=B3=C5=
+=82ka z ograniczon=C4=85 odpowiedzialno=C5=9Bci=C4=85 sp. k.</span><div =
+class=3D""><div class=3D"">Na Uboczu 8/87</div><span =
+class=3D"">Warsaw</span> <span class=3D"">02-791</span> <div =
+class=3D"">Poland</div></div><br class=3D""><a =
+href=3D"https://scalatimes.us2.list-manage.com/vcard?u=3Dba834c562d82d9aba=
+5eaf90ba&amp;id=3D32cef9ab4e" target=3D"_blank" class=3D"">Add us to =
+your address book</a></div><br class=3D"">
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class=3D"">
+                      <td align=3D"left" valign=3D"top" class=3D"">
+                        <div class=3D"">
+                          <a =
+href=3D"https://scalatimes.us2.list-manage.com/profile?u=3Dba834c562d82d9a=
+ba5eaf90ba&amp;id=3D32cef9ab4e&amp;e=3D5c5d70c30f&amp;c=3D6a08ae2d06" =
+target=3D"_blank" class=3D"">Update your email address</a> or <a =
+href=3D"https://scalatimes.us2.list-manage.com/unsubscribe?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3D32cef9ab4e&amp;e=3D5c5d70c30f&amp;c=3D6a08ae2d06" =
+target=3D"_blank" class=3D"">unsubscribe from this list</a>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class=3D"">
+                      <td align=3D"left" valign=3D"top" class=3D""><div =
+class=3D""><a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3D453edfc639&amp;e=3D5c5d70c30f" target=3D"_blank" =
+class=3D""><span style=3D"color:#b22222" class=3D"">Follow list on =
+twitter</span></a><span style=3D"color:#b22222" class=3D"">&nbsp;| =
+</span><a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3Dc498dc1f5f&amp;e=3D5c5d70c30f" target=3D"_blank" =
+class=3D""><span style=3D"color:#b22222" class=3D"">We are =
+hiring</span></a><span style=3D"color:#b22222" class=3D""> | </span><a =
+href=3D"https://scalatimes.us2.list-manage.com/track/click?u=3Dba834c562d8=
+2d9aba5eaf90ba&amp;id=3D8ff07aa20f&amp;e=3D5c5d70c30f" target=3D"_blank" =
+class=3D""><span style=3D"color:#b22222" class=3D"">And taking on =
+projects</span></a></div>
+</td>
+                    </tr>
+                    <tr class=3D"">
+                      <td align=3D"left" valign=3D"top" class=3D"">
+                        <div style=3D"padding-bottom:20px" class=3D"">
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody></table>
+
+                </td>
+              </tr>
+             =20
+
+            </tbody></table>
+          </td>
+        </tr>
+      </tbody></table>
+    </center>
+  <img =
+src=3D"https://scalatimes.us2.list-manage.com/track/open.php?u=3Dba834c562=
+d82d9aba5eaf90ba&amp;id=3D6a08ae2d06&amp;e=3D5c5d70c30f" height=3D"1" =
+width=3D"1" alt=3D"" class=3D""></div>
+</div><br clear=3D"all" class=3D""><div class=3D""><br class=3D""></div>--=
+ <br class=3D""><div dir=3D"ltr" class=3D"gmail_signature" =
+data-smartmail=3D"gmail_signature">Pozdrawiam,<br class=3D"">Artur =
+Skowro=C5=84ski&nbsp;</div></div>
+</div></blockquote></div><br class=3D""></body></html>=
+
+--Apple-Mail=_7D8A90EB-F89C-4E4C-8AB4-0982D75482CF--

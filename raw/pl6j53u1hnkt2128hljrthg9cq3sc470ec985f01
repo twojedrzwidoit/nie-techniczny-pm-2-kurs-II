@@ -1,0 +1,1639 @@
+Return-Path: <0100017d593b7e87-cde7ef81-1d8d-4e01-92eb-44e1a7b94f2a-000000@amazonses.com>
+Received: from a8-92.smtp-out.amazonses.com (a8-92.smtp-out.amazonses.com [54.240.8.92])
+ by inbound-smtp.eu-west-1.amazonaws.com with SMTP id pl6j53u1hnkt2128hljrthg9cq3sc470ec985f01
+ for newsletter@ds.vived.io;
+ Thu, 25 Nov 2021 22:33:32 +0000 (UTC)
+X-SES-Spam-Verdict: PASS
+X-SES-Virus-Verdict: PASS
+Received-SPF: pass (spfCheck: domain of amazonses.com designates 54.240.8.92 as permitted sender) client-ip=54.240.8.92; envelope-from=0100017d593b7e87-cde7ef81-1d8d-4e01-92eb-44e1a7b94f2a-000000@amazonses.com; helo=a8-92.smtp-out.amazonses.com;
+Authentication-Results: amazonses.com;
+ spf=pass (spfCheck: domain of amazonses.com designates 54.240.8.92 as permitted sender) client-ip=54.240.8.92; envelope-from=0100017d593b7e87-cde7ef81-1d8d-4e01-92eb-44e1a7b94f2a-000000@amazonses.com; helo=a8-92.smtp-out.amazonses.com;
+ dkim=pass header.i=@libhunt.com;
+ dkim=pass header.i=@amazonses.com;
+ dmarc=pass header.from=libhunt.com;
+X-SES-RECEIPT: AEFBQUFBQUFBQUFIUlVpdjBtV0ppWENrODZFQ3p6ZGxYbDZCR1l6d1VqNTd5VDJHYXpuYTY1R0RlaVdTemlobmQzL0dsSzVFVFAzSHZUUnBqQThqektrZVRhU3QzS0sxekdDU3FSUnlER2QwMlc1US92WXpSN3VodEI2M0ExR2pKTjl1V3pFcjhFdnlnekxESjQ2aUJWdE9Fc0JpYkp6bjZSVXRIcVNVUnVkVnFEeEc4MXhCZ09CZCtjcG5uTEhRQ04wdjFLMHRMcy9UeXZtREY1K1Z0a3BVTkEzWE1PRVlJTjEvZ0Q0VGVMaVRVTWRZRDZodC8rSEhtYXRVclE1ekF2dU02Wk5hUlZiVDkwWXBYVVFvdzFwM3FEaFFHTGZ1YjlIaGMrTjVHVkIzREs2MXdsbzRmYVFqczYyS0VYVEpZMlVZUHNsOW5qZzBqOUpVYmttQjBSc2cwZlgySmFLMitLN3pIa3hMMC9ReEN6ZXVka2kydVZBPT0=
+X-SES-DKIM-SIGNATURE: a=rsa-sha256; q=dns/txt; b=bNA/8TD+uanrU6kn4oFnRc6Gxl+veY3GL0Z5B4Ni/zsFrEN8T9B/K7LKbAyo+zu9E9GO8i7Njrdh9cUwMbFMRikPD2Qksda9LLsL3gMcICcTCAe02QrcEMu4mywdGEhq6jZ1bSRbsYvjbEozPe4mucSEhY1Uw85WAN5GAT+Cf7I=; c=relaxed/simple; s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1637879613; v=1; bh=3xXLoQNNlkK5mJOfyiu1TOfswOrv9gKScPFONYXW8Pk=; h=From:To:Cc:Bcc:Subject:Date:Message-ID:MIME-Version:Content-Type:X-SES-RECEIPT;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=ckwmwraijhqkgibulgd7zodwm6ebnatp; d=libhunt.com; t=1637879611;
+	h=Date:From:To:Message-ID:Subject:Mime-Version:Content-Type:Content-Transfer-Encoding;
+	bh=3xXLoQNNlkK5mJOfyiu1TOfswOrv9gKScPFONYXW8Pk=;
+	b=cNy/xDdIkVKGGVlyp0FPFNOKeKGcap+c0X6UJlCPPH2SIogYHFMhqdKSWUzA8O35
+	ojt6RuxX/6XOk55ygVhl6vQMscXPoaXb0tfarKzskMVV6rB695jze2X0sPWaV7poRJb
+	hQUNYcZiXMI/1ScoPjRbJSVc8SlYvveZo4fVjTm0=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=ug7nbtf4gccmlpwj322ax3p6ow6yfsug; d=amazonses.com; t=1637879611;
+	h=Date:From:To:Message-ID:Subject:Mime-Version:Content-Type:Content-Transfer-Encoding:Feedback-ID;
+	bh=3xXLoQNNlkK5mJOfyiu1TOfswOrv9gKScPFONYXW8Pk=;
+	b=UzEzPOBvEgn9lAkaKSrZSyPn0dMJPVbEDRVnaWZN17X6Wbzg9X3Jn9PLveVvYFVD
+	46aWzmLb9JWoUmY8yDoSs161LteOGNaz/cT7jSUhVvqG4YUjtA0NQlNPzjiFwek+Z9k
+	NM5GSXurXFQBgRNXlmUbCYCy62FSl9L5X2Zng62M=
+Date: Thu, 25 Nov 2021 22:33:31 +0000
+From: Awesome Java Weekly <newsletter@libhunt.com>
+To: newsletter@ds.vived.io
+Message-ID: <0100017d593b7e87-cde7ef81-1d8d-4e01-92eb-44e1a7b94f2a-000000@email.amazonses.com>
+Subject: =?UTF-8?Q?=E2=98=95_Issue_288_-_GC_progress_from_JDK_8_to_JDK_17?=
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_61a00f3968b78_103d4e189342461621";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Feedback-ID: 1.us-east-1.5yJ6yCz+qCUemMjiUL2oAk+Eh/fhHioUaDNTX8d/LYc=:AmazonSES
+X-SES-Outgoing: 2021.11.25-54.240.8.92
+
+
+----==_mimepart_61a00f3968b78_103d4e189342461621
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+This week's Awesome Java Weekly=0D
+Read it on the Web: https://java.libhunt.com/newsletter/288=0D
+=0D
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=0D
+Awesome Java Weekly=0D
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=0D
+Issue =C2=BB 288 / Nov 25, 2021=0D
+=0D
+Your weekly report of the most popular<br>Java news, articles and project=
+s=0D
+Popular News and Articles=0D
+-------------------------=0D
+* GC progress from JDK 8 to JDK 17=0D
+  https://kstefanj.github.io/2021/11/24/gc-progress-8-17.html=0D
+=0D
+* Hibernate goes Reactive - What Does That Mean?=0D
+  https://www.i-programmer.info/news/80-java/15025-hibernate-goes-reactiv=
+e-but-what-does-that-mean.html=0D
+=0D
+* A tale of Java Hash Tables=0D
+  https://www.andreinc.net/2021/11/08/a-tale-of-java-hash-tables=0D
+=0D
+* Refining The Return Type Of Java Methods Without Breaking Backwards-Com=
+patibility=0D
+  https://www.morling.dev/blog/refining-return-type-java-methods-without-=
+breaking-backwards-compatibility=0D
+=0D
+* Java =E2=80=93 A brief note.=0D
+  https://dev.to/mahadev_k/java-a-brief-note-39hc=0D
+=0D
+* The Future of Java: Records, Sealed Classes and Pattern Matching with J=
+os=C3=A9 Paumard=0D
+  https://www.youtube.com/watch?v=3DHGjcrheS7BU=0D
+=0D
+* Is Java SE open source software? The short answer is =E2=80=98yes.=E2=80=
+=99=0D
+  https://blogs.oracle.com/javamagazine/post/java-se-open-source-license=0D=
+
+=0D
+* Factory Methods for Collections - JEP Caf=C3=A9 #6=0D
+  https://youtu.be/rRtirh1nC5A=0D
+=0D
+* New candidate JEP: 422: Linux/RISC-V Port=0D
+  https://openjdk.java.net/jeps/422=0D
+=0D
+* Ways to create Singletons and the tradeoffs between them=0D
+  https://dev.to/abh1navv/ways-to-create-singletons-and-the-tradeoffs-bet=
+ween-them-ofd=0D
+=0D
+=0D
+=0D
+Popular projects=0D
+--------------------------------------=0D
+* EventMesh - https://www.libhunt.com/r/EventMesh=0D
+=0D
+* spring-graphql - https://www.libhunt.com/r/spring-graphql=0D
+=0D
+* fabric-example-mod - https://www.libhunt.com/r/fabric-example-mod=0D
+=0D
+* opentelemetry-java - https://www.libhunt.com/r/opentelemetry-java=0D
+=0D
+* Trino - https://www.libhunt.com/r/trino=0D
+=0D
+=0D
+---=0D
+Your weekly awesomeness of Awesome Java Weekly news, articles and project=
+s=0D
+=0D
+Awesome Java Weekly - https://java.libhunt.com/newsletter/288=0D
+Read this on the web - https://java.libhunt.com/newsletter/288=0D
+Unsubscribe - http://www.libhunt.com/newsletter_subscriptions/42df4e1cf56=
+af21b9e6810497a386d2b7ed549fb0d58a1a90e01b5810c00c162/confirm_unsubscribe=
+=0D
+=0D
+
+----==_mimepart_61a00f3968b78_103d4e189342461621
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www=
+.w3.org/TR/REC-html40/loose.dtd">=0D
+<html style=3D"min-height:100%;background:#f3f3f3">=0D
+  <head>=0D
+    <meta content=3D"text/html; charset=3DUTF-8" http-equiv=3D"Content-Ty=
+pe">=0D
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width">=0D
+=0D
+    =0D
+    <!-- Custom CSS here -->=0D
+    =0D
+  <style>@media only screen and (max-width: 596px) {=0D
+.small-float-center{margin:0 auto !important;float:none !important}=0D
+.small-float-center{text-align:center !important}=0D
+.small-text-center{text-align:center !important}=0D
+.small-text-left{text-align:left !important}=0D
+.small-text-right{text-align:right !important}=0D
+.hide-for-large{display:block !important;width:auto !important;overflow:v=
+isible !important;max-height:none !important;font-size:inherit !important=
+;line-height:inherit !important}=0D
+table.body table.container .hide-for-large{display:table !important;width=
+:100% !important}=0D
+table.body table.container .row.hide-for-large{display:table !important;w=
+idth:100% !important}=0D
+table.body table.container .callout-inner.hide-for-large{display:table-ce=
+ll !important;width:100% !important}=0D
+table.body table.container .show-for-large{display:none !important;width:=
+0;mso-hide:all;overflow:hidden}=0D
+.menu.small-vertical .menu-item{padding-left:0 !important;padding-right:0=
+ !important}=0D
+table.body img{width:auto;height:auto}=0D
+table.body center{min-width:0 !important}=0D
+table.body .container{width:95% !important}=0D
+table.body .column{height:auto !important;-moz-box-sizing:border-box;-web=
+kit-box-sizing:border-box;box-sizing:border-box;padding-left:16px !import=
+ant;padding-right:16px !important}=0D
+table.body .columns{height:auto !important;-moz-box-sizing:border-box;-we=
+bkit-box-sizing:border-box;box-sizing:border-box;padding-left:16px !impor=
+tant;padding-right:16px !important}=0D
+table.body .collapse .column{padding-left:0 !important;padding-right:0 !i=
+mportant}=0D
+table.body .collapse .columns{padding-left:0 !important;padding-right:0 !=
+important}=0D
+table.body .column .column{padding-left:0 !important;padding-right:0 !imp=
+ortant}=0D
+table.body .column .columns{padding-left:0 !important;padding-right:0 !im=
+portant}=0D
+table.body .columns .column{padding-left:0 !important;padding-right:0 !im=
+portant}=0D
+table.body .columns .columns{padding-left:0 !important;padding-right:0 !i=
+mportant}=0D
+td.small-1{display:inline-block !important;width:8.33333% !important}=0D
+th.small-1{display:inline-block !important;width:8.33333% !important}=0D
+td.small-2{display:inline-block !important;width:16.66667% !important}=0D=
+
+th.small-2{display:inline-block !important;width:16.66667% !important}=0D=
+
+td.small-3{display:inline-block !important;width:25% !important}=0D
+th.small-3{display:inline-block !important;width:25% !important}=0D
+td.small-4{display:inline-block !important;width:33.33333% !important}=0D=
+
+th.small-4{display:inline-block !important;width:33.33333% !important}=0D=
+
+td.small-5{display:inline-block !important;width:41.66667% !important}=0D=
+
+th.small-5{display:inline-block !important;width:41.66667% !important}=0D=
+
+td.small-6{display:inline-block !important;width:50% !important}=0D
+th.small-6{display:inline-block !important;width:50% !important}=0D
+td.small-7{display:inline-block !important;width:58.33333% !important}=0D=
+
+th.small-7{display:inline-block !important;width:58.33333% !important}=0D=
+
+td.small-8{display:inline-block !important;width:66.66667% !important}=0D=
+
+th.small-8{display:inline-block !important;width:66.66667% !important}=0D=
+
+td.small-9{display:inline-block !important;width:75% !important}=0D
+th.small-9{display:inline-block !important;width:75% !important}=0D
+td.small-10{display:inline-block !important;width:83.33333% !important}=0D=
+
+th.small-10{display:inline-block !important;width:83.33333% !important}=0D=
+
+td.small-11{display:inline-block !important;width:91.66667% !important}=0D=
+
+th.small-11{display:inline-block !important;width:91.66667% !important}=0D=
+
+td.small-12{display:inline-block !important;width:100% !important}=0D
+th.small-12{display:inline-block !important;width:100% !important}=0D
+.columns td.small-12{display:block !important;width:100% !important}=0D
+.columns th.small-12{display:block !important;width:100% !important}=0D
+.column td.small-12{display:block !important;width:100% !important}=0D
+.column th.small-12{display:block !important;width:100% !important}=0D
+table.body td.small-offset-1{margin-left:8.33333% !important}=0D
+table.body th.small-offset-1{margin-left:8.33333% !important}=0D
+table.body td.small-offset-2{margin-left:16.66667% !important}=0D
+table.body th.small-offset-2{margin-left:16.66667% !important}=0D
+table.body td.small-offset-3{margin-left:25% !important}=0D
+table.body th.small-offset-3{margin-left:25% !important}=0D
+table.body td.small-offset-4{margin-left:33.33333% !important}=0D
+table.body th.small-offset-4{margin-left:33.33333% !important}=0D
+table.body td.small-offset-5{margin-left:41.66667% !important}=0D
+table.body th.small-offset-5{margin-left:41.66667% !important}=0D
+table.body td.small-offset-6{margin-left:50% !important}=0D
+table.body th.small-offset-6{margin-left:50% !important}=0D
+table.body td.small-offset-7{margin-left:58.33333% !important}=0D
+table.body th.small-offset-7{margin-left:58.33333% !important}=0D
+table.body td.small-offset-8{margin-left:66.66667% !important}=0D
+table.body th.small-offset-8{margin-left:66.66667% !important}=0D
+table.body td.small-offset-9{margin-left:75% !important}=0D
+table.body th.small-offset-9{margin-left:75% !important}=0D
+table.body td.small-offset-10{margin-left:83.33333% !important}=0D
+table.body th.small-offset-10{margin-left:83.33333% !important}=0D
+table.body td.small-offset-11{margin-left:91.66667% !important}=0D
+table.body th.small-offset-11{margin-left:91.66667% !important}=0D
+table.body table.columns td.expander{display:none !important}=0D
+table.body table.columns th.expander{display:none !important}=0D
+table.body .right-text-pad{padding-left:10px !important}=0D
+table.body .text-pad-right{padding-left:10px !important}=0D
+table.body .left-text-pad{padding-right:10px !important}=0D
+table.body .text-pad-left{padding-right:10px !important}=0D
+table.menu{width:100% !important}=0D
+table.menu td{width:auto !important;display:inline-block !important}=0D
+table.menu th{width:auto !important;display:inline-block !important}=0D
+table.menu.small-vertical td{display:block !important}=0D
+table.menu.small-vertical th{display:block !important}=0D
+table.menu.vertical td{display:block !important}=0D
+table.menu.vertical th{display:block !important}=0D
+table.menu[align=3Dcenter]{width:auto !important}=0D
+table.button.small-expand{width:100% !important}=0D
+table.button.small-expanded{width:100% !important}=0D
+table.button.small-expanded table{width:100%}=0D
+table.button.small-expand table{width:100%}=0D
+table.button.small-expanded table a{text-align:center !important;width:10=
+0% !important;padding-left:0 !important;padding-right:0 !important}=0D
+table.button.small-expand table a{text-align:center !important;width:100%=
+ !important;padding-left:0 !important;padding-right:0 !important}=0D
+table.button.small-expand center{min-width:0}=0D
+table.button.small-expanded center{min-width:0}=0D
+}=0D
+a:active{color:#147dc2}=0D
+a:hover{color:#147dc2}=0D
+a:visited{color:#2199e8}=0D
+h1 a:visited{color:#2199e8}=0D
+h2 a:visited{color:#2199e8}=0D
+h3 a:visited{color:#2199e8}=0D
+h4 a:visited{color:#2199e8}=0D
+h5 a:visited{color:#2199e8}=0D
+h6 a:visited{color:#2199e8}=0D
+table.button.large:active table tr td a{color:#fefefe}=0D
+table.button.large:hover table tr td a{color:#fefefe}=0D
+table.button.large table tr td a:visited{color:#fefefe}=0D
+table.button.small:active table tr td a{color:#fefefe}=0D
+table.button.small:hover table tr td a{color:#fefefe}=0D
+table.button.small table tr td a:visited{color:#fefefe}=0D
+table.button.tiny:active table tr td a{color:#fefefe}=0D
+table.button.tiny:hover table tr td a{color:#fefefe}=0D
+table.button.tiny table tr td a:visited{color:#fefefe}=0D
+table.button:active table tr td a{color:#fefefe}=0D
+table.button:hover table tr td a{color:#fefefe}=0D
+table.button table tr td a:visited{color:#fefefe}=0D
+table.button:active table td{background:#147dc2;color:#fefefe}=0D
+table.button:hover table td{background:#147dc2;color:#fefefe}=0D
+table.button:visited table td{background:#147dc2;color:#fefefe}=0D
+table.button:active table a{border:0 solid #147dc2}=0D
+table.button:hover table a{border:0 solid #147dc2}=0D
+table.button:visited table a{border:0 solid #147dc2}=0D
+table.button.secondary:hover table td{background:#919191;color:#fefefe}=0D=
+
+table.button.secondary:hover table a{border:0 solid #919191}=0D
+table.button.secondary:active table td a{color:#fefefe}=0D
+table.button.secondary:hover table td a{color:#fefefe}=0D
+table.button.secondary table td a:visited{color:#fefefe}=0D
+table.button.success:hover table td{background:#23bf5d}=0D
+table.button.success:hover table a{border:0 solid #23bf5d}=0D
+table.button.alert:hover table td{background:#e23317}=0D
+table.button.alert:hover table a{border:0 solid #e23317}=0D
+table.button.warning:hover table td{background:#cc8b00}=0D
+table.button.warning:hover table a{border:0 solid #cc8b00}=0D
+.thumbnail:focus{box-shadow:0 0 6px 1px rgba(33,153,232,0.5)}=0D
+.thumbnail:hover{box-shadow:0 0 6px 1px rgba(33,153,232,0.5)}</style></he=
+ad>=0D
+  <body style=3D'min-width:100%;-webkit-text-size-adjust:100%;-ms-text-si=
+ze-adjust:100%;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;b=
+ox-sizing:border-box;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif=
+;font-weight:400;padding:0;margin:0;text-align:left;font-size:16px;line-h=
+eight:130%;font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Hel=
+vetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";font-fam=
+ily:-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple =
+Color Emoji","Segoe UI Emoji";width:100% !important'>=0D
+    <table class=3D"body" data-made-with-foundation style=3D'border-spaci=
+ng:0;border-collapse:collapse;vertical-align:top;background:#f3f3f3;heigh=
+t:100%;width:100%;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;fo=
+nt-weight:400;padding:0;margin:0;text-align:left;font-size:16px;line-heig=
+ht:130%;font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Helvet=
+ica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";font-family=
+:-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Col=
+or Emoji","Segoe UI Emoji"'>=0D
+      <tr style=3D"padding:0;vertical-align:top;text-align:left">=0D
+        <td class=3D"center" align=3D"center" valign=3D"top" style=3D'wor=
+d-wrap:break-word;-webkit-hyphens:auto;-moz-hyphens:auto;hyphens:auto;ver=
+tical-align:top;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font=
+-weight:400;padding:0;margin:0;text-align:left;font-size:16px;line-height=
+:130%;font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetic=
+a, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";font-family:-=
+apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color=
+ Emoji","Segoe UI Emoji";border-collapse:collapse !important'>=0D
+          <center style=3D"width:100%;min-width:580px">=0D
+            <!-- Email Content -->=0D
+            <table class=3D"container" style=3D"border-spacing:0;border-c=
+ollapse:collapse;padding:0;vertical-align:top;text-align:left;background:=
+#fefefe;width:580px;margin:0 auto;text-align:inherit">=0D
+              <tr style=3D"padding:0;vertical-align:top;text-align:left">=
+=0D
+                <td style=3D'word-wrap:break-word;-webkit-hyphens:auto;-m=
+oz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-family=
+:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text-align=
+:left;font-size:16px;line-height:130%;font-family:-apple-system, BlinkMac=
+SystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji"=
+, "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",Helveti=
+ca,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";border-collapse:=
+collapse !important'>=0D
+<table class=3D"row" style=3D"border-spacing:0;border-collapse:collapse;v=
+ertical-align:top;text-align:left;padding:0;position:relative;width:100%;=
+display:table">=0D
+<tr style=3D"padding:0;vertical-align:top;text-align:left">=0D
+<td class=3D"column first last text-center header-top" style=3D'word-wrap=
+:break-word;-webkit-hyphens:auto;-moz-hyphens:auto;hyphens:auto;vertical-=
+align:top;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-weigh=
+t:400;padding:0;margin:0;text-align:left;font-size:16px;line-height:130%;=
+font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Ari=
+al, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";font-family:-apple-=
+system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji=
+","Segoe UI Emoji";padding-top:1rem;background-color:#e5e5e5;margin:0 aut=
+o;padding-left:16px;padding-bottom:16px;text-align:center;padding-right:1=
+6px;border-collapse:collapse !important'>=0D
+<span style=3D"color:#989898">This week's Awesome Java Weekly</span>=0D
+<br>=0D
+<a href=3D"http://libhunt.com/ahoy/messages/0m6wSs7Z6y0XfQRyDz2UZ1vrdfMOy=
+Fcy/click?signature=3Dd740fc300a471deb48aa5d240d007d375aec1c0f&amp;url=3D=
+https%3A%2F%2Fjava.libhunt.com%2Fnewsletter%2F288" style=3D"color:#2199e8=
+;text-decoration:none;font-family:Helvetica,Arial,sans-serif;font-weight:=
+400;padding:0;text-align:left;line-height:130%;text-decoration:underline"=
+>Read this email on the Web</a>=0D
+</td>=0D
+<td class=3D"expander" style=3D'word-wrap:break-word;-webkit-hyphens:auto=
+;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-fam=
+ily:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text-al=
+ign:left;font-size:16px;line-height:130%;font-family:-apple-system, Blink=
+MacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emo=
+ji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",Helv=
+etica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";visibility:hi=
+dden;width:0;border-collapse:collapse !important;padding:0 !important'></=
+td>=0D
+</tr>=0D
+</table>=0D
+<table class=3D"row" style=3D"border-spacing:0;border-collapse:collapse;v=
+ertical-align:top;text-align:left;padding:0;position:relative;width:100%;=
+display:table">=0D
+<tr style=3D"padding:0;vertical-align:top;text-align:left">=0D
+<td class=3D"column first last text-center" style=3D'word-wrap:break-word=
+;-webkit-hyphens:auto;-moz-hyphens:auto;hyphens:auto;vertical-align:top;c=
+olor:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-weight:400;paddi=
+ng:0;margin:0;text-align:left;font-size:16px;line-height:130%;font-family=
+:-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-se=
+rif, "Apple Color Emoji", "Segoe UI Emoji";font-family:-apple-system,syst=
+em-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI=
+ Emoji";padding-top:1rem;margin:0 auto;padding-left:16px;padding-bottom:1=
+6px;text-align:center;padding-right:16px;border-collapse:collapse !import=
+ant'>=0D
+<h1 class=3D"title text-center" style=3D'color:#0a0a0a;padding:0;margin:0=
+;text-align:left;line-height:130%;color:inherit;word-wrap:normal;font-fam=
+ily:Helvetica,Arial,sans-serif;font-weight:400;margin-bottom:10px;font-si=
+ze:34px;font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Helvet=
+ica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";font-family=
+:-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Col=
+or Emoji","Segoe UI Emoji";text-align:center'>The Awesome Java Weekly</h1=
+>=0D
+<center style=3D"width:100%;min-width:580px;max-width: 80px; margin: 0 au=
+to;">=0D
+<img width=3D"80" height=3D"80" alt=3D"Java logo" align=3D"center" class=3D=
+"float-center" src=3D"https://www.libhunt.com/tech-icons/file_type_java.s=
+vg.png?v=3D11.4.0-1" style=3D"outline:none;text-decoration:none;-ms-inter=
+polation-mode:bicubic;width:auto;max-width:100%;clear:both;display:block;=
+margin:0 auto;float:none;text-align:center">=0D
+</center>=0D
+</td>=0D
+<td class=3D"expander" style=3D'word-wrap:break-word;-webkit-hyphens:auto=
+;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-fam=
+ily:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text-al=
+ign:left;font-size:16px;line-height:130%;font-family:-apple-system, Blink=
+MacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emo=
+ji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",Helv=
+etica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";visibility:hi=
+dden;width:0;border-collapse:collapse !important;padding:0 !important'></=
+td>=0D
+</tr>=0D
+</table>=0D
+<table class=3D"row" style=3D"border-spacing:0;border-collapse:collapse;v=
+ertical-align:top;text-align:left;padding:0;position:relative;width:100%;=
+display:table">=0D
+<tr style=3D"padding:0;vertical-align:top;text-align:left">=0D
+<td class=3D"column first" style=3D'word-wrap:break-word;-webkit-hyphens:=
+auto;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font=
+-family:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;tex=
+t-align:left;font-size:16px;line-height:130%;font-family:-apple-system, B=
+linkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color=
+ Emoji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",=
+Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";padding-t=
+op:1rem;margin:0 auto;padding-left:16px;padding-bottom:16px;border-collap=
+se:collapse !important'>=0D
+<h4 style=3D'color:#0a0a0a;padding:0;margin:0;text-align:left;line-height=
+:130%;color:inherit;word-wrap:normal;font-family:Helvetica,Arial,sans-ser=
+if;font-weight:400;margin-bottom:10px;font-size:24px;font-family:-apple-s=
+ystem, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "App=
+le Color Emoji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Se=
+goe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"'>=
+Issue =C2=BB 288</h4>=0D
+</td>=0D
+<td class=3D"column last text-right" style=3D'word-wrap:break-word;-webki=
+t-hyphens:auto;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0=
+a0a0a;font-family:Helvetica,Arial,sans-serif;font-weight:400;padding:0;ma=
+rgin:0;text-align:left;font-size:16px;line-height:130%;font-family:-apple=
+-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "A=
+pple Color Emoji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"=
+Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"=
+;padding-top:1rem;margin:0 auto;padding-left:16px;padding-bottom:16px;tex=
+t-align:right;padding-right:16px;border-collapse:collapse !important'>=0D=
+
+<strong>Release Date</strong>=0D
+<br>=0D
+Nov 25, 2021=0D
+</td>=0D
+<td class=3D"expander" style=3D'word-wrap:break-word;-webkit-hyphens:auto=
+;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-fam=
+ily:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text-al=
+ign:left;font-size:16px;line-height:130%;font-family:-apple-system, Blink=
+MacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emo=
+ji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",Helv=
+etica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";visibility:hi=
+dden;width:0;border-collapse:collapse !important;padding:0 !important'></=
+td>=0D
+</tr>=0D
+</table>=0D
+<table class=3D"row" style=3D"border-spacing:0;border-collapse:collapse;v=
+ertical-align:top;text-align:left;padding:0;position:relative;width:100%;=
+display:table">=0D
+<tr style=3D"padding:0;vertical-align:top;text-align:left">=0D
+<td class=3D"column first last column-no-padding" style=3D'word-wrap:brea=
+k-word;-webkit-hyphens:auto;-moz-hyphens:auto;hyphens:auto;vertical-align=
+:top;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-weight:400=
+;padding:0;margin:0;text-align:left;font-size:16px;line-height:130%;font-=
+family:-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, s=
+ans-serif, "Apple Color Emoji", "Segoe UI Emoji";font-family:-apple-syste=
+m,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Se=
+goe UI Emoji";padding-top:1rem;margin:0 auto;padding-left:16px;padding-bo=
+ttom:16px;padding-right:16px;border-collapse:collapse !important;padding-=
+top:0px !important;padding-bottom:0px !important'>=0D
+<h4 class=3D"text-contrast text-center" style=3D'color:#0a0a0a;padding:0;=
+margin:0;text-align:left;line-height:130%;color:inherit;word-wrap:normal;=
+font-family:Helvetica,Arial,sans-serif;font-weight:400;margin-bottom:10px=
+;font-size:24px;font-family:-apple-system, BlinkMacSystemFont, "Segoe UI"=
+, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";fon=
+t-family:-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"A=
+pple Color Emoji","Segoe UI Emoji";font-family:serif;text-align:center'>Y=
+our weekly report of the most popular<br>Java news, articles and projects=
+</h4>=0D
+</td>=0D
+<td class=3D"expander" style=3D'word-wrap:break-word;-webkit-hyphens:auto=
+;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-fam=
+ily:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text-al=
+ign:left;font-size:16px;line-height:130%;font-family:-apple-system, Blink=
+MacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emo=
+ji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",Helv=
+etica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";visibility:hi=
+dden;width:0;border-collapse:collapse !important;padding:0 !important'></=
+td>=0D
+</tr>=0D
+</table>=0D
+<table class=3D"row" style=3D"border-spacing:0;border-collapse:collapse;v=
+ertical-align:top;text-align:left;padding:0;position:relative;width:100%;=
+display:table">=0D
+<tr style=3D"padding:0;vertical-align:top;text-align:left">=0D
+<td class=3D"column first last section-title" style=3D'word-wrap:break-wo=
+rd;-webkit-hyphens:auto;-moz-hyphens:auto;hyphens:auto;vertical-align:top=
+;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-weight:400;pad=
+ding:0;margin:0;text-align:left;font-size:16px;line-height:130%;font-fami=
+ly:-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-=
+serif, "Apple Color Emoji", "Segoe UI Emoji";font-family:-apple-system,sy=
+stem-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe =
+UI Emoji";padding-top:1rem;margin:0 auto;padding-left:16px;padding-bottom=
+:16px;padding-right:16px;border-collapse:collapse !important;padding-bott=
+om:0 !important'>=0D
+<h4 class=3D"title" style=3D'color:#0a0a0a;padding:0;margin:0;text-align:=
+left;line-height:130%;color:inherit;word-wrap:normal;font-family:Helvetic=
+a,Arial,sans-serif;font-weight:400;margin-bottom:10px;font-size:24px;font=
+-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, =
+sans-serif, "Apple Color Emoji", "Segoe UI Emoji";font-family:-apple-syst=
+em,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","S=
+egoe UI Emoji";font-weight:bold'>Popular News and Articles</h4>=0D
+</td>=0D
+<td class=3D"expander" style=3D'word-wrap:break-word;-webkit-hyphens:auto=
+;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-fam=
+ily:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text-al=
+ign:left;font-size:16px;line-height:130%;font-family:-apple-system, Blink=
+MacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emo=
+ji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",Helv=
+etica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";visibility:hi=
+dden;width:0;border-collapse:collapse !important;padding:0 !important'></=
+td>=0D
+</tr>=0D
+</table>=0D
+<table class=3D"row" style=3D"border-spacing:0;border-collapse:collapse;v=
+ertical-align:top;text-align:left;padding:0;position:relative;width:100%;=
+display:table">=0D
+<tr style=3D"padding:0;vertical-align:top;text-align:left">=0D
+<td class=3D"column first last story" style=3D'word-wrap:break-word;-webk=
+it-hyphens:auto;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#=
+0a0a0a;font-family:Helvetica,Arial,sans-serif;font-weight:400;padding:0;m=
+argin:0;text-align:left;font-size:16px;line-height:130%;font-family:-appl=
+e-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "=
+Apple Color Emoji", "Segoe UI Emoji";font-family:-apple-system,system-ui,=
+"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji=
+";padding-top:1rem;margin:0 auto;padding-left:16px;padding-bottom:16px;pa=
+dding-right:16px;border-collapse:collapse !important;padding-top:0 !impor=
+tant'>=0D
+<a target=3D"_blank" class=3D"title" href=3D"http://libhunt.com/ahoy/mess=
+ages/0m6wSs7Z6y0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3D1d854cfcd4d0a2386=
+a5756dfe89f7a5bd9ffedf3&amp;url=3Dhttps%3A%2F%2Fkstefanj.github.io%2F2021=
+%2F11%2F24%2Fgc-progress-8-17.html" style=3D"color:#2199e8;text-decoratio=
+n:none;font-family:Helvetica,Arial,sans-serif;font-weight:400;padding:0;t=
+ext-align:left;line-height:130%;text-decoration:underline;font-size:18px"=
+>GC progress from JDK 8 to JDK 17</a>=0D
+<br>=0D
+<a class=3D"host unfocus" href=3D"http://libhunt.com/ahoy/messages/0m6wSs=
+7Z6y0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3D9e8ddb95c1e40c3fa07ac6992a61=
+2afd051ca19c&amp;url=3Dhttps%3A%2F%2Fkstefanj.github.io" target=3D"_blank=
+" style=3D"color:#2199e8;font-family:Helvetica,Arial,sans-serif;font-weig=
+ht:400;padding:0;text-align:left;line-height:130%;text-decoration:underli=
+ne;color:gray;font-size:18px;text-decoration:none;display:inline-block;fo=
+nt-size:1rem">kstefanj.github.io</a>=0D
+<br>=0D
+</td>=0D
+<td class=3D"expander" style=3D'word-wrap:break-word;-webkit-hyphens:auto=
+;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-fam=
+ily:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text-al=
+ign:left;font-size:16px;line-height:130%;font-family:-apple-system, Blink=
+MacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emo=
+ji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",Helv=
+etica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";visibility:hi=
+dden;width:0;border-collapse:collapse !important;padding:0 !important'></=
+td>=0D
+</tr>=0D
+</table>=0D
+<table class=3D"row" style=3D"border-spacing:0;border-collapse:collapse;v=
+ertical-align:top;text-align:left;padding:0;position:relative;width:100%;=
+display:table">=0D
+<tr style=3D"padding:0;vertical-align:top;text-align:left">=0D
+<td class=3D"column first last story" style=3D'word-wrap:break-word;-webk=
+it-hyphens:auto;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#=
+0a0a0a;font-family:Helvetica,Arial,sans-serif;font-weight:400;padding:0;m=
+argin:0;text-align:left;font-size:16px;line-height:130%;font-family:-appl=
+e-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "=
+Apple Color Emoji", "Segoe UI Emoji";font-family:-apple-system,system-ui,=
+"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji=
+";padding-top:1rem;margin:0 auto;padding-left:16px;padding-bottom:16px;pa=
+dding-right:16px;border-collapse:collapse !important;padding-top:0 !impor=
+tant'>=0D
+<a target=3D"_blank" class=3D"title" href=3D"http://libhunt.com/ahoy/mess=
+ages/0m6wSs7Z6y0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3D1eed9083b11a9a579=
+57274bce5da748155d79b0a&amp;url=3Dhttps%3A%2F%2Fwww.i-programmer.info%2Fn=
+ews%2F80-java%2F15025-hibernate-goes-reactive-but-what-does-that-mean.htm=
+l" style=3D"color:#2199e8;text-decoration:none;font-family:Helvetica,Aria=
+l,sans-serif;font-weight:400;padding:0;text-align:left;line-height:130%;t=
+ext-decoration:underline;font-size:18px">Hibernate goes Reactive - What D=
+oes That Mean?</a>=0D
+<br>=0D
+<a class=3D"host unfocus" href=3D"http://libhunt.com/ahoy/messages/0m6wSs=
+7Z6y0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3D3ce901c163038a69000a3d48c1ff=
+f979d13ce840&amp;url=3Dhttps%3A%2F%2Fwww.i-programmer.info" target=3D"_bl=
+ank" style=3D"color:#2199e8;font-family:Helvetica,Arial,sans-serif;font-w=
+eight:400;padding:0;text-align:left;line-height:130%;text-decoration:unde=
+rline;color:gray;font-size:18px;text-decoration:none;display:inline-block=
+;font-size:1rem">www.i-programmer.info</a>=0D
+<br>=0D
+</td>=0D
+<td class=3D"expander" style=3D'word-wrap:break-word;-webkit-hyphens:auto=
+;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-fam=
+ily:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text-al=
+ign:left;font-size:16px;line-height:130%;font-family:-apple-system, Blink=
+MacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emo=
+ji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",Helv=
+etica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";visibility:hi=
+dden;width:0;border-collapse:collapse !important;padding:0 !important'></=
+td>=0D
+</tr>=0D
+</table>=0D
+<table class=3D"row" style=3D"border-spacing:0;border-collapse:collapse;v=
+ertical-align:top;text-align:left;padding:0;position:relative;width:100%;=
+display:table">=0D
+<tr style=3D"padding:0;vertical-align:top;text-align:left">=0D
+<td class=3D"column first last story" style=3D'word-wrap:break-word;-webk=
+it-hyphens:auto;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#=
+0a0a0a;font-family:Helvetica,Arial,sans-serif;font-weight:400;padding:0;m=
+argin:0;text-align:left;font-size:16px;line-height:130%;font-family:-appl=
+e-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "=
+Apple Color Emoji", "Segoe UI Emoji";font-family:-apple-system,system-ui,=
+"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji=
+";padding-top:1rem;margin:0 auto;padding-left:16px;padding-bottom:16px;pa=
+dding-right:16px;border-collapse:collapse !important;padding-top:0 !impor=
+tant'>=0D
+<a target=3D"_blank" class=3D"title" href=3D"http://libhunt.com/ahoy/mess=
+ages/0m6wSs7Z6y0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3D96d6c08115f3afffd=
+ea3e5b9609d491e1a95c94f&amp;url=3Dhttps%3A%2F%2Fwww.andreinc.net%2F2021%2=
+F11%2F08%2Fa-tale-of-java-hash-tables" style=3D"color:#2199e8;text-decora=
+tion:none;font-family:Helvetica,Arial,sans-serif;font-weight:400;padding:=
+0;text-align:left;line-height:130%;text-decoration:underline;font-size:18=
+px">A tale of Java Hash Tables</a>=0D
+<br>=0D
+<a class=3D"host unfocus" href=3D"http://libhunt.com/ahoy/messages/0m6wSs=
+7Z6y0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3D9860de75517bfdf34063c8a9706a=
+08cbd31968c4&amp;url=3Dhttps%3A%2F%2Fwww.andreinc.net" target=3D"_blank" =
+style=3D"color:#2199e8;font-family:Helvetica,Arial,sans-serif;font-weight=
+:400;padding:0;text-align:left;line-height:130%;text-decoration:underline=
+;color:gray;font-size:18px;text-decoration:none;display:inline-block;font=
+-size:1rem">www.andreinc.net</a>=0D
+<br>=0D
+</td>=0D
+<td class=3D"expander" style=3D'word-wrap:break-word;-webkit-hyphens:auto=
+;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-fam=
+ily:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text-al=
+ign:left;font-size:16px;line-height:130%;font-family:-apple-system, Blink=
+MacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emo=
+ji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",Helv=
+etica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";visibility:hi=
+dden;width:0;border-collapse:collapse !important;padding:0 !important'></=
+td>=0D
+</tr>=0D
+</table>=0D
+<table class=3D"row" style=3D"border-spacing:0;border-collapse:collapse;v=
+ertical-align:top;text-align:left;padding:0;position:relative;width:100%;=
+display:table">=0D
+<tr style=3D"padding:0;vertical-align:top;text-align:left">=0D
+<td class=3D"column first last story" style=3D'word-wrap:break-word;-webk=
+it-hyphens:auto;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#=
+0a0a0a;font-family:Helvetica,Arial,sans-serif;font-weight:400;padding:0;m=
+argin:0;text-align:left;font-size:16px;line-height:130%;font-family:-appl=
+e-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "=
+Apple Color Emoji", "Segoe UI Emoji";font-family:-apple-system,system-ui,=
+"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji=
+";padding-top:1rem;margin:0 auto;padding-left:16px;padding-bottom:16px;pa=
+dding-right:16px;border-collapse:collapse !important;padding-top:0 !impor=
+tant'>=0D
+<a class=3D"title" href=3D"http://libhunt.com/ahoy/messages/0m6wSs7Z6y0Xf=
+QRyDz2UZ1vrdfMOyFcy/click?signature=3D8dbcf8af7e615bc452b568e9c83a14dbe1f=
+fddda&amp;url=3Dhttps%3A%2F%2Fter.li%2Foicvjj" target=3D"_blank" style=3D=
+"color:#2199e8;text-decoration:none;font-family:Helvetica,Arial,sans-seri=
+f;font-weight:400;padding:0;text-align:left;line-height:130%;text-decorat=
+ion:underline;font-size:18px">Scout APM: A developer's best friend. Try f=
+ree for 14-days</a>=0D
+<br>=0D
+<span class=3D"sponsorship-label" style=3D"display:inline-block;font-size=
+:0.8rem;background-color:#FFFFD3;padding:3px 5px;margin-right:5px;margin-=
+top:5px;margin-bottom:5px;text-transform:uppercase">Sponsored</span>=0D
+<a class=3D"host unfocus" href=3D"http://libhunt.com/ahoy/messages/0m6wSs=
+7Z6y0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3D8dbcf8af7e615bc452b568e9c83a=
+14dbe1ffddda&amp;url=3Dhttps%3A%2F%2Fter.li%2Foicvjj" target=3D"_blank" s=
+tyle=3D"color:#2199e8;font-family:Helvetica,Arial,sans-serif;font-weight:=
+400;padding:0;text-align:left;line-height:130%;text-decoration:underline;=
+color:gray;font-size:18px;text-decoration:none;display:inline-block;font-=
+size:1rem">scoutapm.com</a>=0D
+<p class=3D"description" style=3D'color:#0a0a0a;font-family:Helvetica,Ari=
+al,sans-serif;font-weight:400;padding:0;margin:0;text-align:left;font-siz=
+e:16px;line-height:130%;margin-bottom:10px;font-family:-apple-system, Bli=
+nkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color E=
+moji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",He=
+lvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"'>Scout APM =
+uses tracing logic that ties bottlenecks to source code so you know the e=
+xact line of code causing performance issues and can get back to building=
+ a great product faster.</p>=0D
+</td>=0D
+<td class=3D"expander" style=3D'word-wrap:break-word;-webkit-hyphens:auto=
+;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-fam=
+ily:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text-al=
+ign:left;font-size:16px;line-height:130%;font-family:-apple-system, Blink=
+MacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emo=
+ji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",Helv=
+etica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";visibility:hi=
+dden;width:0;border-collapse:collapse !important;padding:0 !important'></=
+td>=0D
+</tr>=0D
+</table>=0D
+<table class=3D"row" style=3D"border-spacing:0;border-collapse:collapse;v=
+ertical-align:top;text-align:left;padding:0;position:relative;width:100%;=
+display:table">=0D
+<tr style=3D"padding:0;vertical-align:top;text-align:left">=0D
+<td class=3D"column first last story" style=3D'word-wrap:break-word;-webk=
+it-hyphens:auto;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#=
+0a0a0a;font-family:Helvetica,Arial,sans-serif;font-weight:400;padding:0;m=
+argin:0;text-align:left;font-size:16px;line-height:130%;font-family:-appl=
+e-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "=
+Apple Color Emoji", "Segoe UI Emoji";font-family:-apple-system,system-ui,=
+"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji=
+";padding-top:1rem;margin:0 auto;padding-left:16px;padding-bottom:16px;pa=
+dding-right:16px;border-collapse:collapse !important;padding-top:0 !impor=
+tant'>=0D
+<a target=3D"_blank" class=3D"title" href=3D"http://libhunt.com/ahoy/mess=
+ages/0m6wSs7Z6y0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3D2fee25811cec82b08=
+af8cb23a4ef816f0e9d33f5&amp;url=3Dhttps%3A%2F%2Fwww.morling.dev%2Fblog%2F=
+refining-return-type-java-methods-without-breaking-backwards-compatibilit=
+y" style=3D"color:#2199e8;text-decoration:none;font-family:Helvetica,Aria=
+l,sans-serif;font-weight:400;padding:0;text-align:left;line-height:130%;t=
+ext-decoration:underline;font-size:18px">Refining The Return Type Of Java=
+ Methods Without Breaking Backwards-Compatibility</a>=0D
+<br>=0D
+<a class=3D"host unfocus" href=3D"http://libhunt.com/ahoy/messages/0m6wSs=
+7Z6y0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3D87ffe4dec6e871c1974de28a7041=
+8a09b4270145&amp;url=3Dhttps%3A%2F%2Fwww.morling.dev" target=3D"_blank" s=
+tyle=3D"color:#2199e8;font-family:Helvetica,Arial,sans-serif;font-weight:=
+400;padding:0;text-align:left;line-height:130%;text-decoration:underline;=
+color:gray;font-size:18px;text-decoration:none;display:inline-block;font-=
+size:1rem">www.morling.dev</a>=0D
+<br>=0D
+</td>=0D
+<td class=3D"expander" style=3D'word-wrap:break-word;-webkit-hyphens:auto=
+;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-fam=
+ily:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text-al=
+ign:left;font-size:16px;line-height:130%;font-family:-apple-system, Blink=
+MacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emo=
+ji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",Helv=
+etica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";visibility:hi=
+dden;width:0;border-collapse:collapse !important;padding:0 !important'></=
+td>=0D
+</tr>=0D
+</table>=0D
+<table class=3D"row" style=3D"border-spacing:0;border-collapse:collapse;v=
+ertical-align:top;text-align:left;padding:0;position:relative;width:100%;=
+display:table">=0D
+<tr style=3D"padding:0;vertical-align:top;text-align:left">=0D
+<td class=3D"column first last story" style=3D'word-wrap:break-word;-webk=
+it-hyphens:auto;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#=
+0a0a0a;font-family:Helvetica,Arial,sans-serif;font-weight:400;padding:0;m=
+argin:0;text-align:left;font-size:16px;line-height:130%;font-family:-appl=
+e-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "=
+Apple Color Emoji", "Segoe UI Emoji";font-family:-apple-system,system-ui,=
+"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji=
+";padding-top:1rem;margin:0 auto;padding-left:16px;padding-bottom:16px;pa=
+dding-right:16px;border-collapse:collapse !important;padding-top:0 !impor=
+tant'>=0D
+<a target=3D"_blank" class=3D"title" href=3D"http://libhunt.com/ahoy/mess=
+ages/0m6wSs7Z6y0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3D9816d6b5fe688e2cf=
+e15ec950e21cbbfb8d602cb&amp;url=3Dhttps%3A%2F%2Fdev.to%2Fmahadev_k%2Fjava=
+-a-brief-note-39hc" style=3D"color:#2199e8;text-decoration:none;font-fami=
+ly:Helvetica,Arial,sans-serif;font-weight:400;padding:0;text-align:left;l=
+ine-height:130%;text-decoration:underline;font-size:18px">Java =E2=80=93 =
+A brief note.</a>=0D
+<br>=0D
+<a class=3D"host unfocus" href=3D"http://libhunt.com/ahoy/messages/0m6wSs=
+7Z6y0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3D9bf8686b0f64a79292ca8f41e4f8=
+b8ff07b0eb8c&amp;url=3Dhttps%3A%2F%2Fdev.to" target=3D"_blank" style=3D"c=
+olor:#2199e8;font-family:Helvetica,Arial,sans-serif;font-weight:400;paddi=
+ng:0;text-align:left;line-height:130%;text-decoration:underline;color:gra=
+y;font-size:18px;text-decoration:none;display:inline-block;font-size:1rem=
+">dev.to</a>=0D
+<br>=0D
+</td>=0D
+<td class=3D"expander" style=3D'word-wrap:break-word;-webkit-hyphens:auto=
+;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-fam=
+ily:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text-al=
+ign:left;font-size:16px;line-height:130%;font-family:-apple-system, Blink=
+MacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emo=
+ji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",Helv=
+etica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";visibility:hi=
+dden;width:0;border-collapse:collapse !important;padding:0 !important'></=
+td>=0D
+</tr>=0D
+</table>=0D
+<table class=3D"row" style=3D"border-spacing:0;border-collapse:collapse;v=
+ertical-align:top;text-align:left;padding:0;position:relative;width:100%;=
+display:table">=0D
+<tr style=3D"padding:0;vertical-align:top;text-align:left">=0D
+<td class=3D"column first last story" style=3D'word-wrap:break-word;-webk=
+it-hyphens:auto;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#=
+0a0a0a;font-family:Helvetica,Arial,sans-serif;font-weight:400;padding:0;m=
+argin:0;text-align:left;font-size:16px;line-height:130%;font-family:-appl=
+e-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "=
+Apple Color Emoji", "Segoe UI Emoji";font-family:-apple-system,system-ui,=
+"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji=
+";padding-top:1rem;margin:0 auto;padding-left:16px;padding-bottom:16px;pa=
+dding-right:16px;border-collapse:collapse !important;padding-top:0 !impor=
+tant'>=0D
+<a target=3D"_blank" class=3D"title" href=3D"http://libhunt.com/ahoy/mess=
+ages/0m6wSs7Z6y0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3D22b1becb908e7d033=
+952dafc358671f3f3d4ca7a&amp;url=3Dhttps%3A%2F%2Fwww.youtube.com%2Fwatch%3=
+Fv%3DHGjcrheS7BU" style=3D"color:#2199e8;text-decoration:none;font-family=
+:Helvetica,Arial,sans-serif;font-weight:400;padding:0;text-align:left;lin=
+e-height:130%;text-decoration:underline;font-size:18px">The Future of Jav=
+a: Records, Sealed Classes and Pattern Matching with Jos=C3=A9 Paumard</a=
+>=0D
+<br>=0D
+<a class=3D"host unfocus" href=3D"http://libhunt.com/ahoy/messages/0m6wSs=
+7Z6y0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3Df383f875caa56fe9ee750c5e0d84=
+8ba1db2aa663&amp;url=3Dhttps%3A%2F%2Fwww.youtube.com" target=3D"_blank" s=
+tyle=3D"color:#2199e8;font-family:Helvetica,Arial,sans-serif;font-weight:=
+400;padding:0;text-align:left;line-height:130%;text-decoration:underline;=
+color:gray;font-size:18px;text-decoration:none;display:inline-block;font-=
+size:1rem">www.youtube.com</a>=0D
+<br>=0D
+</td>=0D
+<td class=3D"expander" style=3D'word-wrap:break-word;-webkit-hyphens:auto=
+;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-fam=
+ily:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text-al=
+ign:left;font-size:16px;line-height:130%;font-family:-apple-system, Blink=
+MacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emo=
+ji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",Helv=
+etica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";visibility:hi=
+dden;width:0;border-collapse:collapse !important;padding:0 !important'></=
+td>=0D
+</tr>=0D
+</table>=0D
+<table class=3D"row" style=3D"border-spacing:0;border-collapse:collapse;v=
+ertical-align:top;text-align:left;padding:0;position:relative;width:100%;=
+display:table">=0D
+<tr style=3D"padding:0;vertical-align:top;text-align:left">=0D
+<td class=3D"column first last story" style=3D'word-wrap:break-word;-webk=
+it-hyphens:auto;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#=
+0a0a0a;font-family:Helvetica,Arial,sans-serif;font-weight:400;padding:0;m=
+argin:0;text-align:left;font-size:16px;line-height:130%;font-family:-appl=
+e-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "=
+Apple Color Emoji", "Segoe UI Emoji";font-family:-apple-system,system-ui,=
+"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji=
+";padding-top:1rem;margin:0 auto;padding-left:16px;padding-bottom:16px;pa=
+dding-right:16px;border-collapse:collapse !important;padding-top:0 !impor=
+tant'>=0D
+<a target=3D"_blank" class=3D"title" href=3D"http://libhunt.com/ahoy/mess=
+ages/0m6wSs7Z6y0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3D0e11e634e019668f8=
+ff0c4e86030af77baae602f&amp;url=3Dhttps%3A%2F%2Fblogs.oracle.com%2Fjavama=
+gazine%2Fpost%2Fjava-se-open-source-license" style=3D"color:#2199e8;text-=
+decoration:none;font-family:Helvetica,Arial,sans-serif;font-weight:400;pa=
+dding:0;text-align:left;line-height:130%;text-decoration:underline;font-s=
+ize:18px">Is Java SE open source software? The short answer is =E2=80=98y=
+es.=E2=80=99</a>=0D
+<br>=0D
+<a class=3D"host unfocus" href=3D"http://libhunt.com/ahoy/messages/0m6wSs=
+7Z6y0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3Dc624c4472f7360b8e2e005e4d496=
+f15b6fe43b7b&amp;url=3Dhttps%3A%2F%2Fblogs.oracle.com" target=3D"_blank" =
+style=3D"color:#2199e8;font-family:Helvetica,Arial,sans-serif;font-weight=
+:400;padding:0;text-align:left;line-height:130%;text-decoration:underline=
+;color:gray;font-size:18px;text-decoration:none;display:inline-block;font=
+-size:1rem">blogs.oracle.com</a>=0D
+<br>=0D
+</td>=0D
+<td class=3D"expander" style=3D'word-wrap:break-word;-webkit-hyphens:auto=
+;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-fam=
+ily:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text-al=
+ign:left;font-size:16px;line-height:130%;font-family:-apple-system, Blink=
+MacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emo=
+ji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",Helv=
+etica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";visibility:hi=
+dden;width:0;border-collapse:collapse !important;padding:0 !important'></=
+td>=0D
+</tr>=0D
+</table>=0D
+<table class=3D"row" style=3D"border-spacing:0;border-collapse:collapse;v=
+ertical-align:top;text-align:left;padding:0;position:relative;width:100%;=
+display:table">=0D
+<tr style=3D"padding:0;vertical-align:top;text-align:left">=0D
+<td class=3D"column first last story" style=3D'word-wrap:break-word;-webk=
+it-hyphens:auto;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#=
+0a0a0a;font-family:Helvetica,Arial,sans-serif;font-weight:400;padding:0;m=
+argin:0;text-align:left;font-size:16px;line-height:130%;font-family:-appl=
+e-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "=
+Apple Color Emoji", "Segoe UI Emoji";font-family:-apple-system,system-ui,=
+"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji=
+";padding-top:1rem;margin:0 auto;padding-left:16px;padding-bottom:16px;pa=
+dding-right:16px;border-collapse:collapse !important;padding-top:0 !impor=
+tant'>=0D
+<a class=3D"title" href=3D"http://libhunt.com/ahoy/messages/0m6wSs7Z6y0Xf=
+QRyDz2UZ1vrdfMOyFcy/click?signature=3Dc04db19bce638b7571937f6a3aa984bced7=
+dad43&amp;url=3Dhttps%3A%2F%2Fgithub.com%2Fnanovms%2Fnanos" target=3D"_bl=
+ank" style=3D"color:#2199e8;text-decoration:none;font-family:Helvetica,Ar=
+ial,sans-serif;font-weight:400;padding:0;text-align:left;line-height:130%=
+;text-decoration:underline;font-size:18px">Run Linux Software Faster and =
+Safer than Linux with Unikernels</a>=0D
+<br>=0D
+<span class=3D"sponsorship-label" style=3D"display:inline-block;font-size=
+:0.8rem;background-color:#FFFFD3;padding:3px 5px;margin-right:5px;margin-=
+top:5px;margin-bottom:5px;text-transform:uppercase">Sponsored</span>=0D
+<a class=3D"host unfocus" href=3D"http://libhunt.com/ahoy/messages/0m6wSs=
+7Z6y0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3Dc04db19bce638b7571937f6a3aa9=
+84bced7dad43&amp;url=3Dhttps%3A%2F%2Fgithub.com%2Fnanovms%2Fnanos" target=
+=3D"_blank" style=3D"color:#2199e8;font-family:Helvetica,Arial,sans-serif=
+;font-weight:400;padding:0;text-align:left;line-height:130%;text-decorati=
+on:underline;color:gray;font-size:18px;text-decoration:none;display:inlin=
+e-block;font-size:1rem">github.com/nanovms</a>=0D
+<p class=3D"description" style=3D'color:#0a0a0a;font-family:Helvetica,Ari=
+al,sans-serif;font-weight:400;padding:0;margin:0;text-align:left;font-siz=
+e:16px;line-height:130%;margin-bottom:10px;font-family:-apple-system, Bli=
+nkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color E=
+moji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",He=
+lvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"'></p>=0D
+</td>=0D
+<td class=3D"expander" style=3D'word-wrap:break-word;-webkit-hyphens:auto=
+;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-fam=
+ily:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text-al=
+ign:left;font-size:16px;line-height:130%;font-family:-apple-system, Blink=
+MacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emo=
+ji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",Helv=
+etica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";visibility:hi=
+dden;width:0;border-collapse:collapse !important;padding:0 !important'></=
+td>=0D
+</tr>=0D
+</table>=0D
+<table class=3D"row" style=3D"border-spacing:0;border-collapse:collapse;v=
+ertical-align:top;text-align:left;padding:0;position:relative;width:100%;=
+display:table">=0D
+<tr style=3D"padding:0;vertical-align:top;text-align:left">=0D
+<td class=3D"column first last story" style=3D'word-wrap:break-word;-webk=
+it-hyphens:auto;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#=
+0a0a0a;font-family:Helvetica,Arial,sans-serif;font-weight:400;padding:0;m=
+argin:0;text-align:left;font-size:16px;line-height:130%;font-family:-appl=
+e-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "=
+Apple Color Emoji", "Segoe UI Emoji";font-family:-apple-system,system-ui,=
+"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji=
+";padding-top:1rem;margin:0 auto;padding-left:16px;padding-bottom:16px;pa=
+dding-right:16px;border-collapse:collapse !important;padding-top:0 !impor=
+tant'>=0D
+<a target=3D"_blank" class=3D"title" href=3D"http://libhunt.com/ahoy/mess=
+ages/0m6wSs7Z6y0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3D9bebc230d4738d184=
+67bc2f5688f2f6d12e08fce&amp;url=3Dhttps%3A%2F%2Fyoutu.be%2FrRtirh1nC5A" s=
+tyle=3D"color:#2199e8;text-decoration:none;font-family:Helvetica,Arial,sa=
+ns-serif;font-weight:400;padding:0;text-align:left;line-height:130%;text-=
+decoration:underline;font-size:18px">Factory Methods for Collections - JE=
+P Caf=C3=A9 #6</a>=0D
+<br>=0D
+<a class=3D"host unfocus" href=3D"http://libhunt.com/ahoy/messages/0m6wSs=
+7Z6y0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3Db20a62f8e32082b5b59551daf289=
+706eb12bbefa&amp;url=3Dhttps%3A%2F%2Fyoutu.be" target=3D"_blank" style=3D=
+"color:#2199e8;font-family:Helvetica,Arial,sans-serif;font-weight:400;pad=
+ding:0;text-align:left;line-height:130%;text-decoration:underline;color:g=
+ray;font-size:18px;text-decoration:none;display:inline-block;font-size:1r=
+em">youtu.be</a>=0D
+<br>=0D
+</td>=0D
+<td class=3D"expander" style=3D'word-wrap:break-word;-webkit-hyphens:auto=
+;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-fam=
+ily:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text-al=
+ign:left;font-size:16px;line-height:130%;font-family:-apple-system, Blink=
+MacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emo=
+ji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",Helv=
+etica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";visibility:hi=
+dden;width:0;border-collapse:collapse !important;padding:0 !important'></=
+td>=0D
+</tr>=0D
+</table>=0D
+<table class=3D"row" style=3D"border-spacing:0;border-collapse:collapse;v=
+ertical-align:top;text-align:left;padding:0;position:relative;width:100%;=
+display:table">=0D
+<tr style=3D"padding:0;vertical-align:top;text-align:left">=0D
+<td class=3D"column first last story" style=3D'word-wrap:break-word;-webk=
+it-hyphens:auto;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#=
+0a0a0a;font-family:Helvetica,Arial,sans-serif;font-weight:400;padding:0;m=
+argin:0;text-align:left;font-size:16px;line-height:130%;font-family:-appl=
+e-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "=
+Apple Color Emoji", "Segoe UI Emoji";font-family:-apple-system,system-ui,=
+"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji=
+";padding-top:1rem;margin:0 auto;padding-left:16px;padding-bottom:16px;pa=
+dding-right:16px;border-collapse:collapse !important;padding-top:0 !impor=
+tant'>=0D
+<a target=3D"_blank" class=3D"title" href=3D"http://libhunt.com/ahoy/mess=
+ages/0m6wSs7Z6y0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3D3ee13852f1febc5f1=
+71d3a55008b7b607221e0c1&amp;url=3Dhttps%3A%2F%2Fopenjdk.java.net%2Fjeps%2=
+F422" style=3D"color:#2199e8;text-decoration:none;font-family:Helvetica,A=
+rial,sans-serif;font-weight:400;padding:0;text-align:left;line-height:130=
+%;text-decoration:underline;font-size:18px">New candidate JEP: 422: Linux=
+/RISC-V Port</a>=0D
+<br>=0D
+<a class=3D"host unfocus" href=3D"http://libhunt.com/ahoy/messages/0m6wSs=
+7Z6y0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3D57994016500af6ba046aaec97f53=
+b94550f60a01&amp;url=3Dhttps%3A%2F%2Fopenjdk.java.net" target=3D"_blank" =
+style=3D"color:#2199e8;font-family:Helvetica,Arial,sans-serif;font-weight=
+:400;padding:0;text-align:left;line-height:130%;text-decoration:underline=
+;color:gray;font-size:18px;text-decoration:none;display:inline-block;font=
+-size:1rem">openjdk.java.net</a>=0D
+<br>=0D
+</td>=0D
+<td class=3D"expander" style=3D'word-wrap:break-word;-webkit-hyphens:auto=
+;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-fam=
+ily:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text-al=
+ign:left;font-size:16px;line-height:130%;font-family:-apple-system, Blink=
+MacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emo=
+ji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",Helv=
+etica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";visibility:hi=
+dden;width:0;border-collapse:collapse !important;padding:0 !important'></=
+td>=0D
+</tr>=0D
+</table>=0D
+<table class=3D"row" style=3D"border-spacing:0;border-collapse:collapse;v=
+ertical-align:top;text-align:left;padding:0;position:relative;width:100%;=
+display:table">=0D
+<tr style=3D"padding:0;vertical-align:top;text-align:left">=0D
+<td class=3D"column first last story" style=3D'word-wrap:break-word;-webk=
+it-hyphens:auto;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#=
+0a0a0a;font-family:Helvetica,Arial,sans-serif;font-weight:400;padding:0;m=
+argin:0;text-align:left;font-size:16px;line-height:130%;font-family:-appl=
+e-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "=
+Apple Color Emoji", "Segoe UI Emoji";font-family:-apple-system,system-ui,=
+"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji=
+";padding-top:1rem;margin:0 auto;padding-left:16px;padding-bottom:16px;pa=
+dding-right:16px;border-collapse:collapse !important;padding-top:0 !impor=
+tant'>=0D
+<a target=3D"_blank" class=3D"title" href=3D"http://libhunt.com/ahoy/mess=
+ages/0m6wSs7Z6y0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3Dc875f68fff40ef0b5=
+79fe5d752e6eba37e2ea65d&amp;url=3Dhttps%3A%2F%2Fdev.to%2Fabh1navv%2Fways-=
+to-create-singletons-and-the-tradeoffs-between-them-ofd" style=3D"color:#=
+2199e8;text-decoration:none;font-family:Helvetica,Arial,sans-serif;font-w=
+eight:400;padding:0;text-align:left;line-height:130%;text-decoration:unde=
+rline;font-size:18px">Ways to create Singletons and the tradeoffs between=
+ them</a>=0D
+<br>=0D
+<a class=3D"host unfocus" href=3D"http://libhunt.com/ahoy/messages/0m6wSs=
+7Z6y0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3D9bf8686b0f64a79292ca8f41e4f8=
+b8ff07b0eb8c&amp;url=3Dhttps%3A%2F%2Fdev.to" target=3D"_blank" style=3D"c=
+olor:#2199e8;font-family:Helvetica,Arial,sans-serif;font-weight:400;paddi=
+ng:0;text-align:left;line-height:130%;text-decoration:underline;color:gra=
+y;font-size:18px;text-decoration:none;display:inline-block;font-size:1rem=
+">dev.to</a>=0D
+<br>=0D
+</td>=0D
+<td class=3D"expander" style=3D'word-wrap:break-word;-webkit-hyphens:auto=
+;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-fam=
+ily:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text-al=
+ign:left;font-size:16px;line-height:130%;font-family:-apple-system, Blink=
+MacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emo=
+ji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",Helv=
+etica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";visibility:hi=
+dden;width:0;border-collapse:collapse !important;padding:0 !important'></=
+td>=0D
+</tr>=0D
+</table>=0D
+<table class=3D"row" style=3D"border-spacing:0;border-collapse:collapse;v=
+ertical-align:top;text-align:left;padding:0;position:relative;width:100%;=
+display:table">=0D
+<tr style=3D"padding:0;vertical-align:top;text-align:left">=0D
+<td class=3D"column first last section-title" style=3D'word-wrap:break-wo=
+rd;-webkit-hyphens:auto;-moz-hyphens:auto;hyphens:auto;vertical-align:top=
+;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-weight:400;pad=
+ding:0;margin:0;text-align:left;font-size:16px;line-height:130%;font-fami=
+ly:-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-=
+serif, "Apple Color Emoji", "Segoe UI Emoji";font-family:-apple-system,sy=
+stem-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe =
+UI Emoji";padding-top:1rem;margin:0 auto;padding-left:16px;padding-bottom=
+:16px;padding-right:16px;border-collapse:collapse !important;padding-bott=
+om:0 !important'>=0D
+<h4 class=3D"title" style=3D'color:#0a0a0a;padding:0;margin:0;text-align:=
+left;line-height:130%;color:inherit;word-wrap:normal;font-family:Helvetic=
+a,Arial,sans-serif;font-weight:400;margin-bottom:10px;font-size:24px;font=
+-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, =
+sans-serif, "Apple Color Emoji", "Segoe UI Emoji";font-family:-apple-syst=
+em,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","S=
+egoe UI Emoji";font-weight:bold'>Featured</h4>=0D
+</td>=0D
+<td class=3D"expander" style=3D'word-wrap:break-word;-webkit-hyphens:auto=
+;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-fam=
+ily:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text-al=
+ign:left;font-size:16px;line-height:130%;font-family:-apple-system, Blink=
+MacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emo=
+ji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",Helv=
+etica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";visibility:hi=
+dden;width:0;border-collapse:collapse !important;padding:0 !important'></=
+td>=0D
+</tr>=0D
+</table>=0D
+<table class=3D"row" style=3D"border-spacing:0;border-collapse:collapse;v=
+ertical-align:top;text-align:left;padding:0;position:relative;width:100%;=
+display:table">=0D
+<tr style=3D"padding:0;vertical-align:top;text-align:left">=0D
+<td class=3D"column first last project" style=3D'word-wrap:break-word;-we=
+bkit-hyphens:auto;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color=
+:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-weight:400;padding:0=
+;margin:0;text-align:left;font-size:16px;line-height:130%;font-family:-ap=
+ple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif,=
+ "Apple Color Emoji", "Segoe UI Emoji";font-family:-apple-system,system-u=
+i,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emo=
+ji";padding-top:1rem;margin:0 auto;padding-left:16px;padding-bottom:16px;=
+padding-right:16px;border-collapse:collapse !important;padding-top:0 !imp=
+ortant;padding-bottom:3px !important'>=0D
+<a class=3D"title" href=3D"http://libhunt.com/ahoy/messages/0m6wSs7Z6y0Xf=
+QRyDz2UZ1vrdfMOyFcy/click?signature=3Da8f616e2c867e3da4726a92eeb1b4a21218=
+33255&amp;url=3Dhttps%3A%2F%2Fwww.saashub.com" target=3D"_blank" style=3D=
+"color:#2199e8;text-decoration:none;font-family:Helvetica,Arial,sans-seri=
+f;font-weight:400;padding:0;text-align:left;line-height:130%;text-decorat=
+ion:underline;font-size:18px">SaaSHub - Software Alternatives and Reviews=
+</a>=0D
+<br>=0D
+<p class=3D"description" style=3D'color:#0a0a0a;font-family:Helvetica,Ari=
+al,sans-serif;font-weight:400;padding:0;margin:0;text-align:left;font-siz=
+e:16px;line-height:130%;margin-bottom:10px;font-family:-apple-system, Bli=
+nkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color E=
+moji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",He=
+lvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"'>SaaSHub he=
+lps you find the best software and product alternatives</p>=0D
+</td>=0D
+<td class=3D"expander" style=3D'word-wrap:break-word;-webkit-hyphens:auto=
+;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-fam=
+ily:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text-al=
+ign:left;font-size:16px;line-height:130%;font-family:-apple-system, Blink=
+MacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emo=
+ji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",Helv=
+etica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";visibility:hi=
+dden;width:0;border-collapse:collapse !important;padding:0 !important'></=
+td>=0D
+</tr>=0D
+</table>=0D
+<table class=3D"row" style=3D"border-spacing:0;border-collapse:collapse;v=
+ertical-align:top;text-align:left;padding:0;position:relative;width:100%;=
+display:table">=0D
+<tr style=3D"padding:0;vertical-align:top;text-align:left">=0D
+<td class=3D"column first last section-title" style=3D'word-wrap:break-wo=
+rd;-webkit-hyphens:auto;-moz-hyphens:auto;hyphens:auto;vertical-align:top=
+;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-weight:400;pad=
+ding:0;margin:0;text-align:left;font-size:16px;line-height:130%;font-fami=
+ly:-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-=
+serif, "Apple Color Emoji", "Segoe UI Emoji";font-family:-apple-system,sy=
+stem-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe =
+UI Emoji";padding-top:1rem;margin:0 auto;padding-left:16px;padding-bottom=
+:16px;padding-right:16px;border-collapse:collapse !important;padding-bott=
+om:0 !important'>=0D
+<h4 class=3D"title" style=3D'color:#0a0a0a;padding:0;margin:0;text-align:=
+left;line-height:130%;color:inherit;word-wrap:normal;font-family:Helvetic=
+a,Arial,sans-serif;font-weight:400;margin-bottom:10px;font-size:24px;font=
+-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, =
+sans-serif, "Apple Color Emoji", "Segoe UI Emoji";font-family:-apple-syst=
+em,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","S=
+egoe UI Emoji";font-weight:bold'>Popular projects</h4>=0D
+</td>=0D
+<td class=3D"expander" style=3D'word-wrap:break-word;-webkit-hyphens:auto=
+;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-fam=
+ily:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text-al=
+ign:left;font-size:16px;line-height:130%;font-family:-apple-system, Blink=
+MacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emo=
+ji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",Helv=
+etica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";visibility:hi=
+dden;width:0;border-collapse:collapse !important;padding:0 !important'></=
+td>=0D
+</tr>=0D
+</table>=0D
+<table class=3D"row project" style=3D"border-spacing:0;border-collapse:co=
+llapse;vertical-align:top;text-align:left;padding:0;position:relative;wid=
+th:100%;display:table;padding-top:0 !important;padding-bottom:3px !import=
+ant">=0D
+<tr style=3D"padding:0;vertical-align:top;text-align:left">=0D
+<td class=3D"column first" width=3D"80" style=3D'word-wrap:break-word;-we=
+bkit-hyphens:auto;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color=
+:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-weight:400;padding:0=
+;margin:0;text-align:left;font-size:16px;line-height:130%;font-family:-ap=
+ple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif,=
+ "Apple Color Emoji", "Segoe UI Emoji";font-family:-apple-system,system-u=
+i,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emo=
+ji";padding-top:1rem;margin:0 auto;padding-left:16px;padding-bottom:16px;=
+border-collapse:collapse !important'>=0D
+<a href=3D"http://libhunt.com/ahoy/messages/0m6wSs7Z6y0XfQRyDz2UZ1vrdfMOy=
+Fcy/click?signature=3D644575c2a290041c528731593b11cc911e4abd1b&amp;url=3D=
+https%3A%2F%2Fwww.libhunt.com%2Fr%2FEventMesh" target=3D"_blank" style=3D=
+"color:#2199e8;text-decoration:none;font-family:Helvetica,Arial,sans-seri=
+f;font-weight:400;padding:0;text-align:left;line-height:130%;text-decorat=
+ion:underline;font-size:18px">=0D
+<img class=3D"project-logo" src=3D"https://avatars.githubusercontent.com/=
+u/47359?v=3D4&amp;s=3D160" width=3D"80" height=3D"80" alt=3D"WeBankFinTec=
+h logo" loading=3D"lazy" style=3D"outline:none;text-decoration:none;-ms-i=
+nterpolation-mode:bicubic;width:auto;max-width:100%;clear:both;display:bl=
+ock;border:none">=0D
+</a>=0D
+</td>=0D
+<td class=3D"column last" style=3D'word-wrap:break-word;-webkit-hyphens:a=
+uto;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-=
+family:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text=
+-align:left;font-size:16px;line-height:130%;font-family:-apple-system, Bl=
+inkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color =
+Emoji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",H=
+elvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";padding-to=
+p:1rem;margin:0 auto;padding-left:16px;padding-bottom:16px;padding-right:=
+16px;border-collapse:collapse !important'>=0D
+<a target=3D"_blank" class=3D"title" href=3D"http://libhunt.com/ahoy/mess=
+ages/0m6wSs7Z6y0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3D644575c2a290041c5=
+28731593b11cc911e4abd1b&amp;url=3Dhttps%3A%2F%2Fwww.libhunt.com%2Fr%2FEve=
+ntMesh" style=3D"color:#2199e8;text-decoration:none;font-family:Helvetica=
+,Arial,sans-serif;font-weight:400;padding:0;text-align:left;line-height:1=
+30%;text-decoration:underline;font-size:18px">EventMesh</a>=0D
+=C2=A0=C2=A0=0D
+<a class=3D"category" href=3D"http://libhunt.com/ahoy/messages/0m6wSs7Z6y=
+0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3D9ab41a700bdb8a10073d494b52c9eab7=
+bf8dece6&amp;url=3Dhttp%3A%2F%2Fwww.libhunt.com%2Fl%2Fjava%2Ftopic%2Fserv=
+erless" target=3D"_blank" style=3D"color:#2199e8;font-family:Helvetica,Ar=
+ial,sans-serif;font-weight:400;padding:0;text-align:left;line-height:130%=
+;text-decoration:underline;font-size:18px;font-size:0.8rem;text-decoratio=
+n:none">=C2=BB Serverless</a>=0D
+=C2=A0=C2=A0=0D
+<a class=3D"category" href=3D"http://libhunt.com/ahoy/messages/0m6wSs7Z6y=
+0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3D538d3b408127c009355ba649fcaad8fa=
+a473936e&amp;url=3Dhttp%3A%2F%2Fwww.libhunt.com%2Fl%2Fjava%2Ftopic%2Fmess=
+age-bus" target=3D"_blank" style=3D"color:#2199e8;font-family:Helvetica,A=
+rial,sans-serif;font-weight:400;padding:0;text-align:left;line-height:130=
+%;text-decoration:underline;font-size:18px;font-size:0.8rem;text-decorati=
+on:none">=C2=BB message-bus</a>=0D
+<p class=3D"description" style=3D'color:#0a0a0a;font-family:Helvetica,Ari=
+al,sans-serif;font-weight:400;padding:0;margin:0;text-align:left;font-siz=
+e:16px;line-height:130%;margin-bottom:10px;font-family:-apple-system, Bli=
+nkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color E=
+moji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",He=
+lvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"'>EventMesh =
+is a dynamic event-driven application runtime used to decouple the applic=
+ation and backend middleware layer, which supports a wide range of use ca=
+ses that encompass complex multi-cloud, widely distributed topologies usi=
+ng diverse technology stacks.</p>=0D
+<br>=0D
+</td>=0D
+<td class=3D"expander" style=3D'word-wrap:break-word;-webkit-hyphens:auto=
+;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-fam=
+ily:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text-al=
+ign:left;font-size:16px;line-height:130%;font-family:-apple-system, Blink=
+MacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emo=
+ji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",Helv=
+etica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";visibility:hi=
+dden;width:0;border-collapse:collapse !important;padding:0 !important'></=
+td>=0D
+</tr>=0D
+</table>=0D
+<table class=3D"row project" style=3D"border-spacing:0;border-collapse:co=
+llapse;vertical-align:top;text-align:left;padding:0;position:relative;wid=
+th:100%;display:table;padding-top:0 !important;padding-bottom:3px !import=
+ant">=0D
+<tr style=3D"padding:0;vertical-align:top;text-align:left">=0D
+<td class=3D"column first" width=3D"80" style=3D'word-wrap:break-word;-we=
+bkit-hyphens:auto;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color=
+:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-weight:400;padding:0=
+;margin:0;text-align:left;font-size:16px;line-height:130%;font-family:-ap=
+ple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif,=
+ "Apple Color Emoji", "Segoe UI Emoji";font-family:-apple-system,system-u=
+i,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emo=
+ji";padding-top:1rem;margin:0 auto;padding-left:16px;padding-bottom:16px;=
+border-collapse:collapse !important'>=0D
+<a href=3D"http://libhunt.com/ahoy/messages/0m6wSs7Z6y0XfQRyDz2UZ1vrdfMOy=
+Fcy/click?signature=3D3bf28e8c06b8858ed5ca2968d8e45060b6118150&amp;url=3D=
+https%3A%2F%2Fwww.libhunt.com%2Fr%2Fspring-graphql" target=3D"_blank" sty=
+le=3D"color:#2199e8;text-decoration:none;font-family:Helvetica,Arial,sans=
+-serif;font-weight:400;padding:0;text-align:left;line-height:130%;text-de=
+coration:underline;font-size:18px">=0D
+<img class=3D"project-logo" src=3D"https://avatars.githubusercontent.com/=
+u/317776?v=3D4&amp;s=3D160" width=3D"80" height=3D"80" alt=3D"spring-proj=
+ects logo" loading=3D"lazy" style=3D"outline:none;text-decoration:none;-m=
+s-interpolation-mode:bicubic;width:auto;max-width:100%;clear:both;display=
+:block;border:none">=0D
+</a>=0D
+</td>=0D
+<td class=3D"column last" style=3D'word-wrap:break-word;-webkit-hyphens:a=
+uto;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-=
+family:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text=
+-align:left;font-size:16px;line-height:130%;font-family:-apple-system, Bl=
+inkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color =
+Emoji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",H=
+elvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";padding-to=
+p:1rem;margin:0 auto;padding-left:16px;padding-bottom:16px;padding-right:=
+16px;border-collapse:collapse !important'>=0D
+<a target=3D"_blank" class=3D"title" href=3D"http://libhunt.com/ahoy/mess=
+ages/0m6wSs7Z6y0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3D3bf28e8c06b8858ed=
+5ca2968d8e45060b6118150&amp;url=3Dhttps%3A%2F%2Fwww.libhunt.com%2Fr%2Fspr=
+ing-graphql" style=3D"color:#2199e8;text-decoration:none;font-family:Helv=
+etica,Arial,sans-serif;font-weight:400;padding:0;text-align:left;line-hei=
+ght:130%;text-decoration:underline;font-size:18px">spring-graphql</a>=0D
+=C2=A0=C2=A0=0D
+<a class=3D"category" href=3D"http://libhunt.com/ahoy/messages/0m6wSs7Z6y=
+0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3D564b1ca1787fd2bbf933feb5c42b97bf=
+8fefc98a&amp;url=3Dhttp%3A%2F%2Fwww.libhunt.com%2Fl%2Fjava%2Ftopic%2Fgrap=
+hql" target=3D"_blank" style=3D"color:#2199e8;font-family:Helvetica,Arial=
+,sans-serif;font-weight:400;padding:0;text-align:left;line-height:130%;te=
+xt-decoration:underline;font-size:18px;font-size:0.8rem;text-decoration:n=
+one">=C2=BB GraphQL</a>=0D
+=C2=A0=C2=A0=0D
+<a class=3D"category" href=3D"http://libhunt.com/ahoy/messages/0m6wSs7Z6y=
+0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3D2ba824877766d9942dd6a179cc076b59=
+10cc1ace&amp;url=3Dhttp%3A%2F%2Fwww.libhunt.com%2Fl%2Fjava%2Ftopic%2Fspri=
+ng-graphql" target=3D"_blank" style=3D"color:#2199e8;font-family:Helvetic=
+a,Arial,sans-serif;font-weight:400;padding:0;text-align:left;line-height:=
+130%;text-decoration:underline;font-size:18px;font-size:0.8rem;text-decor=
+ation:none">=C2=BB spring-graphql</a>=0D
+<p class=3D"description" style=3D'color:#0a0a0a;font-family:Helvetica,Ari=
+al,sans-serif;font-weight:400;padding:0;margin:0;text-align:left;font-siz=
+e:16px;line-height:130%;margin-bottom:10px;font-family:-apple-system, Bli=
+nkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color E=
+moji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",He=
+lvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"'>Spring int=
+egration for GraphQL</p>=0D
+<br>=0D
+</td>=0D
+<td class=3D"expander" style=3D'word-wrap:break-word;-webkit-hyphens:auto=
+;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-fam=
+ily:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text-al=
+ign:left;font-size:16px;line-height:130%;font-family:-apple-system, Blink=
+MacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emo=
+ji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",Helv=
+etica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";visibility:hi=
+dden;width:0;border-collapse:collapse !important;padding:0 !important'></=
+td>=0D
+</tr>=0D
+</table>=0D
+<table class=3D"row project" style=3D"border-spacing:0;border-collapse:co=
+llapse;vertical-align:top;text-align:left;padding:0;position:relative;wid=
+th:100%;display:table;padding-top:0 !important;padding-bottom:3px !import=
+ant">=0D
+<tr style=3D"padding:0;vertical-align:top;text-align:left">=0D
+<td class=3D"column first" width=3D"80" style=3D'word-wrap:break-word;-we=
+bkit-hyphens:auto;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color=
+:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-weight:400;padding:0=
+;margin:0;text-align:left;font-size:16px;line-height:130%;font-family:-ap=
+ple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif,=
+ "Apple Color Emoji", "Segoe UI Emoji";font-family:-apple-system,system-u=
+i,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emo=
+ji";padding-top:1rem;margin:0 auto;padding-left:16px;padding-bottom:16px;=
+border-collapse:collapse !important'>=0D
+<a href=3D"http://libhunt.com/ahoy/messages/0m6wSs7Z6y0XfQRyDz2UZ1vrdfMOy=
+Fcy/click?signature=3D16aa463b5b5277420f02ee5a9049f0cf753ce0fb&amp;url=3D=
+https%3A%2F%2Fwww.libhunt.com%2Fr%2Ffabric-example-mod" target=3D"_blank"=
+ style=3D"color:#2199e8;text-decoration:none;font-family:Helvetica,Arial,=
+sans-serif;font-weight:400;padding:0;text-align:left;line-height:130%;tex=
+t-decoration:underline;font-size:18px">=0D
+<img class=3D"project-logo" src=3D"https://avatars.githubusercontent.com/=
+u/21025855?v=3D4&amp;s=3D160" width=3D"80" height=3D"80" alt=3D"FabricMC =
+logo" loading=3D"lazy" style=3D"outline:none;text-decoration:none;-ms-int=
+erpolation-mode:bicubic;width:auto;max-width:100%;clear:both;display:bloc=
+k;border:none">=0D
+</a>=0D
+</td>=0D
+<td class=3D"column last" style=3D'word-wrap:break-word;-webkit-hyphens:a=
+uto;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-=
+family:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text=
+-align:left;font-size:16px;line-height:130%;font-family:-apple-system, Bl=
+inkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color =
+Emoji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",H=
+elvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";padding-to=
+p:1rem;margin:0 auto;padding-left:16px;padding-bottom:16px;padding-right:=
+16px;border-collapse:collapse !important'>=0D
+<a target=3D"_blank" class=3D"title" href=3D"http://libhunt.com/ahoy/mess=
+ages/0m6wSs7Z6y0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3D16aa463b5b5277420=
+f02ee5a9049f0cf753ce0fb&amp;url=3Dhttps%3A%2F%2Fwww.libhunt.com%2Fr%2Ffab=
+ric-example-mod" style=3D"color:#2199e8;text-decoration:none;font-family:=
+Helvetica,Arial,sans-serif;font-weight:400;padding:0;text-align:left;line=
+-height:130%;text-decoration:underline;font-size:18px">fabric-example-mod=
+</a>=0D
+=C2=A0=C2=A0=0D
+<a class=3D"category" href=3D"http://libhunt.com/ahoy/messages/0m6wSs7Z6y=
+0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3Df60319b5101b6289337937786c2f36b4=
+769dd226&amp;url=3Dhttp%3A%2F%2Fwww.libhunt.com%2Fl%2Fjava%2Ftopic%2Ffabr=
+ic" target=3D"_blank" style=3D"color:#2199e8;font-family:Helvetica,Arial,=
+sans-serif;font-weight:400;padding:0;text-align:left;line-height:130%;tex=
+t-decoration:underline;font-size:18px;font-size:0.8rem;text-decoration:no=
+ne">=C2=BB Fabric</a>=0D
+<p class=3D"description" style=3D'color:#0a0a0a;font-family:Helvetica,Ari=
+al,sans-serif;font-weight:400;padding:0;margin:0;text-align:left;font-siz=
+e:16px;line-height:130%;margin-bottom:10px;font-family:-apple-system, Bli=
+nkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color E=
+moji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",He=
+lvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"'>Example Fa=
+bric mod</p>=0D
+<br>=0D
+</td>=0D
+<td class=3D"expander" style=3D'word-wrap:break-word;-webkit-hyphens:auto=
+;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-fam=
+ily:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text-al=
+ign:left;font-size:16px;line-height:130%;font-family:-apple-system, Blink=
+MacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emo=
+ji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",Helv=
+etica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";visibility:hi=
+dden;width:0;border-collapse:collapse !important;padding:0 !important'></=
+td>=0D
+</tr>=0D
+</table>=0D
+<table class=3D"row project" style=3D"border-spacing:0;border-collapse:co=
+llapse;vertical-align:top;text-align:left;padding:0;position:relative;wid=
+th:100%;display:table;padding-top:0 !important;padding-bottom:3px !import=
+ant">=0D
+<tr style=3D"padding:0;vertical-align:top;text-align:left">=0D
+<td class=3D"column first" width=3D"80" style=3D'word-wrap:break-word;-we=
+bkit-hyphens:auto;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color=
+:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-weight:400;padding:0=
+;margin:0;text-align:left;font-size:16px;line-height:130%;font-family:-ap=
+ple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif,=
+ "Apple Color Emoji", "Segoe UI Emoji";font-family:-apple-system,system-u=
+i,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emo=
+ji";padding-top:1rem;margin:0 auto;padding-left:16px;padding-bottom:16px;=
+border-collapse:collapse !important'>=0D
+<a href=3D"http://libhunt.com/ahoy/messages/0m6wSs7Z6y0XfQRyDz2UZ1vrdfMOy=
+Fcy/click?signature=3Dc093f03cc1f40156e5543000d3edd2bdc22aaa14&amp;url=3D=
+https%3A%2F%2Fwww.libhunt.com%2Fr%2Fopentelemetry-java" target=3D"_blank"=
+ style=3D"color:#2199e8;text-decoration:none;font-family:Helvetica,Arial,=
+sans-serif;font-weight:400;padding:0;text-align:left;line-height:130%;tex=
+t-decoration:underline;font-size:18px">=0D
+<img class=3D"project-logo" src=3D"https://avatars.githubusercontent.com/=
+u/49998002?v=3D4&amp;s=3D160" width=3D"80" height=3D"80" alt=3D"open-tele=
+metry logo" loading=3D"lazy" style=3D"outline:none;text-decoration:none;-=
+ms-interpolation-mode:bicubic;width:auto;max-width:100%;clear:both;displa=
+y:block;border:none">=0D
+</a>=0D
+</td>=0D
+<td class=3D"column last" style=3D'word-wrap:break-word;-webkit-hyphens:a=
+uto;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-=
+family:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text=
+-align:left;font-size:16px;line-height:130%;font-family:-apple-system, Bl=
+inkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color =
+Emoji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",H=
+elvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";padding-to=
+p:1rem;margin:0 auto;padding-left:16px;padding-bottom:16px;padding-right:=
+16px;border-collapse:collapse !important'>=0D
+<a target=3D"_blank" class=3D"title" href=3D"http://libhunt.com/ahoy/mess=
+ages/0m6wSs7Z6y0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3Dc093f03cc1f40156e=
+5543000d3edd2bdc22aaa14&amp;url=3Dhttps%3A%2F%2Fwww.libhunt.com%2Fr%2Fope=
+ntelemetry-java" style=3D"color:#2199e8;text-decoration:none;font-family:=
+Helvetica,Arial,sans-serif;font-weight:400;padding:0;text-align:left;line=
+-height:130%;text-decoration:underline;font-size:18px">opentelemetry-java=
+</a>=0D
+=C2=A0=C2=A0=0D
+<a class=3D"category" href=3D"http://libhunt.com/ahoy/messages/0m6wSs7Z6y=
+0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3Da1f72882eabea0893de9b65b613e9499=
+49521657&amp;url=3Dhttp%3A%2F%2Fwww.libhunt.com%2Fl%2Fjava%2Ftopic%2Fopen=
+telemetry" target=3D"_blank" style=3D"color:#2199e8;font-family:Helvetica=
+,Arial,sans-serif;font-weight:400;padding:0;text-align:left;line-height:1=
+30%;text-decoration:underline;font-size:18px;font-size:0.8rem;text-decora=
+tion:none">=C2=BB Opentelemetry</a>=0D
+<p class=3D"description" style=3D'color:#0a0a0a;font-family:Helvetica,Ari=
+al,sans-serif;font-weight:400;padding:0;margin:0;text-align:left;font-siz=
+e:16px;line-height:130%;margin-bottom:10px;font-family:-apple-system, Bli=
+nkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color E=
+moji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",He=
+lvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"'>OpenTeleme=
+try Java SDK</p>=0D
+<br>=0D
+</td>=0D
+<td class=3D"expander" style=3D'word-wrap:break-word;-webkit-hyphens:auto=
+;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-fam=
+ily:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text-al=
+ign:left;font-size:16px;line-height:130%;font-family:-apple-system, Blink=
+MacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emo=
+ji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",Helv=
+etica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";visibility:hi=
+dden;width:0;border-collapse:collapse !important;padding:0 !important'></=
+td>=0D
+</tr>=0D
+</table>=0D
+<table class=3D"row project" style=3D"border-spacing:0;border-collapse:co=
+llapse;vertical-align:top;text-align:left;padding:0;position:relative;wid=
+th:100%;display:table;padding-top:0 !important;padding-bottom:3px !import=
+ant">=0D
+<tr style=3D"padding:0;vertical-align:top;text-align:left">=0D
+<td class=3D"column first" width=3D"80" style=3D'word-wrap:break-word;-we=
+bkit-hyphens:auto;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color=
+:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-weight:400;padding:0=
+;margin:0;text-align:left;font-size:16px;line-height:130%;font-family:-ap=
+ple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif,=
+ "Apple Color Emoji", "Segoe UI Emoji";font-family:-apple-system,system-u=
+i,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emo=
+ji";padding-top:1rem;margin:0 auto;padding-left:16px;padding-bottom:16px;=
+border-collapse:collapse !important'>=0D
+<a href=3D"http://libhunt.com/ahoy/messages/0m6wSs7Z6y0XfQRyDz2UZ1vrdfMOy=
+Fcy/click?signature=3D34d834597474188eae385c8cba43fb8db79d1462&amp;url=3D=
+https%3A%2F%2Fwww.libhunt.com%2Fr%2Ftrino" target=3D"_blank" style=3D"col=
+or:#2199e8;text-decoration:none;font-family:Helvetica,Arial,sans-serif;fo=
+nt-weight:400;padding:0;text-align:left;line-height:130%;text-decoration:=
+underline;font-size:18px">=0D
+<img class=3D"project-logo" src=3D"https://avatars.githubusercontent.com/=
+u/34147222?v=3D4&amp;s=3D160" width=3D"80" height=3D"80" alt=3D"trinodb l=
+ogo" loading=3D"lazy" style=3D"outline:none;text-decoration:none;-ms-inte=
+rpolation-mode:bicubic;width:auto;max-width:100%;clear:both;display:block=
+;border:none">=0D
+</a>=0D
+</td>=0D
+<td class=3D"column last" style=3D'word-wrap:break-word;-webkit-hyphens:a=
+uto;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-=
+family:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text=
+-align:left;font-size:16px;line-height:130%;font-family:-apple-system, Bl=
+inkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color =
+Emoji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",H=
+elvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";padding-to=
+p:1rem;margin:0 auto;padding-left:16px;padding-bottom:16px;padding-right:=
+16px;border-collapse:collapse !important'>=0D
+<a target=3D"_blank" class=3D"title" href=3D"http://libhunt.com/ahoy/mess=
+ages/0m6wSs7Z6y0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3D34d834597474188ea=
+e385c8cba43fb8db79d1462&amp;url=3Dhttps%3A%2F%2Fwww.libhunt.com%2Fr%2Ftri=
+no" style=3D"color:#2199e8;text-decoration:none;font-family:Helvetica,Ari=
+al,sans-serif;font-weight:400;padding:0;text-align:left;line-height:130%;=
+text-decoration:underline;font-size:18px">Trino</a>=0D
+=C2=A0=C2=A0=0D
+<a class=3D"category" href=3D"http://libhunt.com/ahoy/messages/0m6wSs7Z6y=
+0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3D41ea3f77e052f2d9e42e6919e2b0a44b=
+5919b7f9&amp;url=3Dhttp%3A%2F%2Fwww.libhunt.com%2Fl%2Fjava%2Ftopic%2Fanal=
+ytics" target=3D"_blank" style=3D"color:#2199e8;font-family:Helvetica,Ari=
+al,sans-serif;font-weight:400;padding:0;text-align:left;line-height:130%;=
+text-decoration:underline;font-size:18px;font-size:0.8rem;text-decoration=
+:none">=C2=BB Analytics</a>=0D
+=C2=A0=C2=A0=0D
+<a class=3D"category" href=3D"http://libhunt.com/ahoy/messages/0m6wSs7Z6y=
+0XfQRyDz2UZ1vrdfMOyFcy/click?signature=3Db3a185fa4a7b82d07886e3756a7a15bb=
+c8673529&amp;url=3Dhttp%3A%2F%2Fwww.libhunt.com%2Fl%2Fjava%2Ftopic%2Fbig-=
+data" target=3D"_blank" style=3D"color:#2199e8;font-family:Helvetica,Aria=
+l,sans-serif;font-weight:400;padding:0;text-align:left;line-height:130%;t=
+ext-decoration:underline;font-size:18px;font-size:0.8rem;text-decoration:=
+none">=C2=BB Big Data</a>=0D
+<p class=3D"description" style=3D'color:#0a0a0a;font-family:Helvetica,Ari=
+al,sans-serif;font-weight:400;padding:0;margin:0;text-align:left;font-siz=
+e:16px;line-height:130%;margin-bottom:10px;font-family:-apple-system, Bli=
+nkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color E=
+moji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",He=
+lvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"'>Official r=
+epository of Trino, the distributed SQL query engine for big data, former=
+ly known as PrestoSQL (https://trino.io)</p>=0D
+<br>=0D
+</td>=0D
+<td class=3D"expander" style=3D'word-wrap:break-word;-webkit-hyphens:auto=
+;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-fam=
+ily:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text-al=
+ign:left;font-size:16px;line-height:130%;font-family:-apple-system, Blink=
+MacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emo=
+ji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",Helv=
+etica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";visibility:hi=
+dden;width:0;border-collapse:collapse !important;padding:0 !important'></=
+td>=0D
+</tr>=0D
+</table>=0D
+<br>=0D
+<br>=0D
+<table class=3D"row" style=3D"border-spacing:0;border-collapse:collapse;v=
+ertical-align:top;text-align:left;padding:0;position:relative;width:100%;=
+display:table">=0D
+<tr style=3D"padding:0;vertical-align:top;text-align:left">=0D
+<td class=3D"column first last footer" style=3D'word-wrap:break-word;-web=
+kit-hyphens:auto;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:=
+#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-weight:400;padding:0;=
+margin:0;text-align:left;font-size:16px;line-height:130%;font-family:-app=
+le-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, =
+"Apple Color Emoji", "Segoe UI Emoji";font-family:-apple-system,system-ui=
+,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoj=
+i";padding-top:1rem;background-color:#e5e5e5;font-size:0.8rem;margin:0 au=
+to;padding-left:16px;padding-bottom:16px;padding-right:16px;border-collap=
+se:collapse !important'>=0D
+<p style=3D'color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-wei=
+ght:400;padding:0;margin:0;text-align:left;font-size:16px;line-height:130=
+%;margin-bottom:10px;font-family:-apple-system, BlinkMacSystemFont, "Sego=
+e UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji=
+";font-family:-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-ser=
+if,"Apple Color Emoji","Segoe UI Emoji";font-size:0.8rem;margin-bottom:3p=
+x'>Your weekly awesomeness of Awesome Java Weekly news, articles and proj=
+ects.</p>=0D
+<p style=3D'color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-wei=
+ght:400;padding:0;margin:0;text-align:left;font-size:16px;line-height:130=
+%;margin-bottom:10px;font-family:-apple-system, BlinkMacSystemFont, "Sego=
+e UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji=
+";font-family:-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-ser=
+if,"Apple Color Emoji","Segoe UI Emoji";font-size:0.8rem;margin-bottom:3p=
+x'>=0D
+<a href=3D"http://libhunt.com/ahoy/messages/0m6wSs7Z6y0XfQRyDz2UZ1vrdfMOy=
+Fcy/click?signature=3Dc6d22a45f5244563478769112630ed799f4e32d6&amp;url=3D=
+https%3A%2F%2Fjava.libhunt.com" style=3D"color:#2199e8;text-decoration:no=
+ne;font-family:Helvetica,Arial,sans-serif;font-weight:400;padding:0;text-=
+align:left;line-height:130%;text-decoration:underline">Awesome Java</a>=0D=
+
+<a href=3D"http://libhunt.com/ahoy/messages/0m6wSs7Z6y0XfQRyDz2UZ1vrdfMOy=
+Fcy/click?signature=3Dd740fc300a471deb48aa5d240d007d375aec1c0f&amp;url=3D=
+https%3A%2F%2Fjava.libhunt.com%2Fnewsletter%2F288" style=3D"color:#2199e8=
+;text-decoration:none;font-family:Helvetica,Arial,sans-serif;font-weight:=
+400;padding:0;text-align:left;line-height:130%;text-decoration:underline"=
+>Read this on the web</a>=0D
+<a href=3D"http://www.libhunt.com/newsletter_subscriptions/42df4e1cf56af2=
+1b9e6810497a386d2b7ed549fb0d58a1a90e01b5810c00c162/confirm_unsubscribe" s=
+tyle=3D"color:#2199e8;text-decoration:none;font-family:Helvetica,Arial,sa=
+ns-serif;font-weight:400;padding:0;text-align:left;line-height:130%;text-=
+decoration:underline">Unsubscribe</a>=0D
+</p>=0D
+<p style=3D'color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-wei=
+ght:400;padding:0;margin:0;text-align:left;font-size:16px;line-height:130=
+%;margin-bottom:10px;font-family:-apple-system, BlinkMacSystemFont, "Sego=
+e UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji=
+";font-family:-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-ser=
+if,"Apple Color Emoji","Segoe UI Emoji";font-size:0.8rem;margin-bottom:3p=
+x'>The LibHunt Network - New Atlantis Pty Ltd =C2=B7 Neutral Bay, NSW 208=
+9, Australia</p>=0D
+</td>=0D
+<td class=3D"expander" style=3D'word-wrap:break-word;-webkit-hyphens:auto=
+;-moz-hyphens:auto;hyphens:auto;vertical-align:top;color:#0a0a0a;font-fam=
+ily:Helvetica,Arial,sans-serif;font-weight:400;padding:0;margin:0;text-al=
+ign:left;font-size:16px;line-height:130%;font-family:-apple-system, Blink=
+MacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emo=
+ji", "Segoe UI Emoji";font-family:-apple-system,system-ui,"Segoe UI",Helv=
+etica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";visibility:hi=
+dden;width:0;border-collapse:collapse !important;padding:0 !important'></=
+td>=0D
+</tr>=0D
+</table>=0D
+</td>=0D
+              </tr>=0D
+            </table>=0D
+          </center>=0D
+        </td>=0D
+      </tr>=0D
+    </table>=0D
+  <img alt=3D"" src=3D"http://libhunt.com/ahoy/messages/0m6wSs7Z6y0XfQRyD=
+z2UZ1vrdfMOyFcy/open.gif" width=3D"1" height=3D"1" style=3D"outline:none;=
+text-decoration:none;-ms-interpolation-mode:bicubic;width:auto;max-width:=
+100%;clear:both;display:block">=0D
+</body>=0D
+</html>=0D
+
+----==_mimepart_61a00f3968b78_103d4e189342461621--

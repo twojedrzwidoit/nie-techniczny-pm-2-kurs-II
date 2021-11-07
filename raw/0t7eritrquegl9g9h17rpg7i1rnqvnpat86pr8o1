@@ -1,0 +1,1373 @@
+Return-Path: <pzak@virtuslab.com>
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+ by inbound-smtp.eu-west-1.amazonaws.com with SMTP id 0t7eritrquegl9g9h17rpg7i1rnqvnpat86pr8o1
+ for newsletter@ds.vived.io;
+ Mon, 08 Nov 2021 11:11:19 +0000 (UTC)
+X-SES-Spam-Verdict: PASS
+X-SES-Virus-Verdict: PASS
+Received-SPF: pass (spfCheck: domain of virtuslab.com designates 209.85.167.43 as permitted sender) client-ip=209.85.167.43; envelope-from=pzak@virtuslab.com; helo=mail-lf1-f43.google.com;
+Authentication-Results: amazonses.com;
+ spf=pass (spfCheck: domain of virtuslab.com designates 209.85.167.43 as permitted sender) client-ip=209.85.167.43; envelope-from=pzak@virtuslab.com; helo=mail-lf1-f43.google.com;
+ dkim=pass header.i=@virtuslab.com;
+ dmarc=pass header.from=virtuslab.com;
+X-SES-RECEIPT: AEFBQUFBQUFBQUFFeWdzR0NhN2VkYTF3Tzk3Snh3eDhzMlJlVmpSbmhXNVR4TzR4dnJKZDVtd0pERVlTTExSWGx5YXViNkhqTXAvSDluSndiOUdUYXZYNHU2TUttZkJFekpNSUF6bUpralVqMTE4RGxkQXVML3JIMlFlQ3Z0aHRJOWZ1elp3N1NSWDlidUdBUGg3UDRtL3YxVUxYeGlaSk1hVVdRd0gwWnV2eTA1bVNmU3ZSWGVDQlgxcU9Qc1ViU3lkelpHMVZBbzRhbTBTOWpOL1lrZmRyUDBVaVN0RVcxWkc2L0NpWlg3a0UveVJnNGtmckpsSDBYbStkWUJPTDJUMUk5Z1JjaW9WTXBlREZRMGk5MGhndGpsYjBkRldITlFGeU8wVzE2WmNTMEFsdzFKdS9aVEE9PQ==
+X-SES-DKIM-SIGNATURE: a=rsa-sha256; q=dns/txt; b=SdG2e3qlEH4Ia/q8hyRouO/4ap7tsyiBUKN0EXvg0sNIek5Xzr2bodt/z4qm51h2ZVj+8ZJ0S1QXlD3hOo3t2v+oLQjIoozo446WRKcWz1iP0SSIuuIW2WId94N3EY0pUmiw7gFU6bGxbvNUyV8jgsDltyvIzQhpsnIMBwH/VJQ=; c=relaxed/simple; s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1636369879; v=1; bh=S3d3NZdxY7z5QwquMSAMUQZJ7tbc9nw+HhUB4kUiAoo=; h=From:To:Cc:Bcc:Subject:Date:Message-ID:MIME-Version:Content-Type:X-SES-RECEIPT;
+Received: by mail-lf1-f43.google.com with SMTP id l22so8448908lfg.7
+        for <newsletter@ds.vived.io>; Mon, 08 Nov 2021 03:11:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=virtuslab.com; s=google;
+        h=from:mime-version:subject:message-id:references:to:date;
+        bh=lhB0Cv7D46rn81SZVDHYAXCN4XBDnduZ5gp3HRz60is=;
+        b=FCPEn7vkgwOdpN7aohlizpb+kxNl1AFVjgJrXxUkMJ/wvO/FfYOdHdOsFGMPSDQZ7O
+         aTeglPvgQlk3XTc8Zz1zEsm28AcXqJBHXlUzX2LUV5VZGwmh7lGy1DgCF0OTTi8WnTdm
+         NlIOyyn2Iyc9nCkbdX/PW6QpywVc3Qxq1kBO+uxOzXU25Bl+rdEHUUzNCDK1rePdLiW+
+         GqFy9gs6PGe4jd76YPujmfufZWZUl7ecRJaNYbvAP4GfSZTHvliC2Z5gOd7v2B51r0Wf
+         fXm3dr1rARrJ+9UnNChhO73viwv7Mm/UfpirtbUokDgw37fCLikMGlhGpQRPhcDpDCAI
+         hCBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:mime-version:subject:message-id:references
+         :to:date;
+        bh=lhB0Cv7D46rn81SZVDHYAXCN4XBDnduZ5gp3HRz60is=;
+        b=6x+77wwZZpIA7XXo90eXLqdjYb+HN0IY1OGzYR4KiGvpuJYmmHpSO/j3WR8qwgmSeV
+         vGVBnqDi6hipie5H9wxZHJybltvPP5CYwHY+IXK+IxcObk92aMddyajmJth+xin0ErHZ
+         IlxNyXXvC5JGdvqN4kZgG4O+no1JMPfCrxc19lsvLj0iXqK0MQCv8bNsMIC5tcRNkGnV
+         cJhh/L9uCuFhU5JyK+UTW7IdbkhPLApRFIv6WYuOcIU0tirvVdsN0Ph1Ve+/GJoBZqBu
+         xnLd+nCUCPrac912oNPZz47a7TncDYRKC5o1urG6rZlrgjz/IVWpMg6CcxupcIllobYy
+         9n9Q==
+X-Gm-Message-State: AOAM533sndcxDrRdYPV2j8XXkF9J7JLkkSfQ9DsKkylrSc8rlO1jlJlx
+	eu6FHSY0EYMqZt7Z3jOWDiib3VbAfPsriDbz
+X-Google-Smtp-Source: ABdhPJw3Lk5mx7U6tOTomd4YfyALn/Gap48ilMJyDHBoIdzx/vNbEtE4rJx/g6XU/OeQIeZtwzfsgw==
+X-Received: by 2002:ac2:57d3:: with SMTP id k19mr24269944lfo.150.1636369877967;
+        Mon, 08 Nov 2021 03:11:17 -0800 (PST)
+Return-Path: <pzak@virtuslab.com>
+Received: from [10.0.128.20] ([80.82.18.146])
+        by smtp.gmail.com with ESMTPSA id i12sm1776773lfb.234.2021.11.08.03.11.17
+        for <newsletter@ds.vived.io>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 08 Nov 2021 03:11:17 -0800 (PST)
+From: =?utf-8?Q?Paulina_=C5=BBak?= <pzak@virtuslab.com>
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_009F547E-10D4-415F-9337-14983A4D526D"
+Mime-Version: 1.0 (Mac OS X Mail 13.4 \(3608.120.23.2.4\))
+Subject: Fwd: This Week's Best Developer Tools & Betas
+Message-Id: <820747D4-4306-48A8-B9D2-6624B4FCA769@virtuslab.com>
+References: <CA+o2A15NCPvjt4GPEPPJKhyWCb2sGq69dy9TeeKF=tUVkmzabw@mail.gmail.com>
+To: newsletter@ds.vived.io
+Date: Mon, 8 Nov 2021 12:11:17 +0100
+X-Mailer: Apple Mail (2.3608.120.23.2.4)
+
+
+--Apple-Mail=_009F547E-10D4-415F-9337-14983A4D526D
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+
+
+> Begin forwarded message:
+>=20
+> From: Artur Skowro=C5=84ski <articles.pl@gmail.com>
+> Subject: Fwd: This Week's Best Developer Tools & Betas
+> Date: 8 November 2021 at 11:46:53 CET
+> To: pzak+newsletter@virtuslab.com
+>=20
+>=20
+>=20
+> ---------- Forwarded message ---------
+> Od: Console <weekly@console.dev <mailto:weekly@console.dev>>
+> Date: czw., 4 lis 2021 o 09:01
+> Subject: This Week's Best Developer Tools & Betas
+> To: <articles.pl@gmail.com <mailto:articles.pl@gmail.com>>
+>=20
+>=20
+>   =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3D0810cd6a9e&e=3D5880e58927>
+> A weekly digest of the best developer tools =E2=80=94 We keep track of =
+everything - dev tools, devops, cloud, and APIs - so you don't have to.
+> Contents
+> +  Plow =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3D26fd053f11&e=3D5880e58927>  =E2=80=93  High-performance HTTP =
+benchmarking.
+> +  SQLime =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3Da0b237a43b&e=3D5880e58927>  =E2=80=93  SQLite browser playground.
+> +  werf =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3D597e40ca3e&e=3D5880e58927>  =E2=80=93  Git CLI for consistent =
+delivery & deployment.
+> =CE=B2  Storybook =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3Db9503d784f&e=3D5880e58927>  =E2=80=93  Dev environment for UI =
+components.
+> =CE=B2  Ant Design =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3Da06c4b29d8&e=3D5880e58927>  =E2=80=93  React design framework and =
+components.
+> =CE=B2  Compose Multiplatform =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3D1e77d840bf&e=3D5880e58927>  =E2=80=93  Declarative UI framework =
+for Kotlin.
+> =CE=B2  Edge Handlers =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3Ddd5a31f834&e=3D5880e58927>  =E2=80=93  Serverless edge handlers.
+> =CE=B2  Deno Deploy =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3D0fbe0107cf&e=3D5880e58927>  =E2=80=93  Multi-tenant JS engine in =
+the cloud.
+> =CE=B2  Notary =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3D56ab712e11&e=3D5880e58927>  =E2=80=93  Container artifact signing.
+> +  Interesting tools
+> Here are our developer tool picks of the week. Browse the full archive =
+of all featured tools here =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3D19d3d0a2e0&e=3D5880e58927>.
+> Planning a launch/release? Advertise with us =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3D9398fcf1ad&e=3D5880e58927>.
+>=20
+> Plow =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3De22ad7cfe2&e=3D5880e58927>
+> High-performance HTTP benchmarking.
+>=20
+> What we like: Displays real-time stats as tests are executed, both on =
+the CLI and via a web UI. Reports latency, req/s, errors, read/writes. =
+Includes latency histogram and percentiles. Supports all HTTP verbs =
+including reading in POST data from a file. Dockerfile provided.
+>=20
+> What we don't like: Histogram charts disappear and web UI stops =
+serving on test completion.
+>=20
+> SQLime =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3D9abc96fac5&e=3D5880e58927>
+> SQLite browser playground.
+>=20
+> What we like: Runs a full version of SQLite entirely in the browser. =
+Can load DB files from a URL or a file. Can optionally sync with GitHub =
+to save data and queries in plain text. Easy to share via a link. There =
+is no server. Open source.
+>=20
+> What we don't like: No code completion. No error handling UI (check =
+the browser console).
+>=20
+> werf =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3D8edb4c47c5&e=3D5880e58927>
+> Git CLI for consistent delivery & deployment.
+>=20
+> What we like: Implements automated delivery from Git to k8s. =
+=E2=80=9Cgiterminism=E2=80=9D concept provides reproducibility without =
+external config dependencies - everything is based on the git repo. =
+Handles Docker image builds, k8s rollout and cleanup. Can be embedded in =
+existing CI/CD pipelines. Generates and manages Helm templates.
+>=20
+> What we don't like: Needs expanded guides for languages - basics are =
+covered but missing more detailed real-world examples. Assumes you=E2=80=99=
+re running on k8s.
+>=20
+> =CE=B2  New beta releases
+> Find 181 developer tool betas & early access releases on Beta Console =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3Dceb3fd61a4&e=3D5880e58927>. These are the most interesting ones =
+this week:
+> Storybook =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3Db8f2057af3&e=3D5880e58927>
+> Dev environment for UI components.
+>=20
+> Developer Tools, Open Source, Open Access
+> Ant Design =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3D43d07266d8&e=3D5880e58927>
+> React design framework and components.
+>=20
+> Developer Tools, Open Source, Open Access
+> Compose Multiplatform =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3D3c4e43bf88&e=3D5880e58927>, from JetBrains
+> Declarative UI framework for Kotlin.
+>=20
+> Developer Tools, Open Source, Open Access
+> Edge Handlers =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3D4799a784f2&e=3D5880e58927>, from Netlify
+> Serverless edge handlers.
+>=20
+> DevOps, SaaS, Open Access
+> Deno Deploy =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3D54e21a4516&e=3D5880e58927>
+> Multi-tenant JS engine in the cloud.
+>=20
+> Cloud, SaaS, Open Access
+> Notary =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3D8fce76e323&e=3D5880e58927>
+> Container artifact signing.
+>=20
+> Security, Open Source, Open Access
+> --
+> We interview the people behind the tools we feature in the newsletter. =
+Recent highlights include: CodeSee CEO, Shanea Leven =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3Dea152fba6d&e=3D5880e58927>, rsync.net <http://rsync.net/> CEO, =
+John Kozubik =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3Da5c779a36c&e=3D5880e58927>, Sourcegraph CTO, Beyang Liu =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3Da894826194&e=3D5880e58927> and Akita CEO, Jean Yang =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3Ddb8274e39e&e=3D5880e58927>. Read all of the interviews =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3Dccd497bbad&e=3D5880e58927>.
+> =F0=9F=9B=A0 Building something you think we should review?
+>=20
+> =F0=9F=91=80 Found a tool you think we'd like?
+>=20
+> =F0=9F=9A=80 Planning a launch or major release?
+>=20
+> Let us know! Get in touch: hello@console.dev =
+<mailto:hello@console.dev?subject=3DSubmission>.
+>=20
+> --
+> We only include things that would be of interest to experienced =
+developers and do not accept payment for product inclusion. Where we =
+feature exclusive deals from partners, they must first fit our selection =
+criteria =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3Da025c9c59f&e=3D5880e58927> before we consider working with them. =
+We do not track email opens, but do track clicks so we can refine our =
+selection criteria.
+> =E2=9C=A6 Disclosure: all reviews are editorially independent, and =
+partners must meet our selection criteria =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3D9b51ecaebc&e=3D5880e58927>. Where indicated, we work with some =
+partners to provide extras to our audience, but do not accept payment =
+for reviews.
+> Sent by Console =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3D93db2be2c6&e=3D5880e58927>, located at:
+>=20
+> cove.talent.cycles =
+<https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3Daba1f4591d&e=3D5880e58927>. Also known as: Console Ltd RH 115 The =
+Record Hall 16-16A Baldwins Gardens London, EC1N 7RJ United Kingdom
+>=20
+> Ctrl+C? Unsubscribe =
+<https://dev.us7.list-manage.com/unsubscribe?u=3Df8c3cd14ee8d63c53d0986a48=
+&id=3D267911a165&e=3D5880e58927&c=3Db6b4345b79>.
+>=20
+>=20
+>=20
+> --=20
+> Pozdrawiam,
+> Artur Skowro=C5=84ski=20
+
+
+--Apple-Mail=_009F547E-10D4-415F-9337-14983A4D526D
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;" class=3D""><br =
+class=3D""><div><br class=3D""><blockquote type=3D"cite" class=3D""><div =
+class=3D"">Begin forwarded message:</div><br =
+class=3D"Apple-interchange-newline"><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px;" class=3D""><span=
+ style=3D"font-family: -webkit-system-font, Helvetica Neue, Helvetica, =
+sans-serif; color:rgba(0, 0, 0, 1.0);" class=3D""><b class=3D"">From: =
+</b></span><span style=3D"font-family: -webkit-system-font, Helvetica =
+Neue, Helvetica, sans-serif;" class=3D"">Artur Skowro=C5=84ski &lt;<a =
+href=3D"mailto:articles.pl@gmail.com" =
+class=3D"">articles.pl@gmail.com</a>&gt;<br class=3D""></span></div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px;" class=3D""><span style=3D"font-family: =
+-webkit-system-font, Helvetica Neue, Helvetica, sans-serif; =
+color:rgba(0, 0, 0, 1.0);" class=3D""><b class=3D"">Subject: =
+</b></span><span style=3D"font-family: -webkit-system-font, Helvetica =
+Neue, Helvetica, sans-serif;" class=3D""><b class=3D"">Fwd: This Week's =
+Best Developer Tools &amp; Betas</b><br class=3D""></span></div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px;" class=3D""><span style=3D"font-family: =
+-webkit-system-font, Helvetica Neue, Helvetica, sans-serif; =
+color:rgba(0, 0, 0, 1.0);" class=3D""><b class=3D"">Date: =
+</b></span><span style=3D"font-family: -webkit-system-font, Helvetica =
+Neue, Helvetica, sans-serif;" class=3D"">8 November 2021 at 11:46:53 =
+CET<br class=3D""></span></div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px;" class=3D""><span=
+ style=3D"font-family: -webkit-system-font, Helvetica Neue, Helvetica, =
+sans-serif; color:rgba(0, 0, 0, 1.0);" class=3D""><b class=3D"">To: =
+</b></span><span style=3D"font-family: -webkit-system-font, Helvetica =
+Neue, Helvetica, sans-serif;" class=3D""><a =
+href=3D"mailto:pzak+newsletter@virtuslab.com" =
+class=3D"">pzak+newsletter@virtuslab.com</a><br =
+class=3D""></span></div><br class=3D""><div class=3D""><div dir=3D"ltr" =
+class=3D""><br class=3D""><br class=3D""><div class=3D"gmail_quote"><div =
+dir=3D"ltr" class=3D"gmail_attr">---------- Forwarded message =
+---------<br class=3D"">Od: <strong class=3D"gmail_sendername" =
+dir=3D"auto">Console</strong> <span dir=3D"auto" class=3D"">&lt;<a =
+href=3D"mailto:weekly@console.dev" =
+class=3D"">weekly@console.dev</a>&gt;</span><br class=3D"">Date: czw., 4 =
+lis 2021 o 09:01<br class=3D"">Subject: This Week's Best Developer Tools =
+&amp; Betas<br class=3D"">To:  &lt;<a =
+href=3D"mailto:articles.pl@gmail.com" =
+class=3D"">articles.pl@gmail.com</a>&gt;<br class=3D""></div><br =
+class=3D""><br class=3D""><u class=3D""></u>
+
+   =20
+       =20
+       =20
+       =20
+       =20
+       =20
+       =20
+
+   =20
+    <div =
+style=3D"height:100%;margin:0;padding:0;width:100%;background-color:#fffff=
+f" class=3D"">
+       =20
+        <span class=3D"m_987828723766612301mcnPreviewText" =
+style=3D"display:none;font-size:0px;line-height:0px;max-height:0px;max-wid=
+th:0px;opacity:0;overflow:hidden">Plow, SQLime, werf, Storybook, Ant =
+Design, Compose Multiplatform, Edge Handlers, Deno Deploy &amp; Notary - =
+the best developer tools and betas.</span>
+       =20
+        <center class=3D"">
+            <table align=3D"center" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" height=3D"100%" width=3D"100%" =
+id=3D"m_987828723766612301bodyTable" =
+style=3D"border-collapse:collapse;height:100%;margin:0;padding:0;width:100=
+%;background-color:#ffffff" class=3D"">
+                <tbody class=3D""><tr class=3D"">
+                    <td align=3D"center" valign=3D"top" =
+id=3D"m_987828723766612301bodyCell" =
+style=3D"height:100%;margin:0;padding:10px;width:100%;border-top:0" =
+class=3D"">
+                       =20
+                       =20
+                        <table border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" width=3D"100%" =
+class=3D"m_987828723766612301templateContainer" =
+style=3D"border-collapse:collapse;border:0;max-width:600px!important">
+                            <tbody class=3D""><tr class=3D"">
+                                <td valign=3D"top" =
+id=3D"m_987828723766612301templatePreheader" style=3D"background:#ffffff =
+none no-repeat =
+center/cover;background-color:#ffffff;background-image:none;background-rep=
+eat:no-repeat;background-position:center;background-size:cover;border-top:=
+0;border-bottom:0;padding-top:0px;padding-bottom:0px" class=3D""></td>
+                            </tr>
+                            <tr class=3D"">
+                                <td valign=3D"top" =
+id=3D"m_987828723766612301templateHeader" style=3D"background:#ffffff =
+none no-repeat =
+center/cover;background-color:#ffffff;background-image:none;background-rep=
+eat:no-repeat;background-position:center;background-size:cover;border-top:=
+0;border-bottom:0;padding-top:32px;padding-bottom:12px" class=3D""><table =
+border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" =
+style=3D"min-width:100%;border-collapse:collapse" class=3D"">
+    <tbody class=3D"">
+            <tr class=3D"">
+                <td valign=3D"top" =
+style=3D"padding:9px;padding-top:0px!important;padding-bottom:0px!importan=
+t" class=3D"">
+                    <table align=3D"left" width=3D"100%" border=3D"0" =
+cellpadding=3D"0" cellspacing=3D"0" =
+style=3D"min-width:100%;border-collapse:collapse" class=3D"">
+                        <tbody class=3D""><tr class=3D"">
+                            <td valign=3D"top" =
+style=3D"padding-right:9px;padding-left:9px;padding-top:0;padding-bottom:0=
+;padding:0!important" class=3D"">
+
+                                    <a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3D0810cd6a9e&amp;e=3D5880e58927" title=3D"" =
+target=3D"_blank" class=3D"">
+                                        <img align=3D"left" =
+alt=3D"console.dev" =
+src=3D"https://mcusercontent.com/f8c3cd14ee8d63c53d0986a48/images/5dec2077=
+-8c9a-458a-befa-9438ad2a6fd8.png" width=3D"194.5" =
+style=3D"max-width:389px;padding-bottom:0;display:inline!important;vertica=
+l-align:bottom;border:0;height:auto;outline:none;text-decoration:none" =
+class=3D"m_987828723766612301mcnRetinaImage">
+                                    </a>
+
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </td>
+            </tr>
+    </tbody>
+</table></td>
+                            </tr>
+                            <tr class=3D"">
+                                <td valign=3D"top" =
+id=3D"m_987828723766612301templateBody" style=3D"background:#ffffff none =
+no-repeat =
+center/cover;background-color:#ffffff;background-image:none;background-rep=
+eat:no-repeat;background-position:center;background-size:cover;border-top:=
+0;border-bottom:0;padding-top:0;padding-bottom:0px" class=3D""><table =
+border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" =
+style=3D"min-width:100%;border-collapse:collapse" class=3D"">
+    <tbody class=3D"">
+        <tr class=3D"">
+            <td valign=3D"top" style=3D"padding-top:9px" class=3D"">
+              =09
+		=09
+			=09
+                <table align=3D"left" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" =
+style=3D"max-width:100%;min-width:100%;border-collapse:collapse" =
+width=3D"100%" class=3D"m_987828723766612301mcnTextContentContainer">
+                    <tbody class=3D""><tr class=3D"">
+
+                        <td valign=3D"top" =
+class=3D"m_987828723766612301mcnTextContent" style=3D"padding-top: 0px; =
+padding-bottom: 9px; font-family: Arial, &quot;Helvetica Neue&quot;, =
+Helvetica, sans-serif; font-size: 16px; line-height: 150%; word-break: =
+break-word; text-align: left; padding-left: 21px !important; =
+padding-right: 21px !important;">
+
+                           =20
+<strong class=3D"">A weekly digest of the best developer tools</strong> =
+=E2=80=94 We keep track of everything - dev tools, devops, cloud, and =
+APIs - so you don't have to.
+                        </td>
+                    </tr>
+                </tbody></table>
+			=09
+
+			=09
+            </td>
+        </tr>
+    </tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+width=3D"100%" class=3D"m_987828723766612301mcnDividerBlock" =
+style=3D"min-width:100%;border-collapse:collapse;table-layout:fixed!import=
+ant">
+    <tbody class=3D"">
+        <tr class=3D"">
+            <td style=3D"min-width:100%;padding:0px 18px 12px" class=3D"">=
+
+                <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+width=3D"100%" style=3D"min-width:100%;border-top:2px none =
+#eaeaea;border-collapse:collapse" class=3D"">
+                    <tbody class=3D""><tr class=3D"">
+                        <td class=3D"">
+                            <span class=3D""></span>
+                        </td>
+                    </tr>
+                </tbody></table>
+
+            </td>
+        </tr>
+    </tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+width=3D"100%" style=3D"min-width:100%;border-collapse:collapse" =
+class=3D"">
+    <tbody class=3D"">
+        <tr class=3D"">
+            <td valign=3D"top" style=3D"padding-top:9px" class=3D"">
+              =09
+		=09
+			=09
+                <table align=3D"left" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" =
+style=3D"max-width:100%;min-width:100%;border-collapse:collapse" =
+width=3D"100%" class=3D"m_987828723766612301mcnTextContentContainer">
+                    <tbody class=3D""><tr class=3D"">
+
+                        <td valign=3D"top" =
+class=3D"m_987828723766612301mcnTextContent" style=3D"padding-top: 0px; =
+padding-bottom: 9px; font-family: Arial, &quot;Helvetica Neue&quot;, =
+Helvetica, sans-serif; font-size: 16px; line-height: 150%; word-break: =
+break-word; text-align: left; padding-left: 21px !important; =
+padding-right: 21px !important;">
+
+                            <h1 style=3D"display: block; margin: 0px; =
+padding: 0px; font-family: Helvetica; font-size: 22px; font-style: =
+italic; font-weight: bold; line-height: 100%; letter-spacing: 1px; =
+text-align: left;" class=3D"">Contents</h1>
+
+                        </td>
+                    </tr>
+                </tbody></table>
+			=09
+
+			=09
+            </td>
+        </tr>
+    </tbody>
+</table><table style=3D"min-width:100%;border-collapse:collapse" =
+width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" =
+class=3D"">
+    <tbody class=3D"">
+        <tr class=3D"">
+            <td style=3D"padding-top:9px" valign=3D"top" class=3D"">
+              =09
+		=09
+			=09
+                <table =
+style=3D"max-width:100%;min-width:100%;border-collapse:collapse" =
+class=3D"m_987828723766612301mcnTextContentContainer" width=3D"100%" =
+cellspacing=3D"0" cellpadding=3D"0" border=3D"0" align=3D"left">
+                    <tbody class=3D""><tr class=3D"">
+
+                        <td class=3D"m_987828723766612301mcnTextContent" =
+style=3D"padding-top: 0px; padding-bottom: 9px; font-family: Arial, =
+&quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 16px; =
+line-height: 200%; word-break: break-word; text-align: left; =
+padding-left: 21px !important; padding-right: 21px !important;" =
+valign=3D"top">
+
+                            <span =
+style=3D"display:inline-block;font-size:15px;width:0.5em" =
+class=3D"">+</span>&nbsp;&nbsp;<a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3D26fd053f11&amp;e=3D5880e58927" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D""><strong class=3D"">Plow</strong></a>&nbsp; =
+=E2=80=93&nbsp;&nbsp;High-performance HTTP benchmarking.<br class=3D"">
+<span style=3D"display:inline-block;font-size:15px;width:0.5em" =
+class=3D"">+</span>&nbsp;&nbsp;<a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3Da0b237a43b&amp;e=3D5880e58927" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D""><strong class=3D"">SQLime</strong></a>&nbsp; =
+=E2=80=93&nbsp;&nbsp;SQLite browser playground.<br class=3D"">
+<span style=3D"display:inline-block;font-size:15px;width:0.5em" =
+class=3D"">+</span>&nbsp;&nbsp;<a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3D597e40ca3e&amp;e=3D5880e58927" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D""><strong class=3D"">werf</strong></a>&nbsp; =
+=E2=80=93&nbsp;&nbsp;Git CLI for consistent delivery &amp; =
+deployment.<br class=3D"">
+<span style=3D"font-size:15px;width:0.5em" class=3D""><em =
+class=3D"">=CE=B2&nbsp;&nbsp;</em></span><a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3Db9503d784f&amp;e=3D5880e58927" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D""><strong =
+class=3D"">Storybook</strong></a>&nbsp; =E2=80=93&nbsp;&nbsp;Dev =
+environment for UI components.<br class=3D"">
+<span style=3D"font-size:15px;width:0.5em" class=3D""><em =
+class=3D"">=CE=B2&nbsp;&nbsp;</em></span><a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3Da06c4b29d8&amp;e=3D5880e58927" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D""><strong class=3D"">Ant =
+Design</strong></a>&nbsp; =E2=80=93&nbsp;&nbsp;React design framework =
+and components.<br class=3D"">
+<span style=3D"font-size:15px;width:0.5em" class=3D""><em =
+class=3D"">=CE=B2&nbsp;&nbsp;</em></span><a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3D1e77d840bf&amp;e=3D5880e58927" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D""><strong class=3D"">Compose =
+Multiplatform</strong></a>&nbsp; =E2=80=93&nbsp;&nbsp;Declarative UI =
+framework for Kotlin.<br class=3D"">
+<span style=3D"font-size:15px;width:0.5em" class=3D""><em =
+class=3D"">=CE=B2&nbsp;&nbsp;</em></span><a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3Ddd5a31f834&amp;e=3D5880e58927" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D""><strong class=3D"">Edge =
+Handlers</strong></a>&nbsp; =E2=80=93&nbsp;&nbsp;Serverless edge =
+handlers.<br class=3D"">
+<span style=3D"font-size:15px;width:0.5em" class=3D""><em =
+class=3D"">=CE=B2&nbsp;&nbsp;</em></span><a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3D0fbe0107cf&amp;e=3D5880e58927" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D""><strong class=3D"">Deno =
+Deploy</strong></a>&nbsp; =E2=80=93&nbsp;&nbsp;Multi-tenant JS engine in =
+the cloud.<br class=3D"">
+<span style=3D"font-size:15px;width:0.5em" class=3D""><em =
+class=3D"">=CE=B2&nbsp;&nbsp;</em></span><a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3D56ab712e11&amp;e=3D5880e58927" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D""><strong class=3D"">Notary</strong></a>&nbsp; =
+=E2=80=93&nbsp;&nbsp;Container artifact signing.
+                        </td>
+                    </tr>
+                </tbody></table>
+			=09
+
+			=09
+            </td>
+        </tr>
+    </tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+width=3D"100%" class=3D"m_987828723766612301mcnDividerBlock" =
+style=3D"min-width:100%;border-collapse:collapse;table-layout:fixed!import=
+ant">
+    <tbody class=3D"">
+        <tr class=3D"">
+            <td style=3D"min-width:100%;padding:12px 18px" class=3D"">
+                <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+width=3D"100%" style=3D"min-width:100%;border-top:2px none =
+#eaeaea;border-collapse:collapse" class=3D"">
+                    <tbody class=3D""><tr class=3D"">
+                        <td class=3D"">
+                            <span class=3D""></span>
+                        </td>
+                    </tr>
+                </tbody></table>
+
+            </td>
+        </tr>
+    </tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+width=3D"100%" style=3D"min-width:100%;border-collapse:collapse" =
+class=3D"">
+    <tbody class=3D"">
+        <tr class=3D"">
+            <td valign=3D"top" style=3D"padding-top:9px" class=3D"">
+              =09
+		=09
+			=09
+                <table align=3D"left" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" =
+style=3D"max-width:100%;min-width:100%;border-collapse:collapse" =
+width=3D"100%" class=3D"m_987828723766612301mcnTextContentContainer">
+                    <tbody class=3D""><tr class=3D"">
+
+                        <td valign=3D"top" =
+class=3D"m_987828723766612301mcnTextContent" style=3D"padding-top: 0px; =
+padding-bottom: 9px; font-family: Arial, &quot;Helvetica Neue&quot;, =
+Helvetica, sans-serif; font-size: 16px; line-height: 150%; word-break: =
+break-word; text-align: left; padding-left: 21px !important; =
+padding-right: 21px !important;">
+
+                            <h1 style=3D"display: block; margin: 0px; =
+padding: 0px; font-family: Helvetica; font-size: 22px; font-style: =
+italic; font-weight: bold; line-height: 100%; letter-spacing: 1px; =
+text-align: left;" class=3D""><span =
+style=3D"display:inline-block;font-size:22px;font-style:normal;font-weight=
+:normal;width:0.5em" class=3D"">+</span>&nbsp;&nbsp;Interesting =
+tools</h1>
+
+                        </td>
+                    </tr>
+                </tbody></table>
+			=09
+
+			=09
+            </td>
+        </tr>
+    </tbody>
+</table><table style=3D"min-width:100%;border-collapse:collapse" =
+width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" =
+class=3D"">
+    <tbody class=3D"">
+        <tr class=3D"">
+            <td style=3D"padding-top:9px" valign=3D"top" class=3D"">
+              =09
+		=09
+			=09
+                <table =
+style=3D"max-width:100%;min-width:100%;border-collapse:collapse" =
+class=3D"m_987828723766612301mcnTextContentContainer" width=3D"100%" =
+cellspacing=3D"0" cellpadding=3D"0" border=3D"0" align=3D"left">
+                    <tbody class=3D""><tr class=3D"">
+
+                        <td class=3D"m_987828723766612301mcnTextContent" =
+style=3D"padding-top: 0px; padding-bottom: 9px; font-family: Arial, =
+&quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 16px; =
+line-height: 150%; word-break: break-word; text-align: left; =
+padding-left: 21px !important; padding-right: 21px !important;" =
+valign=3D"top">
+
+                            Here are our developer tool picks of the =
+week. Browse the full&nbsp;<a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3D19d3d0a2e0&amp;e=3D5880e58927" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D"">archive of all featured tools here</a>.
+
+<p style=3D"font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, =
+sans-serif; font-size: 16px; line-height: 150%; margin: 10px 0px; =
+padding: 0px; text-align: left;" class=3D"">Planning a launch/release? =
+<a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3D9398fcf1ad&amp;e=3D5880e58927" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D"">Advertise with us</a>.</p>
+
+                        </td>
+                    </tr>
+                </tbody></table>
+			=09
+
+			=09
+            </td>
+        </tr>
+    </tbody>
+</table><table style=3D"min-width:100%;border-collapse:collapse" =
+width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" =
+class=3D"">
+    <tbody class=3D"">
+        <tr class=3D"">
+            <td style=3D"padding-top:9px" valign=3D"top" class=3D"">
+              =09
+		=09
+			=09
+                <table =
+style=3D"max-width:100%;min-width:100%;border-collapse:collapse" =
+class=3D"m_987828723766612301mcnTextContentContainer" width=3D"100%" =
+cellspacing=3D"0" cellpadding=3D"0" border=3D"0" align=3D"left">
+                    <tbody class=3D""><tr class=3D"">
+
+                        <td class=3D"m_987828723766612301mcnTextContent" =
+style=3D"padding-top: 0px; padding-bottom: 9px; font-family: Arial, =
+&quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 16px; =
+line-height: 150%; word-break: break-word; text-align: left; =
+padding-left: 21px !important; padding-right: 21px !important;" =
+valign=3D"top">
+
+                            <h2 style=3D"display: block; margin: 0px; =
+padding: 0px; font-family: Helvetica; font-size: 22px; font-style: =
+normal; font-weight: bold; line-height: 150%; letter-spacing: normal; =
+text-align: left;" class=3D""><a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3De22ad7cfe2&amp;e=3D5880e58927" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D""><strong class=3D"">Plow</strong></a></h2>
+
+<h4 style=3D"display: block; margin: 0.5em 0px; padding: 0px; =
+font-family: Helvetica; font-size: 18px; font-style: italic; =
+font-weight: normal; line-height: 100%; letter-spacing: 1px; text-align: =
+left;" class=3D"">High-performance HTTP benchmarking.</h4><p =
+style=3D"font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, =
+sans-serif; font-size: 16px; line-height: 150%; margin: 10px 0px; =
+padding: 0px; text-align: left;" class=3D""><strong class=3D"">What we =
+like:</strong> Displays real-time stats as tests are executed, both on =
+the CLI and via a web UI. Reports latency, req/s, errors, read/writes. =
+Includes latency histogram and percentiles. Supports all HTTP verbs =
+including reading in POST data from a file. Dockerfile provided.</p><p =
+style=3D"font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, =
+sans-serif; font-size: 16px; line-height: 150%; margin: 10px 0px; =
+padding: 0px; text-align: left;" class=3D""><strong class=3D"">What we =
+don't like:</strong> Histogram charts disappear and web UI stops serving =
+on test completion.</p>
+
+<hr style=3D"border:none;border-top:none;padding-top:6px" class=3D"">
+<h2 style=3D"display: block; margin: 0px; padding: 0px; font-family: =
+Helvetica; font-size: 22px; font-style: normal; font-weight: bold; =
+line-height: 150%; letter-spacing: normal; text-align: left;" =
+class=3D""><a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3D9abc96fac5&amp;e=3D5880e58927" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D""><strong class=3D"">SQLime</strong></a></h2>
+
+<h4 style=3D"display: block; margin: 0.5em 0px; padding: 0px; =
+font-family: Helvetica; font-size: 18px; font-style: italic; =
+font-weight: normal; line-height: 100%; letter-spacing: 1px; text-align: =
+left;" class=3D"">SQLite browser playground.</h4><p style=3D"font-family: =
+Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: =
+16px; line-height: 150%; margin: 10px 0px; padding: 0px; text-align: =
+left;" class=3D""><strong class=3D"">What we like:</strong> Runs a full =
+version of SQLite entirely in the browser. Can load DB files from a URL =
+or a file. Can optionally sync with GitHub to save data and queries in =
+plain text. Easy to share via a link. There is no server. Open =
+source.</p><p style=3D"font-family: Arial, &quot;Helvetica Neue&quot;, =
+Helvetica, sans-serif; font-size: 16px; line-height: 150%; margin: 10px =
+0px; padding: 0px; text-align: left;" class=3D""><strong class=3D"">What =
+we don't like:</strong> No code completion. No error handling UI (check =
+the browser console).</p>
+
+<hr style=3D"border:none;border-top:none;padding-top:6px" class=3D"">
+<h2 style=3D"display: block; margin: 0px; padding: 0px; font-family: =
+Helvetica; font-size: 22px; font-style: normal; font-weight: bold; =
+line-height: 150%; letter-spacing: normal; text-align: left;" =
+class=3D""><a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3D8edb4c47c5&amp;e=3D5880e58927" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D""><strong class=3D"">werf</strong></a></h2>
+
+<h4 style=3D"display: block; margin: 0.5em 0px; padding: 0px; =
+font-family: Helvetica; font-size: 18px; font-style: italic; =
+font-weight: normal; line-height: 100%; letter-spacing: 1px; text-align: =
+left;" class=3D"">Git CLI for consistent delivery &amp; =
+deployment.</h4><p style=3D"font-family: Arial, &quot;Helvetica =
+Neue&quot;, Helvetica, sans-serif; font-size: 16px; line-height: 150%; =
+margin: 10px 0px; padding: 0px; text-align: left;" class=3D""><strong =
+class=3D"">What we like:</strong> Implements automated delivery from Git =
+to k8s. =E2=80=9Cgiterminism=E2=80=9D concept provides reproducibility =
+without external config dependencies - everything is based on the git =
+repo. Handles Docker image builds, k8s rollout and cleanup. Can be =
+embedded in existing CI/CD pipelines. Generates and manages Helm =
+templates.</p><p style=3D"font-family: Arial, &quot;Helvetica =
+Neue&quot;, Helvetica, sans-serif; font-size: 16px; line-height: 150%; =
+margin: 10px 0px; padding: 0px; text-align: left;" class=3D""><strong =
+class=3D"">What we don't like:</strong> Needs expanded guides for =
+languages - basics are covered but missing more detailed real-world =
+examples. Assumes you=E2=80=99re running on k8s.</p>
+
+<hr style=3D"border:none;border-top:none;padding-top:6px" class=3D"">
+                        </td>
+                    </tr>
+                </tbody></table>
+			=09
+
+			=09
+            </td>
+        </tr>
+    </tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+width=3D"100%" class=3D"m_987828723766612301mcnDividerBlock" =
+style=3D"min-width:100%;border-collapse:collapse;table-layout:fixed!import=
+ant">
+    <tbody class=3D"">
+        <tr class=3D"">
+            <td style=3D"min-width:100%;padding:6px 18px 12px" class=3D"">=
+
+                <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+width=3D"100%" style=3D"min-width:100%;border-top:2px none =
+#eaeaea;border-collapse:collapse" class=3D"">
+                    <tbody class=3D""><tr class=3D"">
+                        <td class=3D"">
+                            <span class=3D""></span>
+                        </td>
+                    </tr>
+                </tbody></table>
+
+            </td>
+        </tr>
+    </tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+width=3D"100%" style=3D"min-width:100%;border-collapse:collapse" =
+class=3D"">
+    <tbody class=3D"">
+        <tr class=3D"">
+            <td valign=3D"top" style=3D"padding-top:9px" class=3D"">
+              =09
+		=09
+			=09
+                <table align=3D"left" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" =
+style=3D"max-width:100%;min-width:100%;border-collapse:collapse" =
+width=3D"100%" class=3D"m_987828723766612301mcnTextContentContainer">
+                    <tbody class=3D""><tr class=3D"">
+
+                        <td valign=3D"top" =
+class=3D"m_987828723766612301mcnTextContent" style=3D"padding-top: 0px; =
+padding-bottom: 9px; font-family: Arial, &quot;Helvetica Neue&quot;, =
+Helvetica, sans-serif; font-size: 16px; line-height: 150%; word-break: =
+break-word; text-align: left; padding-left: 21px !important; =
+padding-right: 21px !important;">
+
+                            <h1 style=3D"display: block; margin: 0px; =
+padding: 0px; font-family: Helvetica; font-size: 22px; font-style: =
+italic; font-weight: bold; line-height: 100%; letter-spacing: 1px; =
+text-align: left;" class=3D""><em =
+style=3D"display:inline-block;font-size:20px;font-style:italic;font-weight=
+:normal;width:0.5em" class=3D"">=CE=B2</em>&nbsp;&nbsp;New beta =
+releases</h1>
+
+                        </td>
+                    </tr>
+                </tbody></table>
+			=09
+
+			=09
+            </td>
+        </tr>
+    </tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+width=3D"100%" style=3D"min-width:100%;border-collapse:collapse" =
+class=3D"">
+    <tbody class=3D"">
+        <tr class=3D"">
+            <td valign=3D"top" style=3D"padding-top:9px" class=3D"">
+              =09
+		=09
+			=09
+                <table align=3D"left" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" =
+style=3D"max-width:100%;min-width:100%;border-collapse:collapse" =
+width=3D"100%" class=3D"m_987828723766612301mcnTextContentContainer">
+                    <tbody class=3D""><tr class=3D"">
+
+                        <td valign=3D"top" =
+class=3D"m_987828723766612301mcnTextContent" style=3D"padding-top: 0px; =
+padding-bottom: 9px; font-family: Arial, &quot;Helvetica Neue&quot;, =
+Helvetica, sans-serif; font-size: 16px; line-height: 150%; word-break: =
+break-word; text-align: left; padding-left: 21px !important; =
+padding-right: 21px !important;">
+
+                            Find 181 developer tool betas &amp; early =
+access releases on <a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3Dceb3fd61a4&amp;e=3D5880e58927" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D"">Beta Console</a>. These are the most =
+interesting ones this week:
+                        </td>
+                    </tr>
+                </tbody></table>
+			=09
+
+			=09
+            </td>
+        </tr>
+    </tbody>
+</table><table style=3D"min-width:100%;border-collapse:collapse" =
+width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" =
+class=3D"">
+    <tbody class=3D"">
+        <tr class=3D"">
+            <td style=3D"padding-top:9px" valign=3D"top" class=3D"">
+              =09
+		=09
+			=09
+                <table =
+style=3D"max-width:100%;min-width:100%;border-collapse:collapse" =
+class=3D"m_987828723766612301mcnTextContentContainer" width=3D"100%" =
+cellspacing=3D"0" cellpadding=3D"0" border=3D"0" align=3D"left">
+                    <tbody class=3D""><tr class=3D"">
+
+                        <td class=3D"m_987828723766612301mcnTextContent" =
+style=3D"padding-top: 0px; padding-bottom: 9px; font-family: Arial, =
+&quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 16px; =
+font-style: normal; font-weight: normal; line-height: 150%; text-align: =
+left; word-break: break-word; padding-left: 21px !important; =
+padding-right: 21px !important;" valign=3D"top">
+
+                            <h2 style=3D"display: block; margin: 0px; =
+padding: 0px; font-family: Helvetica; font-size: 22px; font-style: =
+normal; font-weight: bold; line-height: 150%; letter-spacing: normal; =
+text-align: left;" class=3D""><a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3Db8f2057af3&amp;e=3D5880e58927" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D""><strong =
+class=3D"">Storybook</strong></a></h2>
+
+<h4 style=3D"display: block; margin: 0.5em 0px; padding: 0px; =
+font-family: Helvetica; font-size: 18px; font-style: italic; =
+font-weight: normal; line-height: 100%; letter-spacing: 1px; text-align: =
+left;" class=3D"">Dev environment for UI components.</h4>
+<span style=3D"font-family:courier new,courier,lucida sans =
+typewriter,lucida typewriter,monospace" class=3D"">Developer Tools, Open =
+Source, Open Access</span>
+
+<hr style=3D"border:none;border-top:none;padding-top:6px" class=3D"">
+<h2 style=3D"display: block; margin: 0px; padding: 0px; font-family: =
+Helvetica; font-size: 22px; font-style: normal; font-weight: bold; =
+line-height: 150%; letter-spacing: normal; text-align: left;" =
+class=3D""><a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3D43d07266d8&amp;e=3D5880e58927" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D""><strong class=3D"">Ant =
+Design</strong></a></h2>
+
+<h4 style=3D"display: block; margin: 0.5em 0px; padding: 0px; =
+font-family: Helvetica; font-size: 18px; font-style: italic; =
+font-weight: normal; line-height: 100%; letter-spacing: 1px; text-align: =
+left;" class=3D"">React design framework and components.</h4>
+<span style=3D"font-family:courier new,courier,lucida sans =
+typewriter,lucida typewriter,monospace" class=3D"">Developer Tools, Open =
+Source, Open Access</span>
+
+<hr style=3D"border:none;border-top:none;padding-top:6px" class=3D"">
+<h2 style=3D"display: block; margin: 0px; padding: 0px; font-family: =
+Helvetica; font-size: 22px; font-style: normal; font-weight: bold; =
+line-height: 150%; letter-spacing: normal; text-align: left;" =
+class=3D""><a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3D3c4e43bf88&amp;e=3D5880e58927" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D""><strong class=3D"">Compose =
+Multiplatform</strong></a>, from JetBrains</h2>
+
+<h4 style=3D"display: block; margin: 0.5em 0px; padding: 0px; =
+font-family: Helvetica; font-size: 18px; font-style: italic; =
+font-weight: normal; line-height: 100%; letter-spacing: 1px; text-align: =
+left;" class=3D"">Declarative UI framework for Kotlin.</h4>
+<span style=3D"font-family:courier new,courier,lucida sans =
+typewriter,lucida typewriter,monospace" class=3D"">Developer Tools, Open =
+Source, Open Access</span>
+
+<hr style=3D"border:none;border-top:none;padding-top:6px" class=3D"">
+<h2 style=3D"display: block; margin: 0px; padding: 0px; font-family: =
+Helvetica; font-size: 22px; font-style: normal; font-weight: bold; =
+line-height: 150%; letter-spacing: normal; text-align: left;" =
+class=3D""><a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3D4799a784f2&amp;e=3D5880e58927" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D""><strong class=3D"">Edge =
+Handlers</strong></a>, from Netlify</h2>
+
+<h4 style=3D"display: block; margin: 0.5em 0px; padding: 0px; =
+font-family: Helvetica; font-size: 18px; font-style: italic; =
+font-weight: normal; line-height: 100%; letter-spacing: 1px; text-align: =
+left;" class=3D"">Serverless edge handlers.</h4>
+<span style=3D"font-family:courier new,courier,lucida sans =
+typewriter,lucida typewriter,monospace" class=3D"">DevOps, SaaS, Open =
+Access</span>
+
+<hr style=3D"border:none;border-top:none;padding-top:6px" class=3D"">
+<h2 style=3D"display: block; margin: 0px; padding: 0px; font-family: =
+Helvetica; font-size: 22px; font-style: normal; font-weight: bold; =
+line-height: 150%; letter-spacing: normal; text-align: left;" =
+class=3D""><a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3D54e21a4516&amp;e=3D5880e58927" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D""><strong class=3D"">Deno =
+Deploy</strong></a></h2>
+
+<h4 style=3D"display: block; margin: 0.5em 0px; padding: 0px; =
+font-family: Helvetica; font-size: 18px; font-style: italic; =
+font-weight: normal; line-height: 100%; letter-spacing: 1px; text-align: =
+left;" class=3D"">Multi-tenant JS engine in the cloud.</h4>
+<span style=3D"font-family:courier new,courier,lucida sans =
+typewriter,lucida typewriter,monospace" class=3D"">Cloud, SaaS, Open =
+Access</span>
+
+<hr style=3D"border:none;border-top:none;padding-top:6px" class=3D"">
+<h2 style=3D"display: block; margin: 0px; padding: 0px; font-family: =
+Helvetica; font-size: 22px; font-style: normal; font-weight: bold; =
+line-height: 150%; letter-spacing: normal; text-align: left;" =
+class=3D""><a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3D8fce76e323&amp;e=3D5880e58927" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D""><strong class=3D"">Notary</strong></a></h2>
+
+<h4 style=3D"display: block; margin: 0.5em 0px; padding: 0px; =
+font-family: Helvetica; font-size: 18px; font-style: italic; =
+font-weight: normal; line-height: 100%; letter-spacing: 1px; text-align: =
+left;" class=3D"">Container artifact signing.</h4>
+<span style=3D"font-family:courier new,courier,lucida sans =
+typewriter,lucida typewriter,monospace" class=3D"">Security, Open =
+Source, Open Access</span>
+
+<hr style=3D"border:none;border-top:none;padding-top:6px" class=3D"">
+                        </td>
+                    </tr>
+                </tbody></table>
+			=09
+
+			=09
+            </td>
+        </tr>
+    </tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+width=3D"100%" class=3D"m_987828723766612301mcnDividerBlock" =
+style=3D"min-width:100%;border-collapse:collapse;table-layout:fixed!import=
+ant">
+    <tbody class=3D"">
+        <tr class=3D"">
+            <td style=3D"min-width:100%;padding:0px 18px 12px" class=3D"">=
+
+                <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+width=3D"100%" style=3D"min-width:100%;border-top:2px none =
+#eaeaea;border-collapse:collapse" class=3D"">
+                    <tbody class=3D""><tr class=3D"">
+                        <td class=3D"">
+                            <span class=3D""></span>
+                        </td>
+                    </tr>
+                </tbody></table>
+
+            </td>
+        </tr>
+    </tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+width=3D"100%" class=3D"m_987828723766612301mcnDividerBlock" =
+style=3D"min-width:100%;border-collapse:collapse;table-layout:fixed!import=
+ant">
+    <tbody class=3D"">
+        <tr class=3D"">
+            <td style=3D"min-width:100%;padding:6px 18px" class=3D"">
+                <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+width=3D"100%" style=3D"min-width:100%;border-top:2px none =
+#eaeaea;border-collapse:collapse" class=3D"">
+                    <tbody class=3D""><tr class=3D"">
+                        <td class=3D"">
+                            <span class=3D""></span>
+                        </td>
+                    </tr>
+                </tbody></table>
+
+            </td>
+        </tr>
+    </tbody>
+</table><table style=3D"min-width:100%;border-collapse:collapse" =
+width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" =
+class=3D"">
+    <tbody class=3D"">
+        <tr class=3D"">
+            <td style=3D"padding-top:9px" valign=3D"top" class=3D"">
+              =09
+		=09
+			=09
+                <table =
+style=3D"max-width:100%;min-width:100%;border-collapse:collapse" =
+class=3D"m_987828723766612301mcnTextContentContainer" width=3D"100%" =
+cellspacing=3D"0" cellpadding=3D"0" border=3D"0" align=3D"left">
+                    <tbody class=3D""><tr class=3D"">
+
+                        <td class=3D"m_987828723766612301mcnTextContent" =
+style=3D"padding-top: 0px; padding-bottom: 9px; font-family: Arial, =
+&quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 16px; =
+line-height: 150%; word-break: break-word; text-align: left; =
+padding-left: 21px !important; padding-right: 21px !important;" =
+valign=3D"top">
+
+                            --<br class=3D"">
+We interview the people behind the tools we feature in the newsletter. =
+Recent highlights include: CodeSee CEO, <a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3Dea152fba6d&amp;e=3D5880e58927" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D"">Shanea Leven</a>, <a =
+href=3D"http://rsync.net/" target=3D"_blank" class=3D"">rsync.net</a> =
+CEO, <a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3Da5c779a36c&amp;e=3D5880e58927" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D"">John Kozubik</a>, Sourcegraph CTO, <a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3Da894826194&amp;e=3D5880e58927" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D"">Beyang Liu</a> and Akita CEO, <a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3Ddb8274e39e&amp;e=3D5880e58927" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D"">Jean Yang</a>. <a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3Dccd497bbad&amp;e=3D5880e58927" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D"">Read all of the interviews</a>.
+                        </td>
+                    </tr>
+                </tbody></table>
+			=09
+
+			=09
+            </td>
+        </tr>
+    </tbody>
+</table><table style=3D"min-width:100%;border-collapse:collapse" =
+width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" =
+class=3D"">
+    <tbody class=3D"">
+        <tr class=3D"">
+            <td style=3D"padding-top:9px" valign=3D"top" class=3D"">
+              =09
+		=09
+			=09
+                <table =
+style=3D"max-width:100%;min-width:100%;border-collapse:collapse" =
+class=3D"m_987828723766612301mcnTextContentContainer" width=3D"100%" =
+cellspacing=3D"0" cellpadding=3D"0" border=3D"0" align=3D"left">
+                    <tbody class=3D""><tr class=3D"">
+
+                        <td class=3D"m_987828723766612301mcnTextContent" =
+style=3D"padding-top: 0px; padding-bottom: 9px; font-family: Arial, =
+&quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 16px; =
+line-height: 150%; word-break: break-word; text-align: left; =
+padding-left: 21px !important; padding-right: 21px !important;" =
+valign=3D"top"><p style=3D"font-family: Arial, &quot;Helvetica =
+Neue&quot;, Helvetica, sans-serif; font-size: 16px; line-height: 150%; =
+margin: 10px 0px; padding: 0px; text-align: left;" class=3D"">=F0=9F=9B=A0=
+ Building something you think we should review?</p><p =
+style=3D"font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, =
+sans-serif; font-size: 16px; line-height: 150%; margin: 10px 0px; =
+padding: 0px; text-align: left;" class=3D"">=F0=9F=91=80 Found a tool =
+you think we'd like?</p><p style=3D"font-family: Arial, &quot;Helvetica =
+Neue&quot;, Helvetica, sans-serif; font-size: 16px; line-height: 150%; =
+margin: 10px 0px; padding: 0px; text-align: left;" class=3D"">=F0=9F=9A=80=
+ Planning a launch or major release?</p><p style=3D"font-family: Arial, =
+&quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 16px; =
+line-height: 150%; margin: 10px 0px; padding: 0px; text-align: left;" =
+class=3D"">Let us know! Get in touch: <a =
+href=3D"mailto:hello@console.dev?subject=3DSubmission" title=3D"Email =
+hello@console.dev" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D"">hello@console.dev</a>.</p>
+
+                        </td>
+                    </tr>
+                </tbody></table>
+			=09
+
+			=09
+            </td>
+        </tr>
+    </tbody>
+</table><table style=3D"min-width:100%;border-collapse:collapse" =
+width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" =
+class=3D"">
+    <tbody class=3D"">
+        <tr class=3D"">
+            <td style=3D"padding-top:9px" valign=3D"top" class=3D"">
+              =09
+		=09
+			=09
+                <table =
+style=3D"max-width:100%;min-width:100%;border-collapse:collapse" =
+class=3D"m_987828723766612301mcnTextContentContainer" width=3D"100%" =
+cellspacing=3D"0" cellpadding=3D"0" border=3D"0" align=3D"left">
+                    <tbody class=3D""><tr class=3D"">
+
+                        <td class=3D"m_987828723766612301mcnTextContent" =
+style=3D"padding: 0px 18px 9px; word-break: break-word; font-family: =
+Helvetica; font-size: 16px; line-height: 150%; text-align: left;" =
+valign=3D"top">
+
+                            <em class=3D"">--<br class=3D"">
+We only include things that would be of interest to experienced =
+developers and do not accept payment for product inclusion. Where we =
+feature exclusive deals from partners, they must first fit&nbsp;<a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3Da025c9c59f&amp;e=3D5880e58927" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D"">our selection criteria</a>&nbsp;before we =
+consider working with them. We do not track email opens, but do track =
+clicks so we can refine our selection criteria.</em>
+                        </td>
+                    </tr>
+                </tbody></table>
+			=09
+
+			=09
+            </td>
+        </tr>
+    </tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+width=3D"100%" style=3D"min-width:100%;border-collapse:collapse" =
+class=3D"">
+    <tbody class=3D"">
+        <tr class=3D"">
+            <td valign=3D"top" style=3D"padding-top:9px" class=3D"">
+              =09
+		=09
+			=09
+                <table align=3D"left" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" =
+style=3D"max-width:100%;min-width:100%;border-collapse:collapse" =
+width=3D"100%" class=3D"m_987828723766612301mcnTextContentContainer">
+                    <tbody class=3D""><tr class=3D"">
+
+                        <td valign=3D"top" =
+class=3D"m_987828723766612301mcnTextContent" style=3D"padding: 0px 18px =
+9px; word-break: break-word; font-family: Helvetica; font-size: 16px; =
+line-height: 150%; text-align: left;">
+
+
+<strong class=3D"">=E2=9C=A6 <em =
+style=3D"font-size:14px;font-style:italic" =
+class=3D"">Disclosure:</em></strong> <em =
+style=3D"font-size:14px;font-style:italic" class=3D"">all reviews are =
+editorially independent, and partners must meet our <a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3D9b51ecaebc&amp;e=3D5880e58927" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D"">selection criteria</a>. Where indicated, we =
+work with some partners to provide extras to our audience, but do not =
+accept payment for reviews.</em>
+                        </td>
+                    </tr>
+                </tbody></table>
+			=09
+
+			=09
+            </td>
+        </tr>
+    </tbody>
+</table></td>
+                            </tr>
+                            <tr class=3D"">
+                                <td valign=3D"top" =
+id=3D"m_987828723766612301templateFooter" style=3D"background:#ffffff =
+none no-repeat =
+center/cover;background-color:#ffffff;background-image:none;background-rep=
+eat:no-repeat;background-position:center;background-size:cover;border-top:=
+0;border-bottom:0;padding-top:32px;padding-bottom:40px" class=3D""><table =
+border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" =
+style=3D"min-width:100%;border-collapse:collapse" class=3D"">
+    <tbody class=3D"">
+        <tr class=3D"">
+            <td valign=3D"top" style=3D"padding-top:9px" class=3D"">
+              =09
+		=09
+			=09
+                <table align=3D"left" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" =
+style=3D"max-width:100%;min-width:100%;border-collapse:collapse" =
+width=3D"100%" class=3D"m_987828723766612301mcnTextContentContainer">
+                    <tbody class=3D""><tr class=3D"">
+
+                        <td valign=3D"top" =
+class=3D"m_987828723766612301mcnTextContent" style=3D"padding-top: 0px; =
+padding-bottom: 9px; font-size: 16px; line-height: 150%; text-align: =
+left; word-break: break-word; font-family: Helvetica; padding-left: 21px =
+!important; padding-right: 21px !important;"><p style=3D"font-size: =
+16px; line-height: 150%; text-align: left; margin: 10px 0px; padding: =
+0px; font-family: Helvetica;" class=3D""><strong class=3D"">Sent by <a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3D93db2be2c6&amp;e=3D5880e58927" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D"">Console</a>, located at:</strong></p><p =
+style=3D"font-size: 16px; line-height: 150%; text-align: left; margin: =
+10px 0px; padding: 0px; font-family: Helvetica;" class=3D""><a =
+href=3D"https://dev.us7.list-manage.com/track/click?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3Daba1f4591d&amp;e=3D5880e58927" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D"">cove.talent.cycles</a>. Also known as: =
+Console Ltd
+RH 115 The Record Hall
+16-16A Baldwins Gardens
+London,  EC1N 7RJ
+United Kingdom </p><p style=3D"font-size: 16px; line-height: 150%; =
+text-align: left; margin: 10px 0px; padding: 0px; font-family: =
+Helvetica;" class=3D""><strong class=3D"">Ctrl+C? <a =
+href=3D"https://dev.us7.list-manage.com/unsubscribe?u=3Df8c3cd14ee8d63c53d=
+0986a48&amp;id=3D267911a165&amp;e=3D5880e58927&amp;c=3Db6b4345b79" =
+style=3D"color:#5269ff;font-weight:normal;text-decoration:underline" =
+target=3D"_blank" class=3D"">Unsubscribe</a>.</strong></p>
+
+                        </td>
+                    </tr>
+                </tbody></table>
+			=09
+
+			=09
+            </td>
+        </tr>
+    </tbody>
+</table></td>
+                            </tr>
+                        </tbody></table>
+                       =20
+                       =20
+                    </td>
+                </tr>
+            </tbody></table>
+        </center>
+    </div>
+</div><br clear=3D"all" class=3D""><div class=3D""><br class=3D""></div>--=
+ <br class=3D""><div dir=3D"ltr" class=3D"gmail_signature" =
+data-smartmail=3D"gmail_signature">Pozdrawiam,<br class=3D"">Artur =
+Skowro=C5=84ski&nbsp;</div></div>
+</div></blockquote></div><br class=3D""></body></html>=
+
+--Apple-Mail=_009F547E-10D4-415F-9337-14983A4D526D--

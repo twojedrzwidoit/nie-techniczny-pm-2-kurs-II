@@ -1,0 +1,1687 @@
+Return-Path: <DataElixir-chjhtc1yubtluub1t@bounce.dataelixir.com>
+Received: from mx137.a.outbound.createsend.com (mx137.a.outbound.createsend.com [203.55.21.137])
+ by inbound-smtp.eu-west-1.amazonaws.com with SMTP id 4eu033ju63cmrou18kvolouua2ov0cebl7smilo1
+ for newsletter@ds.vived.io;
+ Tue, 23 Nov 2021 19:06:43 +0000 (UTC)
+X-SES-Spam-Verdict: PASS
+X-SES-Virus-Verdict: PASS
+Received-SPF: pass (spfCheck: domain of bounce.dataelixir.com designates 203.55.21.137 as permitted sender) client-ip=203.55.21.137; envelope-from=DataElixir-chjhtc1yubtluub1t@bounce.dataelixir.com; helo=mx137.a.outbound.createsend.com;
+Authentication-Results: amazonses.com;
+ spf=pass (spfCheck: domain of bounce.dataelixir.com designates 203.55.21.137 as permitted sender) client-ip=203.55.21.137; envelope-from=DataElixir-chjhtc1yubtluub1t@bounce.dataelixir.com; helo=mx137.a.outbound.createsend.com;
+ dkim=pass header.i=@cmail2.com;
+ dkim=pass header.i=@dataelixir.com;
+ dmarc=pass header.from=dataelixir.com;
+X-SES-RECEIPT: AEFBQUFBQUFBQUFINWFUa1U2UVJOVjJnRWg5dGt5UVYvU0xXR1VwYjErcEJsS1pUYW5qRnhQb0JBek1pUms0YjNqb3lZUW1aTkdoRUgzdmhpOE80TWJqbmx4NnVIUmVwSHdkQjRTYno2RGpNMFlOVHVzQnQ0L29YRThuY2w1eWNMb1lVUU96UlppZHplVGl6Wk5IRFJYMUVwcHIwR25PbUs2U3BHR2luZ0hGUjZuUXdZaWJJRDVxWFNMWUtxOHZwU2V1bUFMckdjM2szQWZ4N1lzNkg4azByWnFsMXZMUmZ1UC9ENUVnU3dPSzJ6OTZtbWhFOGdKUG5qVmhaZ2JJNlFHajhSU2FjQXpoVkZxMTN5UUdPRWd0djZveUFBWU9qcVJieWdYZHJqSTlsQWhRWEt1eVZ1c3IzVXREdUQrRE5FVUswQ3ZqcE5pMCtpQ3BMb2xwT1JPcWJtN29DNlI0VlY=
+X-SES-DKIM-SIGNATURE: a=rsa-sha256; q=dns/txt; b=jKGtlOQMdnjqVLM4eR0YDYt9WOgvR2id0nerOKHElD+bvXkDspN++0HF4nHBZDb+Oat2xUB6bslsM7ugUIr7lGV8bF6ZhTFKqgBfUf9HiVGy1LBOlU2PpveGsVIVsInV6I+7KI9il+DV9r7xqoDkIGG70BaRhTXh99hd8X6WHBk=; c=relaxed/simple; s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1637694403; v=1; bh=MwnpsNLJWF1IFIOCfvgxbjVEpa8V08H01DCZZel1XtQ=; h=From:To:Cc:Bcc:Subject:Date:Message-ID:MIME-Version:Content-Type:X-SES-RECEIPT;
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; s=cm; d=dataelixir.com;
+ h=Subject:From:To:Reply-To:Date:MIME-Version:Content-Type:List-Unsubscribe:Message-ID; i=lon@dataelixir.com;
+ bh=2O1+SVRTCEXr+DIhhimOz9Jc0AY=;
+ b=UHh5IitEIV2qgWUX3wgPcrRO/KTzXiZ6kQT93AhOMxV+8/1rrg4FGV4TjdySpvjvZYXdcr7xnlOx
+   w32/wJQP97/a2bJObE9w/yKgVrV2CoH20s92uQcBHMZQeNScZCr/tDtG7wzOgZVw/uoOB1Er3NMS
+   XVBMNX7ZE9gXpUIEmV0=
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; s=cs2013; d=cmail2.com;
+ h=Subject:From:To:Reply-To:Date:MIME-Version:Content-Type:List-Unsubscribe:Message-ID;
+ bh=2O1+SVRTCEXr+DIhhimOz9Jc0AY=;
+ b=l8zrnK9Q18bHlWgiOg7n0/SsJx19eQfJ+8xMes6WFkJcUQgLl41eBXBWulrtDISRxZ/+qb6FRXYn
+   +NPde+1pR5gFnjEblx4g/u16ppSY0tmuva0qvAWSUaEG3GD8dFNEU35hS0D35lN44AqN54Nw/at7
+   g7y2E+a0Ztb+c7JNYok=
+Subject: Data Elixir - Issue 363
+From: "Data Elixir" <lon@dataelixir.com> 
+To: "newsletter@ds.vived.io" <newsletter@ds.vived.io>
+Reply-To: lon@dataelixir.com
+Date: Wed, 24 Nov 2021 06:06:37 +1100
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="_26f6162a-d812-4388-b17b-f13d62c17583_"; charset=utf-8
+X-Mailer: Create Send
+X-Complaints-To: abuse@cmail20.com
+X-Feedback-ID: CA1-t-chjhtc:LI1-t-jrhudti:CL1-t-yhkrtu:createSEND
+List-Unsubscribe: <http://unsub.cmail20.com/t/t-u-chjhtc-yubtluub/>,
+ <mailto:unsubscribe-chjhtc2yubtluub2t-C6567289@cmail20.com?subject=Unsubscribe>
+Message-ID: <cm.0606372735902.chjhtc.yubtluub.t@cmail20.com>
+
+--_26f6162a-d812-4388-b17b-f13d62c17583_
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+ISSUE 363  =C2=B7   November 23, 2021               Insight      The miss=
+ing analytics executive [https://benn.substack.com/p/the-missing-analyti=
+cs-executive?utm_campaign=3DData_Elixir&utm_source=3DData_Elixir_363]
+
+Great post about data careers, organizational leadership, and how most pe=
+ople never make it. "Companies rarely have data leaders that sit among th=
+ose at the top of the org chart..." That's a problem for everyone in data=
+ and the organizations we work for.
+
+Benn Stancil
+
+Sponsored Link            Marketing leaders rely on data to meet their qu=
+arterly targets.  [https://mode.com/data-teams-guide-for-marketing-metri=
+cs/?utm_medium=3Dreferral&utm_source=3Ddata-elixir&utm_campaign=3D44521]
+
+Data teams can use this starter guide to better understand which metrics =
+can accelerate marketing goals and increase ROI.
+
+In this guide, we'll cover:
+
+Why data teams are crucial partners for marketing teamsWhy customer segme=
+ntation analysis is a good place to startSample charts in Mode to get you=
+ started      Download [https://mode.com/data-teams-guide-for-marketing-=
+metrics/?utm_medium=3Dreferral&utm_source=3Ddata-elixir&utm_campaign=3D44=
+521]               Reach Data Elixir readers by sponsoring an issue. Clic=
+k here for details. [https://dataelixir.com/sponsorship/]               =
+   Tutorials, Projects & Opinions      Estimating the geographic area of =
+a real estate agent [https://medium.com/compass-true-north/estimating-th=
+e-geographic-area-of-agent-18bfd45657c6?utm_campaign=3DData_Elixir&utm_so=
+urce=3DData_Elixir_363]
+
+At Compass, many tasks require knowing if a geographic area is relevant t=
+o a specific real estate agent and, conversely, who is the right agent fo=
+r a specific area. It's more complicated than it might sound and, at Comp=
+ass, they often use the problem as an interview question. This tutorial e=
+xplores how =E2=80=94 and why =E2=80=94 they approach it using KDE.
+
+Compass True North | Panos Ipeirotis and Foster Provost
+
+Parameter Exploration at Lyft [https://eng.lyft.com/parameter-exploratio=
+n-at-lyft-b9d2a1483c82?utm_campaign=3DData_Elixir&utm_source=3DData_Elixi=
+r_363]
+
+Here's how the experimentation team at Lyft is using Bayesian Optimizatio=
+n to tune their marketplace using time-randomized experiments. Includes a=
+ discussion of issues they encountered with multivariate split-testing an=
+d an overview of how Gaussian processes and Bayesian Optimization works.
+
+Lyft Engineering | Henry Quan
+
+Get Ready For Confidential Computing [https://gradientflow.com/get-ready=
+-for-confidential-computing?utm_campaign=3DData_Elixir&utm_source=3DData_=
+Elixir_363/]
+
+Nice overview of the Confidential Computing landscape, including use-case=
+s, considerations, enabling technologies, and a survey of solutions for k=
+eeping data secure while it's in use.
+
+Gradient Flow | Assaf Araki and Ben Lorica
+
+Transformers from Scratch [https://e2eml.school/transformers.html?utm_ca=
+mpaign=3DData_Elixir&utm_source=3DData_Elixir_363]
+
+This deep dive tutorial shows how to construct a transformer from scratch=
+, starting with just counting and arithmetic as building blocks. This isn=
+'t a short tutorial but it's easy to follow and is designed to build intu=
+ition about how NLP applications work under the hood.
+
+Brandon Rohrer
+
+Motion planning, scaling data pipelines, ML edge cases? Hear the latest. =
+ [https://techcrunch.com/events/imerit-ml-dataops-summit/?utm_medium=3De=
+mail&utm_campaign=3Dimeritsummit&utm_content=3Dnovember_23&utm_source=3Di=
+dataelixir&promo=3Didataelixiremailnov23&display=3Dtrue]
+
+Top AI and ML speakers from Facebook AI, Cruise, Zoox, GE Healthcare (and=
+ more) unveil how to successfully deploy machine learning data operations=
+=2E  Register now [https://techcrunch.com/events/imerit-ml-dataops-summit/=
+?utm_medium=3Demail&utm_campaign=3Dimeritsummit&utm_content=3Dnovember_23=
+&utm_source=3Didataelixir&promo=3Didataelixiremailnov23&display=3Dtrue] f=
+or the iMerit ML DataOps Summit, a one-day free virtual event on December=
+ 2nd in partnership with TechCrunch.
+
+// sponsored
+
+Code & Tools         Aim: an easy-to-use, open-source experiment tracker =
+[https://github.com/aimhubio/aim#readme]
+
+Aim is an open-source, self-hosted machine learning experiment tracking t=
+ool. It's good at tracking thousands of runs and enables easy analysis us=
+ing either its UI or programmatically via its API.
+
+Aimstack
+
+Data Visualization      Clarity and Aesthetics in Visualization: Attentio=
+n, Contrast, Grouping [https://filwd.substack.com/p/clarity-and-aestheti=
+cs-in-visualization?utm_campaign=3DData_Elixir&utm_source=3DData_Elixir_3=
+63]
+
+In this second post in a series, Enrico Bertini explores how concepts fro=
+m visual perception can help ensure that your visualizations are clear an=
+d easy to understand.
+
+FILWD | Enrico Bertini with Daniel Kerrigan
+
+=
+=
+=
+           =
+How did you like this issue of Data Elixir?
+
+=F0=9F=91=8E     1 [https://dataelixir.typeform.com/to/Dqw0wpS2]      2 =
+[https://dataelixir.typeform.com/to/Dqw0wpS2]      3 [https://dataelixi=
+r.typeform.com/to/PJiwTd7v]      4 [https://dataelixir.typeform.com/to/L=
+VkyZfXJ]      5 [https://dataelixir.typeform.com/to/LVkyZfXJ]   =F0=9F=91=
+=8D
+
+=
+=
+=
+=
+=
+=
+
+
+=
+To find specific content from prior issues or to research topics, check o=
+ut the searchable Archives on Data Elixir's  Search Page >> [https://sea=
+rch.dataelixir.com/]
+
+=
+=
+=
+
+
+=
+Was this email forwarded to you?   Sign up here >> [https://dataelixir.c=
+om/]
+
+Data Elixir, LLC
+
+P.O. Box 21255
+
+Boulder, CO 80308
+
+Data Elixir is curated and maintained by  Lon Riesberg. [https://www.lin=
+kedin.com/in/lonriesberg/] If you have questions or suggestions for the n=
+ewsletter, just reply back to this email.
+
+Unsubscribe https://news.dataelixir.com/t/t-u-chjhtc-yubtluub-a=
+/
+
+--_26f6162a-d812-4388-b17b-f13d62c17583_
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://w=
+ww.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><!--[if IE]><html xmlns=
+=3D"http://www.w3.org/1999/xhtml" class=3D"ie"><![endif]--><!--[if !IE]=
+><!--><html style=3D"margin: 0;padding: 0;" xmlns=3D"http://www.w3.org/19=
+99/xhtml"><!--<![endif]--><head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8">
+    <title></title>
+    <!--[if !mso]><!--><meta http-equiv=3D"X-UA-Compatible" content=3D"I=
+E=3Dedge"><!--<![endif]-->
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width"><style type=3D=
+"text/css">
+@media only screen and (min-width: 620px){.wrapper{min-width:600px !impor=
+tant}.wrapper h1{}.wrapper h1{font-size:20px !important;line-height:28px =
+!important}.wrapper h2{}.wrapper h2{font-size:24px !important;line-height=
+:32px !important}.wrapper h3{}.column{}.column{font-size:18px !important;=
+line-height:26px !important}.wrapper .size-8{font-size:8px !important;lin=
+e-height:14px !important}.wrapper .size-9{font-size:9px !important;line-h=
+eight:16px !important}.wrapper .size-10{font-size:10px !important;line-he=
+ight:18px !important}.wrapper .size-11{font-size:11px !important;line-hei=
+ght:19px !important}.wrapper .size-12{font-size:12px !important;line-heig=
+ht:19px !important}.wrapper .size-13{font-size:13px !important;line-heigh=
+t:21px !important}.wrapper .size-14{font-size:14px !important;line-height=
+:21px !important}.wrapper .size-15{font-size:15px !important;line-height:=
+23px !important}.wrapper=20
+=2Esize-16{font-size:16px !important;line-height:24px !important}.wrapper .=
+size-17{font-size:17px !important;line-height:26px !important}.wrapper .s=
+ize-18{font-size:18px !important;line-height:26px !important}.wrapper .si=
+ze-20{font-size:20px !important;line-height:28px !important}.wrapper .siz=
+e-22{font-size:22px !important;line-height:31px !important}.wrapper .size=
+-24{font-size:24px !important;line-height:32px !important}.wrapper .size-=
+26{font-size:26px !important;line-height:34px !important}.wrapper .size-2=
+8{font-size:28px !important;line-height:36px !important}.wrapper .size-30=
+{font-size:30px !important;line-height:38px !important}.wrapper .size-32{=
+font-size:32px !important;line-height:40px !important}.wrapper .size-34{f=
+ont-size:34px !important;line-height:43px !important}.wrapper .size-36{fo=
+nt-size:36px !important;line-height:43px !important}.wrapper .size-40{fon=
+t-size:40px=20
+!important;line-height:47px !important}.wrapper .size-44{font-size:44px !=
+important;line-height:50px !important}.wrapper .size-48{font-size:48px !i=
+mportant;line-height:54px !important}.wrapper .size-56{font-size:56px !im=
+portant;line-height:60px !important}.wrapper .size-64{font-size:64px !imp=
+ortant;line-height:63px !important}}
+</style>
+    <meta name=3D"x-apple-disable-message-reformatting">
+    <style type=3D"text/css">
+=2Emain, .mso {
+  margin: 0;
+  padding: 0;
+}
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+* {
+  line-height: inherit;
+}
+[x-apple-data-detectors] {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+=2Ewrapper .footer__share-button a:hover,
+=2Ewrapper .footer__share-button a:focus {
+  color: #ffffff !important;
+}
+=2Ewrapper .footer__share-button a.icon-white:hover,
+=2Ewrapper .footer__share-button a.icon-white:focus {
+  color: #ffffff !important;
+}
+=2Ewrapper .footer__share-button a.icon-black:hover,
+=2Ewrapper .footer__share-button a.icon-black:focus {
+  color: #000000 !important;
+}
+=2Ebtn a:hover,
+=2Ebtn a:focus,
+=2Efooter__share-button a:hover,
+=2Efooter__share-button a:focus,
+=2Eemail-footer__links a:hover,
+=2Eemail-footer__links a:focus {
+  opacity: 0.8;
+}
+=2Epreheader,
+=2Eheader,
+=2Elayout,
+=2Ecolumn {
+  transition: width 0.25s ease-in-out, max-width 0.25s ease-in-out;
+}
+=2Epreheader td {
+  padding-bottom: 8px;
+}
+=2Elayout,
+div.header {
+  max-width: 400px !important;
+  -fallback-width: 95% !important;
+  width: calc(100% - 20px) !important;
+}
+div.preheader {
+  max-width: 360px !important;
+  -fallback-width: 90% !important;
+  width: calc(100% - 60px) !important;
+}
+=2Esnippet,
+=2Ewebversion {
+  Float: none !important;
+}
+=2Estack .column {
+  max-width: 400px !important;
+  width: 100% !important;
+}
+=2Efixed-width.has-border {
+  max-width: 402px !important;
+}
+=2Efixed-width.has-border .layout__inner {
+  box-sizing: border-box;
+}
+=2Esnippet,
+=2Ewebversion {
+  width: 50% !important;
+}
+=2Eie .btn {
+  width: 100%;
+}
+=2Eie .stack .column,
+=2Eie .stack .gutter {
+  display: table-cell;
+  float: none !important;
+}
+=2Eie div.preheader,
+=2Eie .email-footer {
+  max-width: 560px !important;
+  width: 560px !important;
+}
+=2Eie .snippet,
+=2Eie .webversion {
+  width: 280px !important;
+}
+=2Eie div.header,
+=2Eie .layout {
+  max-width: 600px !important;
+  width: 600px !important;
+}
+=2Eie .two-col .column {
+  max-width: 300px !important;
+  width: 300px !important;
+}
+=2Eie .three-col .column,
+=2Eie .narrow {
+  max-width: 200px !important;
+  width: 200px !important;
+}
+=2Eie .wide {
+  width: 400px !important;
+}
+=2Eie .stack.fixed-width.has-border,
+=2Eie .stack.has-gutter.has-border {
+  max-width: 602px !important;
+  width: 602px !important;
+}
+=2Eie .stack.two-col.has-gutter .column {
+  max-width: 290px !important;
+  width: 290px !important;
+}
+=2Eie .stack.three-col.has-gutter .column,
+=2Eie .stack.has-gutter .narrow {
+  max-width: 188px !important;
+  width: 188px !important;
+}
+=2Eie .stack.has-gutter .wide {
+  max-width: 394px !important;
+  width: 394px !important;
+}
+=2Eie .stack.two-col.has-gutter.has-border .column {
+  max-width: 292px !important;
+  width: 292px !important;
+}
+=2Eie .stack.three-col.has-gutter.has-border .column,
+=2Eie .stack.has-gutter.has-border .narrow {
+  max-width: 190px !important;
+  width: 190px !important;
+}
+=2Eie .stack.has-gutter.has-border .wide {
+  max-width: 396px !important;
+  width: 396px !important;
+}
+=2Eie .fixed-width .layout__inner {
+  border-left: 0 none white !important;
+  border-right: 0 none white !important;
+}
+=2Eie .layout__edges {
+  display: none;
+}
+=2Emso .layout__edges {
+  font-size: 0;
+}
+=2Elayout-fixed-width,
+=2Emso .layout-full-width {
+  background-color: #ffffff;
+}
+@media only screen and (min-width: 620px) {
+  .column,
+  .gutter {
+    display: table-cell;
+    Float: none !important;
+    vertical-align: top;
+  }
+  div.preheader,
+  .email-footer {
+    max-width: 560px !important;
+    width: 560px !important;
+  }
+  .snippet,
+  .webversion {
+    width: 280px !important;
+  }
+  div.header,
+  .layout,
+  .one-col .column {
+    max-width: 600px !important;
+    width: 600px !important;
+  }
+  .fixed-width.has-border,
+  .fixed-width.x_has-border,
+  .has-gutter.has-border,
+  .has-gutter.x_has-border {
+    max-width: 602px !important;
+    width: 602px !important;
+  }
+  .two-col .column {
+    max-width: 300px !important;
+    width: 300px !important;
+  }
+  .three-col .column,
+  .column.narrow,
+  .column.x_narrow {
+    max-width: 200px !important;
+    width: 200px !important;
+  }
+  .column.wide,
+  .column.x_wide {
+    width: 400px !important;
+  }
+  .two-col.has-gutter .column,
+  .two-col.x_has-gutter .column {
+    max-width: 290px !important;
+    width: 290px !important;
+  }
+  .three-col.has-gutter .column,
+  .three-col.x_has-gutter .column,
+  .has-gutter .narrow {
+    max-width: 188px !important;
+    width: 188px !important;
+  }
+  .has-gutter .wide {
+    max-width: 394px !important;
+    width: 394px !important;
+  }
+  .two-col.has-gutter.has-border .column,
+  .two-col.x_has-gutter.x_has-border .column {
+    max-width: 292px !important;
+    width: 292px !important;
+  }
+  .three-col.has-gutter.has-border .column,
+  .three-col.x_has-gutter.x_has-border .column,
+  .has-gutter.has-border .narrow,
+  .has-gutter.x_has-border .narrow {
+    max-width: 190px !important;
+    width: 190px !important;
+  }
+  .has-gutter.has-border .wide,
+  .has-gutter.x_has-border .wide {
+    max-width: 396px !important;
+    width: 396px !important;
+  }
+}
+@supports (display: flex) {
+  @media only screen and (min-width: 620px) {
+    .fixed-width.has-border .layout__inner {
+      display: flex !important;
+    }
+  }
+}
+/***
+* Mobile Styles
+*
+* 1. Overriding inline styles
+*/
+@media(max-width: 619px) {
+  .email-flexible-footer .left-aligned-footer .column,
+  .email-flexible-footer .center-aligned-footer,
+  .email-flexible-footer .right-aligned-footer .column {
+    max-width: 100% !important; /* [1] */
+    text-align: center !important; /* [1] */
+    width: 100% !important; /* [1] */
+  }
+  .flexible-footer-logo {
+    margin-left: 0px !important; /* [1] */
+    margin-right: 0px !important; /* [1] */
+  }
+  .email-flexible-footer .left-aligned-footer .flexible-footer__share-but=
+ton__container,
+  .email-flexible-footer .center-aligned-footer .flexible-footer__share-b=
+utton__container,
+  .email-flexible-footer .right-aligned-footer .flexible-footer__share-bu=
+tton__container {
+    display: inline-block;
+    margin-left: 5px !important; /* [1] */
+    margin-right: 5px !important; /* [1] */
+  }
+  .email-flexible-footer__additionalinfo--center {
+    text-align: center !important; /* [1] */
+  }
+ =20
+  .email-flexible-footer .left-aligned-footer table,
+  .email-flexible-footer .center-aligned-footer table,
+  .email-flexible-footer .right-aligned-footer table {
+    display: table !important; /* [1] */
+    width: 100% !important; /* [1] */
+  }
+  .email-flexible-footer .footer__share-button,
+  .email-flexible-footer .email-footer__additional-info {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen a=
+nd (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel=
+-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen an=
+d (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  .fblike {
+    background-image: url(http://i7.cmail20.com/static/eb/master/13-the-b=
+lueprint-3/images/fblike@2x.png) !important;
+  }
+  .tweet {
+    background-image: url(http://i8.cmail20.com/static/eb/master/13-the-b=
+lueprint-3/images/tweet@2x.png) !important;
+  }
+  .linkedinshare {
+    background-image: url(http://i9.cmail20.com/static/eb/master/13-the-b=
+lueprint-3/images/lishare@2x.png) !important;
+  }
+  .forwardtoafriend {
+    background-image: url(http://i10.cmail20.com/static/eb/master/13-the-=
+blueprint-3/images/forward@2x.png) !important;
+  }
+}
+@media (max-width: 321px) {
+  .fixed-width.has-border .layout__inner {
+    border-width: 1px 0 !important;
+  }
+  .layout,
+  .stack .column {
+    min-width: 320px !important;
+    width: 320px !important;
+  }
+  .border {
+    display: none;
+  }
+  .has-gutter .border {
+    display: table-cell;
+  }
+}
+=2Emso div {
+  border: 0 none white !important;
+}
+=2Emso .w560 .divider {
+  Margin-left: 260px !important;
+  Margin-right: 260px !important;
+}
+=2Emso .w360 .divider {
+  Margin-left: 160px !important;
+  Margin-right: 160px !important;
+}
+=2Emso .w260 .divider {
+  Margin-left: 110px !important;
+  Margin-right: 110px !important;
+}
+=2Emso .w160 .divider {
+  Margin-left: 60px !important;
+  Margin-right: 60px !important;
+}
+=2Emso .w354 .divider {
+  Margin-left: 157px !important;
+  Margin-right: 157px !important;
+}
+=2Emso .w250 .divider {
+  Margin-left: 105px !important;
+  Margin-right: 105px !important;
+}
+=2Emso .w148 .divider {
+  Margin-left: 54px !important;
+  Margin-right: 54px !important;
+}
+=2Emso .size-8,
+=2Eie .size-8 {
+  font-size: 8px !important;
+  line-height: 14px !important;
+}
+=2Emso .size-9,
+=2Eie .size-9 {
+  font-size: 9px !important;
+  line-height: 16px !important;
+}
+=2Emso .size-10,
+=2Eie .size-10 {
+  font-size: 10px !important;
+  line-height: 18px !important;
+}
+=2Emso .size-11,
+=2Eie .size-11 {
+  font-size: 11px !important;
+  line-height: 19px !important;
+}
+=2Emso .size-12,
+=2Eie .size-12 {
+  font-size: 12px !important;
+  line-height: 19px !important;
+}
+=2Emso .size-13,
+=2Eie .size-13 {
+  font-size: 13px !important;
+  line-height: 21px !important;
+}
+=2Emso .size-14,
+=2Eie .size-14 {
+  font-size: 14px !important;
+  line-height: 21px !important;
+}
+=2Emso .size-15,
+=2Eie .size-15 {
+  font-size: 15px !important;
+  line-height: 23px !important;
+}
+=2Emso .size-16,
+=2Eie .size-16 {
+  font-size: 16px !important;
+  line-height: 24px !important;
+}
+=2Emso .size-17,
+=2Eie .size-17 {
+  font-size: 17px !important;
+  line-height: 26px !important;
+}
+=2Emso .size-18,
+=2Eie .size-18 {
+  font-size: 18px !important;
+  line-height: 26px !important;
+}
+=2Emso .size-20,
+=2Eie .size-20 {
+  font-size: 20px !important;
+  line-height: 28px !important;
+}
+=2Emso .size-22,
+=2Eie .size-22 {
+  font-size: 22px !important;
+  line-height: 31px !important;
+}
+=2Emso .size-24,
+=2Eie .size-24 {
+  font-size: 24px !important;
+  line-height: 32px !important;
+}
+=2Emso .size-26,
+=2Eie .size-26 {
+  font-size: 26px !important;
+  line-height: 34px !important;
+}
+=2Emso .size-28,
+=2Eie .size-28 {
+  font-size: 28px !important;
+  line-height: 36px !important;
+}
+=2Emso .size-30,
+=2Eie .size-30 {
+  font-size: 30px !important;
+  line-height: 38px !important;
+}
+=2Emso .size-32,
+=2Eie .size-32 {
+  font-size: 32px !important;
+  line-height: 40px !important;
+}
+=2Emso .size-34,
+=2Eie .size-34 {
+  font-size: 34px !important;
+  line-height: 43px !important;
+}
+=2Emso .size-36,
+=2Eie .size-36 {
+  font-size: 36px !important;
+  line-height: 43px !important;
+}
+=2Emso .size-40,
+=2Eie .size-40 {
+  font-size: 40px !important;
+  line-height: 47px !important;
+}
+=2Emso .size-44,
+=2Eie .size-44 {
+  font-size: 44px !important;
+  line-height: 50px !important;
+}
+=2Emso .size-48,
+=2Eie .size-48 {
+  font-size: 48px !important;
+  line-height: 54px !important;
+}
+=2Emso .size-56,
+=2Eie .size-56 {
+  font-size: 56px !important;
+  line-height: 60px !important;
+}
+=2Emso .size-64,
+=2Eie .size-64 {
+  font-size: 64px !important;
+  line-height: 63px !important;
+}
+</style>
+   =20
+  <!--[if !mso]><!--><style type=3D"text/css">
+@import url(https://fonts.googleapis.com/css?family=3DLato:400,700,400ita=
+lic,700italic|Merriweather:400italic,400,700,700italic|Roboto:400,700,400=
+italic,700italic);
+</style><link href=3D"https://fonts.googleapis.com/css?family=3DLato:400,=
+700,400italic,700italic|Merriweather:400italic,400,700,700italic|Roboto:4=
+00,700,400italic,700italic" rel=3D"stylesheet" type=3D"text/css"><!--<![=
+endif]--><style type=3D"text/css">
+=2Emain,.mso{background-color:#fff}.logo a:hover,.logo a:focus{color:#1e2e3=
+b !important}.footer-logo a:hover,.footer-logo a:focus{color:#372d1b !imp=
+ortant}.mso .layout-has-border{border-top:1px solid #ccc;border-bottom:1p=
+x solid #ccc}.mso .layout-has-bottom-border{border-bottom:1px solid #ccc}=
+=2Emso .border,.ie .border{background-color:#ccc}.mso h1,.ie h1{}.mso h1,.i=
+e h1{font-size:20px !important;line-height:28px !important}.mso h2,.ie h2=
+{}.mso h2,.ie h2{font-size:24px !important;line-height:32px !important}.m=
+so h3,.ie h3{}.mso .layout__inner,.ie .layout__inner{}.mso .layout__inner=
+,.ie .layout__inner{font-size:18px !important;line-height:26px !important=
+}.mso .footer__share-button p{}.mso .footer__share-button p{font-family:R=
+oboto,Tahoma,sans-serif}
+</style></head>
+<!--[if mso]>
+  <body class=3D"mso">
+<![endif]-->
+<!--[if !mso]><!-->
+  <body class=3D"main half-padding" style=3D"margin: 0;padding: 0;-webkit=
+-text-size-adjust: 100%;">
+<!--<![endif]--><div style=3D"mso-hide:all;position:fixed;height:0;max-h=
+eight:0;overflow:hidden;font-size:0;">Transformers from scratch. Open-sou=
+rce experiment tracker. Parameter exploration w/ Bayesian Optimization. C=
+onfidential computing. &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#=
+8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8=
+204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#82=
+04; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#820=
+4; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204=
+; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204;=
+ &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; =
+&#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &=
+#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#=
+8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8=
+204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#82=
+04; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#820=
+4; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204=
+; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204;=
+ &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; =
+&#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &=
+#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#=
+8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8=
+204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#82=
+04; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#820=
+4; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204=
+; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204;=
+ &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; =
+&#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &=
+#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#=
+8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8=
+204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204; &#82=
+04; &#8204; &#8204; &#8204; &#8204; &#8204; &#8204;</div>
+    <table class=3D"wrapper" style=3D"border-collapse: collapse;table-lay=
+out: fixed;min-width: 320px;width: 100%;background-color: #fff;" cellpadd=
+ing=3D"0" cellspacing=3D"0" role=3D"presentation"><tbody><tr><td>
+      <div role=3D"banner">
+        <div class=3D"preheader" style=3D"Margin: 0 auto;max-width: 560px=
+;min-width: 280px; width: 280px;width: calc(28000% - 167440px);">
+          <div style=3D"border-collapse: collapse;display: table;width: 1=
+00%;">
+          <!--[if (mso)|(IE)]><table align=3D"center" class=3D"preheader=
+" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation"><tr><td style=
+=3D"width: 280px" valign=3D"top"><![endif]-->
+            <div class=3D"snippet" style=3D"display: table-cell;Float: le=
+ft;font-size: 12px;line-height: 19px;max-width: 280px;min-width: 140px; w=
+idth: 140px;width: calc(14000% - 78120px);padding: 10px 0 5px 0;color: #7=
+17a8a;font-family: Roboto,Tahoma,sans-serif;">
+             =20
+            </div>
+          <!--[if (mso)|(IE)]></td><td style=3D"width: 280px" valign=3D"=
+top"><![endif]-->
+            <div class=3D"webversion" style=3D"display: table-cell;Float:=
+ left;font-size: 12px;line-height: 19px;max-width: 280px;min-width: 139px=
+; width: 139px;width: calc(14100% - 78680px);padding: 10px 0 5px 0;text-a=
+lign: right;color: #717a8a;font-family: Roboto,Tahoma,sans-serif;">
+             =20
+            </div>
+          <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
+          </div>
+        </div>
+        <div class=3D"header" style=3D"Margin: 0 auto;max-width: 600px;mi=
+n-width: 320px; width: 320px;width: calc(28000% - 167400px);" id=3D"emb-e=
+mail-header-container">
+        <!--[if (mso)|(IE)]><table align=3D"center" class=3D"header" cel=
+lpadding=3D"0" cellspacing=3D"0" role=3D"presentation"><tr><td style=3D"w=
+idth: 600px"><![endif]-->
+          <div class=3D"logo emb-logo-margin-box" style=3D"font-size: 26p=
+x;line-height: 32px;Margin-top: 6px;Margin-bottom: 0px;color: #41637e;fon=
+t-family: Avenir,sans-serif;" align=3D"center">
+            <div class=3D"logo-center" align=3D"center" id=3D"emb-email-h=
+eader"><a style=3D"text-decoration: none;transition: opacity 0.1s ease-in=
+;color: #41637e;" href=3D"https://news.dataelixir.com/t/t-l-chjhtc-=
+yubtluub-r/"><img style=3D"display: block;height: auto;width: 100%;bo=
+rder: 0;max-width: 315px;" src=3D"http://i1.cmail20.com/ei/t/DE/C03/FA5/0=
+60310/csfinal/dataelixir-banner.png" alt=3D"Data Elixir logo" width=3D"31=
+5"></a></div>
+          </div>
+        <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
+        </div>
+      </div>
+      <div>
+      <div style=3D"background-color: #ffffff;">
+        <div class=3D"layout one-col stack" style=3D"Margin: 0 auto;max-w=
+idth: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;"=
+>
+          <div class=3D"layout__inner" style=3D"border-collapse: collapse=
+;display: table;width: 100%;">
+          <!--[if (mso)|(IE)]><table width=3D"100%" cellpadding=3D"0" ce=
+llspacing=3D"0" role=3D"presentation"><tr class=3D"layout-full-width" sty=
+le=3D"background-color: #ffffff;"><td class=3D"layout__edges">&nbsp;</td>=
+<td style=3D"width: 600px" class=3D"w560"><![endif]-->
+            <div class=3D"column" style=3D"text-align: left;color: #47484=
+9;font-size: 17px;line-height: 26px;font-family: Lato,Tahoma,sans-serif;"=
+>
+           =20
+              <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-t=
+op: 12px;Margin-bottom: 12px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;ve=
+rtical-align: middle;">
+        <h3 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;fo=
+nt-weight: normal;color: #3d3b3d;font-size: 15px;line-height: 23px;text-a=
+lign: center;"><span style=3D"color:#808285"><em>ISSUE 363 &nbsp;</em>&#1=
+83; &nbsp;<em>&nbsp;November 23, 2021</em></span></h3>
+      </div>
+    </div>
+           =20
+            </div>
+          <!--[if (mso)|(IE)]></td><td class=3D"layout__edges">&nbsp;</t=
+d></tr></table><![endif]-->
+          </div>
+        </div>
+      </div>
+ =20
+      <div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-=
+size: 20px;">&nbsp;</div>
+ =20
+      <div style=3D"background-color: #ffffff;">
+        <div class=3D"layout one-col stack" style=3D"Margin: 0 auto;max-w=
+idth: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;"=
+>
+          <div class=3D"layout__inner" style=3D"border-collapse: collapse=
+;display: table;width: 100%;">
+          <!--[if (mso)|(IE)]><table width=3D"100%" cellpadding=3D"0" ce=
+llspacing=3D"0" role=3D"presentation"><tr class=3D"layout-full-width" sty=
+le=3D"background-color: #ffffff;"><td class=3D"layout__edges">&nbsp;</td>=
+<td style=3D"width: 600px" class=3D"w560"><![endif]-->
+            <div class=3D"column" style=3D"text-align: left;color: #47484=
+9;font-size: 17px;line-height: 26px;font-family: Lato,Tahoma,sans-serif;"=
+>
+           =20
+              <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-t=
+op: 12px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;ve=
+rtical-align: middle;">
+        <h1 style=3D"Margin-top: 0;Margin-bottom: 20px;font-style: normal=
+;font-weight: normal;color: #3d3b3d;font-size: 17px;line-height: 26px;fon=
+t-family: Merriweather,Georgia,serif;text-align: center;">Insight</h1>
+      </div>
+    </div>
+           =20
+              <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-b=
+ottom: 12px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;ve=
+rtical-align: middle;">
+        <h2 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;fo=
+nt-weight: normal;color: #3d3b3d;font-size: 20px;line-height: 28px;"><a s=
+tyle=3D"text-decoration: none;transition: opacity 0.1s ease-in;color: #07=
+c;" href=3D"https://news.dataelixir.com/t/t-l-chjhtc-yubtluub-y=
+/">The missing analytics executive</a></h2><p style=3D"Margin-top: 16px;M=
+argin-bottom: 0;">Great post about data careers, organizational leadershi=
+p, and how most people never make it. &quot;Companies rarely have data le=
+aders that sit among those at the top of the org chart...&quot; That's a =
+problem for everyone in data and the organizations we work for.<br>
+<span style=3D"color:#a9a9a9"><em>Benn Stancil</em></span></p>
+      </div>
+    </div>
+           =20
+            </div>
+          <!--[if (mso)|(IE)]></td><td class=3D"layout__edges">&nbsp;</t=
+d></tr></table><![endif]-->
+          </div>
+        </div>
+      </div>
+ =20
+      <div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-=
+size: 20px;">&nbsp;</div>
+ =20
+      <div style=3D"background-color: #ffffff;">
+        <div class=3D"layout one-col stack" style=3D"Margin: 0 auto;max-w=
+idth: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;"=
+>
+          <div class=3D"layout__inner" style=3D"border-collapse: collapse=
+;display: table;width: 100%;">
+          <!--[if (mso)|(IE)]><table width=3D"100%" cellpadding=3D"0" ce=
+llspacing=3D"0" role=3D"presentation"><tr class=3D"layout-full-width" sty=
+le=3D"background-color: #ffffff;"><td class=3D"layout__edges">&nbsp;</td>=
+<td style=3D"width: 600px" class=3D"w560"><![endif]-->
+            <div class=3D"column" style=3D"text-align: left;color: #47484=
+9;font-size: 17px;line-height: 26px;font-family: Lato,Tahoma,sans-serif;"=
+>
+           =20
+              <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-t=
+op: 12px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;ve=
+rtical-align: middle;">
+        <h1 style=3D"Margin-top: 0;Margin-bottom: 20px;font-style: normal=
+;font-weight: normal;color: #3d3b3d;font-size: 17px;line-height: 26px;fon=
+t-family: Merriweather,Georgia,serif;text-align: center;">Sponsored Link<=
+/h1>
+      </div>
+    </div>
+           =20
+              <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: nor=
+mal;line-height: 19px;Margin-bottom: 20px;" align=3D"center">
+          <a style=3D"text-decoration: underline;transition: opacity 0.1s=
+ ease-in;color: #07c;" href=3D"https://news.dataelixir.com/t/t-l-chjhtc-=
+yubtluub-j/"><img style=3D"border: 0;display: block;height: auto=
+;width: 100%;max-width: 460px;" alt=3D"The Data Team's Guide to Marketing=
+ Metrics" width=3D"460" src=3D"http://i1.cmail20.com/ei/t/DE/C03/FA5/0603=
+11/csfinal/100121-Nwsltr-Hero-990000079e05143c.png"></a>
+        </div>
+      </div>
+           =20
+              <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;ve=
+rtical-align: middle;">
+        <h2 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;fo=
+nt-weight: normal;color: #3d3b3d;font-size: 20px;line-height: 28px;"><a s=
+tyle=3D"text-decoration: none;transition: opacity 0.1s ease-in;color: #07=
+c;" href=3D"https://news.dataelixir.com/t/t-l-chjhtc-yubtluub-t=
+/">Marketing leaders rely on data to meet their quarterly targets.&nbsp;<=
+/a></h2><p style=3D"Margin-top: 16px;Margin-bottom: 0;">Data teams can us=
+e this starter guide to better understand which metrics can accelerate ma=
+rketing goals and increase ROI.&nbsp;</p><p style=3D"Margin-top: 20px;Mar=
+gin-bottom: 0;">In this guide, we'll cover:</p><ul style=3D"Margin-top: 2=
+0px;Margin-bottom: 20px;Margin-left: 24px;padding: 0;list-style-type: dis=
+c;"><li style=3D"Margin-top: 20px;Margin-bottom: 0;Margin-left: 0;">Why d=
+ata teams are crucial partners for marketing teams</li><li style=3D"Margi=
+n-top: 0;Margin-bottom:=20
+0;Margin-left: 0;">Why customer segmentation analysis is a good place to =
+start</li><li style=3D"Margin-top: 0;Margin-bottom: 0;Margin-left: 0;">Sa=
+mple charts in Mode to get you started</li></ul>
+      </div>
+    </div>
+           =20
+              <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-b=
+ottom: 12px;">
+      <div class=3D"btn btn--flat btn--medium" style=3D"text-align:center=
+;">
+        <![if !mso]><a style=3D"border-radius: 4px;display: inline-block=
+;font-size: 12px;font-weight: bold;line-height: 22px;padding: 10px 20px;t=
+ext-align: center;text-decoration: none !important;transition: opacity 0.=
+1s ease-in;color: #ffffff !important;background-color: #ff89ab;font-famil=
+y: Lato, Tahoma, sans-serif;" href=3D"https://news.dataelixir.com/t/t-l-c=
+hjhtc-yubtluub-i/">Download</a><![endif]>
+      <!--[if mso]><p style=3D"line-height:0;margin:0;">&nbsp;</p><v:rou=
+ndrect xmlns:v=3D"urn:schemas-microsoft-com:vml" href=3D"https://news.dat=
+aelixir.com/t/t-l-chjhtc-yubtluub-i/" style=3D"width:95px" arcs=
+ize=3D"10%" fillcolor=3D"#FF89AB" stroke=3D"f"><v:textbox style=3D"mso-fi=
+t-shape-to-text:t" inset=3D"0px,9px,0px,9px"><center style=3D"font-size:1=
+2px;line-height:22px;color:#FFFFFF;font-family:Lato,Tahoma,sans-serif;fon=
+t-weight:bold;mso-line-height-rule:exactly;mso-text-raise:4px">Download</=
+center></v:textbox></v:roundrect><![endif]--></div>
+    </div>
+           =20
+            </div>
+          <!--[if (mso)|(IE)]></td><td class=3D"layout__edges">&nbsp;</t=
+d></tr></table><![endif]-->
+          </div>
+        </div>
+      </div>
+ =20
+      <div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-=
+size: 20px;">&nbsp;</div>
+ =20
+      <div class=3D"layout one-col fixed-width has-border stack" style=3D=
+"Margin: 0 auto;max-width: 602px;min-width: 322px; width: 322px;width: ca=
+lc(28000% - 167398px);overflow-wrap: break-word;word-wrap: break-word;wor=
+d-break: break-word;">
+        <div class=3D"layout__inner" style=3D"border-collapse: collapse;d=
+isplay: table;width: 100%;background-color: #ffffff;border-top: 1px solid=
+ #ccc;border-right: 1px solid #ccc;border-bottom: 1px solid #ccc;border-l=
+eft: 1px solid #ccc;">
+        <!--[if (mso)|(IE)]><table class=3D"layout-has-border" align=3D"=
+center" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation"><tr cla=
+ss=3D"layout-fixed-width" style=3D"background-color: #ffffff;"><td class=3D=
+"border" style=3D"width: 1px;">&#8203;</td><td style=3D"width: 600px" cla=
+ss=3D"w560"><![endif]-->
+          <div class=3D"column" style=3D"text-align: left;color: #474849;=
+font-size: 17px;line-height: 26px;font-family: Lato,Tahoma,sans-serif;">
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-top=
+: 12px;Margin-bottom: 12px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;ve=
+rtical-align: middle;">
+        <h3 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;fo=
+nt-weight: normal;color: #3d3b3d;font-size: 15px;line-height: 23px;text-a=
+lign: center;"><a style=3D"text-decoration: none;transition: opacity 0.1s=
+ ease-in;color: #07c;" data-emb-iscopy=3D"true" href=3D"https://news.data=
+elixir.com/t/t-l-chjhtc-yubtluub-d/">Reach Data Elixir readers =
+by sponsoring an issue. Click here for details.</a></h3>
+      </div>
+    </div>
+         =20
+          </div>
+        <!--[if (mso)|(IE)]></td><td class=3D"border" style=3D"width: 1p=
+x;">&#8203;</td></tr></table><![endif]-->
+        </div>
+      </div>
+ =20
+      <div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-=
+size: 20px;">&nbsp;</div>
+ =20
+      <div style=3D"background-color: #ffffff;">
+        <div class=3D"layout one-col stack" style=3D"Margin: 0 auto;max-w=
+idth: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;"=
+>
+          <div class=3D"layout__inner" style=3D"border-collapse: collapse=
+;display: table;width: 100%;">
+          <!--[if (mso)|(IE)]><table width=3D"100%" cellpadding=3D"0" ce=
+llspacing=3D"0" role=3D"presentation"><tr class=3D"layout-full-width" sty=
+le=3D"background-color: #ffffff;"><td class=3D"layout__edges">&nbsp;</td>=
+<td style=3D"width: 600px" class=3D"w560"><![endif]-->
+            <div class=3D"column" style=3D"text-align: left;color: #47484=
+9;font-size: 17px;line-height: 26px;font-family: Lato,Tahoma,sans-serif;"=
+>
+           =20
+              <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-t=
+op: 12px;">
+      <div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-=
+size: 1px;">&nbsp;</div>
+    </div>
+           =20
+              <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;ve=
+rtical-align: middle;">
+        <h1 style=3D"Margin-top: 0;Margin-bottom: 20px;font-style: normal=
+;font-weight: normal;color: #3d3b3d;font-size: 17px;line-height: 26px;fon=
+t-family: Merriweather,Georgia,serif;text-align: center;">Tutorials, Proj=
+ects &amp; Opinions</h1>
+      </div>
+    </div>
+           =20
+              <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-b=
+ottom: 12px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;ve=
+rtical-align: middle;">
+        <h2 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;fo=
+nt-weight: normal;color: #3d3b3d;font-size: 20px;line-height: 28px;"><a s=
+tyle=3D"text-decoration: none;transition: opacity 0.1s ease-in;color: #07=
+c;" href=3D"https://news.dataelixir.com/t/t-l-chjhtc-yubtluub-h=
+/">Estimating the geographic area of a real estate agent</a></h2><p style=
+=3D"Margin-top: 16px;Margin-bottom: 0;">At Compass, many tasks require kn=
+owing if a geographic area is relevant to a specific real estate agent an=
+d, conversely, who is the right agent for a specific area. It's more comp=
+licated than it might sound and, at Compass, they often use the problem a=
+s an interview question. This tutorial explores how &#8212; and why &#821=
+2; they approach it using KDE.<br>
+<span style=3D"color:#a9a9a9"><em>Compass True North | Panos Ipeirotis an=
+d Foster Provost</em></span></p>
+      </div>
+    </div>
+           =20
+            </div>
+          <!--[if (mso)|(IE)]></td><td class=3D"layout__edges">&nbsp;</t=
+d></tr></table><![endif]-->
+          </div>
+        </div>
+      </div>
+ =20
+      <div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-=
+size: 20px;">&nbsp;</div>
+ =20
+      <div style=3D"background-color: #ffffff;">
+        <div class=3D"layout one-col stack" style=3D"Margin: 0 auto;max-w=
+idth: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;"=
+>
+          <div class=3D"layout__inner" style=3D"border-collapse: collapse=
+;display: table;width: 100%;">
+          <!--[if (mso)|(IE)]><table width=3D"100%" cellpadding=3D"0" ce=
+llspacing=3D"0" role=3D"presentation"><tr class=3D"layout-full-width" sty=
+le=3D"background-color: #ffffff;"><td class=3D"layout__edges">&nbsp;</td>=
+<td style=3D"width: 600px" class=3D"w560"><![endif]-->
+            <div class=3D"column" style=3D"text-align: left;color: #47484=
+9;font-size: 17px;line-height: 26px;font-family: Lato,Tahoma,sans-serif;"=
+>
+           =20
+              <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-t=
+op: 12px;Margin-bottom: 12px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;ve=
+rtical-align: middle;">
+        <h2 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;fo=
+nt-weight: normal;color: #3d3b3d;font-size: 20px;line-height: 28px;"><a s=
+tyle=3D"text-decoration: none;transition: opacity 0.1s ease-in;color: #07=
+c;" href=3D"https://news.dataelixir.com/t/t-l-chjhtc-yubtluub-k=
+/">Parameter Exploration at Lyft</a></h2><p style=3D"Margin-top: 16px;Mar=
+gin-bottom: 0;">Here's how the experimentation team at Lyft is using Baye=
+sian Optimization to tune their marketplace using time-randomized experim=
+ents. Includes a discussion of issues they encountered with multivariate =
+split-testing and an overview of how Gaussian processes and Bayesian Opti=
+mization works.<br>
+<span style=3D"color:#a9a9a9"><em>Lyft Engineering | Henry Quan</em></spa=
+n></p>
+      </div>
+    </div>
+           =20
+            </div>
+          <!--[if (mso)|(IE)]></td><td class=3D"layout__edges">&nbsp;</t=
+d></tr></table><![endif]-->
+          </div>
+        </div>
+      </div>
+ =20
+      <div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-=
+size: 20px;">&nbsp;</div>
+ =20
+      <div style=3D"background-color: #ffffff;">
+        <div class=3D"layout one-col stack" style=3D"Margin: 0 auto;max-w=
+idth: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;"=
+>
+          <div class=3D"layout__inner" style=3D"border-collapse: collapse=
+;display: table;width: 100%;">
+          <!--[if (mso)|(IE)]><table width=3D"100%" cellpadding=3D"0" ce=
+llspacing=3D"0" role=3D"presentation"><tr class=3D"layout-full-width" sty=
+le=3D"background-color: #ffffff;"><td class=3D"layout__edges">&nbsp;</td>=
+<td style=3D"width: 600px" class=3D"w560"><![endif]-->
+            <div class=3D"column" style=3D"text-align: left;color: #47484=
+9;font-size: 17px;line-height: 26px;font-family: Lato,Tahoma,sans-serif;"=
+>
+           =20
+              <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-t=
+op: 12px;Margin-bottom: 12px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;ve=
+rtical-align: middle;">
+        <h2 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;fo=
+nt-weight: normal;color: #3d3b3d;font-size: 20px;line-height: 28px;"><a s=
+tyle=3D"text-decoration: none;transition: opacity 0.1s ease-in;color: #07=
+c;" href=3D"https://news.dataelixir.com/t/t-l-chjhtc-yubtluub-u=
+/">Get Ready For Confidential Computing</a></h2><p style=3D"Margin-top: 1=
+6px;Margin-bottom: 0;">Nice overview of the Confidential Computing landsc=
+ape, including use-cases, considerations, enabling technologies, and a su=
+rvey of solutions for keeping data secure while it's in use.<br>
+<span style=3D"color:#a9a9a9"><em>Gradient Flow | Assaf Araki and Ben Lor=
+ica</em></span></p>
+      </div>
+    </div>
+           =20
+            </div>
+          <!--[if (mso)|(IE)]></td><td class=3D"layout__edges">&nbsp;</t=
+d></tr></table><![endif]-->
+          </div>
+        </div>
+      </div>
+ =20
+      <div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-=
+size: 20px;">&nbsp;</div>
+ =20
+      <div style=3D"background-color: #ffffff;">
+        <div class=3D"layout one-col stack" style=3D"Margin: 0 auto;max-w=
+idth: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;"=
+>
+          <div class=3D"layout__inner" style=3D"border-collapse: collapse=
+;display: table;width: 100%;">
+          <!--[if (mso)|(IE)]><table width=3D"100%" cellpadding=3D"0" ce=
+llspacing=3D"0" role=3D"presentation"><tr class=3D"layout-full-width" sty=
+le=3D"background-color: #ffffff;"><td class=3D"layout__edges">&nbsp;</td>=
+<td style=3D"width: 600px" class=3D"w560"><![endif]-->
+            <div class=3D"column" style=3D"text-align: left;color: #47484=
+9;font-size: 17px;line-height: 26px;font-family: Lato,Tahoma,sans-serif;"=
+>
+           =20
+              <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-t=
+op: 12px;Margin-bottom: 12px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;ve=
+rtical-align: middle;">
+        <h2 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;fo=
+nt-weight: normal;color: #3d3b3d;font-size: 20px;line-height: 28px;"><a s=
+tyle=3D"text-decoration: none;transition: opacity 0.1s ease-in;color: #07=
+c;" href=3D"https://news.dataelixir.com/t/t-l-chjhtc-yubtluub-o=
+/">Transformers from Scratch</a></h2><p style=3D"Margin-top: 16px;Margin-=
+bottom: 0;">This deep dive tutorial shows how to construct a transformer =
+from scratch, starting with just counting and arithmetic as building bloc=
+ks. This isn't a short tutorial but it's easy to follow and is designed t=
+o build intuition about how NLP applications work under the hood.<br>
+<span style=3D"color:#a9a9a9"><em>Brandon Rohrer</em></span></p>
+      </div>
+    </div>
+           =20
+            </div>
+          <!--[if (mso)|(IE)]></td><td class=3D"layout__edges">&nbsp;</t=
+d></tr></table><![endif]-->
+          </div>
+        </div>
+      </div>
+ =20
+      <div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-=
+size: 20px;">&nbsp;</div>
+ =20
+      <div style=3D"background-color: #ffffff;">
+        <div class=3D"layout one-col stack" style=3D"Margin: 0 auto;max-w=
+idth: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;"=
+>
+          <div class=3D"layout__inner" style=3D"border-collapse: collapse=
+;display: table;width: 100%;">
+          <!--[if (mso)|(IE)]><table width=3D"100%" cellpadding=3D"0" ce=
+llspacing=3D"0" role=3D"presentation"><tr class=3D"layout-full-width" sty=
+le=3D"background-color: #ffffff;"><td class=3D"layout__edges">&nbsp;</td>=
+<td style=3D"width: 600px" class=3D"w560"><![endif]-->
+            <div class=3D"column" style=3D"text-align: left;color: #47484=
+9;font-size: 17px;line-height: 26px;font-family: Lato,Tahoma,sans-serif;"=
+>
+           =20
+              <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-t=
+op: 12px;Margin-bottom: 12px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;ve=
+rtical-align: middle;">
+        <h2 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;fo=
+nt-weight: normal;color: #3d3b3d;font-size: 20px;line-height: 28px;"><a s=
+tyle=3D"text-decoration: none;transition: opacity 0.1s ease-in;color: #07=
+c;" href=3D"https://news.dataelixir.com/t/t-l-chjhtc-yubtluub-b=
+/">Motion planning, scaling data pipelines, ML edge cases? Hear the lates=
+t.&nbsp;</a>&nbsp;</h2><p style=3D"Margin-top: 16px;Margin-bottom: 0;">To=
+p AI and ML speakers from Facebook AI, Cruise, Zoox, GE Healthcare (and m=
+ore) unveil how to successfully deploy machine learning data operations.&=
+nbsp;<a style=3D"text-decoration: underline;transition: opacity 0.1s ease=
+-in;color: #07c;" href=3D"https://news.dataelixir.com/t/t-l-chjhtc-=
+yubtluub-n/">Register now</a>&nbsp;for the iMerit ML DataOps Summit, =
+a one-day free virtual event on December 2nd in partnership with TechCrun=
+ch.=20
+&nbsp;<br>
+<span style=3D"color:#a9a9a9"><em>// sponsored</em></span></p>
+      </div>
+    </div>
+           =20
+            </div>
+          <!--[if (mso)|(IE)]></td><td class=3D"layout__edges">&nbsp;</t=
+d></tr></table><![endif]-->
+          </div>
+        </div>
+      </div>
+ =20
+      <div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-=
+size: 20px;">&nbsp;</div>
+ =20
+      <div style=3D"background-color: #ffffff;">
+        <div class=3D"layout one-col stack" style=3D"Margin: 0 auto;max-w=
+idth: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;"=
+>
+          <div class=3D"layout__inner" style=3D"border-collapse: collapse=
+;display: table;width: 100%;">
+          <!--[if (mso)|(IE)]><table width=3D"100%" cellpadding=3D"0" ce=
+llspacing=3D"0" role=3D"presentation"><tr class=3D"layout-full-width" sty=
+le=3D"background-color: #ffffff;"><td class=3D"layout__edges">&nbsp;</td>=
+<td style=3D"width: 600px" class=3D"w560"><![endif]-->
+            <div class=3D"column" style=3D"text-align: left;color: #47484=
+9;font-size: 17px;line-height: 26px;font-family: Lato,Tahoma,sans-serif;"=
+>
+           =20
+              <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-t=
+op: 12px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;ve=
+rtical-align: middle;">
+        <h1 style=3D"Margin-top: 0;Margin-bottom: 20px;font-style: normal=
+;font-weight: normal;color: #3d3b3d;font-size: 17px;line-height: 26px;fon=
+t-family: Merriweather,Georgia,serif;text-align: center;">Code &amp; Tool=
+s</h1>
+      </div>
+    </div>
+           =20
+        <div style=3D"font-size: 12px;font-style: normal;font-weight: nor=
+mal;line-height: 19px;" align=3D"center">
+          <img style=3D"border: 0;display: block;height: auto;width: 100%=
+;max-width: 425px;" alt=3D"" width=3D"425" src=3D"http://i2.cmail20.com/e=
+i/t/DE/C03/FA5/060311/csfinal/Aim-990451028a05143c.png">
+        </div>
+     =20
+              <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-t=
+op: 20px;Margin-bottom: 12px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;ve=
+rtical-align: middle;">
+        <h2 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;fo=
+nt-weight: normal;color: #3d3b3d;font-size: 20px;line-height: 28px;"><a s=
+tyle=3D"text-decoration: none;transition: opacity 0.1s ease-in;color: #07=
+c;" href=3D"https://news.dataelixir.com/t/t-l-chjhtc-yubtluub-p=
+/">Aim: an easy-to-use, open-source experiment tracker</a></h2><p style=3D=
+"Margin-top: 16px;Margin-bottom: 0;">Aim is an open-source, self-hosted m=
+achine learning experiment tracking tool. It's good at tracking thousands=
+ of runs and enables easy analysis using either its UI or programmaticall=
+y via its API.<br>
+<span style=3D"color:#a9a9a9"><em>Aimstack</em></span></p>
+      </div>
+    </div>
+           =20
+            </div>
+          <!--[if (mso)|(IE)]></td><td class=3D"layout__edges">&nbsp;</t=
+d></tr></table><![endif]-->
+          </div>
+        </div>
+      </div>
+ =20
+      <div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-=
+size: 20px;">&nbsp;</div>
+ =20
+      <div style=3D"background-color: #ffffff;">
+        <div class=3D"layout one-col stack" style=3D"Margin: 0 auto;max-w=
+idth: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;"=
+>
+          <div class=3D"layout__inner" style=3D"border-collapse: collapse=
+;display: table;width: 100%;">
+          <!--[if (mso)|(IE)]><table width=3D"100%" cellpadding=3D"0" ce=
+llspacing=3D"0" role=3D"presentation"><tr class=3D"layout-full-width" sty=
+le=3D"background-color: #ffffff;"><td class=3D"layout__edges">&nbsp;</td>=
+<td style=3D"width: 600px" class=3D"w560"><![endif]-->
+            <div class=3D"column" style=3D"text-align: left;color: #47484=
+9;font-size: 17px;line-height: 26px;font-family: Lato,Tahoma,sans-serif;"=
+>
+           =20
+              <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-t=
+op: 12px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;ve=
+rtical-align: middle;">
+        <h1 style=3D"Margin-top: 0;Margin-bottom: 20px;font-style: normal=
+;font-weight: normal;color: #3d3b3d;font-size: 17px;line-height: 26px;fon=
+t-family: Merriweather,Georgia,serif;text-align: center;">Data Visualizat=
+ion</h1>
+      </div>
+    </div>
+           =20
+              <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-b=
+ottom: 12px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;ve=
+rtical-align: middle;">
+        <h2 style=3D"Margin-top: 0;Margin-bottom: 0;font-style: normal;fo=
+nt-weight: normal;color: #3d3b3d;font-size: 20px;line-height: 28px;"><a s=
+tyle=3D"text-decoration: none;transition: opacity 0.1s ease-in;color: #07=
+c;" href=3D"https://news.dataelixir.com/t/t-l-chjhtc-yubtluub-x=
+/">Clarity and Aesthetics in Visualization: Attention, Contrast, Grouping=
+</a></h2><p style=3D"Margin-top: 16px;Margin-bottom: 0;">In this second p=
+ost in a series, Enrico Bertini explores how concepts from visual percept=
+ion can help ensure that your visualizations are clear and easy to unders=
+tand.<br>
+<span style=3D"color:#a9a9a9"><em>FILWD | Enrico Bertini with Daniel Kerr=
+igan&nbsp;</em></span></p>
+      </div>
+    </div>
+           =20
+            </div>
+          <!--[if (mso)|(IE)]></td><td class=3D"layout__edges">&nbsp;</t=
+d></tr></table><![endif]-->
+          </div>
+        </div>
+      </div>
+ =20
+      <div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-=
+size: 20px;">&nbsp;</div>
+  =
+=
+=
+
+      =
+<div style=3D"background-color: #ffffff;">
+        <div class=3D"layout one-col stack" style=3D"Margin: 0 auto;max-w=
+idth: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;"=
+>
+          <div class=3D"layout__inner" style=3D"border-collapse: collapse=
+;display: table;width: 100%;">
+          <!--[if (mso)|(IE)]><table width=3D"100%" cellpadding=3D"0" ce=
+llspacing=3D"0" role=3D"presentation"><tr class=3D"layout-full-width" sty=
+le=3D"background-color: #ffffff;"><td class=3D"layout__edges">&nbsp;</td>=
+<td style=3D"width: 600px" class=3D"w560"><![endif]-->
+            <div class=3D"column" style=3D"text-align: left;color: #47484=
+9;font-size: 17px;line-height: 26px;font-family: Lato,Tahoma,sans-serif;"=
+>
+           =20
+              <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-t=
+op: 12px;">
+      <div style=3D"mso-line-height-rule: exactly;line-height: 70px;font-=
+size: 1px;">&nbsp;</div>
+    </div>
+           =20
+              <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;ve=
+rtical-align: middle;">
+        <h2 class=3D"size-22" style=3D"Margin-top: 0;Margin-bottom: 16px;=
+font-style: normal;font-weight: normal;color: #3d3b3d;font-size: 18px;lin=
+e-height: 26px;text-align: center;" lang=3D"x-size-22">How did you like t=
+his issue of Data Elixir?</h2>
+      </div>
+    </div>
+           =20
+              <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;ve=
+rtical-align: middle;">
+        <p class=3D"size-20" style=3D"Margin-top: 0;Margin-bottom: 20px;f=
+ont-size: 17px;line-height: 26px;text-align: center;" lang=3D"x-size-20">=
+&#128078; &nbsp; &nbsp;<a style=3D"text-decoration: underline;transition:=
+ opacity 0.1s ease-in;color: #07c;" href=3D"https://news.dataelixir.com/t=
+/t-l-chjhtc-yubtluub-m/" data-emb-iscopy=3D"true">1</a>&nbsp; &=
+nbsp; &nbsp;<a style=3D"text-decoration: underline;transition: opacity 0.=
+1s ease-in;color: #07c;" href=3D"https://news.dataelixir.com/t/t-l-chjhtc=
+-yubtluub-c/" data-emb-iscopy=3D"true">2</a>&nbsp; &nbsp; &nbsp=
+;<a style=3D"text-decoration: underline;transition: opacity 0.1s ease-in;=
+color: #07c;" data-emb-iscopy=3D"true" href=3D"https://news.dataelixir.co=
+m/t/t-l-chjhtc-yubtluub-q/">3</a>&nbsp; &nbsp; &nbsp;<a style=3D=
+"text-decoration: underline;transition: opacity 0.1s ease-in;color: #07c;=
+"=20
+data-emb-iscopy=3D"true" href=3D"https://news.dataelixir.com/t/t-l-chjhtc=
+-yubtluub-f/">4</a>&nbsp; &nbsp; &nbsp;<a style=3D"text-decorat=
+ion: underline;transition: opacity 0.1s ease-in;color: #07c;" data-emb-is=
+copy=3D"true" href=3D"https://news.dataelixir.com/t/t-l-chjhtc-=
+yubtluub-z/">5</a>&nbsp;&nbsp; &#128077;</p>
+      </div>
+    </div>
+           =20
+              <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-b=
+ottom: 12px;">
+      <div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-=
+size: 1px;">&nbsp;</div>
+    </div>
+           =20
+            </div>
+          <!--[if (mso)|(IE)]></td><td class=3D"layout__edges">&nbsp;</t=
+d></tr></table><![endif]-->
+          </div>
+        </div>
+      </div>
+ =20
+      <div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-=
+size: 20px;">&nbsp;</div>
+  =
+=
+=
+=
+=
+=
+
+      =
+<div class=3D"layout one-col fixed-width has-border stack" style=3D=
+"Margin: 0 auto;max-width: 602px;min-width: 322px; width: 322px;width: ca=
+lc(28000% - 167398px);overflow-wrap: break-word;word-wrap: break-word;wor=
+d-break: break-word;">
+        <div class=3D"layout__inner" style=3D"border-collapse: collapse;d=
+isplay: table;width: 100%;background-color: #ffffff;border-top: 1px solid=
+ #ccc;border-right: 1px solid #ccc;border-bottom: 1px solid #ccc;border-l=
+eft: 1px solid #ccc;">
+        <!--[if (mso)|(IE)]><table class=3D"layout-has-border" align=3D"=
+center" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation"><tr cla=
+ss=3D"layout-fixed-width" style=3D"background-color: #ffffff;"><td class=3D=
+"border" style=3D"width: 1px;">&#8203;</td><td style=3D"width: 600px" cla=
+ss=3D"w560"><![endif]-->
+          <div class=3D"column" style=3D"text-align: left;color: #474849;=
+font-size: 17px;line-height: 26px;font-family: Lato,Tahoma,sans-serif;">
+         =20
+            <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-top=
+: 12px;Margin-bottom: 12px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;ve=
+rtical-align: middle;">
+        <p style=3D"Margin-top: 0;Margin-bottom: 0;">To find specific con=
+tent from prior issues or to research topics, check out the searchable Ar=
+chives on Data Elixir's&nbsp;<a style=3D"text-decoration: underline;trans=
+ition: opacity 0.1s ease-in;color: #07c;" data-emb-iscopy=3D"true" href=3D=
+"https://news.dataelixir.com/t/t-l-chjhtc-yubtluub-v/">Search P=
+age &gt;&gt;</a></p>
+      </div>
+    </div>
+         =20
+          </div>
+        <!--[if (mso)|(IE)]></td><td class=3D"border" style=3D"width: 1p=
+x;">&#8203;</td></tr></table><![endif]-->
+        </div>
+      </div>
+ =20
+      <div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-=
+size: 20px;">&nbsp;</div>
+  =
+=
+=
+
+      =
+<div style=3D"background-color: #ffffff;">
+        <div class=3D"layout one-col stack" style=3D"Margin: 0 auto;max-w=
+idth: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px)=
+;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;"=
+>
+          <div class=3D"layout__inner" style=3D"border-collapse: collapse=
+;display: table;width: 100%;">
+          <!--[if (mso)|(IE)]><table width=3D"100%" cellpadding=3D"0" ce=
+llspacing=3D"0" role=3D"presentation"><tr class=3D"layout-full-width" sty=
+le=3D"background-color: #ffffff;"><td class=3D"layout__edges">&nbsp;</td>=
+<td style=3D"width: 600px" class=3D"w560"><![endif]-->
+            <div class=3D"column" style=3D"text-align: left;color: #47484=
+9;font-size: 17px;line-height: 26px;font-family: Lato,Tahoma,sans-serif;"=
+>
+           =20
+              <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-t=
+op: 12px;">
+      <div style=3D"mso-line-height-rule: exactly;line-height: 30px;font-=
+size: 1px;">&nbsp;</div>
+    </div>
+           =20
+              <div style=3D"Margin-left: 20px;Margin-right: 20px;">
+      <div style=3D"mso-line-height-rule: exactly;mso-text-raise: 11px;ve=
+rtical-align: middle;">
+        <p style=3D"Margin-top: 0;Margin-bottom: 20px;text-align: center;=
+">Was this email forwarded to you?&nbsp;&nbsp;<a style=3D"text-decoration=
+: underline;transition: opacity 0.1s ease-in;color: #07c;" data-emb-iscop=
+y=3D"true" href=3D"https://news.dataelixir.com/t/t-l-chjhtc-=
+yubtluub-e/">Sign up here &gt;&gt;</a></p>
+      </div>
+    </div>
+           =20
+              <div style=3D"Margin-left: 20px;Margin-right: 20px;Margin-b=
+ottom: 12px;">
+      <div style=3D"mso-line-height-rule: exactly;line-height: 25px;font-=
+size: 1px;">&nbsp;</div>
+    </div>
+           =20
+            </div>
+          <!--[if (mso)|(IE)]></td><td class=3D"layout__edges">&nbsp;</t=
+d></tr></table><![endif]-->
+          </div>
+        </div>
+      </div>
+ =20
+      <div style=3D"mso-line-height-rule: exactly;line-height: 20px;font-=
+size: 20px;">&nbsp;</div>
+ =20
+      </div>
+      <table style=3D"border-collapse: collapse;table-layout: fixed;" cel=
+lpadding=3D"0" cellspacing=3D"0" width=3D"100%"><tbody><tr><td style=3D"b=
+ackground-color: #f7f7f7; border: 1px solid #bebebe"><div role=3D"content=
+info"><div style=3D"line-height:40px;font-size:40px;" id=3D"footer-top-sp=
+acing">&nbsp;</div><div class=3D"layout email-flexible-footer email-foote=
+r" style=3D"Margin: 0 auto;max-width: 600px;min-width: 320px; width: 320p=
+x;width: calc(28000% - 167400px);overflow-wrap: break-word;word-wrap: bre=
+ak-word;word-break: break-word;" id=3D"footer-content">
+      <div class=3D"layout__inner left-aligned-footer" style=3D"border-co=
+llapse: collapse;display: table;width: 100%;">
+        <!--[if (mso)|(IE)]><table align=3D"center" cellpadding=3D"0" ce=
+llspacing=3D"0" role=3D"presentation"><tr class=3D"layout-email-footer"><=
+![endif]-->
+        <!--[if (mso)|(IE)]><td><table cellpadding=3D"0" cellspacing=3D"=
+0"><![endif]-->
+        <!--[if (mso)|(IE)]><td valign=3D"top"><![endif]-->
+          <div class=3D"column" style=3D"text-align: left;font-size: 12px=
+;line-height: 19px;color: #717a8a;font-family: Roboto,Tahoma,sans-serif;"=
+>
+      <div class=3D"footer-logo emb-logo-margin-box" style=3D"font-size: =
+26px;line-height: 32px;Margin-top: 6px;Margin-bottom: 0px;color: #7b663d;=
+font-family: Roboto,Tahoma,sans-serif;" align=3D"center">
+        <div style=3D"margin-right: 20px;" emb-flexible-footer-logo align=
+=3D"center"><a style=3D"text-decoration: none;transition: opacity 0.1s ea=
+se-in;color: #7b663d;" href=3D"https://news.dataelixir.com/t/t-l-chjhtc-=
+yubtluub-s/"><img style=3D"border: 0;display: block;height: auto=
+;width: 100%;max-width: 100px;" src=3D"http://i1.cmail20.com/ei/t/DE/C03/=
+FA5/060310/csfinal/dataelixir-100x100.png" alt=3D"Data Elixir logo" width=
+=3D"100"></a></div>
+      </div>
+    </div>
+        <!--[if (mso)|(IE)]></td><![endif]-->
+        <!--[if (mso)|(IE)]><td valign=3D"top"><![endif]-->
+          <div class=3D"column" style=3D"text-align: left;font-size: 12px=
+;line-height: 19px;color: #717a8a;font-family: Roboto,Tahoma,sans-serif;d=
+isplay: none;">
+      <div style=3D"margin-left: 0;margin-right: 0;Margin-top: 10px;Margi=
+n-bottom: 10px;">
+        <div class=3D"footer__share-button">
+         =20
+         =20
+         =20
+         =20
+        </div>
+      </div>
+    </div>
+        <!--[if (mso)|(IE)]></td><![endif]-->
+        <!--[if (mso)|(IE)]><td valign=3D"top"><![endif]-->
+          <table style=3D"border-collapse: collapse;table-layout: fixed;d=
+isplay: inline-block;width: 480px;" cellpadding=3D"0" cellspacing=3D"0"><=
+tbody><tr><td><div class=3D"column js-footer-additional-info" style=3D"te=
+xt-align: left;font-size: 12px;line-height: 19px;color: #717a8a;font-fami=
+ly: Roboto,Tahoma,sans-serif;width: 480px;">
+      <div style=3D"margin-left: 0;margin-right: 0;Margin-top: 10px;Margi=
+n-bottom: 10px;">
+        <div class=3D"email-footer__additional-info" style=3D"font-size: =
+12px;line-height: 19px;margin-bottom: 18px;margin-top: 0px;">
+          <div bind-to=3D"address"><p class=3D"email-flexible-footer__add=
+itionalinfo--center" style=3D"Margin-top: 0;Margin-bottom: 0;text-align: =
+left;">Data Elixir, LLC<br>
+P.O. Box 21255<br>
+Boulder, CO 80308</p></div>
+        </div>
+        <div class=3D"email-footer__additional-info" style=3D"font-size: =
+12px;line-height: 19px;margin-bottom: 18px;margin-top: 0px;">
+          <div><p class=3D"email-flexible-footer__additionalinfo--center"=
+ style=3D"Margin-top: 0;Margin-bottom: 0;text-align: left;">Data Elixir i=
+s curated and maintained by&nbsp;<a style=3D"text-decoration: underline;t=
+ransition: opacity 0.1s ease-in;color: #717a8a;" data-emb-iscopy=3D"true"=
+ href=3D"https://news.dataelixir.com/t/t-l-chjhtc-yubtluub-g/">=
+<span style=3D"color:#1f7dcf">Lon Riesberg.</span></a>&nbsp;If you have q=
+uestions or&nbsp;suggestions for the newsletter,&nbsp;just reply back to =
+this email.</p></div>
+        </div>
+       =20
+        <div class=3D"email-footer__additional-info" style=3D"font-size: =
+12px;line-height: 19px;margin-bottom: 15px;">
+          <a style=3D"text-decoration: underline;transition: opacity 0.1s=
+ ease-in;color: #717a8a;" href=3D"https://news.dataelixir.com/t/t-u-chjht=
+c-yubtluub-w/">Unsubscribe</a>
+        </div>
+        <!--[if mso]>&nbsp;<![endif]-->
+      </div>
+    </div></td></tr></tbody></table>
+        <!--[if (mso)|(IE)]></table></td><![endif]-->
+        <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
+      </div>
+    </div><div style=3D"line-height:20px;font-size:20px;" id=3D"footer-bo=
+ttom-spacing">&nbsp;</div></div></td></tr></tbody></table>
+     =20
+    </td></tr></tbody></table>
+  <style type=3D"text/css">
+@media (max-width:619px){.email-flexible-footer .left-aligned-footer .col=
+umn,.email-flexible-footer .center-aligned-footer,.email-flexible-footer =
+=2Eright-aligned-footer .column{max-width:100% !important;text-align:center=
+ !important;width:100% !important}.flexible-footer-logo{margin-left:0px !=
+important;margin-right:0px !important}.email-flexible-footer .left-aligne=
+d-footer .flexible-footer__share-button__container,.email-flexible-footer=
+ .center-aligned-footer .flexible-footer__share-button__container,.email-=
+flexible-footer .right-aligned-footer .flexible-footer__share-button__con=
+tainer{display:inline-block;margin-left:5px !important;margin-right:5px !=
+important}.email-flexible-footer__additionalinfo--center{text-align:cente=
+r !important}.email-flexible-footer .left-aligned-footer table,.email-fle=
+xible-footer .center-aligned-footer table,.email-flexible-footer .right-a=
+ligned-footer=20
+table{display:table !important;width:100% !important}.email-flexible-foot=
+er .footer__share-button,.email-flexible-footer .email-footer__additional=
+-info{margin-left:20px;margin-right:20px}}
+</style><img style=3D"visibility: hidden !important; display: block !impo=
+rtant; height:1px !important; width:1px !important; border: 0 !important;=
+ margin: 0 !important; padding: 0 !important" src=3D"https://dataelixir.c=
+mail20.com/t/t-o-chjhtc-yubtluub/o.gif" width=3D"1" height=3D"1=
+" border=3D"0" alt=3D"">
+</body></html>=
+
+
+
+
+--_26f6162a-d812-4388-b17b-f13d62c17583_--

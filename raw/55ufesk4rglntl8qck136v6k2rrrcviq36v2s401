@@ -1,0 +1,50 @@
+Return-Path: <mjuralowicz@virtuslab.com>
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+ by inbound-smtp.eu-west-1.amazonaws.com with SMTP id 55ufesk4rglntl8qck136v6k2rrrcviq36v2s401
+ for newsletter@ds.vived.io;
+ Mon, 22 Nov 2021 13:56:46 +0000 (UTC)
+X-SES-Spam-Verdict: PASS
+X-SES-Virus-Verdict: PASS
+Received-SPF: pass (spfCheck: domain of virtuslab.com designates 209.85.167.45 as permitted sender) client-ip=209.85.167.45; envelope-from=mjuralowicz@virtuslab.com; helo=mail-lf1-f45.google.com;
+Authentication-Results: amazonses.com;
+ spf=pass (spfCheck: domain of virtuslab.com designates 209.85.167.45 as permitted sender) client-ip=209.85.167.45; envelope-from=mjuralowicz@virtuslab.com; helo=mail-lf1-f45.google.com;
+ dkim=pass header.i=@virtuslab.com;
+ dmarc=pass header.from=virtuslab.com;
+X-SES-RECEIPT: AEFBQUFBQUFBQUFGWTlEMER5MmhVQyt6aEF2cmZCY1pKZ2xEVVA5RFJiZ2Q3dUY5VDlScE5IVWNZT1lGblh2N2R2RGZqM0dFNUtVWDZVTGs5MGpiTDIrSlRFY1R3dzBiYktjTjMzNGw3QVVZYzVSZ2lEMjhLODU2K1hlVktuU0QzSGQ0RG1HNUE2bXN4cVk3d3ZINEdYWGdrV2ppMU9wVkJtK08zTUZTMGlCVkxtQXZhRW0rYkdiVW5vNGM4cHdXMDRmcTVSNDg0Y3dUR09RenQ3U3grUktpREE3Z1pqcU05aE5XQ05CV3BWemMwR25QNThEcE83cS9OdS92cjJxdEJ0K2J6WEJjb2FCMWRqejVPYmFCaWlOVEJzL1BSUzNEOWFWWGRYTGNQWXIyMDBKM0xQTFNzYlE9PQ==
+X-SES-DKIM-SIGNATURE: a=rsa-sha256; q=dns/txt; b=gDtY6M7offYYLfIJKYGh+CFlnSJa+I+XTzjeOcicSzIvSa8x9YA7xeL5NoFTCKI8bBo/50GlXqoRX6me4wvqI860Pr8bFYvpdXa7x82f/dwgoo/3hbYpqijtvUM77ZfHLBMSwXjn6gDC8pnfZ69fAnpWEiJy51E6kOdhNFzxzPU=; c=relaxed/simple; s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1637589407; v=1; bh=02Ku9q23Wvufl9un2syKiIQokNQkRncmjK8znRaQmH8=; h=From:To:Cc:Bcc:Subject:Date:Message-ID:MIME-Version:Content-Type:X-SES-RECEIPT;
+Received: by mail-lf1-f45.google.com with SMTP id t26so80890273lfk.9
+        for <newsletter@ds.vived.io>; Mon, 22 Nov 2021 05:56:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=virtuslab.com; s=google;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=02Ku9q23Wvufl9un2syKiIQokNQkRncmjK8znRaQmH8=;
+        b=R0dpTgnA9GnhluFgp7baQcEMcXHltpOBZ+th+I/2m/5wwETdXgwX2YKV/AJqw/z+IQ
+         cYHMYdTzC+dgHjm4ujs0dh4G886d42pavsTAxRktuQP2+dDx/k8Z4C1ifTj9ghLrAgWq
+         OumYiGJGfNb2K+iItXqG3mh2NBie6Jhte+rxsviIeLUDoT8VJF61jBb2nUSUoHp0eMCU
+         m3MV1tgSvutzbC/zFfEfjwGfdo5aQpNPT/x9hdmF3jYY2w3MkRqZ9JD8LueHIU2Ugfly
+         aqwjREchly8nXZetZnySfDbgvxsKwtkU1LUqEd30xdJwtKodfqixmUTphiRnz3p9ST+y
+         H5Kw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=02Ku9q23Wvufl9un2syKiIQokNQkRncmjK8znRaQmH8=;
+        b=lBQJCzlgEIlx5CmZuMbWNGn030thioeGX8elq+VfvriUcQn9rKoThgH6Dz8W54R3d4
+         rnIc6xNQY2EtCESgfPHyPvrhCRPLP8RHoasonpH8b8bG/CbI80cH0mCL3rhvIS8GTIdV
+         0tcHo6v2y+lUC9+yS9TzQxYkAQDR9VqvwU7K9m0b/QaJKvpfsUidKx0FypeMrxLqn/db
+         cWXJgetdop8fH/7jKQ1nZiISLud+15O3bBAFqik6zmQShwglNCf/+fEg+OX3FcM+w6LT
+         Vxlc85+DfvBPsj8QtQ79M6WZL6QqWoAGX9tJM1S5xYZ+nfAGb4eLJ9KZCKUIa9zSbydX
+         QYtg==
+X-Gm-Message-State: AOAM532Ualwwe90aG0GAUS3Nha7pjirqaNOkECInUj8Aze5SCN7Z4ggR
+	7xO7oeznWsmPbrMwqMhbAh+N1+/LZRb+RDhM4h6Io+jkPaqMIA==
+X-Google-Smtp-Source: ABdhPJz2bgow6Tma3qc13mTdvEb/hJY+BQ3NKTHBwnrS6f9v9Pfmxiww5tkWW+Vfgm2zcMUo+8jPHlaky3o8CYZOCSw=
+X-Received: by 2002:a2e:9acf:: with SMTP id p15mr55745955ljj.213.1637589405572;
+ Mon, 22 Nov 2021 05:56:45 -0800 (PST)
+MIME-Version: 1.0
+From: =?UTF-8?Q?Micha=C5=82_Jura=C5=82owicz?= <mjuralowicz@virtuslab.com>
+Date: Mon, 22 Nov 2021 14:56:32 +0100
+Message-ID: <CALdb2Ww+ScGDK+iMnLENLGXo-q9sgYDpDN3anZSSdfKaqLdR5w@mail.gmail.com>
+Subject: jijijiji
+To: newsletter@ds.vived.io
+Content-Type: text/plain; charset="UTF-8"
+
+hibniubiub

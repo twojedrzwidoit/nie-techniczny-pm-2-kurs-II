@@ -1,0 +1,1719 @@
+Return-Path: <mjuralowicz@virtuslab.com>
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+ by inbound-smtp.eu-west-1.amazonaws.com with SMTP id 2nbipibioc6onkq3stp88trq534ojjefb4c8hdg1
+ for newsletter@ds.vived.io;
+ Fri, 29 Oct 2021 11:22:34 +0000 (UTC)
+X-SES-Spam-Verdict: PASS
+X-SES-Virus-Verdict: PASS
+Received-SPF: pass (spfCheck: domain of virtuslab.com designates 209.85.208.171 as permitted sender) client-ip=209.85.208.171; envelope-from=mjuralowicz@virtuslab.com; helo=mail-lj1-f171.google.com;
+Authentication-Results: amazonses.com;
+ spf=pass (spfCheck: domain of virtuslab.com designates 209.85.208.171 as permitted sender) client-ip=209.85.208.171; envelope-from=mjuralowicz@virtuslab.com; helo=mail-lj1-f171.google.com;
+ dkim=pass header.i=@virtuslab.com;
+ dmarc=pass header.from=virtuslab.com;
+X-SES-RECEIPT: AEFBQUFBQUFBQUFGam1QUHk2L1hoMThRUklaWGlMK1lTZWdvM2RrVkdNaUxxeWhzRjBxWlVwYmJiT2IxSmN3dHhNd0pvMVM5NWJWSDFaeWxZYXhTTHdyTDJqbVU0c2RXYmhIVUZpYUNYdG1ZdVdZbDZEd3VYY2ZQd0ZCRnVxMy9yR05wWG1hOTBBNTRPRzdVZTFKcUE1STcwNUlKVnFDODdsdFYrNWZXcTFWYUxLWW5qKzlvb3orZmpTZlZwYmZKRDJJRmUxdjRyTFJRanBIbDhyaHc2U0hIT092QUluUXZEYVZDdWgwVWN4Ni9VMWpDK3Q0dnFZU0hFYmFKN3QvaVRDRGNxTWM4dFJWT3VXTnRmN0ljMVZxaVVvUjZ2NU5SYXJYYzQyR2F1NzZVc1Brb1prbmFuK1E9PQ==
+X-SES-DKIM-SIGNATURE: a=rsa-sha256; q=dns/txt; b=SEAn3mZItwu4AzVpKvGKZ6f+IUcvcEuGz9s7FB9fG5VWPZRy/p+mm7dxVxo30RWyGhef1Uh5xwNvYQ6tOneZOBEpstWT6SPk0IZZaa89CWs+DFhnkQH9/EM8pGGjxdHblSKYzhQz28/tVkVS5AtGbbXZjSJBvrz4W/OMA2mihPo=; c=relaxed/simple; s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1635506555; v=1; bh=nNZM25CH1Fy6i00VPr2Rq6yjxJWPYHdWRZ3u4BOOjfA=; h=From:To:Cc:Bcc:Subject:Date:Message-ID:MIME-Version:Content-Type:X-SES-RECEIPT;
+Received: by mail-lj1-f171.google.com with SMTP id d23so14986234ljj.10
+        for <newsletter@ds.vived.io>; Fri, 29 Oct 2021 04:22:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=virtuslab.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=0Pzs2zps7f5t3AXXV2UmQKpRLyQQjXMoADxCOjXAhQA=;
+        b=NMLCeqv23RZ2IDZwMIlJxZ8twTdrEiodsrBc6oCZmiRPYab3jmNzCJZRWG7j0MvDgg
+         Q0zMG8Cq1OuNvogqf5RIXp4oTmA58JXPGC7nuuu/Gc0W7pOMVej9rqrsblRi2Bv4w2iU
+         K05/UZhWVgbitF6Tnn1rQTKDfYl+ICNIJ2AC50o3zbdRliRimpsyh0ItddlcUTyF+jll
+         j8xE8IcwJNXHd5gJ+xx32ckTCRI21wAeBKt/ez9TDg+VwFCb4OrwXtcZrADAKuXWanTW
+         mn7Ybj4tWL45kSirv3vKLTR84rgYDhFQl47r0cgjn/9oJclocLBZEWjug93+agpGQbye
+         t7vw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=0Pzs2zps7f5t3AXXV2UmQKpRLyQQjXMoADxCOjXAhQA=;
+        b=Fvq3x6pzHlIcVBi3m5owmSBm09QMoBHCeA06alY6h87y3gQCSx4273xM9u13EDbu2d
+         qNUJ1x4cx2Zk5y5amOQr9mDNb7YDU9gV13PwDMSGynD/OovdC4WvYcFihR6doy9/Dp/9
+         JK24OAmLUDOKtfDQxqHpJz+O+FIzK5efmHxQOeDdFKo8FpBiOV1LWEEGHu23QKM+7Bb7
+         sZStSgJcvO81bBLf5pROJIWvabjE2gMhi2VgN8UXteYMVm7XuzJ95HobDM5buu//G62J
+         Zmpdq3+iRFa8lg0kx1fzwp/exVulAoaGIMDu+EQ80MxPUocJDCTiPWp9DlRn8T9vV6Ru
+         G47A==
+X-Gm-Message-State: AOAM530N/Ei0g1N0MUGvW2BBfk20N9AdJnJEmBmP1JzsYUJD48hdnwI1
+	N4gGcyJBGkBkHFOzAPewsCKjrsbSPfXq1TJ4VyDcEfCd+36XUt6s
+X-Google-Smtp-Source: ABdhPJwA+jkeOloW0iJF23r1ec1wK4k9d5KLByKtrm3zdMKD45TPWGLjGsfjo0eYWdrEZ4TOjqi9KDHZHHJWsCrE/fo=
+X-Received: by 2002:a2e:4e1a:: with SMTP id c26mr10752603ljb.351.1635506552797;
+ Fri, 29 Oct 2021 04:22:32 -0700 (PDT)
+MIME-Version: 1.0
+References: <rUPXgYEASq2JHvtdQ-FrKg@ismtpd0049p1las1.sendgrid.net>
+In-Reply-To: <rUPXgYEASq2JHvtdQ-FrKg@ismtpd0049p1las1.sendgrid.net>
+From: =?UTF-8?Q?Micha=C5=82_Jura=C5=82owicz?= <mjuralowicz@virtuslab.com>
+Date: Fri, 29 Oct 2021 13:22:21 +0200
+Message-ID: <CALdb2WwC=xM3X1bzBaa8NGHwVomj+96Ee5oOmcYD-+08gmF94g@mail.gmail.com>
+Subject: Fwd: This Week in NLP: Friday 22nd October 2021
+To: newsletter@ds.vived.io
+Content-Type: multipart/alternative; boundary="0000000000001b986e05cf7c0bbe"
+
+--0000000000001b986e05cf7c0bbe
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+---------- Forwarded message ---------
+Od: Robert Dale <rdale@language-technology.com>
+Date: pt., 22 pa=C5=BA 2021 o 17:01
+Subject: This Week in NLP: Friday 22nd October 2021
+To: <mjuralowicz@virtuslab.com>
+
+
+#157: Week ending Friday 22nd October 2021. Curated by Robert Dale at The
+Language Technology Group. | Another week's over. Did you keep up
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C
+*Can't see this message? View in a browser
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3DOIrt1T452QCIdegORdw=
+q3mt8E3cPPJ1YGyfVRIJYIRo.eyJ1IjoiaHR0cHM6Ly93d3cubGFuZ3VhZ2UtdGVjaG5vbG9neS=
+5jb20vc28vYTlOb2F1NFFLP2xhbmd1YWdlVGFnPWVuIiwibSI6Im1haWwiLCJjIjoiODgyZTEwN=
+2EtYjdjOC00MTNlLWI0MzQtNmFhOWM5MGYyMWQ5In0>*
+
+This Week in NLP
+
+#157: Week ending Friday 22nd October 2021.
+
+Curated by Robert Dale at The Language Technology Group
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3DpLvns4LqjQAp--DomlV=
+dDYuy0pWZdA34TQWSYXyBm48.eyJ1IjoiaHR0cHM6Ly93d3cubGFuZ3VhZ2UtdGVjaG5vbG9neS=
+5jb20vIiwiciI6ImYxMTIxMzkwLWEwMzgtNDA1OS1mYjkwLTk5ZDhiY2ZhNmFmMCIsIm0iOiJtY=
+WlsIiwiYyI6Ijg4MmUxMDdhLWI3YzgtNDEzZS1iNDM0LTZhYTljOTBmMjFkOSJ9>
+.
+
+Another week's over. Did you keep up with your Twitter feed? Did you catch
+up on all those blogs? No? Well, we did, so you can relax: here are the key
+happenings this week in the Natural Language Processing industry that we
+think are worth knowing about.
+
+
+
+Please forward this to a friend or colleague.
+
+Large Language Models
+
+AI startup SambaNova Systems
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3Dz8dEHXp08mz4ZyYagps=
+7W6kQU1tKivbJb1ARVrcoq0w.eyJ1IjoiaHR0cHM6Ly93d3cubW9ybmluZ2JyZXcuY29tL2VtZX=
+JnaW5nLXRlY2gvc3Rvcmllcy8yMDIxLzEwLzIwL2VudGVycHJpc2UtYWktc3RhcnR1cC1zYW1iY=
+W5vdmEtcmVsZWFzZXMtYS1sYXJnZS1sYW5ndWFnZS1tb2RlbC10b29sIiwiciI6ImQ0NjhhNGIw=
+LWFmZWUtNDhlNS0wZWM3LTNiMWYxYmJhOWY2NCIsIm0iOiJtYWlsIiwiYyI6Ijg4MmUxMDdhLWI=
+3YzgtNDEzZS1iNDM0LTZhYTljOTBmMjFkOSJ9>
+has announced its own GPT LLM, whose purpose is to make it easier to access
+the technology. The Allen Institute for AI=E2=80=99s =E2=80=98Ask Delphi=E2=
+=80=99 offers answers to
+ethical dilemmas
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3DmQktBhAg0j0rXGHhZi1=
+8tnpP1DInTfaAgGSwd2xPyqo.eyJ1IjoiaHR0cHM6Ly93d3cudGhldmVyZ2UuY29tLzIwMjEvMT=
+AvMjAvMjI3MzQyMTUvYWktYXNrLWRlbHBoaS1tb3JhbC1ldGhpY2FsLWp1ZGdlbWVudC1kZW1vI=
+iwiciI6ImQ0NjhhNGIwLWFmZWUtNDhlNS0wZWM3LTNiMWYxYmJhOWY2NCIsIm0iOiJtYWlsIiwi=
+YyI6Ijg4MmUxMDdhLWI3YzgtNDEzZS1iNDM0LTZhYTljOTBmMjFkOSJ9>,
+bringing some of the limitations of large language models to the fore; AI2
+has also released Macaw
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3DjgLdy29opFXDVqpT52V=
+2CrnsapNRNKKXNM-0Y4quRAc.eyJ1IjoiaHR0cHM6Ly9tZWRpdW0uY29tL2FpMi1ibG9nL2dlbm=
+VyYWwtcHVycG9zZS1xdWVzdGlvbi1hbnN3ZXJpbmctd2l0aC1tYWNhdy04NGNkN2UzYWYwZjciL=
+CJyIjoiZDQ2OGE0YjAtYWZlZS00OGU1LTBlYzctM2IxZjFiYmE5ZjY0IiwibSI6Im1haWwiLCJj=
+IjoiODgyZTEwN2EtYjdjOC00MTNlLWI0MzQtNmFhOWM5MGYyMWQ5In0>
+(multi-angle question-answering), a generative QA that is claimed to
+outperform GPT-3 by over 10%, even though it is an order of magnitude
+smaller. Chinese company Inspur has built Yuan 1.0, a 245B parameter
+GPT3-style model
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3DfftYgPxBQFAEc5DKghL=
+uTDH6Z5EviRlW0lRLXXCEWcQ.eyJ1IjoiaHR0cHM6Ly93d3cuYnVzaW5lc3N3aXJlLmNvbS9uZX=
+dzL2hvbWUvMjAyMTEwMjEwMDU1MjgvZW4vSW5zcHVyLUFJLVJlc2VhcmNoLVByZXNlbnRzLVl1Y=
+W4tMS4wLSVFMiU4MSVBMCVFMiU4MCU5NC1PbmUtb2YtdGhlLVdvcmxkJUUyJTgwJTk5cy1MYXJn=
+ZXN0LUxhbmd1YWdlLU1vZGVscy13aXRoLTI0NS43LUJpbGxpb24tUGFyYW1ldGVycyIsInIiOiJ=
+kNDY4YTRiMC1hZmVlLTQ4ZTUtMGVjNy0zYjFmMWJiYTlmNjQiLCJtIjoibWFpbCIsImMiOiI4OD=
+JlMTA3YS1iN2M4LTQxM2UtYjQzNC02YWE5YzkwZjIxZDkifQ>
+whose generated texts are apparently indistinguishable from human-written
+text.  This piece in VentureBeat
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3DYWGMInf7Ueo5cqTbFbL=
+Y9EuKECSn-diZhdhUAg-PoYk.eyJ1IjoiaHR0cHM6Ly92ZW50dXJlYmVhdC5jb20vMjAyMS8xMC=
+8xNS9haS13ZWVrbHktYWktbW9kZWwtdHJhaW5pbmctY29zdHMtb24tdGhlLXJpc2UtaGlnaGxpZ=
+2h0aW5nLW5lZWQtZm9yLW5ldy1zb2x1dGlvbnMvIiwiciI6ImQ0NjhhNGIwLWFmZWUtNDhlNS0w=
+ZWM3LTNiMWYxYmJhOWY2NCIsIm0iOiJtYWlsIiwiYyI6Ijg4MmUxMDdhLWI3YzgtNDEzZS1iNDM=
+0LTZhYTljOTBmMjFkOSJ9>
+looks at the high costs of training large language models, and the authors
+of the recent Stanford report on foundation models respond to some of their
+critics
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3D59YmmO0xwQUZlSea1NI=
+wHyekBrgDDzolOI7v1GkhzHI.eyJ1IjoiaHR0cHM6Ly90aGVncmFkaWVudC5wdWIvcmVmbGVjdG=
+lvbnMtb24tZm91bmRhdGlvbi1tb2RlbHMvIiwiciI6ImQ0NjhhNGIwLWFmZWUtNDhlNS0wZWM3L=
+TNiMWYxYmJhOWY2NCIsIm0iOiJtYWlsIiwiYyI6Ijg4MmUxMDdhLWI3YzgtNDEzZS1iNDM0LTZh=
+YTljOTBmMjFkOSJ9>
+.
+
+Health Tech
+
+Sensely has launched Sensely Virtual Primary Care
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3DCnt_YZp9hpU5YZs_15J=
+CHBzR9mkF8Y9y8NKio-RZ5Lk.eyJ1IjoiaHR0cHM6Ly93d3cuc3BlZWNodGVjaG1hZy5jb20vQX=
+J0aWNsZXMvUmVhZEFydGljbGUuYXNweD9BcnRpY2xlSUQ9MTQ5NjA4IiwiciI6IjQ5YWQwNGE0L=
+WYyYjAtNDI5Ni0wYTA5LTI0ZmUzYTZjNWRhNyIsIm0iOiJtYWlsIiwiYyI6Ijg4MmUxMDdhLWI3=
+YzgtNDEzZS1iNDM0LTZhYTljOTBmMjFkOSJ9>,
+featuring the company's voice-enabled virtual assistant; the suite of
+technologies aims to accelerate the implementation and adoption of virtual
+primary care technologies among healthcare providers. Botco.ai, maker of an
+HIPAA-compliant conversational marketing platform, is partnering with
+VerifyTreatment, a cloud-based platform that provides insurance
+verification, to enable healthcare centers to verify their prospects=E2=80=
+=99
+insurance
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3DC5AlSNpckraPS3Dz0Gv=
+pRXWMMLHcMaRLh1u9ziArR30.eyJ1IjoiaHR0cHM6Ly93d3cucHJ3ZWIuY29tL3JlbGVhc2VzL2=
+JvdGNvX2FpX2FuZF92ZXJpZnl0cmVhdG1lbnRfcGFydG5lcl90b19lbmFibGVfaGVhbHRoX2FuZ=
+F93ZWxsbmVzc19wcm92aWRlcnNfdG9faW5zdGFudGx5X3ZlcmlmeV9pbnN1cmFuY2VfdmlhX2Fp=
+X2NoYXQvcHJ3ZWIxODI2ODMzNi5odG0iLCJyIjoiNDlhZDA0YTQtZjJiMC00Mjk2LTBhMDktMjR=
+mZTNhNmM1ZGE3IiwibSI6Im1haWwiLCJjIjoiODgyZTEwN2EtYjdjOC00MTNlLWI0MzQtNmFhOW=
+M5MGYyMWQ5In0>
+through Botco.ai=E2=80=99s AI-based chat platform. And CommonSpirit Health =
+has
+announced the positive results of a year long pilot in which Vital=E2=80=99=
+s
+ERAdvisor
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3Di-q29EjDnd-WrpSVWdz=
+Q_uzWkwE6JE_tivdB3fujaSM.eyJ1IjoiaHR0cHM6Ly93d3cucHJ3ZWIuY29tL3JlbGVhc2VzL2=
+NvbW1vbnNwaXJpdF9hbmRfdml0YWxfaW1wcm92ZV9wYXRpZW50X2V4cGVyaWVuY2VfaW5fZW1lc=
+mdlbmN5X2FuZF9wYXRpZW50X2NhcmVfZGVsaXZlcnkvcHJ3ZWIxODI3NTQ5Ni5odG0iLCJyIjoi=
+NDlhZDA0YTQtZjJiMC00Mjk2LTBhMDktMjRmZTNhNmM1ZGE3IiwibSI6Im1haWwiLCJjIjoiODg=
+yZTEwN2EtYjdjOC00MTNlLWI0MzQtNmFhOWM5MGYyMWQ5In0>
+was used to keep patients informed and in control of their visits by
+providing real-time content and text message updates.
+
+Conversational AI
+
+Danish broadband provider Nuuday has launched its Josefine virtual assistan=
+t
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3Dx8WmxVY7TX4SHrYVVY9=
+lqAmdTy6hh1HFugFRQdIcWMA.eyJ1IjoiaHR0cHM6Ly93d3cuY29tcHV0ZXJ3ZWVrbHkuY29tL2=
+5ld3MvMjUyNTA4NDEwL0dJVEVYLTIwMjEtTnV1ZGF5LWZpbmRzLW5ldy12b2ljZS10by1kZWxpd=
+mVyLWNvZ25pdGl2ZS1jdXN0b21lci11bml2ZXJzZSIsInIiOiJhYjVkYmNmMS03N2U5LTQ3MDkt=
+YTM3ZS1kYWYwOGEzNTgxMDgiLCJtIjoibWFpbCIsImMiOiI4ODJlMTA3YS1iN2M4LTQxM2UtYjQ=
+zNC02YWE5YzkwZjIxZDkifQ>
+to improve customer service; HotelPlanner has launched an Alexa-enabled
+hotel booking feature
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3DvGZc0QBz6Jpb108-mXU=
+W-MtoXYNkdy-M19jGGDP9hmA.eyJ1IjoiaHR0cHM6Ly93d3cuYnVzaW5lc3N3aXJlLmNvbS9uZX=
+dzL2hvbWUvMjAyMTEwMTgwMDUwODcvZW4vJUUyJTgwJTlDQWxleGEtJUUyJTgwJTkzLUFzay1Ib=
+3RlbFBsYW5uZXItdG8tTWFrZS1hLU5ldy1SZXNlcnZhdGlvbiVFMiU4MCU5RC1UcmF2ZWwtVGVj=
+aG5vbG9neS1Db21wYW55LUxhdW5jaGVzLUFsZXhhLUVuYWJsZWQtQm9va2luZy1GZWF0dXJlIiw=
+iciI6ImFiNWRiY2YxLTc3ZTktNDcwOS1hMzdlLWRhZjA4YTM1ODEwOCIsIm0iOiJtYWlsIiwiYy=
+I6Ijg4MmUxMDdhLWI3YzgtNDEzZS1iNDM0LTZhYTljOTBmMjFkOSJ9>
+to access discounted hotel stays around the world; Observe.AI=E2=80=99s new
+Intelligent Workforce Platform aims to transform contact centers by optimiz=
+ing
+agent performance and automating repeatable workflows
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3DOUEQlBZBd0aJ3gTVt9J=
+FazvIM_2dsqGll0BE2NCmR6M.eyJ1IjoiaHR0cHM6Ly93d3cuYnVzaW5lc3N3aXJlLmNvbS9uZX=
+dzL2hvbWUvMjAyMTEwMTkwMDU0MDEvZW4vVGhlLUVyYS1vZi10aGUtSW50ZWxsaWdlbnQtV29ya=
+2ZvcmNlLU9ic2VydmUuQUktSW50cm9kdWNlcy1OZXctUGxhdGZvcm0tdG8tRHJpdmUtTmV4dC1H=
+ZW5lcmF0aW9uLUNvbnRhY3QtQ2VudGVycyIsInIiOiJhYjVkYmNmMS03N2U5LTQ3MDktYTM3ZS1=
+kYWYwOGEzNTgxMDgiLCJtIjoibWFpbCIsImMiOiI4ODJlMTA3YS1iN2M4LTQxM2UtYjQzNC02YW=
+E5YzkwZjIxZDkifQ>;
+ Vuzix has enabled its M-Series Smart Glasses
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3DC2GHP-tWWvFc3tRiHL9=
+CGBNGf_eDcDQgI00pwvAPbDo.eyJ1IjoiaHR0cHM6Ly93d3cuc3BlZWNodGVjaG1hZy5jb20vQX=
+J0aWNsZXMvTmV3cy9TcGVlY2gtVGVjaG5vbG9neS1OZXdzL1Z1eml4LUJyaW5ncy1WaXZva2FzL=
+VNwZWVjaC1UZWNobm9sb2d5LXRvLUl0cy1TbWFydC1HbGFzc2VzLTE0OTYwNy5hc3B4IiwiciI6=
+ImFiNWRiY2YxLTc3ZTktNDcwOS1hMzdlLWRhZjA4YTM1ODEwOCIsIm0iOiJtYWlsIiwiYyI6Ijg=
+4MmUxMDdhLWI3YzgtNDEzZS1iNDM0LTZhYTljOTBmMjFkOSJ9>
+to support up to 30 languages through a partnership with speech tech
+provider Vivoka; Samsung has launched a version of Bixby for Microsoft=E2=
+=80=99s
+new Windows 11 OS
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3DvoUSbz2toki9x2RKC7F=
+xRqAxnqOs9NSYPT3PCUQXdeQ.eyJ1IjoiaHR0cHM6Ly92b2ljZWJvdC5haS8yMDIxLzEwLzE5L3=
+NhbXN1bmctaW50cm9kdWNlcy1iaXhieS1mb3Itd2luZG93cy0xMS1sYXB0b3BzLyIsInIiOiJhY=
+jVkYmNmMS03N2U5LTQ3MDktYTM3ZS1kYWYwOGEzNTgxMDgiLCJtIjoibWFpbCIsImMiOiI4ODJl=
+MTA3YS1iN2M4LTQxM2UtYjQzNC02YWE5YzkwZjIxZDkifQ>;
+ and AI-centric production company Super Hi-Fi and WellSaid, a TTS company,
+have introduced ANDY (Artificial Neural Disk-Jockey), claimed to be the
+first DJ powered by artificial intelligence
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3D2hK04O5D8XO8qbFMXLF=
+X-rvukEaYTvHG7yyOaTswF1w.eyJ1IjoiaHR0cHM6Ly93d3cucHJ3ZWIuY29tL3JlbGVhc2VzL3=
+N1cGVyX2hpX2ZpX3dlbGxzYWlkX2xhYnNfaW50cm9kdWNlX2FuZHlfdGhlX2ZpcnN0X29mX2l0c=
+19raW5kX2FpX3JhZGlvX2RqL3Byd2ViMTgyNzUwNjkuaHRtIiwiciI6ImFiNWRiY2YxLTc3ZTkt=
+NDcwOS1hMzdlLWRhZjA4YTM1ODEwOCIsIm0iOiJtYWlsIiwiYyI6Ijg4MmUxMDdhLWI3YzgtNDE=
+zZS1iNDM0LTZhYTljOTBmMjFkOSJ9>
+.
+
+Document AI
+
+OpenText
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3DzzYTF7_cf4NsupaRqNv=
+F-a46YMqL78FaAq4S4qWbjlU.eyJ1IjoiaHR0cHM6Ly9zZWFyY2hjb250ZW50bWFuYWdlbWVudC=
+50ZWNodGFyZ2V0LmNvbS9uZXdzLzI1MjUwODEyOS9PcGVuVGV4dC1yZWxlYXNlcy1kb2N1bWVud=
+C1jYXB0dXJlLVNhbGVzZm9yY2UtaW50ZWdyYXRpb25zIiwiciI6IjkxNjA1NmNkLTQ5ZmQtNDIx=
+YS0yY2E2LWE2MTU4NDQ4OGE5ZCIsIm0iOiJtYWlsIiwiYyI6Ijg4MmUxMDdhLWI3YzgtNDEzZS1=
+iNDM0LTZhYTljOTBmMjFkOSJ9>
+has added AI and ML features to its smartphone document capture
+application. Sorcero
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3DG_Bs1F0T8OFn_cDcIcX=
+zwyTJSjEvNWgFg6P7e6ZiFFE.eyJ1IjoiaHR0cHM6Ly93d3cucHJ3ZWIuY29tL3JlbGVhc2VzL2=
+xhdW5jaF9vZl9haV9kcml2ZW5faW50ZWxsaWdlbnRfbGl0ZXJhdHVyZV9tb25pdG9yaW5nX2lsb=
+V9wbGF0Zm9ybV9lbmFibGVzX2xpZmVfc2NpZW5jZV9lbnRlcnByaXNlc190b19hbmFseXplX3Nj=
+aWVudGlmaWNfY29udGVudF9hdF9zY2FsZS9wcndlYjE4MjcxODgzLmh0bSIsInIiOiI5MTYwNTZ=
+jZC00OWZkLTQyMWEtMmNhNi1hNjE1ODQ0ODhhOWQiLCJtIjoibWFpbCIsImMiOiI4ODJlMTA3YS=
+1iN2M4LTQxM2UtYjQzNC02YWE5YzkwZjIxZDkifQ>,
+maker of medical and technical NLP, and MEDiSTRAVA, the global medical
+division of Huntsworth, have launched Intelligent Literature Monitoring
+(ILM), a platform that enables life science enterprises to extract
+actionable insights from a wide range of sources. And Artificial Lawyer has
+a piece on the definition of legal tech
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3Dy5I8lQzZ_0WSNC8ejqG=
+IEgAsVSm93hbY3q5qJjcQ2I4.eyJ1IjoiaHR0cHM6Ly93d3cuYXJ0aWZpY2lhbGxhd3llci5jb2=
+0vMjAyMS8xMC8yMC9ob3ctZG8teW91LWRlZmluZS1sZWdhbC10ZWNoLyIsInIiOiI5MTYwNTZjZ=
+C00OWZkLTQyMWEtMmNhNi1hNjE1ODQ0ODhhOWQiLCJtIjoibWFpbCIsImMiOiI4ODJlMTA3YS1i=
+N2M4LTQxM2UtYjQzNC02YWE5YzkwZjIxZDkifQ>
+.
+
+Funding and Acquisitions
+
+Rossum
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3Dtp8qwVnsHKIlc1XvRzP=
+pmSZr_a1ju8xQU9swlfvsaMM.eyJ1IjoiaHR0cHM6Ly92ZW50dXJlYmVhdC5jb20vMjAyMS8xMC=
+8xOS9hdXRvbWF0ZWQtZG9jdW1lbnQtcHJvY2Vzc2luZy1wbGF0Zm9ybS1yb3NzdW0tcmFpc2VzL=
+TEwMG0vIiwiciI6IjBlMjAwYTFmLTZkMzYtNDM2MS1jNGI1LWIxYjNlMmQwMjM4MCIsIm0iOiJt=
+YWlsIiwiYyI6Ijg4MmUxMDdhLWI3YzgtNDEzZS1iNDM0LTZhYTljOTBmMjFkOSJ9>,
+maker of an automated document processing platform, has raised US$100m in a
+Series A round. Humelo
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3DSHDSqpT3JQLNxMOwUTw=
+YCkCLmM_qns8BaQtvcVRVPlg.eyJ1IjoiaHR0cHM6Ly93d3cuc3BlZWNodGVjaG1hZy5jb20vQX=
+J0aWNsZXMvUmVhZEFydGljbGUuYXNweD9BcnRpY2xlSUQ9MTQ5NjQ0IiwiciI6IjBlMjAwYTFmL=
+TZkMzYtNDM2MS1jNGI1LWIxYjNlMmQwMjM4MCIsIm0iOiJtYWlsIiwiYyI6Ijg4MmUxMDdhLWI3=
+YzgtNDEzZS1iNDM0LTZhYTljOTBmMjFkOSJ9>,
+a Korean voice synthesis startup, has received an infusion of US$2.6m in
+new funding from KT Investment and Kakao Investment. Drips
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3DW4FFUSApr3-WY0yXO5V=
+ROyxJWIrL2v5yxD2oXYQy3LY.eyJ1IjoiaHR0cHM6Ly93d3cuYnVzaW5lc3N3aXJlLmNvbS9uZX=
+dzL2hvbWUvMjAyMTEwMTgwMDUwMjQvZW4vRHJpcHMtUmVjZWl2ZXMtR3Jvd3RoLUludmVzdG1lb=
+nQtZnJvbS10aGUtQmx1ZS1WZW50dXJlLUZ1bmQiLCJyIjoiMGUyMDBhMWYtNmQzNi00MzYxLWM0=
+YjUtYjFiM2UyZDAyMzgwIiwibSI6Im1haWwiLCJjIjoiODgyZTEwN2EtYjdjOC00MTNlLWI0MzQ=
+tNmFhOWM5MGYyMWQ5In0>,
+maker of a conversational AI platform, has secured a growth investment from
+the Blue Venture Fund to support the company=E2=80=99s vision of enabling
+healthcare organizations. Uniphore
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3DPPFZ3wpdMaSe0jmZ7vU=
+Df2TKEtN-9-Uex64zFjvZcLg.eyJ1IjoiaHR0cHM6Ly93d3cuYnVzaW5lc3N3aXJlLmNvbS9uZX=
+dzL2hvbWUvMjAyMTEwMjEwMDU1MjEvZW4vVW5pcGhvcmUtVW52ZWlscy10aGUtSW5kdXN0cnklR=
+TIlODAlOTlzLUJyb2FkZXN0LWFuZC1Nb3N0LUNvbXByZWhlbnNpdmUtQ29udmVyc2F0aW9uYWwt=
+QXV0b21hdGlvbi1QbGF0Zm9ybSIsInIiOiIwZTIwMGExZi02ZDM2LTQzNjEtYzRiNS1iMWIzZTJ=
+kMDIzODAiLCJtIjoibWFpbCIsImMiOiI4ODJlMTA3YS1iN2M4LTQxM2UtYjQzNC02YWE5YzkwZj=
+IxZDkifQ>,
+maker of conversational automation tech, has completed its acquisition of
+Jacada, a provider of real-time agent assist solutions.  Conversation
+analytics provider CallMiner
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3D5MYRRwqdI2Q8DQzd_b8=
+hXQO1V-aPtuiU3PtegUNMfSs.eyJ1IjoiaHR0cHM6Ly93d3cuYnVzaW5lc3N3aXJlLmNvbS9uZX=
+dzL2hvbWUvMjAyMTEwMTgwMDUwNzgvZW4vQ2FsbE1pbmVyLUFjcXVpcmVzLUF1ZGlvLUNhcHR1c=
+mUtUHJvdmlkZXItT3JlY1giLCJyIjoiMGUyMDBhMWYtNmQzNi00MzYxLWM0YjUtYjFiM2UyZDAy=
+MzgwIiwibSI6Im1haWwiLCJjIjoiODgyZTEwN2EtYjdjOC00MTNlLWI0MzQtNmFhOWM5MGYyMWQ=
+5In0>
+has acquired OrecX, an audio and screen capture provider for recording,
+analytics and machine-based learning. Vonage has acquired Jumper.ai
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3DvyUXPWpDcc9wLK-vTmt=
+fZ-hrfP_4jCtnu1DkJzj2CMI.eyJ1IjoiaHR0cHM6Ly92ZW50dXJlYmVhdC5jb20vMjAyMS8xMC=
+8xOS92b25hZ2UtYWNxdWlyZXMtY29udmVyc2F0aW9uYWwtY29tbWVyY2Utc3RhcnR1cC1qdW1wZ=
+XIvIiwiciI6IjBlMjAwYTFmLTZkMzYtNDM2MS1jNGI1LWIxYjNlMmQwMjM4MCIsIm0iOiJtYWls=
+IiwiYyI6Ijg4MmUxMDdhLWI3YzgtNDEzZS1iNDM0LTZhYTljOTBmMjFkOSJ9>,
+a Singapore-based conversational commerce platform, for an undisclosed sum.
+And Consilio
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3DekFT3rPAyYZ4iAe4O1W=
+q3jnC1Yu-e6xVd2SkqFoDN-U.eyJ1IjoiaHR0cHM6Ly93d3cuYnVzaW5lc3N3aXJlLmNvbS9uZX=
+dzL2hvbWUvMjAyMTEwMTkwMDU4MTEvZW4vQ29uc2lsaW8tQ29tcGxldGVzLUFjcXVpc2l0aW9uL=
+W9mLXRoZS1BZGVjY28tR3JvdXAlRTIlODAlOTlzLUxlZ2FsLUNvbnN1bHRpbmctYW5kLWVEaXNj=
+b3ZlcnktQnVzaW5lc3MtVW5pdHMtb2YtU3BlY2lhbC1Db3Vuc2VsLWluY2x1ZGluZy1ENC1hbmQ=
+tRVEiLCJyIjoiMGUyMDBhMWYtNmQzNi00MzYxLWM0YjUtYjFiM2UyZDAyMzgwIiwibSI6Im1haW=
+wiLCJjIjoiODgyZTEwN2EtYjdjOC00MTNlLWI0MzQtNmFhOWM5MGYyMWQ5In0>,
+a provider of eDiscovery, document review, risk management, and legal
+consulting services, has acquired the Adecco Group=E2=80=99s D4 and EQ, the=
+ legal
+consulting and eDiscovery business of Special Counsel.
+
+But wait, there's more ...
+
+
+
+1.  An investigation into the defrauding of US$35m from a bank in the UAE
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3DdQiJIyLn2NYNSdHifgF=
+F0K5s4tZs7I9MAQk_aVRmkGE.eyJ1IjoiaHR0cHM6Ly93d3cudW5pdGUuYWkvZGVlcGZha2VkLX=
+ZvaWNlLWVuYWJsZWQtMzUtbWlsbGlvbi1iYW5rLWhlaXN0LWluLTIwMjAvIiwiciI6IjVkMTkyM=
+TY1LWYzM2MtNGQ3MC03ZGZmLWExMGQ4OTEyMTgyYSIsIm0iOiJtYWlsIiwiYyI6Ijg4MmUxMDdh=
+LWI3YzgtNDEzZS1iNDM0LTZhYTljOTBmMjFkOSJ9>
+in January 2020 has found that deepfake voice technology was used to
+imitate a company director known to a bank branch manager, who then
+authorized the transactions.
+
+2.  Google researchers have developed a model that learns to generate
+spreadsheet formulas
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3DZZKCdJ0x8QwAAATCLmd=
+yqnRdB-p7zzHjviZ0SFq8tq4.eyJ1IjoiaHR0cHM6Ly9haS5nb29nbGVibG9nLmNvbS8yMDIxLz=
+EwL3ByZWRpY3Rpbmctc3ByZWFkc2hlZXQtZm9ybXVsYXMtZnJvbS5odG1sIiwiciI6IjVkMTkyM=
+TY1LWYzM2MtNGQ3MC03ZGZmLWExMGQ4OTEyMTgyYSIsIm0iOiJtYWlsIiwiYyI6Ijg4MmUxMDdh=
+LWI3YzgtNDEzZS1iNDM0LTZhYTljOTBmMjFkOSJ9>
+based on the context around a target cell.
+
+3.  Researchers at China's Harbin Institute of Technology have developed an
+NLP model that improves stock market predictions
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3Dte_9s0bmw3wlhtslCxH=
+Xi0D1XpHF4wCR7yGVAj-ekW8.eyJ1IjoiaHR0cHM6Ly90ZWNoeHBsb3JlLmNvbS9uZXdzLzIwMj=
+EtMTAtbmxwLXN0b2NrLmh0bWwiLCJyIjoiNWQxOTIxNjUtZjMzYy00ZDcwLTdkZmYtYTEwZDg5M=
+TIxODJhIiwibSI6Im1haWwiLCJjIjoiODgyZTEwN2EtYjdjOC00MTNlLWI0MzQtNmFhOWM5MGYy=
+MWQ5In0>
+.
+
+4.  Google=E2=80=99s new phone has a number of neat translation and speech
+recognition features
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3Dul4Qtv7hL3l1JGjBcnK=
+-fhCQbVe-QdL4NLCnxJ9RG-0.eyJ1IjoiaHR0cHM6Ly93d3cuZ2l6bW9kby5jb20uYXUvMjAyMS=
+8xMC90aGUtcGl4ZWwtNi1pcy10aGUtZ29vZ2xlLWZsYWdzaGlwLXdldmUtYmVlbi13YWl0aW5nL=
+WZvci8iLCJyIjoiNWQxOTIxNjUtZjMzYy00ZDcwLTdkZmYtYTEwZDg5MTIxODJhIiwibSI6Im1h=
+aWwiLCJjIjoiODgyZTEwN2EtYjdjOC00MTNlLWI0MzQtNmFhOWM5MGYyMWQ5In0>
+.
+
+5.  Deloitte has released the fourth edition of its State of AI in the
+Enterprise
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3DNAvmUDrw6qyxiQpmxom=
+xMU64SLm7VJJ3J9-adyab2EM.eyJ1IjoiaHR0cHM6Ly93d3cyLmRlbG9pdHRlLmNvbS91cy9lbi=
+9pbnNpZ2h0cy9mb2N1cy9jb2duaXRpdmUtdGVjaG5vbG9naWVzL2VudGVycHJpc2UtYXJ0aWZpY=
+2lhbC1pbnRlbGxpZ2VuY2UtNHRoLWVkaXRpb24uaHRtbCIsInIiOiI1ZDE5MjE2NS1mMzNjLTRk=
+NzAtN2RmZi1hMTBkODkxMjE4MmEiLCJtIjoibWFpbCIsImMiOiI4ODJlMTA3YS1iN2M4LTQxM2U=
+tYjQzNC02YWE5YzkwZjIxZDkifQ>
+report.
+
+The Back Cover
+
+This week we have Devo's cover of the Stones' [I Can't Get No] Satisfaction=
+.
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3DYCE2JjjKwCI1pnDBWR2=
+zqK32VaVtbsh1z5o9dIuEgL8.eyJ1IjoiaHR0cHM6Ly93d3cubGFuZ3VhZ2UtdGVjaG5vbG9neS=
+5jb20vc28vYTlOb2F1NFFLP2xhbmd1YWdlVGFnPWVuIiwiciI6IjcwZGQ1OWU1LTk2ZWItNDYwN=
+C0wZDdhLWNiZTU2ZGJhYjlmYSIsIm0iOiJtYWlsIiwiYyI6Ijg4MmUxMDdhLWI3YzgtNDEzZS1i=
+NDM0LTZhYTljOTBmMjFkOSJ9>
+
+If you know of a great cover version of a back-catalogue classic, drop an
+email to us at backcover@language-technology.com and we'll consider it for
+inclusion here.
+
+Got this from someone else?
+*Subscribe*
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3Dx5rrp9W45G4wCTNt9Yq=
+7m-36-_QgwHZfccI7LEe2uGg.eyJ1IjoiaHR0cHM6Ly93d3cubGFuZ3VhZ2UtdGVjaG5vbG9neS=
+5jb20vdHdpbiIsInIiOiIwMDI1OWM1Mi1jMWQ2LTQyZmItMzkyOC0xZDkyNjMzODdkZTMiLCJtI=
+joibWFpbCIsImMiOiI4ODJlMTA3YS1iN2M4LTQxM2UtYjQzNC02YWE5YzkwZjIxZDkifQ>
+
+Did you find this newsletter useful?  if so, you might forward it to a
+friend; or you could email us at news@language-technology.com
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3D8ApOQMNfJVMBjcKSJ8l=
+Mb1oQGoqyCYh0tHip0TxN4hg.eyJ1IjoibWFpbHRvOm5ld3NAbGFuZ3VhZ2UtdGVjaG5vbG9neS=
+5jb20iLCJyIjoiNzQ0Y2EyMDMtYTIzMy00MmE5LTE0ODUtNTliOWI2M2E4M2IyIiwibSI6Im1ha=
+WwiLCJjIjoiODgyZTEwN2EtYjdjOC00MTNlLWI0MzQtNmFhOWM5MGYyMWQ5In0>
+to tell us what you want more of.
+
+Did you hate this newsletter?  if so, you could forward it to an enemy; or
+you could email us at news@language-technology.com
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3D8ApOQMNfJVMBjcKSJ8l=
+Mb1oQGoqyCYh0tHip0TxN4hg.eyJ1IjoibWFpbHRvOm5ld3NAbGFuZ3VhZ2UtdGVjaG5vbG9neS=
+5jb20iLCJyIjoiNzQ0Y2EyMDMtYTIzMy00MmE5LTE0ODUtNTliOWI2M2E4M2IyIiwibSI6Im1ha=
+WwiLCJjIjoiODgyZTEwN2EtYjdjOC00MTNlLWI0MzQtNmFhOWM5MGYyMWQ5In0>
+to tell us why =E2=80=93 make it better!
+
+Share on Twitter
+
+[image: Share on Twitter]
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3D1V1DVtDRwR3Bi7_Khzu=
+XJoJbBQoHIueIbw3jfDLVorQ.eyJ1IjoiaHR0cHM6Ly90d2l0dGVyLmNvbS9zaGFyZT91cmw9aH=
+R0cHM6Ly93d3cubGFuZ3VhZ2UtdGVjaG5vbG9neS5jb20vc28vYTlOb2F1NFFLP2xhbmd1YWdlV=
+GFnPWVuIiwiciI6IjhlYWUwOWRjLTJkZDMtNDJhMC1hYmI5LWE0MDllYTFlYzU3ZCIsIm0iOiJt=
+YWlsIiwiYyI6Ijg4MmUxMDdhLWI3YzgtNDEzZS1iNDM0LTZhYTljOTBmMjFkOSJ9>
+
+*Check out the blog*
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3D8hRkRzYtbmWzYSIoSEw=
+ZCaOvsrYi8N236WK8Px3sOtI.eyJ1IjoiaHR0cHM6Ly93d3cubGFuZ3VhZ2UtdGVjaG5vbG9neS=
+5jb20vYmxvZyIsInIiOiI4ZWFlMDlkYy0yZGQzLTQyYTAtYWJiOS1hNDA5ZWExZWM1N2QiLCJtI=
+joibWFpbCIsImMiOiI4ODJlMTA3YS1iN2M4LTQxM2UtYjQzNC02YWE5YzkwZjIxZDkifQ>
+*You've received this email because you are a subscriber of this site
+<https://www.language-technology.com/so/a9Noau4QK/c?w=3DJSxW_REuqR0eEh8OUsA=
+SW00wV-E5hCU0mRZirJIRB2Q.eyJ1IjoiaHR0cHM6Ly93d3cubGFuZ3VhZ2UtdGVjaG5vbG9neS=
+5jb20vIiwibSI6Im1haWwiLCJjIjoiODgyZTEwN2EtYjdjOC00MTNlLWI0MzQtNmFhOWM5MGYyM=
+WQ5In0>.*
+*If you feel you received it by mistake or wish to unsubscribe, please
+click here
+<https://www.wixapis.com/email-marketing/v1/email-subscriptions/unsubscribe=
+?payload=3DJWS.eyJraWQiOiJZbHZQV0U0aSIsImFsZyI6IkhTMjU2In0.eyJkYXRhIjoie1wi=
+bWV0YVNpdGVJZFwiOlwiMTBkYjkxM2QtZGFkYS00NjhjLTlkZjctMTZhODFjZjYxN2ZlXCIsXCJ=
+lbWFpbEFkZHJlc3NcIjpcIm1qdXJhbG93aWN6QHZpcnR1c2xhYi5jb21cIixcIm1ldGFkYXRhXC=
+I6e1wibWVzc2FnZUlkXCI6XCJlMDcyYTIwYy1iZTYxLTQzMGQtYmNhOS0wNGQzNGNkYmQ2YTlcI=
+ixcImNvbnRhY3RJZFwiOlwiODgyZTEwN2EtYjdjOC00MTNlLWI0MzQtNmFhOWM5MGYyMWQ5XCJ9=
+fSIsImlhdCI6MTYzNDkxNDg4MX0.J4wMSRoGGEsYyGrztCI-E-qkK0J47cakmL2UjJ9_s1g&lan=
+guage=3Den>.*
+
+--0000000000001b986e05cf7c0bbe
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">---------- Forwarded message ---------<br>Od: <strong class=
+=3D"gmail_sendername" dir=3D"auto">Robert Dale</strong> <span dir=3D"auto">=
+&lt;<a href=3D"mailto:rdale@language-technology.com">rdale@language-technol=
+ogy.com</a>&gt;</span><br>Date: pt., 22 pa=C5=BA 2021 o 17:01<br>Subject: T=
+his Week in NLP:  Friday 22nd October 2021<br>To:  &lt;<a href=3D"mailto:mj=
+uralowicz@virtuslab.com">mjuralowicz@virtuslab.com</a>&gt;<br></div><br><br=
+><u></u><div style=3D"word-spacing:normal;background-color:#ffffff"><div st=
+yle=3D"display:none;font-size:1px;color:#ffffff;line-height:1px;max-height:=
+0px;max-width:0px;opacity:0;overflow:hidden"><span>#157: Week ending Friday=
+ 22nd October 2021. Curated by Robert Dale at The Language Technology Group=
+. | Another week&#39;s over. Did you keep up </span><span>=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0</span></div><d=
+iv class=3D"m_-278408954443578688kd" style=3D"width:100%"><img src=3D"https=
+://shoutout.wix.com/so/pixel/add7c0ff-cc70-44da-9123-6150817dbff3/10db913d-=
+dada-468c-9df7-16a81cf617fe/e072a20c-be61-430d-bca9-04d34cdbd6a9/882e107a-b=
+7c8-413e-b434-6aa9c90f21d9/top/true" style=3D"display:table;height:1px!impo=
+rtant;width:1px!important;border:0!important;margin:0!important;padding:0!i=
+mportant" width=3D"1" height=3D"1" border=3D"0"><img src=3D"https://u718626=
+6.ct.sendgrid.net/wf/open?upn=3DuRaL4-2BY0x-2BjlkAtQ9tRMw-2Bpn9hmVz3HF9MMBd=
+3OsdA7EDA6XvOpnYG2RVFtOOt-2BlG7a7XUWlQG84J-2B61FBEEEACfh9I2b97jEY-2Frkp3hj8=
+WGPQ0IIXucY-2FEnKH7apj5SsVxzBxkFvUm1wIJmQhODLhTgBqHzm2bCUU8jn-2BWJyIASxxbAM=
+bf9R-2FQUzjzCPTr-2Fz-2FAEpHuPIk4vDV1BCiOh0Mrg5hkwXk0wW4BH2aYxXghjj18EBh66nT=
+6p0j-2B9a-2B1J2Q2dzE08Bm0TQ4h4hWLhEsO0eRxJc4RufJRRdMV-2F3zEZ68ViJRCyPTafUCt=
+lQaq8QVKesrvYh0T1EiqPyKByf6t5uu59kKonpiLEBE53t2pqMow1kcE04s5AzBOcfrWIy-2Bg9=
+2v9hS4dhxiWyk-2FsaBRHNqqCtSwn5fAZ2WGySc8XfohepH7fcmE3eEVt5JP1-2FCQKwWjlhm71=
+NcF7DE-2FV-2B-2BVoiNSKZs9EFIbEfdyaKCAeRbfTlROUp9A1K-2FsqsZlxINqnu2CdY7Z1HxS=
+72GCtkDpOEfOQqICMDws6W-2B5WUMww7pbLdcCd6b5lBW5azTJTFhvFxPIc6bxlQNwmA-2B6Dni=
+0ym4XSSXHPTebblcTao6-2B7fOAjyS1n5LzVmIhB4FTXnaLndubsRUvUySl5w9QBzYJCDj-2F-2=
+BxmMlr5DkHKDDnzPTAuULJAn2No2rWYRZ0CRSDxSLiT9mn9P2NnzL-2BrTpiaw-3D-3D" alt=
+=3D"" width=3D"1" height=3D"1" border=3D"0" style=3D"height:1px!important;w=
+idth:1px!important;border-width:0!important;margin-top:0!important;margin-b=
+ottom:0!important;margin-right:0!important;margin-left:0!important;padding-=
+top:0!important;padding-bottom:0!important;padding-right:0!important;paddin=
+g-left:0!important"><table align=3D"center" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" role=3D"presentation" style=3D"background:#ffffff;backgro=
+und-color:#ffffff;width:100%"><tbody><tr><td><div style=3D"margin:0px auto;=
+max-width:732px"><table align=3D"center" border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0" role=3D"presentation" style=3D"width:100%"><tbody><tr><td st=
+yle=3D"direction:ltr;font-size:0px;padding:18px 20px 18px 20px;text-align:c=
+enter"><div class=3D"m_-278408954443578688a" style=3D"font-size:0px;text-al=
+ign:left;direction:ltr;display:inline-block;vertical-align:top;width:100%">=
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentatio=
+n" style=3D"vertical-align:top" width=3D"100%"><tbody><tr><td align=3D"cent=
+er" style=3D"font-size:0px;padding:0;word-break:break-word"><div style=3D"f=
+ont-family:Helvetica,Ubuntu,Arial,sans-serif;font-size:12px;line-height:20p=
+x;text-align:center;color:#757575"><strong style=3D"font-weight:normal">Can=
+&#39;t see this message? <u><a style=3D"font-family:Helvetica,Ubuntu,Arial,=
+sans-serif;color:#222222;font-size:12px;line-height:20px;text-decoration:no=
+ne" href=3D"https://www.language-technology.com/so/a9Noau4QK/c?w=3DOIrt1T45=
+2QCIdegORdwq3mt8E3cPPJ1YGyfVRIJYIRo.eyJ1IjoiaHR0cHM6Ly93d3cubGFuZ3VhZ2UtdGV=
+jaG5vbG9neS5jb20vc28vYTlOb2F1NFFLP2xhbmd1YWdlVGFnPWVuIiwibSI6Im1haWwiLCJjIj=
+oiODgyZTEwN2EtYjdjOC00MTNlLWI0MzQtNmFhOWM5MGYyMWQ5In0" rel=3D"noopener nore=
+ferrer" target=3D"_blank">View in a browser</a></u></strong></div></td></tr=
+></tbody></table></div></td></tr></tbody></table></div></td></tr></tbody></=
+table><table align=3D"center" class=3D"m_-278408954443578688html-emails-bac=
+kground" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"background:#ffffff;width:100%;background-color:#ffffff" width=
+=3D"100%" bgcolor=3D"#FFFFFF"><tbody><tr><td><div style=3D"margin:0px auto;=
+max-width:732px"><table align=3D"center" border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0" role=3D"presentation" style=3D"width:100%"><tbody><tr><td st=
+yle=3D"direction:ltr;font-size:0px;padding:16px;text-align:center"><div sty=
+le=3D"margin:0px auto;max-width:700px"><table align=3D"center" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"width:1=
+00%"><tbody><tr><td style=3D"border-left:solid 1px #adadad;border-right:sol=
+id 1px #adadad;border-top:solid 1px #adadad;direction:ltr;font-size:0px;pad=
+ding:0;text-align:center"><div class=3D"m_-278408954443578688a" style=3D"fo=
+nt-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-ali=
+gn:top;width:100%"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+role=3D"presentation" style=3D"vertical-align:top" width=3D"100%"><tbody><t=
+r><td class=3D"m_-278408954443578688xc" style=3D"background:#ffffff;font-si=
+ze:0px;word-break:break-word"><div style=3D"height:17px;line-height:17px">=
+=E2=80=8A</div></td></tr></tbody></table></div></td></tr></tbody></table></=
+div><div class=3D"m_-278408954443578688k m_-278408954443578688eb m_-2784089=
+54443578688bb m_-278408954443578688db m_-278408954443578688cb m_-2784089544=
+43578688yc" style=3D"text-transform:none;color:#030303;text-align:center;fo=
+nt-family:helvetica,sans-serif;letter-spacing:0;line-height:1.3;font-size:4=
+2px;background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:7=
+00px"><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D=
+"0" role=3D"presentation" style=3D"background:#ffffff;background-color:#fff=
+fff;width:100%"><tbody><tr><td style=3D"border-left:solid 1px #adadad;borde=
+r-right:solid 1px #adadad;direction:ltr;font-size:0px;padding:0px 0px 0px 0=
+px;text-align:center"><div class=3D"m_-278408954443578688a m_-2784089544435=
+78688v" style=3D"font-size:0px;text-align:left;direction:ltr;display:inline=
+-block;vertical-align:top;width:100%"><table border=3D"0" cellpadding=3D"0"=
+ cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td styl=
+e=3D"background-color:transparent;border:0px none transparent;border-radius=
+:0px;vertical-align:top;padding:10px 30px 0px 30px"><table border=3D"0" cel=
+lpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbod=
+y><tr><td align=3D"left" class=3D"m_-278408954443578688bc" style=3D"font-si=
+ze:0px;padding:0px;word-break:break-word"><div style=3D"font-family:helveti=
+ca,sans-serif;font-size:42px;font-style:normal;line-height:1;text-align:lef=
+t;text-transform:none;color:#030303"><div style=3D"text-align:center"><p st=
+yle=3D"margin:0;line-height:54px;font-size:42px" class=3D"m_-27840895444357=
+8688mb m_-278408954443578688tb"><span style=3D"font-family:georgia,serif" c=
+lass=3D"m_-278408954443578688mb m_-278408954443578688tb">This Week in NLP</=
+span></p></div></div></td></tr></tbody></table></td></tr></tbody></table></=
+div></td></tr></tbody></table></div><div class=3D"m_-278408954443578688h m_=
+-278408954443578688eb m_-278408954443578688bb m_-278408954443578688db m_-27=
+8408954443578688cb" style=3D"color:#030303;font-family:helvetica,sans-serif=
+;line-height:1.5;font-size:16px;background:#ffffff;background-color:#ffffff=
+;margin:0px auto;max-width:700px"><table align=3D"center" border=3D"0" cell=
+padding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"background:#=
+ffffff;background-color:#ffffff;width:100%"><tbody><tr><td style=3D"border-=
+left:solid 1px #adadad;border-right:solid 1px #adadad;direction:ltr;font-si=
+ze:0px;padding:0px 0px 0px 0px;text-align:center"><div class=3D"m_-27840895=
+4443578688a m_-278408954443578688v" style=3D"font-size:0px;text-align:left;=
+direction:ltr;display:inline-block;vertical-align:top;width:100%"><table bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=
+=3D"100%"><tbody><tr><td style=3D"background-color:transparent;border:0px n=
+one transparent;border-radius:0px;vertical-align:top;padding:15px 30px 15px=
+ 30px"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"pres=
+entation" width=3D"100%"><tbody><tr><td align=3D"left" class=3D"m_-27840895=
+4443578688bc" style=3D"font-size:0px;padding:0px;word-break:break-word"><di=
+v style=3D"font-family:helvetica,sans-serif;font-size:16px;font-style:norma=
+l;line-height:1;text-align:left;text-transform:none;color:#030303"><div sty=
+le=3D"text-align:center"><p style=3D"margin:0;line-height:24px;font-size:16=
+px" class=3D"m_-278408954443578688nb m_-278408954443578688ub"><span style=
+=3D"font-family:georgia,serif" class=3D"m_-278408954443578688nb m_-27840895=
+4443578688ub">#157</span><span style=3D"font-family:georgia,serif" class=3D=
+"m_-278408954443578688nb m_-278408954443578688ub">: Week ending Friday 22nd=
+ October 2021</span>.</p><p style=3D"margin:0;line-height:24px;font-size:16=
+px" class=3D"m_-278408954443578688nb m_-278408954443578688ub"><span style=
+=3D"font-family:georgia,serif" class=3D"m_-278408954443578688nb m_-27840895=
+4443578688ub">Curated by Robert Dale at=C2=A0<a href=3D"https://www.languag=
+e-technology.com/so/a9Noau4QK/c?w=3DpLvns4LqjQAp--DomlVdDYuy0pWZdA34TQWSYXy=
+Bm48.eyJ1IjoiaHR0cHM6Ly93d3cubGFuZ3VhZ2UtdGVjaG5vbG9neS5jb20vIiwiciI6ImYxMT=
+IxMzkwLWEwMzgtNDA1OS1mYjkwLTk5ZDhiY2ZhNmFmMCIsIm0iOiJtYWlsIiwiYyI6Ijg4MmUxM=
+DdhLWI3YzgtNDEzZS1iNDM0LTZhYTljOTBmMjFkOSJ9" rel=3D"noopener noreferrer" st=
+yle=3D"color:#109fff;text-decoration:none" target=3D"_blank"><span style=3D=
+"text-decoration:underline;line-height:24px;font-size:16px" class=3D"m_-278=
+408954443578688nb m_-278408954443578688ub">The Language Technology Group</s=
+pan></a>.</span></p></div></div></td></tr></tbody></table></td></tr></tbody=
+></table></div></td></tr></tbody></table></div><div class=3D"m_-27840895444=
+3578688eb m_-278408954443578688bb m_-278408954443578688db m_-27840895444357=
+8688cb" style=3D"background:#ffffff;background-color:#ffffff;margin:0px aut=
+o;max-width:700px"><table align=3D"center" border=3D"0" cellpadding=3D"0" c=
+ellspacing=3D"0" role=3D"presentation" style=3D"background:#ffffff;backgrou=
+nd-color:#ffffff;width:100%"><tbody><tr><td style=3D"border-left:solid 1px =
+#adadad;border-right:solid 1px #adadad;direction:ltr;font-size:0px;padding:=
+0px 0px 0px 0px;text-align:center"><div class=3D"m_-278408954443578688a m_-=
+278408954443578688v" style=3D"font-size:0px;text-align:left;direction:ltr;d=
+isplay:inline-block;vertical-align:top;width:100%"><table border=3D"0" cell=
+padding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody=
+><tr><td style=3D"vertical-align:top;padding:0px 30px 0px 30px"><table bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D=
+"100%"><tbody><tr><td><div style=3D"line-height:40px"><div style=3D"display=
+:inline-block;width:100%;border-bottom:1px solid #000000;vertical-align:tex=
+t-top"></div></div></td></tr></tbody></table></td></tr></tbody></table></di=
+v></td></tr></tbody></table></div><div class=3D"m_-278408954443578688h m_-2=
+78408954443578688eb m_-278408954443578688bb m_-278408954443578688db m_-2784=
+08954443578688cb" style=3D"color:#030303;font-family:helvetica,sans-serif;l=
+ine-height:1.5;font-size:16px;background:#ffffff;background-color:#ffffff;m=
+argin:0px auto;max-width:700px"><table align=3D"center" border=3D"0" cellpa=
+dding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"background:#ff=
+ffff;background-color:#ffffff;width:100%"><tbody><tr><td style=3D"border-le=
+ft:solid 1px #adadad;border-right:solid 1px #adadad;direction:ltr;font-size=
+:0px;padding:0px 0px 0px 0px;text-align:center"><div class=3D"m_-2784089544=
+43578688a m_-278408954443578688v" style=3D"font-size:0px;text-align:left;di=
+rection:ltr;display:inline-block;vertical-align:top;width:100%"><table bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D=
+"100%"><tbody><tr><td style=3D"background-color:transparent;border:0px none=
+ transparent;border-radius:0px;vertical-align:top;padding:15px 30px 15px 30=
+px"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"present=
+ation" width=3D"100%"><tbody><tr><td align=3D"left" class=3D"m_-27840895444=
+3578688bc" style=3D"font-size:0px;padding:0px;word-break:break-word"><div s=
+tyle=3D"font-family:helvetica,sans-serif;font-size:16px;font-style:normal;l=
+ine-height:1;text-align:left;text-transform:none;color:#030303"><div style=
+=3D"text-align:center"><p class=3D"m_-278408954443578688p m_-27840895444357=
+8688ob m_-278408954443578688vb" style=3D"margin:0;font-family:helvetica,san=
+s-serif;color:#030303;font-size:14px;font-style:normal;font-weight:400;line=
+-height:21px"><span style=3D"font-family:georgia,serif" class=3D"m_-2784089=
+54443578688ob m_-278408954443578688vb"><span style=3D"font-size:14px;line-h=
+eight:21px" class=3D"m_-278408954443578688ob m_-278408954443578688vb"><span=
+ class=3D"m_-278408954443578688ob m_-278408954443578688vb">Another week&#39=
+;s over. Did you keep up with your Twitter feed? Did you catch up on all th=
+ose=C2=A0blogs? No? Well, we did, so you can relax: here are the key happen=
+ings this week in the Natural Language Processing industry that we think ar=
+e worth knowing about.</span>=C2=A0</span></span></p><p class=3D"m_-2784089=
+54443578688p m_-278408954443578688ob m_-278408954443578688vb" style=3D"marg=
+in:0;font-family:helvetica,sans-serif;color:#030303;font-size:14px;font-sty=
+le:normal;font-weight:400;line-height:21px">=C2=A0</p><p class=3D"m_-278408=
+954443578688p m_-278408954443578688ob m_-278408954443578688vb" style=3D"mar=
+gin:0;font-family:helvetica,sans-serif;color:#030303;font-size:14px;font-st=
+yle:normal;font-weight:400;line-height:21px"><span style=3D"font-family:geo=
+rgia,serif" class=3D"m_-278408954443578688ob m_-278408954443578688vb">Pleas=
+e forward this to a friend or colleague.=C2=A0</span></p></div></div></td><=
+/tr></tbody></table></td></tr></tbody></table></div></td></tr></tbody></tab=
+le></div><div class=3D"m_-278408954443578688eb m_-278408954443578688bb m_-2=
+78408954443578688db m_-278408954443578688cb" style=3D"background:#ffffff;ba=
+ckground-color:#ffffff;margin:0px auto;max-width:700px"><table align=3D"cen=
+ter" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation"=
+ style=3D"background:#ffffff;background-color:#ffffff;width:100%"><tbody><t=
+r><td style=3D"border-left:solid 1px #adadad;border-right:solid 1px #adadad=
+;direction:ltr;font-size:0px;padding:0px 0px 0px 0px;text-align:center"><di=
+v class=3D"m_-278408954443578688a m_-278408954443578688v" style=3D"font-siz=
+e:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top=
+;width:100%"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=
+=3D"presentation" width=3D"100%"><tbody><tr><td style=3D"vertical-align:top=
+;padding:0px 30px 0px 30px"><table border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td><div style=3D"=
+line-height:40px"><div style=3D"display:inline-block;width:100%;border-bott=
+om:1px solid #000000;vertical-align:text-top"></div></div></td></tr></tbody=
+></table></td></tr></tbody></table></div></td></tr></tbody></table></div><d=
+iv class=3D"m_-278408954443578688eb m_-278408954443578688bb m_-278408954443=
+578688db m_-278408954443578688cb m_-278408954443578688eb m_-278408954443578=
+688bb m_-278408954443578688db m_-278408954443578688cb" style=3D"background:=
+#ffffff;background-color:#ffffff;margin:0px auto;max-width:700px"><table al=
+ign=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"pre=
+sentation" style=3D"background:#ffffff;background-color:#ffffff;width:100%"=
+><tbody><tr><td style=3D"border-left:solid 1px #adadad;border-right:solid 1=
+px #adadad;direction:ltr;font-size:0px;padding:0px 0px 0px 0px;text-align:c=
+enter"><div class=3D"m_-278408954443578688b m_-278408954443578688cc" style=
+=3D"max-width:50%;font-size:0px;text-align:left;direction:ltr;display:inlin=
+e-block;vertical-align:top;width:100%"><table border=3D"0" cellpadding=3D"0=
+" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td sty=
+le=3D"vertical-align:top;padding:15px 18px 15px 30px"><table border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tb=
+ody><tr><td align=3D"center" style=3D"font-size:0px;padding:0px;word-break:=
+break-word"><div style=3D"font-family:Ubuntu,Helvetica,Arial,sans-serif;fon=
+t-size:13px;line-height:1;text-align:center;color:#000000"><a class=3D"m_-2=
+78408954443578688ic" style=3D"display:inline-block;max-width:301px;width:10=
+0%"><img src=3D"https://static.wixstatic.com/media/add7c0_1838922e983745969=
+1d710047652effb~mv2.png/v1/fit/w_700,h_2000,al_c,q_85/add7c0_1838922e983745=
+9691d710047652effb~mv2.png" width=3D"301" style=3D"display:inline-block;max=
+-width:100%;width:301px;vertical-align:middle" alt=3D""></a></div></td></tr=
+></tbody></table></td></tr></tbody></table></div><div class=3D"m_-278408954=
+443578688b m_-278408954443578688dc" style=3D"max-width:50%;font-size:0px;te=
+xt-align:left;direction:ltr;display:inline-block;vertical-align:top;width:1=
+00%"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presen=
+tation" width=3D"100%"><tbody><tr><td style=3D"vertical-align:top;padding:1=
+5px 30px 15px 18px"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+ role=3D"presentation" width=3D"100%"><tbody><tr><td align=3D"left" style=
+=3D"font-size:0px;padding:0px;padding-top:0px;padding-bottom:0px;word-break=
+:break-word"><div style=3D"font-family:helvetica,sans-serif;font-size:13px;=
+line-height:1;text-align:left;text-transform:none;color:#030303"><div style=
+=3D"text-align:center"><p style=3D"margin:0;font-size:18px;text-align:left;=
+line-height:27px" class=3D"m_-278408954443578688rb m_-278408954443578688xb"=
+><span style=3D"font-family:georgia,serif;font-weight:bold;color:#030303" c=
+lass=3D"m_-278408954443578688rb m_-278408954443578688xb">Large Language Mod=
+els</span></p><p style=3D"margin:0;text-align:left;line-height:24px;font-si=
+ze:16px" class=3D"m_-278408954443578688nb m_-278408954443578688ub"><span st=
+yle=3D"font-family:georgia,serif" class=3D"m_-278408954443578688nb m_-27840=
+8954443578688ub"><span style=3D"background-color:rgb(255,255,255);line-heig=
+ht:24px;font-size:16px" class=3D"m_-278408954443578688nb m_-278408954443578=
+688ub">AI startup <a href=3D"https://www.language-technology.com/so/a9Noau4=
+QK/c?w=3Dz8dEHXp08mz4ZyYagps7W6kQU1tKivbJb1ARVrcoq0w.eyJ1IjoiaHR0cHM6Ly93d3=
+cubW9ybmluZ2JyZXcuY29tL2VtZXJnaW5nLXRlY2gvc3Rvcmllcy8yMDIxLzEwLzIwL2VudGVyc=
+HJpc2UtYWktc3RhcnR1cC1zYW1iYW5vdmEtcmVsZWFzZXMtYS1sYXJnZS1sYW5ndWFnZS1tb2Rl=
+bC10b29sIiwiciI6ImQ0NjhhNGIwLWFmZWUtNDhlNS0wZWM3LTNiMWYxYmJhOWY2NCIsIm0iOiJ=
+tYWlsIiwiYyI6Ijg4MmUxMDdhLWI3YzgtNDEzZS1iNDM0LTZhYTljOTBmMjFkOSJ9" rel=3D"n=
+oopener noreferrer" style=3D"color:#109fff;text-decoration:none" target=3D"=
+_blank"><span style=3D"text-decoration:underline;line-height:24px;font-size=
+:16px" class=3D"m_-278408954443578688nb m_-278408954443578688ub">SambaNova =
+Systems</span></a> has announced its own GPT LLM, whose purpose is to make =
+it easier to access the technology. The Allen Institute for AI=E2=80=99s =
+=E2=80=98Ask Delphi=E2=80=99 offers <a href=3D"https://www.language-technol=
+ogy.com/so/a9Noau4QK/c?w=3DmQktBhAg0j0rXGHhZi18tnpP1DInTfaAgGSwd2xPyqo.eyJ1=
+IjoiaHR0cHM6Ly93d3cudGhldmVyZ2UuY29tLzIwMjEvMTAvMjAvMjI3MzQyMTUvYWktYXNrLWR=
+lbHBoaS1tb3JhbC1ldGhpY2FsLWp1ZGdlbWVudC1kZW1vIiwiciI6ImQ0NjhhNGIwLWFmZWUtND=
+hlNS0wZWM3LTNiMWYxYmJhOWY2NCIsIm0iOiJtYWlsIiwiYyI6Ijg4MmUxMDdhLWI3YzgtNDEzZ=
+S1iNDM0LTZhYTljOTBmMjFkOSJ9" rel=3D"noopener noreferrer" style=3D"color:#10=
+9fff;text-decoration:none" target=3D"_blank"><span style=3D"text-decoration=
+:underline;line-height:24px;font-size:16px" class=3D"m_-278408954443578688n=
+b m_-278408954443578688ub">answers to ethical dilemmas</span></a>, bringing=
+ some of the limitations of large language models to the fore; AI2 has also=
+ released <a href=3D"https://www.language-technology.com/so/a9Noau4QK/c?w=
+=3DjgLdy29opFXDVqpT52V2CrnsapNRNKKXNM-0Y4quRAc.eyJ1IjoiaHR0cHM6Ly9tZWRpdW0u=
+Y29tL2FpMi1ibG9nL2dlbmVyYWwtcHVycG9zZS1xdWVzdGlvbi1hbnN3ZXJpbmctd2l0aC1tYWN=
+hdy04NGNkN2UzYWYwZjciLCJyIjoiZDQ2OGE0YjAtYWZlZS00OGU1LTBlYzctM2IxZjFiYmE5Zj=
+Y0IiwibSI6Im1haWwiLCJjIjoiODgyZTEwN2EtYjdjOC00MTNlLWI0MzQtNmFhOWM5MGYyMWQ5I=
+n0" rel=3D"noopener noreferrer" style=3D"color:#109fff;text-decoration:none=
+" target=3D"_blank"><span style=3D"text-decoration:underline;line-height:24=
+px;font-size:16px" class=3D"m_-278408954443578688nb m_-278408954443578688ub=
+">Macaw</span></a> (multi-angle question-answering), a generative QA that i=
+s claimed to outperform GPT-3 by over 10%, even though it is an order of ma=
+gnitude smaller. Chinese company Inspur has built Yuan 1.0, <a href=3D"http=
+s://www.language-technology.com/so/a9Noau4QK/c?w=3DfftYgPxBQFAEc5DKghLuTDH6=
+Z5EviRlW0lRLXXCEWcQ.eyJ1IjoiaHR0cHM6Ly93d3cuYnVzaW5lc3N3aXJlLmNvbS9uZXdzL2h=
+vbWUvMjAyMTEwMjEwMDU1MjgvZW4vSW5zcHVyLUFJLVJlc2VhcmNoLVByZXNlbnRzLVl1YW4tMS=
+4wLSVFMiU4MSVBMCVFMiU4MCU5NC1PbmUtb2YtdGhlLVdvcmxkJUUyJTgwJTk5cy1MYXJnZXN0L=
+Uxhbmd1YWdlLU1vZGVscy13aXRoLTI0NS43LUJpbGxpb24tUGFyYW1ldGVycyIsInIiOiJkNDY4=
+YTRiMC1hZmVlLTQ4ZTUtMGVjNy0zYjFmMWJiYTlmNjQiLCJtIjoibWFpbCIsImMiOiI4ODJlMTA=
+3YS1iN2M4LTQxM2UtYjQzNC02YWE5YzkwZjIxZDkifQ" rel=3D"noopener noreferrer" st=
+yle=3D"color:#109fff;text-decoration:none" target=3D"_blank"><span style=3D=
+"text-decoration:underline;line-height:24px;font-size:16px" class=3D"m_-278=
+408954443578688nb m_-278408954443578688ub">a 245B parameter GPT3-style mode=
+l</span></a> whose generated texts are apparently indistinguishable from hu=
+man-written text. =C2=A0<a href=3D"https://www.language-technology.com/so/a=
+9Noau4QK/c?w=3DYWGMInf7Ueo5cqTbFbLY9EuKECSn-diZhdhUAg-PoYk.eyJ1IjoiaHR0cHM6=
+Ly92ZW50dXJlYmVhdC5jb20vMjAyMS8xMC8xNS9haS13ZWVrbHktYWktbW9kZWwtdHJhaW5pbmc=
+tY29zdHMtb24tdGhlLXJpc2UtaGlnaGxpZ2h0aW5nLW5lZWQtZm9yLW5ldy1zb2x1dGlvbnMvIi=
+wiciI6ImQ0NjhhNGIwLWFmZWUtNDhlNS0wZWM3LTNiMWYxYmJhOWY2NCIsIm0iOiJtYWlsIiwiY=
+yI6Ijg4MmUxMDdhLWI3YzgtNDEzZS1iNDM0LTZhYTljOTBmMjFkOSJ9" rel=3D"noopener no=
+referrer" style=3D"color:#109fff;text-decoration:none" target=3D"_blank"><s=
+pan style=3D"text-decoration:underline;line-height:24px;font-size:16px" cla=
+ss=3D"m_-278408954443578688nb m_-278408954443578688ub">This piece in Ventur=
+eBeat</span></a> looks at the high costs of training large language models,=
+ and the authors of the recent Stanford report on foundation models <a href=
+=3D"https://www.language-technology.com/so/a9Noau4QK/c?w=3D59YmmO0xwQUZlSea=
+1NIwHyekBrgDDzolOI7v1GkhzHI.eyJ1IjoiaHR0cHM6Ly90aGVncmFkaWVudC5wdWIvcmVmbGV=
+jdGlvbnMtb24tZm91bmRhdGlvbi1tb2RlbHMvIiwiciI6ImQ0NjhhNGIwLWFmZWUtNDhlNS0wZW=
+M3LTNiMWYxYmJhOWY2NCIsIm0iOiJtYWlsIiwiYyI6Ijg4MmUxMDdhLWI3YzgtNDEzZS1iNDM0L=
+TZhYTljOTBmMjFkOSJ9" rel=3D"noopener noreferrer" style=3D"color:#109fff;tex=
+t-decoration:none" target=3D"_blank"><span style=3D"text-decoration:underli=
+ne;line-height:24px;font-size:16px" class=3D"m_-278408954443578688nb m_-278=
+408954443578688ub">respond to some of their critics</span></a>.</span></spa=
+n></p></div></div></td></tr></tbody></table></td></tr></tbody></table></div=
+></td></tr></tbody></table></div><div class=3D"m_-278408954443578688eb m_-2=
+78408954443578688bb m_-278408954443578688db m_-278408954443578688cb" style=
+=3D"background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:7=
+00px"><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D=
+"0" role=3D"presentation" style=3D"background:#ffffff;background-color:#fff=
+fff;width:100%"><tbody><tr><td style=3D"border-left:solid 1px #adadad;borde=
+r-right:solid 1px #adadad;direction:ltr;font-size:0px;padding:0px 0px 0px 0=
+px;text-align:center"><div class=3D"m_-278408954443578688a m_-2784089544435=
+78688v" style=3D"font-size:0px;text-align:left;direction:ltr;display:inline=
+-block;vertical-align:top;width:100%"><table border=3D"0" cellpadding=3D"0"=
+ cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td styl=
+e=3D"vertical-align:top;padding:0px 30px 0px 30px"><table border=3D"0" cell=
+padding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody=
+><tr><td><div style=3D"line-height:40px"><div style=3D"display:inline-block=
+;width:100%;border-bottom:1px solid #000000;vertical-align:text-top"></div>=
+</div></td></tr></tbody></table></td></tr></tbody></table></div></td></tr><=
+/tbody></table></div><div class=3D"m_-278408954443578688eb m_-2784089544435=
+78688bb m_-278408954443578688db m_-278408954443578688cb m_-2784089544435786=
+88eb m_-278408954443578688bb m_-278408954443578688db m_-278408954443578688c=
+b" style=3D"background:#ffffff;background-color:#ffffff;margin:0px auto;max=
+-width:700px"><table align=3D"center" border=3D"0" cellpadding=3D"0" cellsp=
+acing=3D"0" role=3D"presentation" style=3D"background:#ffffff;background-co=
+lor:#ffffff;width:100%"><tbody><tr><td style=3D"border-left:solid 1px #adad=
+ad;border-right:solid 1px #adadad;direction:ltr;font-size:0px;padding:0px 0=
+px 0px 0px;text-align:center"><div class=3D"m_-278408954443578688b m_-27840=
+8954443578688cc" style=3D"max-width:50%;font-size:0px;text-align:left;direc=
+tion:ltr;display:inline-block;vertical-align:top;width:100%"><table border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"1=
+00%"><tbody><tr><td style=3D"vertical-align:top;padding:15px 18px 15px 30px=
+"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" width=3D"100%"><tbody><tr><td align=3D"center" style=3D"font-size:0px;=
+padding:0px;word-break:break-word"><div style=3D"font-family:Ubuntu,Helveti=
+ca,Arial,sans-serif;font-size:13px;line-height:1;text-align:center;color:#0=
+00000"><a class=3D"m_-278408954443578688ic" style=3D"display:inline-block;m=
+ax-width:301px;width:100%"><img src=3D"https://static.wixstatic.com/media/a=
+dd7c0_4358c4b546bb497d935f7ea21b960163~mv2.jpg/v1/fit/w_700,h_2000,al_c,q_8=
+5/add7c0_4358c4b546bb497d935f7ea21b960163~mv2.jpg" width=3D"301" style=3D"d=
+isplay:inline-block;max-width:100%;width:301px;vertical-align:middle" alt=
+=3D""></a></div></td></tr></tbody></table></td></tr></tbody></table></div><=
+div class=3D"m_-278408954443578688b m_-278408954443578688dc" style=3D"max-w=
+idth:50%;font-size:0px;text-align:left;direction:ltr;display:inline-block;v=
+ertical-align:top;width:100%"><table border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td style=3D"ver=
+tical-align:top;padding:15px 30px 15px 18px"><table border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><=
+td align=3D"left" style=3D"font-size:0px;padding:0px;padding-top:0px;paddin=
+g-bottom:0px;word-break:break-word"><div style=3D"font-family:helvetica,san=
+s-serif;font-size:13px;line-height:1;text-align:left;text-transform:none;co=
+lor:#030303"><div style=3D"text-align:center"><p style=3D"margin:0;font-siz=
+e:18px;text-align:left;line-height:27px" class=3D"m_-278408954443578688rb m=
+_-278408954443578688xb"><span style=3D"font-family:georgia,serif;font-weigh=
+t:bold" class=3D"m_-278408954443578688rb m_-278408954443578688xb">Health Te=
+ch</span></p><p style=3D"margin:0;text-align:left;line-height:24px;font-siz=
+e:16px" class=3D"m_-278408954443578688nb m_-278408954443578688ub"><span sty=
+le=3D"font-family:georgia,serif" class=3D"m_-278408954443578688nb m_-278408=
+954443578688ub">Sensely has launched <a href=3D"https://www.language-techno=
+logy.com/so/a9Noau4QK/c?w=3DCnt_YZp9hpU5YZs_15JCHBzR9mkF8Y9y8NKio-RZ5Lk.eyJ=
+1IjoiaHR0cHM6Ly93d3cuc3BlZWNodGVjaG1hZy5jb20vQXJ0aWNsZXMvUmVhZEFydGljbGUuYX=
+NweD9BcnRpY2xlSUQ9MTQ5NjA4IiwiciI6IjQ5YWQwNGE0LWYyYjAtNDI5Ni0wYTA5LTI0ZmUzY=
+TZjNWRhNyIsIm0iOiJtYWlsIiwiYyI6Ijg4MmUxMDdhLWI3YzgtNDEzZS1iNDM0LTZhYTljOTBm=
+MjFkOSJ9" rel=3D"noopener noreferrer" style=3D"color:#109fff;text-decoratio=
+n:none" target=3D"_blank"><span style=3D"text-decoration:underline;line-hei=
+ght:24px;font-size:16px" class=3D"m_-278408954443578688nb m_-27840895444357=
+8688ub">Sensely Virtual Primary Care</span></a>, featuring the company&#39;=
+s voice-enabled virtual assistant; the suite of technologies aims to accele=
+rate the implementation and adoption of virtual primary care technologies a=
+mong healthcare providers.=C2=A0Botco.ai, maker of an HIPAA-compliant conve=
+rsational marketing platform, is partnering with VerifyTreatment, a cloud-b=
+ased platform that provides insurance verification, to <a href=3D"https://w=
+ww.language-technology.com/so/a9Noau4QK/c?w=3DC5AlSNpckraPS3Dz0GvpRXWMMLHcM=
+aRLh1u9ziArR30.eyJ1IjoiaHR0cHM6Ly93d3cucHJ3ZWIuY29tL3JlbGVhc2VzL2JvdGNvX2Fp=
+X2FuZF92ZXJpZnl0cmVhdG1lbnRfcGFydG5lcl90b19lbmFibGVfaGVhbHRoX2FuZF93ZWxsbmV=
+zc19wcm92aWRlcnNfdG9faW5zdGFudGx5X3ZlcmlmeV9pbnN1cmFuY2VfdmlhX2FpX2NoYXQvcH=
+J3ZWIxODI2ODMzNi5odG0iLCJyIjoiNDlhZDA0YTQtZjJiMC00Mjk2LTBhMDktMjRmZTNhNmM1Z=
+GE3IiwibSI6Im1haWwiLCJjIjoiODgyZTEwN2EtYjdjOC00MTNlLWI0MzQtNmFhOWM5MGYyMWQ5=
+In0" rel=3D"noopener noreferrer" style=3D"color:#109fff;text-decoration:non=
+e" target=3D"_blank"><span style=3D"text-decoration:underline;line-height:2=
+4px;font-size:16px" class=3D"m_-278408954443578688nb m_-278408954443578688u=
+b">enable healthcare centers to verify their prospects=E2=80=99 insurance</=
+span></a> through Botco.ai=E2=80=99s AI-based chat platform. And CommonSpir=
+it Health has announced the positive results of a year long pilot in which =
+<a href=3D"https://www.language-technology.com/so/a9Noau4QK/c?w=3Di-q29EjDn=
+d-WrpSVWdzQ_uzWkwE6JE_tivdB3fujaSM.eyJ1IjoiaHR0cHM6Ly93d3cucHJ3ZWIuY29tL3Jl=
+bGVhc2VzL2NvbW1vbnNwaXJpdF9hbmRfdml0YWxfaW1wcm92ZV9wYXRpZW50X2V4cGVyaWVuY2V=
+faW5fZW1lcmdlbmN5X2FuZF9wYXRpZW50X2NhcmVfZGVsaXZlcnkvcHJ3ZWIxODI3NTQ5Ni5odG=
+0iLCJyIjoiNDlhZDA0YTQtZjJiMC00Mjk2LTBhMDktMjRmZTNhNmM1ZGE3IiwibSI6Im1haWwiL=
+CJjIjoiODgyZTEwN2EtYjdjOC00MTNlLWI0MzQtNmFhOWM5MGYyMWQ5In0" rel=3D"noopener=
+ noreferrer" style=3D"color:#109fff;text-decoration:none" target=3D"_blank"=
+><span style=3D"text-decoration:underline;line-height:24px;font-size:16px" =
+class=3D"m_-278408954443578688nb m_-278408954443578688ub">Vital=E2=80=99s E=
+RAdvisor</span></a> was used to keep patients informed and in control of th=
+eir visits by providing real-time content and text message updates.</span><=
+/p></div></div></td></tr></tbody></table></td></tr></tbody></table></div></=
+td></tr></tbody></table></div><div class=3D"m_-278408954443578688eb m_-2784=
+08954443578688bb m_-278408954443578688db m_-278408954443578688cb" style=3D"=
+background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:700px=
+"><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+role=3D"presentation" style=3D"background:#ffffff;background-color:#ffffff;=
+width:100%"><tbody><tr><td style=3D"border-left:solid 1px #adadad;border-ri=
+ght:solid 1px #adadad;direction:ltr;font-size:0px;padding:0px 0px 0px 0px;t=
+ext-align:center"><div class=3D"m_-278408954443578688a m_-27840895444357868=
+8v" style=3D"font-size:0px;text-align:left;direction:ltr;display:inline-blo=
+ck;vertical-align:top;width:100%"><table border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td style=3D=
+"vertical-align:top;padding:0px 30px 0px 30px"><table border=3D"0" cellpadd=
+ing=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr=
+><td><div style=3D"line-height:40px"><div style=3D"display:inline-block;wid=
+th:100%;border-bottom:1px solid #000000;vertical-align:text-top"></div></di=
+v></td></tr></tbody></table></td></tr></tbody></table></div></td></tr></tbo=
+dy></table></div><div class=3D"m_-278408954443578688eb m_-27840895444357868=
+8bb m_-278408954443578688db m_-278408954443578688cb m_-278408954443578688eb=
+ m_-278408954443578688bb m_-278408954443578688db m_-278408954443578688cb" s=
+tyle=3D"background:#ffffff;background-color:#ffffff;margin:0px auto;max-wid=
+th:700px"><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" role=3D"presentation" style=3D"background:#ffffff;background-color:=
+#ffffff;width:100%"><tbody><tr><td style=3D"border-left:solid 1px #adadad;b=
+order-right:solid 1px #adadad;direction:ltr;font-size:0px;padding:0px 0px 0=
+px 0px;text-align:center"><div class=3D"m_-278408954443578688b m_-278408954=
+443578688cc" style=3D"max-width:50%;font-size:0px;text-align:left;direction=
+:ltr;display:inline-block;vertical-align:top;width:100%"><table border=3D"0=
+" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%">=
+<tbody><tr><td style=3D"vertical-align:top;padding:15px 18px 15px 30px"><ta=
+ble border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" =
+width=3D"100%"><tbody><tr><td align=3D"center" style=3D"font-size:0px;paddi=
+ng:0px;word-break:break-word"><div style=3D"font-family:Ubuntu,Helvetica,Ar=
+ial,sans-serif;font-size:13px;line-height:1;text-align:center;color:#000000=
+"><a class=3D"m_-278408954443578688ic" style=3D"display:inline-block;max-wi=
+dth:279px;width:100%"><img src=3D"https://static.wixstatic.com/media/add7c0=
+_8af88587590f42d5b0e86f5a906fea3a~mv2.jpg/v1/fit/w_700,h_2000,al_c,q_85/add=
+7c0_8af88587590f42d5b0e86f5a906fea3a~mv2.jpg" width=3D"279" style=3D"displa=
+y:inline-block;max-width:100%;width:279px;vertical-align:middle" alt=3D""><=
+/a></div></td></tr></tbody></table></td></tr></tbody></table></div><div cla=
+ss=3D"m_-278408954443578688b m_-278408954443578688dc" style=3D"max-width:50=
+%;font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical=
+-align:top;width:100%"><table border=3D"0" cellpadding=3D"0" cellspacing=3D=
+"0" role=3D"presentation" width=3D"100%"><tbody><tr><td style=3D"vertical-a=
+lign:top;padding:15px 30px 15px 18px"><table border=3D"0" cellpadding=3D"0"=
+ cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td alig=
+n=3D"left" style=3D"font-size:0px;padding:0px;padding-top:0px;padding-botto=
+m:0px;word-break:break-word"><div style=3D"font-family:helvetica,sans-serif=
+;font-size:13px;line-height:1;text-align:left;text-transform:none;color:#03=
+0303"><div style=3D"text-align:center"><p style=3D"margin:0;font-size:18px;=
+line-height:23px;text-align:left" class=3D"m_-278408954443578688rb m_-27840=
+8954443578688yb"><span style=3D"font-weight:bold;font-family:georgia,serif;=
+color:#030303" class=3D"m_-278408954443578688rb m_-278408954443578688yb">Co=
+nversational AI</span></p><p style=3D"margin:0;font-size:18px;line-height:2=
+3px;text-align:left" class=3D"m_-278408954443578688rb m_-278408954443578688=
+yb"><span style=3D"font-family:georgia,serif;font-size:16px;line-height:20p=
+x" class=3D"m_-278408954443578688nb m_-278408954443578688zb"><span class=3D=
+"m_-278408954443578688nb m_-278408954443578688zb">Danish broadband provider=
+ Nuuday has launched its <a href=3D"https://www.language-technology.com/so/=
+a9Noau4QK/c?w=3Dx8WmxVY7TX4SHrYVVY9lqAmdTy6hh1HFugFRQdIcWMA.eyJ1IjoiaHR0cHM=
+6Ly93d3cuY29tcHV0ZXJ3ZWVrbHkuY29tL25ld3MvMjUyNTA4NDEwL0dJVEVYLTIwMjEtTnV1ZG=
+F5LWZpbmRzLW5ldy12b2ljZS10by1kZWxpdmVyLWNvZ25pdGl2ZS1jdXN0b21lci11bml2ZXJzZ=
+SIsInIiOiJhYjVkYmNmMS03N2U5LTQ3MDktYTM3ZS1kYWYwOGEzNTgxMDgiLCJtIjoibWFpbCIs=
+ImMiOiI4ODJlMTA3YS1iN2M4LTQxM2UtYjQzNC02YWE5YzkwZjIxZDkifQ" rel=3D"noopener=
+ noreferrer" style=3D"color:#109fff;text-decoration:none" target=3D"_blank"=
+><span style=3D"text-decoration:underline;line-height:20px;font-size:16px" =
+class=3D"m_-278408954443578688nb m_-278408954443578688zb">Josefine virtual =
+assistant</span></a> to improve customer service; HotelPlanner has launched=
+ <a href=3D"https://www.language-technology.com/so/a9Noau4QK/c?w=3DvGZc0QBz=
+6Jpb108-mXUW-MtoXYNkdy-M19jGGDP9hmA.eyJ1IjoiaHR0cHM6Ly93d3cuYnVzaW5lc3N3aXJ=
+lLmNvbS9uZXdzL2hvbWUvMjAyMTEwMTgwMDUwODcvZW4vJUUyJTgwJTlDQWxleGEtJUUyJTgwJT=
+kzLUFzay1Ib3RlbFBsYW5uZXItdG8tTWFrZS1hLU5ldy1SZXNlcnZhdGlvbiVFMiU4MCU5RC1Uc=
+mF2ZWwtVGVjaG5vbG9neS1Db21wYW55LUxhdW5jaGVzLUFsZXhhLUVuYWJsZWQtQm9va2luZy1G=
+ZWF0dXJlIiwiciI6ImFiNWRiY2YxLTc3ZTktNDcwOS1hMzdlLWRhZjA4YTM1ODEwOCIsIm0iOiJ=
+tYWlsIiwiYyI6Ijg4MmUxMDdhLWI3YzgtNDEzZS1iNDM0LTZhYTljOTBmMjFkOSJ9" rel=3D"n=
+oopener noreferrer" style=3D"color:#109fff;text-decoration:none" target=3D"=
+_blank"><span style=3D"text-decoration:underline;line-height:20px;font-size=
+:16px" class=3D"m_-278408954443578688nb m_-278408954443578688zb">an Alexa-e=
+nabled hotel booking feature</span></a> to access discounted hotel stays ar=
+ound the world; Observe.AI=E2=80=99s new Intelligent Workforce Platform aim=
+s to transform contact centers by <a href=3D"https://www.language-technolog=
+y.com/so/a9Noau4QK/c?w=3DOUEQlBZBd0aJ3gTVt9JFazvIM_2dsqGll0BE2NCmR6M.eyJ1Ij=
+oiaHR0cHM6Ly93d3cuYnVzaW5lc3N3aXJlLmNvbS9uZXdzL2hvbWUvMjAyMTEwMTkwMDU0MDEvZ=
+W4vVGhlLUVyYS1vZi10aGUtSW50ZWxsaWdlbnQtV29ya2ZvcmNlLU9ic2VydmUuQUktSW50cm9k=
+dWNlcy1OZXctUGxhdGZvcm0tdG8tRHJpdmUtTmV4dC1HZW5lcmF0aW9uLUNvbnRhY3QtQ2VudGV=
+ycyIsInIiOiJhYjVkYmNmMS03N2U5LTQ3MDktYTM3ZS1kYWYwOGEzNTgxMDgiLCJtIjoibWFpbC=
+IsImMiOiI4ODJlMTA3YS1iN2M4LTQxM2UtYjQzNC02YWE5YzkwZjIxZDkifQ" rel=3D"noopen=
+er noreferrer" style=3D"color:#109fff;text-decoration:none" target=3D"_blan=
+k"><span style=3D"text-decoration:underline;line-height:20px;font-size:16px=
+" class=3D"m_-278408954443578688nb m_-278408954443578688zb">optimizing agen=
+t performance and automating repeatable workflows</span></a>; =C2=A0Vuzix h=
+as enabled its <a href=3D"https://www.language-technology.com/so/a9Noau4QK/=
+c?w=3DC2GHP-tWWvFc3tRiHL9CGBNGf_eDcDQgI00pwvAPbDo.eyJ1IjoiaHR0cHM6Ly93d3cuc=
+3BlZWNodGVjaG1hZy5jb20vQXJ0aWNsZXMvTmV3cy9TcGVlY2gtVGVjaG5vbG9neS1OZXdzL1Z1=
+eml4LUJyaW5ncy1WaXZva2FzLVNwZWVjaC1UZWNobm9sb2d5LXRvLUl0cy1TbWFydC1HbGFzc2V=
+zLTE0OTYwNy5hc3B4IiwiciI6ImFiNWRiY2YxLTc3ZTktNDcwOS1hMzdlLWRhZjA4YTM1ODEwOC=
+IsIm0iOiJtYWlsIiwiYyI6Ijg4MmUxMDdhLWI3YzgtNDEzZS1iNDM0LTZhYTljOTBmMjFkOSJ9"=
+ rel=3D"noopener noreferrer" style=3D"color:#109fff;text-decoration:none" t=
+arget=3D"_blank"><span style=3D"text-decoration:underline;line-height:20px;=
+font-size:16px" class=3D"m_-278408954443578688nb m_-278408954443578688zb">M=
+-Series Smart Glasses</span></a> to support up to 30 languages through a pa=
+rtnership with speech tech provider Vivoka; Samsung has launched <a href=3D=
+"https://www.language-technology.com/so/a9Noau4QK/c?w=3DvoUSbz2toki9x2RKC7F=
+xRqAxnqOs9NSYPT3PCUQXdeQ.eyJ1IjoiaHR0cHM6Ly92b2ljZWJvdC5haS8yMDIxLzEwLzE5L3=
+NhbXN1bmctaW50cm9kdWNlcy1iaXhieS1mb3Itd2luZG93cy0xMS1sYXB0b3BzLyIsInIiOiJhY=
+jVkYmNmMS03N2U5LTQ3MDktYTM3ZS1kYWYwOGEzNTgxMDgiLCJtIjoibWFpbCIsImMiOiI4ODJl=
+MTA3YS1iN2M4LTQxM2UtYjQzNC02YWE5YzkwZjIxZDkifQ" rel=3D"noopener noreferrer"=
+ style=3D"color:#109fff;text-decoration:none" target=3D"_blank"><span style=
+=3D"text-decoration:underline;line-height:20px;font-size:16px" class=3D"m_-=
+278408954443578688nb m_-278408954443578688zb">a version of Bixby for Micros=
+oft=E2=80=99s new Windows 11 OS</span></a>; =C2=A0and AI-centric production=
+ company Super Hi-Fi and WellSaid, a TTS company, have introduced ANDY (Art=
+ificial Neural Disk-Jockey), claimed to be <a href=3D"https://www.language-=
+technology.com/so/a9Noau4QK/c?w=3D2hK04O5D8XO8qbFMXLFX-rvukEaYTvHG7yyOaTswF=
+1w.eyJ1IjoiaHR0cHM6Ly93d3cucHJ3ZWIuY29tL3JlbGVhc2VzL3N1cGVyX2hpX2ZpX3dlbGxz=
+YWlkX2xhYnNfaW50cm9kdWNlX2FuZHlfdGhlX2ZpcnN0X29mX2l0c19raW5kX2FpX3JhZGlvX2R=
+qL3Byd2ViMTgyNzUwNjkuaHRtIiwiciI6ImFiNWRiY2YxLTc3ZTktNDcwOS1hMzdlLWRhZjA4YT=
+M1ODEwOCIsIm0iOiJtYWlsIiwiYyI6Ijg4MmUxMDdhLWI3YzgtNDEzZS1iNDM0LTZhYTljOTBmM=
+jFkOSJ9" rel=3D"noopener noreferrer" style=3D"color:#109fff;text-decoration=
+:none" target=3D"_blank"><span style=3D"text-decoration:underline;line-heig=
+ht:20px;font-size:16px" class=3D"m_-278408954443578688nb m_-278408954443578=
+688zb">the first DJ powered by artificial intelligence</span></a></span>.</=
+span></p></div></div></td></tr></tbody></table></td></tr></tbody></table></=
+div></td></tr></tbody></table></div><div class=3D"m_-278408954443578688eb m=
+_-278408954443578688bb m_-278408954443578688db m_-278408954443578688cb" sty=
+le=3D"background:#ffffff;background-color:#ffffff;margin:0px auto;max-width=
+:700px"><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" style=3D"background:#ffffff;background-color:#=
+ffffff;width:100%"><tbody><tr><td style=3D"border-left:solid 1px #adadad;bo=
+rder-right:solid 1px #adadad;direction:ltr;font-size:0px;padding:0px 0px 0p=
+x 0px;text-align:center"><div class=3D"m_-278408954443578688a m_-2784089544=
+43578688v" style=3D"font-size:0px;text-align:left;direction:ltr;display:inl=
+ine-block;vertical-align:top;width:100%"><table border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td s=
+tyle=3D"vertical-align:top;padding:0px 30px 0px 30px"><table border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tb=
+ody><tr><td><div style=3D"line-height:40px"><div style=3D"display:inline-bl=
+ock;width:100%;border-bottom:1px solid #000000;vertical-align:text-top"></d=
+iv></div></td></tr></tbody></table></td></tr></tbody></table></div></td></t=
+r></tbody></table></div><div class=3D"m_-278408954443578688eb m_-2784089544=
+43578688bb m_-278408954443578688db m_-278408954443578688cb m_-2784089544435=
+78688eb m_-278408954443578688bb m_-278408954443578688db m_-2784089544435786=
+88cb" style=3D"background:#ffffff;background-color:#ffffff;margin:0px auto;=
+max-width:700px"><table align=3D"center" border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0" role=3D"presentation" style=3D"background:#ffffff;background=
+-color:#ffffff;width:100%"><tbody><tr><td style=3D"border-left:solid 1px #a=
+dadad;border-right:solid 1px #adadad;direction:ltr;font-size:0px;padding:0p=
+x 0px 0px 0px;text-align:center"><div class=3D"m_-278408954443578688b m_-27=
+8408954443578688cc" style=3D"max-width:50%;font-size:0px;text-align:left;di=
+rection:ltr;display:inline-block;vertical-align:top;width:100%"><table bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D=
+"100%"><tbody><tr><td style=3D"vertical-align:top;padding:15px 18px 15px 30=
+px"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"present=
+ation" width=3D"100%"><tbody><tr><td align=3D"center" style=3D"font-size:0p=
+x;padding:0px;word-break:break-word"><div style=3D"font-family:Ubuntu,Helve=
+tica,Arial,sans-serif;font-size:13px;line-height:1;text-align:center;color:=
+#000000"><a class=3D"m_-278408954443578688ic" style=3D"display:inline-block=
+;max-width:301px;width:100%"><img src=3D"https://static.wixstatic.com/media=
+/add7c0_e162168d3ef3428087052d97fda95bda~mv2.jpg/v1/fit/w_700,h_2000,al_c,q=
+_85/add7c0_e162168d3ef3428087052d97fda95bda~mv2.jpg" width=3D"301" style=3D=
+"display:inline-block;max-width:100%;width:301px;vertical-align:middle" alt=
+=3D""></a></div></td></tr></tbody></table></td></tr></tbody></table></div><=
+div class=3D"m_-278408954443578688b m_-278408954443578688dc" style=3D"max-w=
+idth:50%;font-size:0px;text-align:left;direction:ltr;display:inline-block;v=
+ertical-align:top;width:100%"><table border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td style=3D"ver=
+tical-align:top;padding:15px 30px 15px 18px"><table border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><=
+td align=3D"left" style=3D"font-size:0px;padding:0px;padding-top:0px;paddin=
+g-bottom:0px;word-break:break-word"><div style=3D"font-family:helvetica,san=
+s-serif;font-size:13px;line-height:1;text-align:left;text-transform:none;co=
+lor:#030303"><div style=3D"text-align:center"><p style=3D"margin:0;font-siz=
+e:20px;text-align:left;line-height:30px" class=3D"m_-278408954443578688sb m=
+_-278408954443578688ac"><span style=3D"font-family:georgia,serif;font-weigh=
+t:bold" class=3D"m_-278408954443578688sb m_-278408954443578688ac">Document =
+AI</span></p><p style=3D"margin:0;text-align:left;line-height:24px;font-siz=
+e:16px" class=3D"m_-278408954443578688nb m_-278408954443578688ub"><span sty=
+le=3D"font-family:georgia,serif" class=3D"m_-278408954443578688nb m_-278408=
+954443578688ub"><a href=3D"https://www.language-technology.com/so/a9Noau4QK=
+/c?w=3DzzYTF7_cf4NsupaRqNvF-a46YMqL78FaAq4S4qWbjlU.eyJ1IjoiaHR0cHM6Ly9zZWFy=
+Y2hjb250ZW50bWFuYWdlbWVudC50ZWNodGFyZ2V0LmNvbS9uZXdzLzI1MjUwODEyOS9PcGVuVGV=
+4dC1yZWxlYXNlcy1kb2N1bWVudC1jYXB0dXJlLVNhbGVzZm9yY2UtaW50ZWdyYXRpb25zIiwici=
+I6IjkxNjA1NmNkLTQ5ZmQtNDIxYS0yY2E2LWE2MTU4NDQ4OGE5ZCIsIm0iOiJtYWlsIiwiYyI6I=
+jg4MmUxMDdhLWI3YzgtNDEzZS1iNDM0LTZhYTljOTBmMjFkOSJ9" rel=3D"noopener norefe=
+rrer" style=3D"color:#109fff;text-decoration:none" target=3D"_blank"><span =
+style=3D"text-decoration:underline;line-height:24px;font-size:16px" class=
+=3D"m_-278408954443578688nb m_-278408954443578688ub">OpenText</span></a> ha=
+s added AI and ML features to its smartphone document capture application. =
+<a href=3D"https://www.language-technology.com/so/a9Noau4QK/c?w=3DG_Bs1F0T8=
+OFn_cDcIcXzwyTJSjEvNWgFg6P7e6ZiFFE.eyJ1IjoiaHR0cHM6Ly93d3cucHJ3ZWIuY29tL3Jl=
+bGVhc2VzL2xhdW5jaF9vZl9haV9kcml2ZW5faW50ZWxsaWdlbnRfbGl0ZXJhdHVyZV9tb25pdG9=
+yaW5nX2lsbV9wbGF0Zm9ybV9lbmFibGVzX2xpZmVfc2NpZW5jZV9lbnRlcnByaXNlc190b19hbm=
+FseXplX3NjaWVudGlmaWNfY29udGVudF9hdF9zY2FsZS9wcndlYjE4MjcxODgzLmh0bSIsInIiO=
+iI5MTYwNTZjZC00OWZkLTQyMWEtMmNhNi1hNjE1ODQ0ODhhOWQiLCJtIjoibWFpbCIsImMiOiI4=
+ODJlMTA3YS1iN2M4LTQxM2UtYjQzNC02YWE5YzkwZjIxZDkifQ" rel=3D"noopener norefer=
+rer" style=3D"color:#109fff;text-decoration:none" target=3D"_blank"><span s=
+tyle=3D"text-decoration:underline;line-height:24px;font-size:16px" class=3D=
+"m_-278408954443578688nb m_-278408954443578688ub">Sorcero</span></a>, maker=
+ of medical and technical NLP, and MEDiSTRAVA, the global medical division =
+of Huntsworth, have launched Intelligent Literature Monitoring (ILM), a pla=
+tform that enables life science enterprises to extract actionable insights =
+from a wide range of sources. And Artificial Lawyer has a piece on <a href=
+=3D"https://www.language-technology.com/so/a9Noau4QK/c?w=3Dy5I8lQzZ_0WSNC8e=
+jqGIEgAsVSm93hbY3q5qJjcQ2I4.eyJ1IjoiaHR0cHM6Ly93d3cuYXJ0aWZpY2lhbGxhd3llci5=
+jb20vMjAyMS8xMC8yMC9ob3ctZG8teW91LWRlZmluZS1sZWdhbC10ZWNoLyIsInIiOiI5MTYwNT=
+ZjZC00OWZkLTQyMWEtMmNhNi1hNjE1ODQ0ODhhOWQiLCJtIjoibWFpbCIsImMiOiI4ODJlMTA3Y=
+S1iN2M4LTQxM2UtYjQzNC02YWE5YzkwZjIxZDkifQ" rel=3D"noopener noreferrer" styl=
+e=3D"color:#109fff;text-decoration:none" target=3D"_blank"><span style=3D"t=
+ext-decoration:underline;line-height:24px;font-size:16px" class=3D"m_-27840=
+8954443578688nb m_-278408954443578688ub">the definition of legal tech</span=
+></a>.</span></p></div></div></td></tr></tbody></table></td></tr></tbody></=
+table></div></td></tr></tbody></table></div><div class=3D"m_-27840895444357=
+8688eb m_-278408954443578688bb m_-278408954443578688db m_-27840895444357868=
+8cb" style=3D"background:#ffffff;background-color:#ffffff;margin:0px auto;m=
+ax-width:700px"><table align=3D"center" border=3D"0" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" style=3D"background:#ffffff;background-=
+color:#ffffff;width:100%"><tbody><tr><td style=3D"border-left:solid 1px #ad=
+adad;border-right:solid 1px #adadad;direction:ltr;font-size:0px;padding:0px=
+ 0px 0px 0px;text-align:center"><div class=3D"m_-278408954443578688a m_-278=
+408954443578688v" style=3D"font-size:0px;text-align:left;direction:ltr;disp=
+lay:inline-block;vertical-align:top;width:100%"><table border=3D"0" cellpad=
+ding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><t=
+r><td style=3D"vertical-align:top;padding:0px 30px 0px 30px"><table border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"1=
+00%"><tbody><tr><td><div style=3D"line-height:40px"><div style=3D"display:i=
+nline-block;width:100%;border-bottom:1px solid #000000;vertical-align:text-=
+top"></div></div></td></tr></tbody></table></td></tr></tbody></table></div>=
+</td></tr></tbody></table></div><div class=3D"m_-278408954443578688eb m_-27=
+8408954443578688bb m_-278408954443578688db m_-278408954443578688cb m_-27840=
+8954443578688eb m_-278408954443578688bb m_-278408954443578688db m_-27840895=
+4443578688cb" style=3D"background:#ffffff;background-color:#ffffff;margin:0=
+px auto;max-width:700px"><table align=3D"center" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"background:#ffffff;=
+background-color:#ffffff;width:100%"><tbody><tr><td style=3D"border-left:so=
+lid 1px #adadad;border-right:solid 1px #adadad;direction:ltr;font-size:0px;=
+padding:0px 0px 0px 0px;text-align:center"><div class=3D"m_-278408954443578=
+688b m_-278408954443578688cc" style=3D"max-width:50%;font-size:0px;text-ali=
+gn:left;direction:ltr;display:inline-block;vertical-align:top;width:100%"><=
+table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation=
+" width=3D"100%"><tbody><tr><td style=3D"vertical-align:top;padding:15px 18=
+px 15px 30px"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=
+=3D"presentation" width=3D"100%"><tbody><tr><td align=3D"center" style=3D"f=
+ont-size:0px;padding:0px;word-break:break-word"><div style=3D"font-family:U=
+buntu,Helvetica,Arial,sans-serif;font-size:13px;line-height:1;text-align:ce=
+nter;color:#000000"><a class=3D"m_-278408954443578688ic" style=3D"display:i=
+nline-block;max-width:275px;width:100%"><img src=3D"https://static.wixstati=
+c.com/media/add7c0_fd9cf032a8ec48088cf279393df5f48d~mv2.jpg/v1/fit/w_700,h_=
+2000,al_c,q_85/add7c0_fd9cf032a8ec48088cf279393df5f48d~mv2.jpg" width=3D"27=
+5" style=3D"display:inline-block;max-width:100%;width:275px;vertical-align:=
+middle" alt=3D""></a></div></td></tr></tbody></table></td></tr></tbody></ta=
+ble></div><div class=3D"m_-278408954443578688b m_-278408954443578688dc" sty=
+le=3D"max-width:50%;font-size:0px;text-align:left;direction:ltr;display:inl=
+ine-block;vertical-align:top;width:100%"><table border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td s=
+tyle=3D"vertical-align:top;padding:15px 30px 15px 18px"><table border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><=
+tbody><tr><td align=3D"left" style=3D"font-size:0px;padding:0px;padding-top=
+:0px;padding-bottom:0px;word-break:break-word"><div style=3D"font-family:he=
+lvetica,sans-serif;font-size:13px;line-height:1;text-align:left;text-transf=
+orm:none;color:#030303"><div style=3D"text-align:center"><p style=3D"margin=
+:0;font-size:19px;text-align:left;line-height:28px" class=3D"m_-27840895444=
+3578688qb m_-278408954443578688xb"><span style=3D"color:#030303;font-family=
+:georgia,serif;font-weight:bold" class=3D"m_-278408954443578688qb m_-278408=
+954443578688xb">Funding and Acquisitions=C2=A0</span></p><p style=3D"margin=
+:0;text-align:left;line-height:24px;font-size:16px" class=3D"m_-27840895444=
+3578688nb m_-278408954443578688ub"><span style=3D"font-family:georgia,serif=
+" class=3D"m_-278408954443578688nb m_-278408954443578688ub"><a href=3D"http=
+s://www.language-technology.com/so/a9Noau4QK/c?w=3Dtp8qwVnsHKIlc1XvRzPpmSZr=
+_a1ju8xQU9swlfvsaMM.eyJ1IjoiaHR0cHM6Ly92ZW50dXJlYmVhdC5jb20vMjAyMS8xMC8xOS9=
+hdXRvbWF0ZWQtZG9jdW1lbnQtcHJvY2Vzc2luZy1wbGF0Zm9ybS1yb3NzdW0tcmFpc2VzLTEwMG=
+0vIiwiciI6IjBlMjAwYTFmLTZkMzYtNDM2MS1jNGI1LWIxYjNlMmQwMjM4MCIsIm0iOiJtYWlsI=
+iwiYyI6Ijg4MmUxMDdhLWI3YzgtNDEzZS1iNDM0LTZhYTljOTBmMjFkOSJ9" rel=3D"noopene=
+r noreferrer" style=3D"color:#109fff;text-decoration:none" target=3D"_blank=
+"><span style=3D"text-decoration:underline;line-height:24px;font-size:16px"=
+ class=3D"m_-278408954443578688nb m_-278408954443578688ub">Rossum</span></a=
+>, maker of an automated document processing platform, has raised US$100m i=
+n a Series A round. <a href=3D"https://www.language-technology.com/so/a9Noa=
+u4QK/c?w=3DSHDSqpT3JQLNxMOwUTwYCkCLmM_qns8BaQtvcVRVPlg.eyJ1IjoiaHR0cHM6Ly93=
+d3cuc3BlZWNodGVjaG1hZy5jb20vQXJ0aWNsZXMvUmVhZEFydGljbGUuYXNweD9BcnRpY2xlSUQ=
+9MTQ5NjQ0IiwiciI6IjBlMjAwYTFmLTZkMzYtNDM2MS1jNGI1LWIxYjNlMmQwMjM4MCIsIm0iOi=
+JtYWlsIiwiYyI6Ijg4MmUxMDdhLWI3YzgtNDEzZS1iNDM0LTZhYTljOTBmMjFkOSJ9" rel=3D"=
+noopener noreferrer" style=3D"color:#109fff;text-decoration:none" target=3D=
+"_blank"><span style=3D"text-decoration:underline;line-height:24px;font-siz=
+e:16px" class=3D"m_-278408954443578688nb m_-278408954443578688ub">Humelo</s=
+pan></a>, a Korean voice synthesis startup, has received an infusion of US$=
+2.6m in new funding from KT Investment and Kakao Investment. <a href=3D"htt=
+ps://www.language-technology.com/so/a9Noau4QK/c?w=3DW4FFUSApr3-WY0yXO5VROyx=
+JWIrL2v5yxD2oXYQy3LY.eyJ1IjoiaHR0cHM6Ly93d3cuYnVzaW5lc3N3aXJlLmNvbS9uZXdzL2=
+hvbWUvMjAyMTEwMTgwMDUwMjQvZW4vRHJpcHMtUmVjZWl2ZXMtR3Jvd3RoLUludmVzdG1lbnQtZ=
+nJvbS10aGUtQmx1ZS1WZW50dXJlLUZ1bmQiLCJyIjoiMGUyMDBhMWYtNmQzNi00MzYxLWM0YjUt=
+YjFiM2UyZDAyMzgwIiwibSI6Im1haWwiLCJjIjoiODgyZTEwN2EtYjdjOC00MTNlLWI0MzQtNmF=
+hOWM5MGYyMWQ5In0" rel=3D"noopener noreferrer" style=3D"color:#109fff;text-d=
+ecoration:none" target=3D"_blank"><span style=3D"text-decoration:underline;=
+line-height:24px;font-size:16px" class=3D"m_-278408954443578688nb m_-278408=
+954443578688ub">Drips</span></a>, maker of a conversational AI platform, ha=
+s secured a growth investment from the Blue Venture Fund to support the com=
+pany=E2=80=99s vision of enabling healthcare organizations. <a href=3D"http=
+s://www.language-technology.com/so/a9Noau4QK/c?w=3DPPFZ3wpdMaSe0jmZ7vUDf2TK=
+EtN-9-Uex64zFjvZcLg.eyJ1IjoiaHR0cHM6Ly93d3cuYnVzaW5lc3N3aXJlLmNvbS9uZXdzL2h=
+vbWUvMjAyMTEwMjEwMDU1MjEvZW4vVW5pcGhvcmUtVW52ZWlscy10aGUtSW5kdXN0cnklRTIlOD=
+AlOTlzLUJyb2FkZXN0LWFuZC1Nb3N0LUNvbXByZWhlbnNpdmUtQ29udmVyc2F0aW9uYWwtQXV0b=
+21hdGlvbi1QbGF0Zm9ybSIsInIiOiIwZTIwMGExZi02ZDM2LTQzNjEtYzRiNS1iMWIzZTJkMDIz=
+ODAiLCJtIjoibWFpbCIsImMiOiI4ODJlMTA3YS1iN2M4LTQxM2UtYjQzNC02YWE5YzkwZjIxZDk=
+ifQ" rel=3D"noopener noreferrer" style=3D"color:#109fff;text-decoration:non=
+e" target=3D"_blank"><span style=3D"text-decoration:underline;line-height:2=
+4px;font-size:16px" class=3D"m_-278408954443578688nb m_-278408954443578688u=
+b">Uniphore</span></a>, maker of conversational automation tech, has comple=
+ted its acquisition of Jacada, a provider of real-time agent assist solutio=
+ns.=C2=A0 Conversation analytics provider <a href=3D"https://www.language-t=
+echnology.com/so/a9Noau4QK/c?w=3D5MYRRwqdI2Q8DQzd_b8hXQO1V-aPtuiU3PtegUNMfS=
+s.eyJ1IjoiaHR0cHM6Ly93d3cuYnVzaW5lc3N3aXJlLmNvbS9uZXdzL2hvbWUvMjAyMTEwMTgwM=
+DUwNzgvZW4vQ2FsbE1pbmVyLUFjcXVpcmVzLUF1ZGlvLUNhcHR1cmUtUHJvdmlkZXItT3JlY1gi=
+LCJyIjoiMGUyMDBhMWYtNmQzNi00MzYxLWM0YjUtYjFiM2UyZDAyMzgwIiwibSI6Im1haWwiLCJ=
+jIjoiODgyZTEwN2EtYjdjOC00MTNlLWI0MzQtNmFhOWM5MGYyMWQ5In0" rel=3D"noopener n=
+oreferrer" style=3D"color:#109fff;text-decoration:none" target=3D"_blank"><=
+span style=3D"text-decoration:underline;line-height:24px;font-size:16px" cl=
+ass=3D"m_-278408954443578688nb m_-278408954443578688ub">CallMiner</span></a=
+> has acquired OrecX, an audio and screen capture provider for recording, a=
+nalytics and machine-based learning. Vonage has acquired <a href=3D"https:/=
+/www.language-technology.com/so/a9Noau4QK/c?w=3DvyUXPWpDcc9wLK-vTmtfZ-hrfP_=
+4jCtnu1DkJzj2CMI.eyJ1IjoiaHR0cHM6Ly92ZW50dXJlYmVhdC5jb20vMjAyMS8xMC8xOS92b2=
+5hZ2UtYWNxdWlyZXMtY29udmVyc2F0aW9uYWwtY29tbWVyY2Utc3RhcnR1cC1qdW1wZXIvIiwic=
+iI6IjBlMjAwYTFmLTZkMzYtNDM2MS1jNGI1LWIxYjNlMmQwMjM4MCIsIm0iOiJtYWlsIiwiYyI6=
+Ijg4MmUxMDdhLWI3YzgtNDEzZS1iNDM0LTZhYTljOTBmMjFkOSJ9" rel=3D"noopener noref=
+errer" style=3D"color:#109fff;text-decoration:none" target=3D"_blank"><span=
+ style=3D"text-decoration:underline;line-height:24px;font-size:16px" class=
+=3D"m_-278408954443578688nb m_-278408954443578688ub">Jumper.ai</span></a>, =
+a Singapore-based conversational commerce platform, for an undisclosed sum.=
+ And <a href=3D"https://www.language-technology.com/so/a9Noau4QK/c?w=3DekFT=
+3rPAyYZ4iAe4O1Wq3jnC1Yu-e6xVd2SkqFoDN-U.eyJ1IjoiaHR0cHM6Ly93d3cuYnVzaW5lc3N=
+3aXJlLmNvbS9uZXdzL2hvbWUvMjAyMTEwMTkwMDU4MTEvZW4vQ29uc2lsaW8tQ29tcGxldGVzLU=
+FjcXVpc2l0aW9uLW9mLXRoZS1BZGVjY28tR3JvdXAlRTIlODAlOTlzLUxlZ2FsLUNvbnN1bHRpb=
+mctYW5kLWVEaXNjb3ZlcnktQnVzaW5lc3MtVW5pdHMtb2YtU3BlY2lhbC1Db3Vuc2VsLWluY2x1=
+ZGluZy1ENC1hbmQtRVEiLCJyIjoiMGUyMDBhMWYtNmQzNi00MzYxLWM0YjUtYjFiM2UyZDAyMzg=
+wIiwibSI6Im1haWwiLCJjIjoiODgyZTEwN2EtYjdjOC00MTNlLWI0MzQtNmFhOWM5MGYyMWQ5In=
+0" rel=3D"noopener noreferrer" style=3D"color:#109fff;text-decoration:none"=
+ target=3D"_blank"><span style=3D"text-decoration:underline;line-height:24p=
+x;font-size:16px" class=3D"m_-278408954443578688nb m_-278408954443578688ub"=
+>Consilio</span></a>, a provider of eDiscovery, document review, risk manag=
+ement, and legal consulting services, has acquired the Adecco Group=E2=80=
+=99s D4 and EQ, the legal consulting and eDiscovery business of Special Cou=
+nsel.</span></p></div></div></td></tr></tbody></table></td></tr></tbody></t=
+able></div></td></tr></tbody></table></div><div class=3D"m_-278408954443578=
+688eb m_-278408954443578688bb m_-278408954443578688db m_-278408954443578688=
+cb" style=3D"background:#ffffff;background-color:#ffffff;margin:0px auto;ma=
+x-width:700px"><table align=3D"center" border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0" role=3D"presentation" style=3D"background:#ffffff;background-c=
+olor:#ffffff;width:100%"><tbody><tr><td style=3D"border-left:solid 1px #ada=
+dad;border-right:solid 1px #adadad;direction:ltr;font-size:0px;padding:0px =
+0px 0px 0px;text-align:center"><div class=3D"m_-278408954443578688a m_-2784=
+08954443578688v" style=3D"font-size:0px;text-align:left;direction:ltr;displ=
+ay:inline-block;vertical-align:top;width:100%"><table border=3D"0" cellpadd=
+ing=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr=
+><td style=3D"vertical-align:top;padding:0px 30px 0px 30px"><table border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"1=
+00%"><tbody><tr><td><div style=3D"line-height:40px"><div style=3D"display:i=
+nline-block;width:100%;border-bottom:1px solid #000000;vertical-align:text-=
+top"></div></div></td></tr></tbody></table></td></tr></tbody></table></div>=
+</td></tr></tbody></table></div><div class=3D"m_-278408954443578688h m_-278=
+408954443578688eb m_-278408954443578688bb m_-278408954443578688db m_-278408=
+954443578688cb" style=3D"color:#030303;font-family:helvetica,sans-serif;lin=
+e-height:1.5;font-size:16px;background:#ffffff;background-color:#ffffff;mar=
+gin:0px auto;max-width:700px"><table align=3D"center" border=3D"0" cellpadd=
+ing=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"background:#ffff=
+ff;background-color:#ffffff;width:100%"><tbody><tr><td style=3D"border-left=
+:solid 1px #adadad;border-right:solid 1px #adadad;direction:ltr;font-size:0=
+px;padding:0px 0px 0px 0px;text-align:center"><div class=3D"m_-278408954443=
+578688a m_-278408954443578688v" style=3D"font-size:0px;text-align:left;dire=
+ction:ltr;display:inline-block;vertical-align:top;width:100%"><table border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"1=
+00%"><tbody><tr><td style=3D"background-color:transparent;border:0px none t=
+ransparent;border-radius:0px;vertical-align:top;padding:15px 30px 15px 30px=
+"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" width=3D"100%"><tbody><tr><td align=3D"left" class=3D"m_-2784089544435=
+78688bc" style=3D"font-size:0px;padding:0px;word-break:break-word"><div sty=
+le=3D"font-family:helvetica,sans-serif;font-size:16px;font-style:normal;lin=
+e-height:1;text-align:left;text-transform:none;color:#030303"><div style=3D=
+"text-align:center"><p style=3D"margin:0;text-align:left;line-height:24px;f=
+ont-size:16px" class=3D"m_-278408954443578688nb m_-278408954443578688ub"><s=
+pan style=3D"font-family:georgia,serif;font-weight:bold" class=3D"m_-278408=
+954443578688nb m_-278408954443578688ub">But wait, there&#39;s more ...</spa=
+n></p><p style=3D"margin:0;text-align:left;line-height:24px;font-size:16px"=
+ class=3D"m_-278408954443578688nb m_-278408954443578688ub">=C2=A0</p><p sty=
+le=3D"margin:0;text-align:left;line-height:24px;font-size:16px" class=3D"m_=
+-278408954443578688nb m_-278408954443578688ub"><span style=3D"font-family:g=
+eorgia,serif" class=3D"m_-278408954443578688nb m_-278408954443578688ub">1.=
+=C2=A0 An investigation into <a href=3D"https://www.language-technology.com=
+/so/a9Noau4QK/c?w=3DdQiJIyLn2NYNSdHifgFF0K5s4tZs7I9MAQk_aVRmkGE.eyJ1IjoiaHR=
+0cHM6Ly93d3cudW5pdGUuYWkvZGVlcGZha2VkLXZvaWNlLWVuYWJsZWQtMzUtbWlsbGlvbi1iYW=
+5rLWhlaXN0LWluLTIwMjAvIiwiciI6IjVkMTkyMTY1LWYzM2MtNGQ3MC03ZGZmLWExMGQ4OTEyM=
+TgyYSIsIm0iOiJtYWlsIiwiYyI6Ijg4MmUxMDdhLWI3YzgtNDEzZS1iNDM0LTZhYTljOTBmMjFk=
+OSJ9" rel=3D"noopener noreferrer" style=3D"color:#109fff;text-decoration:no=
+ne" target=3D"_blank"><span style=3D"text-decoration:underline;line-height:=
+24px;font-size:16px" class=3D"m_-278408954443578688nb m_-278408954443578688=
+ub">the defrauding of US$35m from a bank in the UAE</span></a> in January 2=
+020 has found that deepfake voice technology was used to imitate a company =
+director known to a bank branch manager, who then authorized the transactio=
+ns.</span></p><p style=3D"margin:0;text-align:left;line-height:24px;font-si=
+ze:16px" class=3D"m_-278408954443578688nb m_-278408954443578688ub"><span st=
+yle=3D"font-family:georgia,serif" class=3D"m_-278408954443578688nb m_-27840=
+8954443578688ub">2.=C2=A0<span style=3D"color:#030303;line-height:24px;font=
+-size:16px" class=3D"m_-278408954443578688nb m_-278408954443578688ub">=C2=
+=A0Google researchers have developed <a href=3D"https://www.language-techno=
+logy.com/so/a9Noau4QK/c?w=3DZZKCdJ0x8QwAAATCLmdyqnRdB-p7zzHjviZ0SFq8tq4.eyJ=
+1IjoiaHR0cHM6Ly9haS5nb29nbGVibG9nLmNvbS8yMDIxLzEwL3ByZWRpY3Rpbmctc3ByZWFkc2=
+hlZXQtZm9ybXVsYXMtZnJvbS5odG1sIiwiciI6IjVkMTkyMTY1LWYzM2MtNGQ3MC03ZGZmLWExM=
+GQ4OTEyMTgyYSIsIm0iOiJtYWlsIiwiYyI6Ijg4MmUxMDdhLWI3YzgtNDEzZS1iNDM0LTZhYTlj=
+OTBmMjFkOSJ9" rel=3D"noopener noreferrer" style=3D"color:#109fff;text-decor=
+ation:none" target=3D"_blank"><span style=3D"text-decoration:underline;line=
+-height:24px;font-size:16px" class=3D"m_-278408954443578688nb m_-2784089544=
+43578688ub">a model that learns to generate spreadsheet formulas</span></a>=
+ based on the context around a target cell.</span></span></p><p style=3D"ma=
+rgin:0;text-align:left;line-height:24px;font-size:16px" class=3D"m_-2784089=
+54443578688nb m_-278408954443578688ub"><span style=3D"font-family:georgia,s=
+erif" class=3D"m_-278408954443578688nb m_-278408954443578688ub">3.=C2=A0=C2=
+=A0<span style=3D"color:#030303;line-height:24px;font-size:16px" class=3D"m=
+_-278408954443578688nb m_-278408954443578688ub">Researchers at China&#39;s =
+Harbin Institute of Technology have developed <a href=3D"https://www.langua=
+ge-technology.com/so/a9Noau4QK/c?w=3Dte_9s0bmw3wlhtslCxHXi0D1XpHF4wCR7yGVAj=
+-ekW8.eyJ1IjoiaHR0cHM6Ly90ZWNoeHBsb3JlLmNvbS9uZXdzLzIwMjEtMTAtbmxwLXN0b2NrL=
+mh0bWwiLCJyIjoiNWQxOTIxNjUtZjMzYy00ZDcwLTdkZmYtYTEwZDg5MTIxODJhIiwibSI6Im1h=
+aWwiLCJjIjoiODgyZTEwN2EtYjdjOC00MTNlLWI0MzQtNmFhOWM5MGYyMWQ5In0" rel=3D"noo=
+pener noreferrer" style=3D"color:#109fff;text-decoration:none" target=3D"_b=
+lank"><span style=3D"text-decoration:underline;line-height:24px;font-size:1=
+6px" class=3D"m_-278408954443578688nb m_-278408954443578688ub">an NLP model=
+ that improves stock market predictions</span></a>.</span></span></p><p sty=
+le=3D"margin:0;text-align:left;line-height:24px;font-size:16px" class=3D"m_=
+-278408954443578688nb m_-278408954443578688ub"><span style=3D"font-family:g=
+eorgia,serif" class=3D"m_-278408954443578688nb m_-278408954443578688ub">4.=
+=C2=A0 Google=E2=80=99s new phone has <a href=3D"https://www.language-techn=
+ology.com/so/a9Noau4QK/c?w=3Dul4Qtv7hL3l1JGjBcnK-fhCQbVe-QdL4NLCnxJ9RG-0.ey=
+J1IjoiaHR0cHM6Ly93d3cuZ2l6bW9kby5jb20uYXUvMjAyMS8xMC90aGUtcGl4ZWwtNi1pcy10a=
+GUtZ29vZ2xlLWZsYWdzaGlwLXdldmUtYmVlbi13YWl0aW5nLWZvci8iLCJyIjoiNWQxOTIxNjUt=
+ZjMzYy00ZDcwLTdkZmYtYTEwZDg5MTIxODJhIiwibSI6Im1haWwiLCJjIjoiODgyZTEwN2EtYjd=
+jOC00MTNlLWI0MzQtNmFhOWM5MGYyMWQ5In0" rel=3D"noopener noreferrer" style=3D"=
+color:#109fff;text-decoration:none" target=3D"_blank"><span style=3D"text-d=
+ecoration:underline;line-height:24px;font-size:16px" class=3D"m_-2784089544=
+43578688nb m_-278408954443578688ub">a number of neat translation and speech=
+ recognition features</span></a>.=C2=A0=C2=A0</span></p><p style=3D"margin:=
+0;text-align:left;line-height:24px;font-size:16px" class=3D"m_-278408954443=
+578688nb m_-278408954443578688ub"><span style=3D"font-family:georgia,serif"=
+ class=3D"m_-278408954443578688nb m_-278408954443578688ub">5.=C2=A0 Deloitt=
+e has released the fourth edition of its <a href=3D"https://www.language-te=
+chnology.com/so/a9Noau4QK/c?w=3DNAvmUDrw6qyxiQpmxomxMU64SLm7VJJ3J9-adyab2EM=
+.eyJ1IjoiaHR0cHM6Ly93d3cyLmRlbG9pdHRlLmNvbS91cy9lbi9pbnNpZ2h0cy9mb2N1cy9jb2=
+duaXRpdmUtdGVjaG5vbG9naWVzL2VudGVycHJpc2UtYXJ0aWZpY2lhbC1pbnRlbGxpZ2VuY2UtN=
+HRoLWVkaXRpb24uaHRtbCIsInIiOiI1ZDE5MjE2NS1mMzNjLTRkNzAtN2RmZi1hMTBkODkxMjE4=
+MmEiLCJtIjoibWFpbCIsImMiOiI4ODJlMTA3YS1iN2M4LTQxM2UtYjQzNC02YWE5YzkwZjIxZDk=
+ifQ" rel=3D"noopener noreferrer" style=3D"color:#109fff;text-decoration:non=
+e" target=3D"_blank"><span style=3D"text-decoration:underline;line-height:2=
+4px;font-size:16px" class=3D"m_-278408954443578688nb m_-278408954443578688u=
+b">State of AI in the Enterprise</span></a> report.</span></p></div></div><=
+/td></tr></tbody></table></td></tr></tbody></table></div></td></tr></tbody>=
+</table></div><div class=3D"m_-278408954443578688eb m_-278408954443578688bb=
+ m_-278408954443578688db m_-278408954443578688cb" style=3D"background:#ffff=
+ff;background-color:#ffffff;margin:0px auto;max-width:700px"><table align=
+=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presen=
+tation" style=3D"background:#ffffff;background-color:#ffffff;width:100%"><t=
+body><tr><td style=3D"border-left:solid 1px #adadad;border-right:solid 1px =
+#adadad;direction:ltr;font-size:0px;padding:0px 0px 0px 0px;text-align:cent=
+er"><div class=3D"m_-278408954443578688a m_-278408954443578688v" style=3D"f=
+ont-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-al=
+ign:top;width:100%"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+ role=3D"presentation" width=3D"100%"><tbody><tr><td style=3D"vertical-alig=
+n:top;padding:0px 30px 0px 30px"><table border=3D"0" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td><div styl=
+e=3D"line-height:40px"><div style=3D"display:inline-block;width:100%;border=
+-bottom:1px solid #000000;vertical-align:text-top"></div></div></td></tr></=
+tbody></table></td></tr></tbody></table></div></td></tr></tbody></table></d=
+iv><div class=3D"m_-278408954443578688h m_-278408954443578688eb m_-27840895=
+4443578688bb m_-278408954443578688db m_-278408954443578688cb" style=3D"colo=
+r:#030303;font-family:helvetica,sans-serif;line-height:1.5;font-size:16px;b=
+ackground:#ffffff;background-color:#ffffff;margin:0px auto;max-width:700px"=
+><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" r=
+ole=3D"presentation" style=3D"background:#ffffff;background-color:#ffffff;w=
+idth:100%"><tbody><tr><td style=3D"border-left:solid 1px #adadad;border-rig=
+ht:solid 1px #adadad;direction:ltr;font-size:0px;padding:0px 0px 0px 0px;te=
+xt-align:center"><div class=3D"m_-278408954443578688a m_-278408954443578688=
+v" style=3D"font-size:0px;text-align:left;direction:ltr;display:inline-bloc=
+k;vertical-align:top;width:100%"><table border=3D"0" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td style=3D"=
+background-color:transparent;border:0px none transparent;border-radius:0px;=
+vertical-align:top;padding:15px 30px 15px 30px"><table border=3D"0" cellpad=
+ding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><t=
+r><td align=3D"left" class=3D"m_-278408954443578688bc" style=3D"font-size:0=
+px;padding:0px;word-break:break-word"><div style=3D"font-family:helvetica,s=
+ans-serif;font-size:16px;font-style:normal;line-height:1;text-align:left;te=
+xt-transform:none;color:#030303"><div style=3D"text-align:center"><p style=
+=3D"margin:0;font-size:24px;text-align:left;line-height:36px" class=3D"m_-2=
+78408954443578688pb m_-278408954443578688wb"><span style=3D"color:#030303;l=
+ine-height:28px;font-size:19px;font-family:georgia,serif;font-weight:bold" =
+class=3D"m_-278408954443578688pb m_-278408954443578688wb m_-278408954443578=
+688qb m_-278408954443578688xb">The Back Cover=C2=A0</span></p><p style=3D"m=
+argin:0;line-height:24px;text-align:left;font-size:16px" class=3D"m_-278408=
+954443578688nb m_-278408954443578688ub"><span style=3D"font-family:georgia,=
+serif" class=3D"m_-278408954443578688nb m_-278408954443578688ub">This week =
+we have Devo&#39;s cover of the Stones&#39; <span style=3D"font-style:itali=
+c;line-height:24px;font-size:16px" class=3D"m_-278408954443578688nb m_-2784=
+08954443578688ub">[I Can&#39;t Get No] Satisfaction</span>.</span></p></div=
+></div></td></tr></tbody></table></td></tr></tbody></table></div></td></tr>=
+</tbody></table></div><div class=3D"m_-278408954443578688eb m_-278408954443=
+578688bb m_-278408954443578688db m_-278408954443578688cb" style=3D"backgrou=
+nd:#ffffff;background-color:#ffffff;margin:0px auto;max-width:700px"><table=
+ align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"=
+presentation" style=3D"background:#ffffff;background-color:#ffffff;width:10=
+0%"><tbody><tr><td style=3D"border-left:solid 1px #adadad;border-right:soli=
+d 1px #adadad;direction:ltr;font-size:0px;padding:0px 0px 0px 0px;text-alig=
+n:center"><div class=3D"m_-278408954443578688a m_-278408954443578688v" styl=
+e=3D"font-size:0px;text-align:left;direction:ltr;display:inline-block;verti=
+cal-align:top;width:100%"><table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td style=3D"vertica=
+l-align:top;padding:15px 30px 15px 30px"><table border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td a=
+lign=3D"center" style=3D"font-size:0px;padding:0px;word-break:break-word"><=
+div style=3D"font-family:Ubuntu,Helvetica,Arial,sans-serif;font-size:13px;l=
+ine-height:1;text-align:center;color:#000000"><a style=3D"display:inline-bl=
+ock;max-width:100%" href=3D"https://www.language-technology.com/so/a9Noau4Q=
+K/c?w=3DYCE2JjjKwCI1pnDBWR2zqK32VaVtbsh1z5o9dIuEgL8.eyJ1IjoiaHR0cHM6Ly93d3c=
+ubGFuZ3VhZ2UtdGVjaG5vbG9neS5jb20vc28vYTlOb2F1NFFLP2xhbmd1YWdlVGFnPWVuIiwici=
+I6IjcwZGQ1OWU1LTk2ZWItNDYwNC0wZDdhLWNiZTU2ZGJhYjlmYSIsIm0iOiJtYWlsIiwiYyI6I=
+jg4MmUxMDdhLWI3YzgtNDEzZS1iNDM0LTZhYTljOTBmMjFkOSJ9" target=3D"_blank"><img=
+ src=3D"https://shoutout.wix.com/video/youtube/0c06bf3d62d11d867da758ab69cc=
+7054_938c7cb69cb9945c1bf4d0a5d047c152?w=3D638&amp;h=3D600" width=3D"auto" s=
+tyle=3D"display:inline-block;max-width:100%;width:auto;vertical-align:middl=
+e" alt=3D""></a></div></td></tr></tbody></table></td></tr></tbody></table><=
+/div></td></tr></tbody></table></div><div class=3D"m_-278408954443578688h m=
+_-278408954443578688eb m_-278408954443578688bb m_-278408954443578688db m_-2=
+78408954443578688cb" style=3D"color:#030303;font-family:helvetica,sans-seri=
+f;line-height:1.5;font-size:16px;background:#ffffff;background-color:#fffff=
+f;margin:0px auto;max-width:700px"><table align=3D"center" border=3D"0" cel=
+lpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"background:=
+#ffffff;background-color:#ffffff;width:100%"><tbody><tr><td style=3D"border=
+-left:solid 1px #adadad;border-right:solid 1px #adadad;direction:ltr;font-s=
+ize:0px;padding:0px 0px 0px 0px;text-align:center"><div class=3D"m_-2784089=
+54443578688a m_-278408954443578688v" style=3D"font-size:0px;text-align:left=
+;direction:ltr;display:inline-block;vertical-align:top;width:100%"><table b=
+order=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=
+=3D"100%"><tbody><tr><td style=3D"background-color:transparent;border:0px n=
+one transparent;border-radius:0px;vertical-align:top;padding:15px 30px 15px=
+ 30px"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"pres=
+entation" width=3D"100%"><tbody><tr><td align=3D"left" class=3D"m_-27840895=
+4443578688bc" style=3D"font-size:0px;padding:0px;word-break:break-word"><di=
+v style=3D"font-family:helvetica,sans-serif;font-size:16px;font-style:norma=
+l;line-height:1;text-align:left;text-transform:none;color:#030303"><div sty=
+le=3D"text-align:center"><p style=3D"margin:0;font-size:14px;text-align:lef=
+t;line-height:21px" class=3D"m_-278408954443578688ob m_-278408954443578688v=
+b"><span style=3D"font-family:georgia,serif" class=3D"m_-278408954443578688=
+ob m_-278408954443578688vb">If you know of a great cover version of a back-=
+catalogue classic, drop an email to us at <a href=3D"mailto:backcover@langu=
+age-technology.com" target=3D"_blank">backcover@language-technology.com</a>=
+=C2=A0and we&#39;ll consider it for inclusion here.</span></p></div></div><=
+/td></tr></tbody></table></td></tr></tbody></table></div></td></tr></tbody>=
+</table></div><div class=3D"m_-278408954443578688eb m_-278408954443578688bb=
+ m_-278408954443578688db m_-278408954443578688cb" style=3D"background:#ffff=
+ff;background-color:#ffffff;margin:0px auto;max-width:700px"><table align=
+=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presen=
+tation" style=3D"background:#ffffff;background-color:#ffffff;width:100%"><t=
+body><tr><td style=3D"border-left:solid 1px #adadad;border-right:solid 1px =
+#adadad;direction:ltr;font-size:0px;padding:0px 0px 0px 0px;text-align:cent=
+er"><div class=3D"m_-278408954443578688a m_-278408954443578688v" style=3D"f=
+ont-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-al=
+ign:top;width:100%"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+ role=3D"presentation" width=3D"100%"><tbody><tr><td style=3D"vertical-alig=
+n:top;padding:0px 30px 0px 30px"><table border=3D"0" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td><div styl=
+e=3D"line-height:40px"><div style=3D"display:inline-block;width:100%;border=
+-bottom:1px solid #000000;vertical-align:text-top"></div></div></td></tr></=
+tbody></table></td></tr></tbody></table></div></td></tr></tbody></table></d=
+iv><div class=3D"m_-278408954443578688h m_-278408954443578688eb m_-27840895=
+4443578688bb m_-278408954443578688db m_-278408954443578688cb" style=3D"colo=
+r:#030303;font-family:helvetica,sans-serif;line-height:1.5;font-size:16px;b=
+ackground:#ffffff;background-color:#ffffff;margin:0px auto;max-width:700px"=
+><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" r=
+ole=3D"presentation" style=3D"background:#ffffff;background-color:#ffffff;w=
+idth:100%"><tbody><tr><td style=3D"border-left:solid 1px #adadad;border-rig=
+ht:solid 1px #adadad;direction:ltr;font-size:0px;padding:0px 0px 0px 0px;te=
+xt-align:center"><div class=3D"m_-278408954443578688a m_-278408954443578688=
+v" style=3D"font-size:0px;text-align:left;direction:ltr;display:inline-bloc=
+k;vertical-align:top;width:100%"><table border=3D"0" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td style=3D"=
+background-color:transparent;border:0px none transparent;border-radius:0px;=
+vertical-align:top;padding:15px 30px 15px 30px"><table border=3D"0" cellpad=
+ding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><t=
+r><td align=3D"left" class=3D"m_-278408954443578688bc" style=3D"font-size:0=
+px;padding:0px;word-break:break-word"><div style=3D"font-family:helvetica,s=
+ans-serif;font-size:16px;font-style:normal;line-height:1;text-align:left;te=
+xt-transform:none;color:#030303"><div style=3D"text-align:center"><p style=
+=3D"margin:0;line-height:24px;font-size:16px" class=3D"m_-27840895444357868=
+8nb m_-278408954443578688ub"><span style=3D"font-family:georgia,serif" clas=
+s=3D"m_-278408954443578688nb m_-278408954443578688ub">Got this from someone=
+ else?</span></p></div></div></td></tr></tbody></table></td></tr></tbody></=
+table></div></td></tr></tbody></table></div><div class=3D"m_-27840895444357=
+8688eb m_-278408954443578688bb m_-278408954443578688db m_-27840895444357868=
+8cb" style=3D"background:#ffffff;background-color:#ffffff;margin:0px auto;m=
+ax-width:700px"><table align=3D"center" border=3D"0" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" style=3D"background:#ffffff;background-=
+color:#ffffff;width:100%"><tbody><tr><td style=3D"border-left:solid 1px #ad=
+adad;border-right:solid 1px #adadad;direction:ltr;font-size:0px;padding:0px=
+ 0px 0px 0px;text-align:center"><div class=3D"m_-278408954443578688c m_-278=
+408954443578688v" style=3D"font-size:0px;text-align:left;direction:ltr;disp=
+lay:inline-block;vertical-align:top;width:100%"><table border=3D"0" cellpad=
+ding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><t=
+r><td style=3D"vertical-align:top;padding:15px 30px 15px 30px"><table borde=
+r=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"=
+100%"><tbody><tr><td align=3D"center" class=3D"m_-278408954443578688dd" sty=
+le=3D"font-size:0px;padding:0;word-break:break-word"><table border=3D"0" ce=
+llpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"border-col=
+lapse:separate;line-height:100%"><tbody><tr><td align=3D"center" bgcolor=3D=
+"#1194BF" role=3D"presentation" style=3D"border:solid 0px #ffffff;border-ra=
+dius:2px;background:#1194bf" valign=3D"middle"><a href=3D"https://www.langu=
+age-technology.com/so/a9Noau4QK/c?w=3Dx5rrp9W45G4wCTNt9Yq7m-36-_QgwHZfccI7L=
+Ee2uGg.eyJ1IjoiaHR0cHM6Ly93d3cubGFuZ3VhZ2UtdGVjaG5vbG9neS5jb20vdHdpbiIsInIi=
+OiIwMDI1OWM1Mi1jMWQ2LTQyZmItMzkyOC0xZDkyNjMzODdkZTMiLCJtIjoibWFpbCIsImMiOiI=
+4ODJlMTA3YS1iN2M4LTQxM2UtYjQzNC02YWE5YzkwZjIxZDkifQ" rel=3D"noopener" style=
+=3D"display:inline-block;background:#1194bf;color:#ffffff;font-family:georg=
+ia,serif;font-size:18px;font-weight:normal;line-height:120%;margin:0;text-d=
+ecoration:none;text-transform:none;padding:10px 30px 10px 30px;border-radiu=
+s:2px" target=3D"_blank"><strong style=3D"font-weight:inherit">Subscribe<di=
+v style=3D"width:80px"></div></strong></a></td></tr></tbody></table></td></=
+tr></tbody></table></td></tr></tbody></table></div></td></tr></tbody></tabl=
+e></div><div class=3D"m_-278408954443578688eb m_-278408954443578688bb m_-27=
+8408954443578688db m_-278408954443578688cb" style=3D"background:#ffffff;bac=
+kground-color:#ffffff;margin:0px auto;max-width:700px"><table align=3D"cent=
+er" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" =
+style=3D"background:#ffffff;background-color:#ffffff;width:100%"><tbody><tr=
+><td style=3D"border-left:solid 1px #adadad;border-right:solid 1px #adadad;=
+direction:ltr;font-size:0px;padding:0px 0px 0px 0px;text-align:center"><div=
+ class=3D"m_-278408954443578688a m_-278408954443578688v" style=3D"font-size=
+:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;=
+width:100%"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D=
+"presentation" width=3D"100%"><tbody><tr><td style=3D"vertical-align:top;pa=
+dding:0px 30px 0px 30px"><table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td><div style=3D"li=
+ne-height:40px"><div style=3D"display:inline-block;width:100%;border-bottom=
+:1px solid #000000;vertical-align:text-top"></div></div></td></tr></tbody><=
+/table></td></tr></tbody></table></div></td></tr></tbody></table></div><div=
+ class=3D"m_-278408954443578688h m_-278408954443578688eb m_-278408954443578=
+688bb m_-278408954443578688db m_-278408954443578688cb" style=3D"color:#0303=
+03;font-family:helvetica,sans-serif;line-height:1.5;font-size:16px;backgrou=
+nd:#ffffff;background-color:#ffffff;margin:0px auto;max-width:700px"><table=
+ align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"=
+presentation" style=3D"background:#ffffff;background-color:#ffffff;width:10=
+0%"><tbody><tr><td style=3D"border-left:solid 1px #adadad;border-right:soli=
+d 1px #adadad;direction:ltr;font-size:0px;padding:0px 0px 0px 0px;text-alig=
+n:center"><div class=3D"m_-278408954443578688a m_-278408954443578688v" styl=
+e=3D"font-size:0px;text-align:left;direction:ltr;display:inline-block;verti=
+cal-align:top;width:100%"><table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td style=3D"backgro=
+und-color:transparent;border:0px none transparent;border-radius:0px;vertica=
+l-align:top;padding:15px 30px 15px 30px"><table border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td a=
+lign=3D"left" class=3D"m_-278408954443578688bc" style=3D"font-size:0px;padd=
+ing:0px;word-break:break-word"><div style=3D"font-family:helvetica,sans-ser=
+if;font-size:16px;font-style:normal;line-height:1;text-align:left;text-tran=
+sform:none;color:#030303"><div style=3D"text-align:center"><p style=3D"marg=
+in:0;font-size:14px;line-height:21px" class=3D"m_-278408954443578688ob m_-2=
+78408954443578688vb"><span class=3D"m_-278408954443578688ob m_-278408954443=
+578688vb"><span style=3D"font-family:georgia,serif;line-height:21px;font-si=
+ze:14px" class=3D"m_-278408954443578688ob m_-278408954443578688vb">Did you =
+find this newsletter useful?=C2=A0 if so, you might=C2=A0forward it to a fr=
+iend;=C2=A0or you could email us at <a href=3D"https://www.language-technol=
+ogy.com/so/a9Noau4QK/c?w=3D8ApOQMNfJVMBjcKSJ8lMb1oQGoqyCYh0tHip0TxN4hg.eyJ1=
+IjoibWFpbHRvOm5ld3NAbGFuZ3VhZ2UtdGVjaG5vbG9neS5jb20iLCJyIjoiNzQ0Y2EyMDMtYTI=
+zMy00MmE5LTE0ODUtNTliOWI2M2E4M2IyIiwibSI6Im1haWwiLCJjIjoiODgyZTEwN2EtYjdjOC=
+00MTNlLWI0MzQtNmFhOWM5MGYyMWQ5In0" rel=3D"noopener noreferrer" style=3D"col=
+or:#109fff;text-decoration:none" target=3D"_blank">news@language-technology=
+.com</a> to tell us what you want more of.</span></span></p><p style=3D"mar=
+gin:0;font-size:14px;line-height:21px" class=3D"m_-278408954443578688ob m_-=
+278408954443578688vb"><span class=3D"m_-278408954443578688ob m_-27840895444=
+3578688vb"><span style=3D"font-family:georgia,serif;line-height:21px;font-s=
+ize:14px" class=3D"m_-278408954443578688ob m_-278408954443578688vb">Did you=
+ hate this newsletter?=C2=A0 if so, you could forward it to an enemy; or yo=
+u could email us at <a href=3D"https://www.language-technology.com/so/a9Noa=
+u4QK/c?w=3D8ApOQMNfJVMBjcKSJ8lMb1oQGoqyCYh0tHip0TxN4hg.eyJ1IjoibWFpbHRvOm5l=
+d3NAbGFuZ3VhZ2UtdGVjaG5vbG9neS5jb20iLCJyIjoiNzQ0Y2EyMDMtYTIzMy00MmE5LTE0ODU=
+tNTliOWI2M2E4M2IyIiwibSI6Im1haWwiLCJjIjoiODgyZTEwN2EtYjdjOC00MTNlLWI0MzQtNm=
+FhOWM5MGYyMWQ5In0" rel=3D"noopener noreferrer" style=3D"color:#109fff;text-=
+decoration:none" target=3D"_blank">news@language-technology.com</a> to tell=
+ us why =E2=80=93 make it better!</span></span></p></div></div></td></tr></=
+tbody></table></td></tr></tbody></table></div></td></tr></tbody></table></d=
+iv><div class=3D"m_-278408954443578688eb m_-278408954443578688bb m_-2784089=
+54443578688db m_-278408954443578688cb" style=3D"background:#ffffff;backgrou=
+nd-color:#ffffff;margin:0px auto;max-width:700px"><table align=3D"center" b=
+order=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=
+=3D"background:#ffffff;background-color:#ffffff;width:100%"><tbody><tr><td =
+style=3D"border-left:solid 1px #adadad;border-right:solid 1px #adadad;direc=
+tion:ltr;font-size:0px;padding:0px 0px 0px 0px;text-align:center"><div clas=
+s=3D"m_-278408954443578688a m_-278408954443578688v" style=3D"font-size:0px;=
+text-align:left;direction:ltr;display:inline-block;vertical-align:top;width=
+:100%"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"pres=
+entation" width=3D"100%"><tbody><tr><td style=3D"vertical-align:top;padding=
+:0px 30px 0px 30px"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+ role=3D"presentation" width=3D"100%"><tbody><tr><td><div style=3D"line-hei=
+ght:40px"><div style=3D"display:inline-block;width:100%;border-bottom:1px s=
+olid #000000;vertical-align:text-top"></div></div></td></tr></tbody></table=
+></td></tr></tbody></table></div></td></tr></tbody></table></div><div class=
+=3D"m_-278408954443578688eb m_-278408954443578688bb m_-278408954443578688db=
+ m_-278408954443578688cb m_-278408954443578688jc" style=3D"background:#ffff=
+ff;background-color:#ffffff;margin:0px auto;max-width:700px"><table align=
+=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presen=
+tation" style=3D"background:#ffffff;background-color:#ffffff;width:100%"><t=
+body><tr><td style=3D"border-left:solid 1px #adadad;border-right:solid 1px =
+#adadad;direction:ltr;font-size:0px;padding:0px 0px 0px 0px;text-align:cent=
+er"><div class=3D"m_-278408954443578688pc" style=3D"height:10px;padding:15p=
+x 30px 0px 30px"></div><div class=3D"m_-278408954443578688b m_-278408954443=
+578688oc m_-278408954443578688zc m_-278408954443578688cd" style=3D"font-siz=
+e:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:mid=
+dle;width:100%"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" rol=
+e=3D"presentation" width=3D"100%"><tbody><tr><td style=3D"vertical-align:mi=
+ddle;padding-right:0px;padding-left:30px"><table border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><t=
+d align=3D"center" style=3D"font-size:0px;padding:10px 25px;padding-top:0px=
+;padding-right:10px;padding-bottom:0px;padding-left:10px;word-break:break-w=
+ord"><div style=3D"font-family:Ubuntu,Helvetica,Arial,sans-serif;font-size:=
+13px;line-height:1;text-align:center;color:#000000"><p class=3D"m_-27840895=
+4443578688i" style=3D"margin:0;color:#030303;font-family:helvetica,sans-ser=
+if;line-height:1.5;font-size:12px;margin-bottom:10px">Share on Twitter</p><=
+p style=3D"margin:0;overflow:hidden;white-space:nowrap"><a style=3D"vertica=
+l-align:middle;display:inline-block;text-decoration:none" href=3D"https://w=
+ww.language-technology.com/so/a9Noau4QK/c?w=3D1V1DVtDRwR3Bi7_KhzuXJoJbBQoHI=
+ueIbw3jfDLVorQ.eyJ1IjoiaHR0cHM6Ly90d2l0dGVyLmNvbS9zaGFyZT91cmw9aHR0cHM6Ly93=
+d3cubGFuZ3VhZ2UtdGVjaG5vbG9neS5jb20vc28vYTlOb2F1NFFLP2xhbmd1YWdlVGFnPWVuIiw=
+iciI6IjhlYWUwOWRjLTJkZDMtNDJhMC1hYmI5LWE0MDllYTFlYzU3ZCIsIm0iOiJtYWlsIiwiYy=
+I6Ijg4MmUxMDdhLWI3YzgtNDEzZS1iNDM0LTZhYTljOTBmMjFkOSJ9" target=3D"_blank"><=
+img class=3D"m_-278408954443578688kb" src=3D"https://static.wixstatic.com/m=
+edia/a306cb_a40efa16ac944077a7a8d54d359f1dd0~mv2.png/v1/fit/w_750,h_750,br_=
+-98,sat_-100,hue_180/a306cb_a40efa16ac944077a7a8d54d359f1dd0~mv2.png" width=
+=3D"28" height=3D"28" alt=3D"Share on Twitter"></a></p></div></td></tr><tr>=
+<td align=3D"center" class=3D"m_-278408954443578688kc" style=3D"font-size:0=
+px;padding:10px 25px;word-break:break-word"><p style=3D"border-top:solid 0p=
+x #cdcdcd;font-size:1px;margin:0px auto;width:0px"></p></td></tr></tbody></=
+table></td></tr></tbody></table></div><div class=3D"m_-278408954443578688b =
+m_-278408954443578688oc m_-278408954443578688cd" style=3D"font-size:0px;tex=
+t-align:left;direction:ltr;display:inline-block;vertical-align:middle;width=
+:100%"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"pres=
+entation" width=3D"100%"><tbody><tr><td style=3D"vertical-align:middle;padd=
+ing-right:30px;padding-left:0px"><table border=3D"0" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td align=3D"=
+center" class=3D"m_-278408954443578688mc" style=3D"font-size:0px;padding:0p=
+x 10px 0px 10px;word-break:break-word"><div style=3D"font-family:Ubuntu,Hel=
+vetica,Arial,sans-serif;font-size:13px;line-height:1;text-align:center;colo=
+r:#000000"><div style=3D"display:inline-block;vertical-align:middle"><a hre=
+f=3D"https://www.language-technology.com/so/a9Noau4QK/c?w=3D8hRkRzYtbmWzYSI=
+oSEwZCaOvsrYi8N236WK8Px3sOtI.eyJ1IjoiaHR0cHM6Ly93d3cubGFuZ3VhZ2UtdGVjaG5vbG=
+9neS5jb20vYmxvZyIsInIiOiI4ZWFlMDlkYy0yZGQzLTQyYTAtYWJiOS1hNDA5ZWExZWM1N2QiL=
+CJtIjoibWFpbCIsImMiOiI4ODJlMTA3YS1iN2M4LTQxM2UtYjQzNC02YWE5YzkwZjIxZDkifQ" =
+style=3D"text-decoration:none" target=3D"_blank"><span class=3D"m_-27840895=
+4443578688i" style=3D"font-family:helvetica,sans-serif;font-size:12px;margi=
+n-right:1.5px;line-height:25px;display:inline-block;overflow:hidden;vertica=
+l-align:middle;color:#030303;max-height:100px"><strong style=3D"font-weight=
+:inherit">Check out the blog</strong></span> =C2=A0<img height=3D"22" src=
+=3D"https://static.wixstatic.com/media/b49ee3_dd9b1a8812ae41138409a667954a6=
+088~mv2.png/v1/fit/w_750,h_750,br_-98,sat_-100,hue_180/b49ee3_dd9b1a8812ae4=
+1138409a667954a6088~mv2.png" style=3D"vertical-align:middle;border:0" width=
+=3D"22" alt=3D""></a></div></div></td></tr></tbody></table></td></tr></tbod=
+y></table></div><div class=3D"m_-278408954443578688pc" style=3D"height:10px=
+;padding:0px 30px 15px 30px"></div></td></tr></tbody></table></div><div sty=
+le=3D"margin:0px auto;max-width:700px"><table align=3D"center" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"width:1=
+00%"><tbody><tr><td style=3D"border-bottom:solid 1px #adadad;border-left:so=
+lid 1px #adadad;border-right:solid 1px #adadad;direction:ltr;font-size:0px;=
+padding:0;text-align:center"><div class=3D"m_-278408954443578688a" style=3D=
+"font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-=
+align:top;width:100%"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" role=3D"presentation" style=3D"vertical-align:top" width=3D"100%"><tbody=
+><tr><td style=3D"background:#ffffff;font-size:0px;word-break:break-word"><=
+div style=3D"height:20px;line-height:20px">=E2=80=8A</div></td></tr></tbody=
+></table></div></td></tr></tbody></table></div></td></tr></tbody></table></=
+div></td></tr></tbody></table><table align=3D"center" border=3D"0" cellpadd=
+ing=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"background:#ffff=
+ff;background-color:#ffffff;width:100%"><tbody><tr><td><div style=3D"margin=
+:0px auto;max-width:732px"><table align=3D"center" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"width:100%"><tbody>=
+<tr><td style=3D"direction:ltr;font-size:0px;padding:18px 20px 18px 20px;te=
+xt-align:center"><div class=3D"m_-278408954443578688a" style=3D"font-size:0=
+px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;wi=
+dth:100%"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"p=
+resentation" style=3D"vertical-align:top" width=3D"100%"><tbody><tr><td ali=
+gn=3D"center" style=3D"font-size:0px;padding:0;word-break:break-word"><div =
+style=3D"font-family:Helvetica,Ubuntu,Arial,sans-serif;font-size:12px;line-=
+height:20px;text-align:center;color:#757575"><strong style=3D"font-weight:n=
+ormal">You&#39;ve received this email because you are a subscriber of <u><a=
+ style=3D"font-family:Helvetica,Ubuntu,Arial,sans-serif;color:#222222;font-=
+size:12px;line-height:20px;text-decoration:none" href=3D"https://www.langua=
+ge-technology.com/so/a9Noau4QK/c?w=3DJSxW_REuqR0eEh8OUsASW00wV-E5hCU0mRZirJ=
+IRB2Q.eyJ1IjoiaHR0cHM6Ly93d3cubGFuZ3VhZ2UtdGVjaG5vbG9neS5jb20vIiwibSI6Im1ha=
+WwiLCJjIjoiODgyZTEwN2EtYjdjOC00MTNlLWI0MzQtNmFhOWM5MGYyMWQ5In0" rel=3D"noop=
+ener noreferrer" target=3D"_blank">this site</a></u>.</strong></div></td></=
+tr><tr><td align=3D"center" style=3D"font-size:0px;padding:0;word-break:bre=
+ak-word"><div style=3D"font-family:Helvetica,Ubuntu,Arial,sans-serif;font-s=
+ize:12px;line-height:20px;text-align:center;color:#757575"><strong style=3D=
+"font-weight:normal">If you feel you received it by mistake or wish to unsu=
+bscribe, please <u><a style=3D"font-family:Helvetica,Ubuntu,Arial,sans-seri=
+f;color:#222222;font-size:12px;line-height:20px;text-decoration:none" href=
+=3D"https://www.wixapis.com/email-marketing/v1/email-subscriptions/unsubscr=
+ibe?payload=3DJWS.eyJraWQiOiJZbHZQV0U0aSIsImFsZyI6IkhTMjU2In0.eyJkYXRhIjoie=
+1wibWV0YVNpdGVJZFwiOlwiMTBkYjkxM2QtZGFkYS00NjhjLTlkZjctMTZhODFjZjYxN2ZlXCIs=
+XCJlbWFpbEFkZHJlc3NcIjpcIm1qdXJhbG93aWN6QHZpcnR1c2xhYi5jb21cIixcIm1ldGFkYXR=
+hXCI6e1wibWVzc2FnZUlkXCI6XCJlMDcyYTIwYy1iZTYxLTQzMGQtYmNhOS0wNGQzNGNkYmQ2YT=
+lcIixcImNvbnRhY3RJZFwiOlwiODgyZTEwN2EtYjdjOC00MTNlLWI0MzQtNmFhOWM5MGYyMWQ5X=
+CJ9fSIsImlhdCI6MTYzNDkxNDg4MX0.J4wMSRoGGEsYyGrztCI-E-qkK0J47cakmL2UjJ9_s1g&=
+amp;language=3Den" rel=3D"noopener noreferrer" target=3D"_blank">click here=
+</a></u>.</strong></div></td></tr></tbody></table></div></td></tr></tbody><=
+/table></div></td></tr></tbody></table><img src=3D"https://shoutout.wix.com=
+/so/pixel/add7c0ff-cc70-44da-9123-6150817dbff3/10db913d-dada-468c-9df7-16a8=
+1cf617fe/e072a20c-be61-430d-bca9-04d34cdbd6a9/882e107a-b7c8-413e-b434-6aa9c=
+90f21d9/bottom/true" style=3D"display:table;height:1px!important;width:1px!=
+important;border:0!important;margin:0!important;padding:0!important" width=
+=3D"1" height=3D"1" border=3D"0"></div></div></div></div>
+
+--0000000000001b986e05cf7c0bbe--

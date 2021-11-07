@@ -1,0 +1,2479 @@
+Return-Path: <mjuralowicz@virtuslab.com>
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+ by inbound-smtp.eu-west-1.amazonaws.com with SMTP id a5kgohg71rh1sjmskia939fhfietr6gjl7hn6j81
+ for newsletter@ds.vived.io;
+ Thu, 28 Oct 2021 18:56:24 +0000 (UTC)
+X-SES-Spam-Verdict: PASS
+X-SES-Virus-Verdict: PASS
+Received-SPF: pass (spfCheck: domain of virtuslab.com designates 209.85.167.46 as permitted sender) client-ip=209.85.167.46; envelope-from=mjuralowicz@virtuslab.com; helo=mail-lf1-f46.google.com;
+Authentication-Results: amazonses.com;
+ spf=pass (spfCheck: domain of virtuslab.com designates 209.85.167.46 as permitted sender) client-ip=209.85.167.46; envelope-from=mjuralowicz@virtuslab.com; helo=mail-lf1-f46.google.com;
+ dkim=pass header.i=@virtuslab.com;
+ dmarc=pass header.from=virtuslab.com;
+X-SES-RECEIPT: AEFBQUFBQUFBQUFITENWRDkwZkkvZ2VGVGZpb2VCaElVQmZZa09WN0oxSUliVVZsZkpNVThvM09IZHE3L1crUWk0ZUs2ZG5HWHFMbHg3OEhoMUVxUDduT3kzeUd2S1M4NlFEL1hDSWFRSHNNU1pQRWJ3SHFaN3IwNTZzUFlJdUVLZmlxS2Erc1NJUUpvajhGNTRHanhBdS9Bb0s3TTFmN21XSUdwSzYwaXhiRnVKVjB6cFFtbndZS0RkVmN4V28wMXJ5RVhraEhrS1JaNEpPZ1BoK1NYTlo3akc2ZVVkNVpVaUl3Y2pIb3dSWTNLQzdWNDJMZ2FNT3d5ZlR6bGlxRkliS2htMEhvOUJPQ0tTeExnVGpHUnBHbDdJbUlwV0N1dFNnQjd3aGxkRmFVbXU1MFZlY2loQXc9PQ==
+X-SES-DKIM-SIGNATURE: a=rsa-sha256; q=dns/txt; b=UtqvYVcWo1oVyk2h3AHjb60wKm+6jbl/TW5WIesyMQvI88CoORD4dCjpCHZgaE/Wnu2WXBJOTGJ7DbbyhDqt/sX0h485BF3t7Q/T9EZ0jyY+N1zNrlrCW+XADvjks5/1zTjLGrm48xivmc0HWyoNBDtWyNDm3dotj2CpLwmA4rc=; c=relaxed/simple; s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1635447385; v=1; bh=TlEHzUl/bASj8+QcHB7W/h8tcV/YKepw7L48J6uq3N4=; h=From:To:Cc:Bcc:Subject:Date:Message-ID:MIME-Version:Content-Type:X-SES-RECEIPT;
+Received: by mail-lf1-f46.google.com with SMTP id x27so15652958lfu.5
+        for <newsletter@ds.vived.io>; Thu, 28 Oct 2021 11:56:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=virtuslab.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=inlyQabJzwc8iTzjfGbP/Z/J/dxsA22WpJIoHyTFVFk=;
+        b=ZF47qruh9wxjnnn/ZnizgTYiOJgVDWkAc8TQEhdMOcnlbu+viFnJNKotL3jrBRdpaP
+         vKi1kdZBq6wqIEUBMqsnGHb8ACt3CVWSPsF8aS+C3ktezLrwEXZSs8sdY+Fqw/8HfTxS
+         QMxFfdxRG4/9+d0Ntg47Ilp8l2YIUJen1Fd6yOdtlEgZV84vjWatVHPlMHgye71Vrgic
+         4Ze7EsgzaIM6IluLkOEdqP/ff1W6QIydSjw6dq94qbyg48OzAP1wn0CDzDN+qZKF4X/p
+         YpW4nDKyUsXLf8Ff9uXc+pJVpps7Liuu2KKNybp/ikZvWTV/+N7qETEMYHn5nGwnFiB4
+         rSeA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=inlyQabJzwc8iTzjfGbP/Z/J/dxsA22WpJIoHyTFVFk=;
+        b=zkqqDupOjUJ/xVzUCXdOLunQvvZC+nyiP4piaqfX5ayUDeaDZGG1EBmpgAZYKggaI1
+         1PswHUdpF54mau6YqgraA0klw+OZl6GVO0ZhBJfZXwHc8r6pY8pWs7Y9LGD/HiLhFkUR
+         Zgvu+cZ6WgM8VMcDBu/bB+er8Mjb/CmQPnJ4dhNISPW8HVgqmvmrGuYZaKHCF1MId2Mq
+         SY1754RoUnLAJGaBkj5TbxKcti4ff/MBdmPHgFBC7R7Uvllc2rmfbWEL20VDPEJ5IVBW
+         zs+exJBmgwJIPMGQWTEM1g1z9yHGxTdOt4PW9WutK0HmLb/tmqpHtLsyktt4ceO7xBUK
+         B0Yw==
+X-Gm-Message-State: AOAM531y4JR4cn/lxS0tAcBUwVEy7LlSRmJektke9ESUfyJSjzpi2HYF
+	6wd25a5YTTR8QViCQBZUvY/Zw/VgySQwYVAu5O/os91yXK0F+G1D
+X-Google-Smtp-Source: ABdhPJwS0K2cORwS+N5W8SK/adNo/ApoNVpZAxlNNsp8znvVLjjUXFimM3SPlKtGFHLkv0RNOqIM1ab8lekZ/nztr7g=
+X-Received: by 2002:a19:6441:: with SMTP id b1mr5739044lfj.73.1635447383138;
+ Thu, 28 Oct 2021 11:56:23 -0700 (PDT)
+MIME-Version: 1.0
+References: <6phgRUCGTUqo2E8iq0-cVg@geopod-ismtpd-1-1>
+In-Reply-To: <6phgRUCGTUqo2E8iq0-cVg@geopod-ismtpd-1-1>
+From: =?UTF-8?Q?Micha=C5=82_Jura=C5=82owicz?= <mjuralowicz@virtuslab.com>
+Date: Thu, 28 Oct 2021 20:56:11 +0200
+Message-ID: <CALdb2WwC8rbez=0MM+zd8T3rJkpyYqwQjFJzmXj5QUBNFbUf9g@mail.gmail.com>
+Subject: =?UTF-8?Q?Fwd=3A_A_Guide_to_=E2=80=98The_Great_Resignation=E2=80=99?=
+To: newsletter@ds.vived.io
+Content-Type: multipart/alternative; boundary="00000000000052381805cf6e44ec"
+
+--00000000000052381805cf6e44ec
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+---------- Forwarded message ---------
+Od: Pocket <noreply@getpocket.com>
+Date: czw., 28 pa=C5=BA 2021 o 19:29
+Subject: A Guide to =E2=80=98The Great Resignation=E2=80=99
+To: <mjuralowicz@virtuslab.com>
+
+
+What Is It About Peter Thiel? Patti LaBelle=E2=80=99s Self-Care Routine Inc=
+ludes
+Pies.
+ =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C  =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C  =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C  =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C  =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C  =E2=80=8C =E2=80=8C =E2=80=8C
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C  =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C  =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C
+=E2=80=8C =E2=80=8C
+
+[image: Pocket Hits]
+What Is It About Peter Thiel? Patti LaBelle=E2=80=99s Self-Care Routine Inc=
+ludes
+Pies.
+Brought to you by: [image: FinanceBuzz]
+<https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZOG279kYntyL10Gqg=
+u-2BW3pggE2MTg-3DtIwc_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlf=
+lnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6u=
+Z92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh5-2FeXHlzFz7k3qwea75CJ8mE=
+uYFOpi9CwMxa2VtnhIVm6rMiGI4QNbns51pc2COLAWCjn9-2ByB8IJfBPhhu06o5DnZJHjpBXoY=
+9-2F391ArfqjjdAzX7Wi4NzH0-2B8ldOkaDAjuPwkL6fb9EVgBPmkgUyxcuUmzqUGk32cYf89JJ=
+58qOAE-2BjORfYWPOAn1DsDdmd4Zebq3PnllFfPXGdbqSU-2FKs>
+[image: Meet Skimpflation: A Reason Inflation Is Worse Than The Government
+Says It Is]
+<https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZOG279kaCfchMLTtv=
+CfxJnSF86YBf4MkJKZf0B9MBLs4m32sY751jV_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0=
+Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ6j=
+JGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh52BukZhX1=
+trWA4pHOXoihYy-2Bch8AovzLTJw4xC-2FTEbTjzRNuyNvITkA2mtwX4CJ00To2ibUnf7lXi-2F=
+3FttkshHU9GcQAkQCo0juvSHyGGoxbc8ItGbWamznOaoLWGUl3BgBWbrrCTL-2BC6aoaX9044Qx=
+hmXqLgDHjRg-2BZh9haHuhxlRg5XmezM6X61dxhUKuvn5giY5BPN90styXmfLrVF8>
+Meet Skimpflation: A Reason Inflation Is Worse Than The Government Says It
+Is
+<https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZOG279kaCfchMLTtv=
+CfxJnSF86YBf4MkJKZf0B9MBLs4m32sY7zUr3_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0=
+Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ6j=
+JGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh7oSrNIFVF=
+0JxO3AlJs5yWYGSl0gzUJkQVUpQ3XT38YGeza8-2BpWABsVXzWVkwGfiFUiXJYZSjNvhnIYJAAZ=
+6FBPOwpN-2BPQRoDS7VrbW9O-2BJIqn31OpQUCCX5KKaV3FR5VIhXmzQPZPzk2SAFYHkQqS-2Fu=
+VYv3mgyvRezPyIvgLVU9EqSraRDN3vLK9-2BRkZtqKtEJl-2Fr9oJy03VlbosL1o273>
+Greg Rosalsky, Planet Money
+The economy is malfunctioning. We=E2=80=99re spending more and getting less=
+. The
+problem is bigger than just standard inflation.
+Save to Pocket
+<https://email.getpocket.com/ls/click?upn=3DGrC0u0carddbDdy8VrgWO89cPzIDtDn=
+BHdOW4GQtSl-2BSCV9-2FH5xme2LPDv0RkeAk6iVT8KQTPDdvAEiBSlNeNH9i5nffpm56Dxv63C=
+-2F-2Bxi03JDbp0xctpggWOURJJjU2makaq2TiKtY8cmSMnaK2tQ-3D-3D9len_xm9INnkOe-2B=
+Z-2B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s=
+90mwx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb=
+82UbUGpQt0ZDSgBh5L35uRmS8jR9P5C9-2F7UE-2B5nAxJL7e5UjyRw-2FtN0eo5zo-2FZVC5SR=
+6qcu56naRIR3H1fiHidM2lqNP8Z1iMuKc5ptr4QCIVjbI8-2FSoHnO4M2S3tUnj8DF1c-2FIRly=
+PW-2FCAVDsabPkmYtT7b0xT4du9RuH5bFYfmQOoOZFMizQpxm9hTSq-2BcfEHw0R10gduoo7bNX=
+ic1QBQ22PgmE72hR-2FPCEm>
+[image: 8 Clever Moves When You Have $1,000 In The Bank]
+<https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZOG279kTLkG34CUfu=
+gGr2K1mpmgZ427dDUtT84BUhxPeZJ2G9rjF8a_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0=
+Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ6j=
+JGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh4J-2BdbM4=
+julyYgblKvJDb3tR-2FfN94am0ICNUpbGs9Kl3aQFDzkiGCvI3aJq5Iz5JqkWSscvoTEDFUK9pC=
+MxdEG5ENmVRO4wmDoCV1IV27l2VxdxxlKPiYV3cHHAL-2BakhuYTy3zCl4MkHFi6F7TOq5P149V=
+62NmD-2FVZaTbUZS5UR3R-2B8JJL0gXRguQrNA4h-2BeeF8T3jONzWGE2Bx3TkNYBy4>
+SPONSORED
+8 Clever Moves When You Have $1,000 In The Bank
+<https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZOG279kTLkG34CUfu=
+gGr2K1mpmgZ427dDUtT84BUhxPeZJ2G9rl9RO_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0=
+Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ6j=
+JGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh7LQWBwCpz=
+jxY0aZrrjWV-2F2hJCiKurP7bfTWRUU3GHWgRk1aMmR0hcYT7RoBBopQn47n8sXxOklbczTpU-2=
+BckRiKLOCAA79Ru7KCoTopDKBgeMGpdheKQAitsN1nKDG7-2BAqO7kzqjUQvKtgvad-2BRAxSO-=
+2BkUSnSF6h1yBWD8zks5Es9mTHNEzXC0qGxXRH7gkqYHCK5-2BNqqzYirk1YUhjER-2FD>
+Editor, FinanceBuzz
+If you have $1,000, there are exactly 8 money moves you should make today
+that could set you up for a lifetime of financial success.
+Here=E2=80=99s What To Do =C2=BB
+<https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZOG279kTLkG34CUfu=
+gGr2K1mpmgZ427dDUtT84BUhxPeZJ2G9rVOLX_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0=
+Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ6j=
+JGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh4vptrjBJq=
+Kx6mLGg1aPnmwporQu5-2F54IFaLorHz8iDgRpuBuRb1YTcAekoh1JbRM7ym-2Ff-2B-2FIN4-2=
+BFOxYqTBvGiYn4Uad69-2BargXgiaA2hd8briMc1CouOrafzD6Z5nyu1uKykFpFSZLbypeRvS-2=
+BFUe-2BKyohNH5D6Wusg5uRcVODCNR0Nu6LcrKCWOp6cZQxhYeArJb-2B2FDD04uDl-2Bm2BGnq=
+>
+[image: He Unleashed a California Massacre. Should This School Be Named for
+Him?]
+<https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZOG279kefJ80Nb-2B=
+w0y8FBve1Z7FqknrsbD6s1wPUotCfvYyFxAP34o_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKF=
+B0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ=
+6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh7pb3efU=
+r559txTMWeSAO2EJl46MYO34wTMeCEb5K9iPybQF5-2BXZJ4Su-2BaOT-2Bl0swzWOyFPorjdAb=
+23SoRn3s4PO7IZbukgwe-2BODwKG6IIJOqYT6D-2FE0vbTAf6l-2Ff6qCOtHkP337KVlFkUWcsE=
+CbxA-2F9onrZauGn01RjjS9aabxq7a0TSL2zaVzgtwa6gB6gNEGbgU4MS7murKbY6W8ZB08>
+He Unleashed a California Massacre. Should This School Be Named for Him?
+<https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZOG279kefJ80Nb-2B=
+w0y8FBve1Z7FqknrsbD6s1wPUotCfvYyFxAX1Yt_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKF=
+B0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ=
+6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh7Kkhcld=
+nq-2B50X2CpSaFQdnNc4CFM5HWcqHD2oIj6REHf1oVzPfWNkfpkSdG-2BIjZXeC1HxtvCt6k6Yh=
+gvOjEG150DpKGxSy4D-2BLg-2B1LmwyL4Vizf-2F-2BS4JtFT4w7nQzPdNsOv0YpaHfDpXi-2Bo=
+OFVfqb-2FT9QJ7MpMFZ99KYo2qacTIjtwQKYnmPxjIlhkaVuuOH-2B03MsXDoCmxKN4mbwnmhUD=
+>
+Thomas Fuller, The New York Times
+The founder of the Hastings College of the Law masterminded the killings of
+hundreds of Native Americans. The school, tribal members and alumni
+disagree about what should be done now.
+Save to Pocket
+<https://email.getpocket.com/ls/click?upn=3DGrC0u0carddbDdy8VrgWO89cPzIDtDn=
+BHdOW4GQtSl-2BSCV9-2FH5xme2LPDv0RkeAk6iVT8KQTPDdvAEiBSlNeNCHgpQQDQuAwhjbl1v=
+9g8B95V2Ct6U0USktUmKjAX74DuggQ9VMAqmmrbiph5KoQLA-3D-3D_L0X_xm9INnkOe-2BZ-2B=
+8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mw=
+x1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82Ub=
+UGpQt0ZDSgBh7n5FpjTZTmeJ2BR-2BCzEH4wbH1hYjmkyKF2ujPMSxK-2F9Z7uQ2kq9vpfs2yy-=
+2BgV-2FEPXN-2FACzGtJ1JpVG-2B2DKN0xl7wDthuITWWG1ooopPwpg9Knc1vapoItcJ1xo4cMb=
+9hw6j4cI5pPYJD0W508-2Bu3PQrEt3D7tfx5thEGK2o6iuSEqzRdBawBS80p9BdZtPjbmwX4CmN=
+XtBfWFNSOEoR3F-2B>
+[image: Quitting Time Everywhere: A Guide to =E2=80=98The Great Resignation=
+=E2=80=99]
+<https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZOG279kXw1CrVdrU-=
+2FTYgsCQ4DDZ6UahWn2vxaKOoRE-2Fp40Hu80EOOO_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJ=
+KFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDW=
+IQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh5FlAT=
+7Y-2B3VxJTBoH9r8QK5Ol9fx4Zhji-2F-2BuDdzyxXIZ7fWD-2FrUZh9jhCLXOrCBl9EELMX599=
+RNcTJIAnatmW-2BVpeBm64dSzpVB-2B-2BR1XamAIvly0JACQGYhs6m1zMpQTQLfECYEDd7PTdx=
+LQJ3jSIXsKusO21D3i6vTP4F8RCjUD-2FYJ-2BxoDcA-2Fs77yP4fMBTY5aLPC5k7l4hZX4Kktg=
+FWY1>
+Quitting Time Everywhere: A Guide to =E2=80=98The Great Resignation=E2=80=
+=99
+<https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZOG279kXw1CrVdrU-=
+2FTYgsCQ4DDZ6UahWn2vxaKOoRE-2Fp40Hu806f5W_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJ=
+KFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDW=
+IQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh7rYRA=
+ml2HzjPuGNeWWp0-2BeA480ZfeRofOAvRBKglJU9fSGbksqGSTD1PUnfmnrokHz2q1DfuSxoSlD=
+oJtLL0NWzPAQRmN0Pw6o-2ByTeF9N8s4B4rGx4plNOwFMhT62theirMIv1l4ibrYqxYBekSMGIS=
+M7sPG55cANJ1wX39CnBd2BHA-2BrOkD1yrVMhytW8UEZAqu6uBdiy-2Bnhvj-2BOvhmjz>
+Alex Dalenberg, Pocket Collections
+Why so many people are leaving their jobs right now and what it means for
+the economy, the future of work, and your career.
+Save to Pocket
+<https://email.getpocket.com/ls/click?upn=3DGrC0u0carddbDdy8VrgWO89cPzIDtDn=
+BHdOW4GQtSl-2BSCV9-2FH5xme2LPDv0RkeAk6iVT8KQTPDdvAEiBSlNeNJHwX3NMFGj7-2Bd45=
+9EeoatjWDKnY44PqSnV3sKwYAZVZr03x-2FAxjIwD5mBDuRzXbMQ-3D-3Dr8rq_xm9INnkOe-2B=
+Z-2B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s=
+90mwx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb=
+82UbUGpQt0ZDSgBh5UJLal9-2Be5CPHqYRYbeXjZMf05W-2FdKAI0ENjyDJ8NRbFXhNTuhOC5Tx=
+oEhLr75megrEloBZuyQgLOOWGLHMoCcA6KT0FpEhdpES-2FkWa-2BSghJVwb9U9dQjSpRgb6q4S=
+5wEWMrSmt5fGDOG0MkamzK5Jbf6XsLHntCA-2FdVQvFehrG1SB-2BdehSKz1LIryq-2BArGi2Nr=
+wchW2Znj7YeCeLNDlj6>
+[image: Here=E2=80=99s the FBI=E2=80=99s Internal Guide for Getting Data fr=
+om AT&T,
+T-Mobile, Verizon]
+<https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZOG279kdeakmFeWiy=
+nCrjkoBvGHJyPMmgFUCMDONQ7bZ69JezqRFMS_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0=
+Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ6j=
+JGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh6qcFz-2Ba=
+etCeD7R5YZLth7Vf5uKZPjWQcRLjLmtV04qGhSZVey5LHfHrm6o-2BAR-2FDhzkSvH5ZiF2e-2B=
+AGDzFPlHr6NybLIZRzGh50fPL0W0iuSLwdjyJSiWuqpk0TmztcE5Cv9KXK0ZsxkA3-2FpREFOuG=
+FYmoh-2BbiQcNKfG2U-2BDdYSXOpFqV-2FlrHR62O8FPkqzrX-2F53aRCyd6k6MzIFVaesJw9>
+Here=E2=80=99s the FBI=E2=80=99s Internal Guide for Getting Data from AT&T,=
+ T-Mobile,
+Verizon
+<https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZOG279kdeakmFeWiy=
+nCrjkoBvGHJyPMmgFUCMDONQ7bZ69JezqKMx9_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0=
+Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ6j=
+JGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh4XU79zXKX=
+TLoIMAuNJaIkPssSuE4I5WB6nWf7AEXtZt7eKvY1wXBYNChdHli2Byj9B9MGE7coYEM8mhUO2zK=
+kZfpWVMrt9xQ6UsyT3xIhI2UXOFFgH1su6cLpez9d2QRTD09RabidneQbydjLRMFCWKixKZAh1N=
+VwJQ13-2FsvsKGOgYJGbv6hFRaD-2FL9VJbKWoljeQzlb2wsAJyuxbqI61Y>
+Joseph Cox, Vice
+The newly obtained document shows in granular detail the sort of data that
+the country=E2=80=99s carriers keep, and for how long.
+Save to Pocket
+<https://email.getpocket.com/ls/click?upn=3DGrC0u0carddbDdy8VrgWO89cPzIDtDn=
+BHdOW4GQtSl-2BSCV9-2FH5xme2LPDv0RkeAk6iVT8KQTPDdvAEiBSlNeNPAmRoxcCGut3K8CsO=
+L-2BLHv0SnMO0Y1CSvsQ5N4OQF9JKw45dLZp3Oc2SzvKSsapig-3D-3Dj2u3_xm9INnkOe-2BZ-=
+2B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90=
+mwx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82=
+UbUGpQt0ZDSgBh4aO826vgPsjPOqkI2-2FZ5bH1D5B7oyHn2X3s9-2BryZ0nKGPm3Fp27PUYsFy=
+AspzYfQf1deVBXTJwZ1mJgoOs56gKzpvrM9s5UQ-2BICXDVO8iZz2eqbZQNzB6nrMLMqLWFn7k2=
+b16Nd4vnTBNtVj1ItOPRVOjDq5J1Fst8odQzan2-2BhgBLdkVM-2FSThlPkXYNR4ABjDwWgV92E=
+jcsj5hK5Uysia>
+[image: What Is It About Peter Thiel?]
+<https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZOG279kcXblvLzmTO=
+EPh4WZkmGtoRLykVXvdoG7gbXEVoyKwWkdhSz_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0=
+Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ6j=
+JGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh6x5rfumhX=
+4UjzY-2FLstq06Epsw5lE140t9EsSJ8bOgG9MGAQte2oZUp8GUYmCLDRNIQMis9EcZ0lQZ6dMU4=
+vNA2dBrZuGDzoRNcukd7naCSZ4HSlrf4Jht-2Fm8-2BbD3SwmbotjDgYjJlgrmKTpONN6Cttaix=
+AIzzfzVQ08fO577FdtaGcGIpWOhbK7nS5czlCkXQQSvrmAWEfES-2FMSLRvvmjV>
+What Is It About Peter Thiel?
+<https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZOG279kcXblvLzmTO=
+EPh4WZkmGtoRLykVXvdoG7gbXEVoyKwWkqs1J_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0=
+Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ6j=
+JGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh6eVYc-2Fo=
+QgzJOpiH-2FpfuBIRiKAW-2FraVzzpvSfm5m760o-2BGCoQioQJXTSkDoBaOUJ-2F4lOePJroTL=
+csybajrTFcQ49GMhO3amy-2Bwz24ySYwqn8iglV1xrZp7t1V-2FF2uKnqVgVx58T61zwjXCw4-2=
+BUsOa68wZjLVg-2Bjw5q64-2Bk-2Fr95tOkn0-2FfRL2jAzY8GmCUW1ocWe1to1Y07R3ZXUDXM3=
+KYaS>
+Anna Wiener, The New Yorker
+The billionaire venture capitalist has fans and followers. What are they
+looking for?
+Save to Pocket
+<https://email.getpocket.com/ls/click?upn=3DGrC0u0carddbDdy8VrgWO89cPzIDtDn=
+BHdOW4GQtSl-2BSCV9-2FH5xme2LPDv0RkeAk6iVT8KQTPDdvAEiBSlNeNJCdEUEodOCnKvce3x=
+8jtuO85kkJ-2FuNS6-2BHD6-2B8qgOXOu6dfABm2E7PZiqFe1HCtTw-3D-3DoXzg_xm9INnkOe-=
+2BZ-2B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR=
+3s90mwx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhx=
+Nb82UbUGpQt0ZDSgBh4E8st9DxuOFZX4AvzyWLu-2F-2FKMadnmCk0uIVR6TU6XvfOae5GLqvEU=
+5WFFrr-2F8MTHhAvqQW0xCzLbgjL5tfDzHaqu4FNwRIKIRki4hm76-2F9qDN-2FuOxTghC665OX=
+naw9Owoa4R8yk7z1ZP01UUz4iq0trCnaUVI1XEPSk8s-2BNO6yg2xX42nura6wZTfKuXx5ZeU86=
+P6ccCz6XL7DQXverJyi>
+[image: Patti LaBelle=E2=80=99s Self-Care Routine Includes Pies]
+<https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZOG279kRokAmzOU6m=
+rS5UsFVO-2F7GHdzgoYJKqwmvYO9IDqxguytzYD_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKF=
+B0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ=
+6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh6Gtkj5u=
+FzxdYGg3q1eIqA7fHaulxJEILTAB-2BeUMSugLuzM7-2B5DwY9wJZlOsckR33HcRCRXbFWL0Ihn=
+Gvm0blHnXMINQezctiWLY211fOqDMm8DQ0aSTs7eZ6W3UbeczwllyQ3hrUnsYWnp1fJEE2w3Q8A=
+GtWReq2le-2FJl4x07u-2F-2BhxDkGa8FL80mrzwHhcUW-2B5p4ZasXkTTSIzdcu629R5>
+Patti LaBelle=E2=80=99s Self-Care Routine Includes Pies
+<https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZOG279kRokAmzOU6m=
+rS5UsFVO-2F7GHdzgoYJKqwmvYO9IDqxguyNeVb_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKF=
+B0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ=
+6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh5SjY8t2=
+VgbUT3lvUACblxhcUE98wEOkqDL0dQql5sNWfKx8o-2BiS8iaH-2FBx57BhUEeTNMgU2Bht3k4l=
+Wz1VDijT1D-2FLFAvrqJXvneDs590ismGnSc9-2F9Qc2ffIASzey-2BzBk8QfBq1LjD-2BAzyML=
+EWjLY-2BtTzgeVM2vqoe5UqJXmTP7i7nRtzMF3oEi1SwxaQV5DUYGWtPLrWmA49bSwlAdsx>
+Asia Milia Ware, The Cut
+Lilies, shiny floors, and therapy are all ways LaBelle remains stress-free.
+Save to Pocket
+<https://email.getpocket.com/ls/click?upn=3DGrC0u0carddbDdy8VrgWO89cPzIDtDn=
+BHdOW4GQtSl-2BSCV9-2FH5xme2LPDv0RkeAk6iVT8KQTPDdvAEiBSlNeNCvT1JdUYSN6A1rG6A=
+aAlDRWYm9HhP0AfmIid5QoJMsiOsSN7GP-2B2oUtgBRmXnnePg-3D-3DBqG-_xm9INnkOe-2BZ-=
+2B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90=
+mwx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82=
+UbUGpQt0ZDSgBh6cONIWXGrEN3OXhF5dgf5A9uGb1BTIfQb7aFeI6v-2F98T9KH6QskRBNcmFJ9=
+WwBXNehJiLvx361UoVsGFBeViP8fzzG7cbFcXejTJWC9Y3Mgaw-2BRlnf-2FN2lAEYm3rZ4xZYk=
+jsBq3i6fNsdRjrTMF3EpBuutU35qKK7wtLK1gyUzJQg1ZbYyJ-2FXyWvoyyYqJJzGm7nVTqPpGa=
+15OHwYSfIax>
+[image: Abba on Their Extraordinary Reunion: =E2=80=98We Are Confronted by =
+Our
+Younger Selves All the Time=E2=80=99]
+<https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZOG279kZt-2Fst6GQ=
+Xh-2Fm5lGzdWSrAwbN7Z58xRHaBbl5-2FU8rpA50B5g_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOc=
+LJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViT=
+DWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh6Qe=
+c-2Fv-2Bze32LAPl62Ig7VS0BQikrgmfnpUzpTeB3s4Invu9RJxa0ZIlLndnqY2fRIkFu0p28wJ=
+4c-2BPvbjGqmt0F-2BB8CJxPDX1IqXuBfkHMx7Xts5b26YsKlGkWv0wR-2BU2farr1zYqxB-2Fz=
+pCZL3G-2FbLSjiLbd0Z2axwbmPFSQ5fcUjK6-2FPobCpDUc539qn-2BR62MVqATwIbGU4GFLeWO=
+OdRE>
+Abba on Their Extraordinary Reunion: =E2=80=98We Are Confronted by Our Youn=
+ger
+Selves All the Time=E2=80=99
+<https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZOG279kZt-2Fst6GQ=
+Xh-2Fm5lGzdWSrAwbN7Z58xRHaBbl5-2FU8rpA5fXWH_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOc=
+LJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViT=
+DWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh5yH=
+6-2F1ih66QzpJTEeLoUE2tv-2BH9va4odj9SlUpWF-2BDLZQflFCtCBm69PzAoP3lBbZnzYSvEo=
+JQrPtNZShKZuOfvpw19iKjvPf0hzy9fyfom7kO5jE5kCIqD-2BYvGkuS3pPMyZs10kMWj2azJcl=
+Tv7znfXmkRQRkTVj-2FlXQwx-2BPa7KEsNDcVTmyyslZSWNxHl91431q1C87UPjcCKBjUe0oP>
+Alexis Petridis, The Guardian
+Here we go again! After nearly 40 years, Benny, Bj=C3=B6rn, Agnetha and
+Anni-Frid are back together. The Guardian gets the inside story of the
+greatest reunion in pop.
+Save to Pocket
+<https://email.getpocket.com/ls/click?upn=3DGrC0u0carddbDdy8VrgWO89cPzIDtDn=
+BHdOW4GQtSl-2BSCV9-2FH5xme2LPDv0RkeAk6iVT8KQTPDdvAEiBSlNeNF-2BhSVxHcqIu5s2y=
+nuEOKo5yBsfdHIfj54spj6UZP-2BeRCqAERdwurtehsAvRDZUbGQ-3D-3D6VtF_xm9INnkOe-2B=
+Z-2B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s=
+90mwx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb=
+82UbUGpQt0ZDSgBh5-2BnvUrfniarG2WaUsuGhNmB68EuyGBZtTgAx7YB-2B1ZNXuAY-2FiZ8ze=
+MD9A3mDWfe2QeAV1rQ0RdTuzopSHbmNsxbrU-2Fc8fUW44j9aqioigKe6cbH-2B-2B6uJj5NvXk=
+KJ4F2J4-2Bl0L6MEQKTxhb9jBKMPurs8ShtgB-2Bjn04tsY07RLRoRKZYewngu3VQauaFLqtEUl=
+CE31PPzyzJVIYZdYz2aAa>
+[image: For the Love of Black Queer Cinema: A Conversation with Stephen
+Winter]
+<https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZOG279kYtaHDXq54I=
+KyHOS1jjAlOsbiJ5EB-2BB9KwIAEW2RTr4iS3M-_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKF=
+B0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ=
+6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh47T6z09=
+gkOGXRGYdLZ7oLN5JcRl8-2BV3-2F5nygZaIta-2FHeo00FtoBaBxkxMtEbBF2ff1zcVqdDoyng=
+JRLbnhfU30qCMyTJ7ivSj-2BUejW7yywp3MzBRJJqBcqCgdE8B7-2B1jC6pX8QzmyBBxnakCOq5=
+YGX9-2FUDd5Jm7QkX7Z17UwDDUb128idYuxa4uIdSw7mOWHruHcge5YoYTbEa-2FVKY3cYL>
+For the Love of Black Queer Cinema: A Conversation with Stephen Winter
+<https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZOG279kYtaHDXq54I=
+KyHOS1jjAlOsbiJ5EB-2BB9KwIAEW2RTr4i3nD4_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKF=
+B0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ=
+6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh5wDBaZ2=
+HJ-2FhwIDHsMWAD-2FVT3uGJoYWGOZh3IqZ-2FFlkHY9Oz9s2YZHZnCXkmCDiz2hLJREe3YsTaH=
+2Fk6J51Hmvc8WKHAvkpcW3tQsDyNEcAz5PHYoDb3TvONAg8ZIvAs9nv7vtiYFVFgynD0s-2BNm5=
+RS9ZEDgrFcEai3-2F-2BTo1dtJLhwA-2FUMoI8IxZtp5Jbp7UxQPRvvwBjpG77CBPrCgrXN>
+Conor Williams, Criterion
+With his two features now playing on the Criterion Channel, the audacious
+and fiercely independent director shares memories of the nineties LGBTQ
+film scene and his ideas about sensuality on-screen.
+Save to Pocket
+<https://email.getpocket.com/ls/click?upn=3DGrC0u0carddbDdy8VrgWO89cPzIDtDn=
+BHdOW4GQtSl-2BSCV9-2FH5xme2LPDv0RkeAk6iVT8KQTPDdvAEiBSlNeNFenK-2FauAZZnOUGL=
+zT11XkkmZphTZE74Cd8bJ-2FbzBdbwv1mtAbQpaNC3WEVHJ6xMrg-3D-3D60cK_xm9INnkOe-2B=
+Z-2B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s=
+90mwx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb=
+82UbUGpQt0ZDSgBh52rKe7TiWzDT3LyTh3VxN30WMaA0J6etO3F8ikFyFPfbK4RrCHYD9Vnss-2=
+FXr2dAdiqaPt-2FrCeokzGP2Xq05B529Iyl9KYuq1GMAoxn7K9oDuvWpnCcjpIAok54KcZVaCfc=
+hV-2BReksggvryvGWyK9ME3AoPT2fAaUmWNm4l7BartgD1imuS-2BugSWzqnuxrVoyEtDfyguHF=
+aT5AUV1NESPJb>
+[image: The Toronto Photographer Capturing the Joy of Friendship in Your
+Early 20s]
+<https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZOG279kfCNl0VkFyf=
+r77vJ3weoVZdgMoFwFHXLKwNDewEghyUvhAHH_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0=
+Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ6j=
+JGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh6l8c4fb9w=
+7gKfDI-2BLDDEyeZApp2eou5t2DvNpYuGltKEYkHlDIIajMMbYtm9Opu5HBtFnFAgRkOuNiYdt6=
+IMyP7o08wIebHh1pSDC6JjgOGkgGJf01q2ljq9DBy-2B8weT2g-2FwHCGnUZhXVkff-2FsHiIyy=
+dUExpS4-2Fyv6QN4edzAFi5eF8DwUneht0zwSGMpJsYowRnRH8elblYaa0CgmNZUo>
+The Toronto Photographer Capturing the Joy of Friendship in Your Early 20s
+<https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZOG279kfCNl0VkFyf=
+r77vJ3weoVZdgMoFwFHXLKwNDewEghyUvz9Bf_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0=
+Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ6j=
+JGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh4oMIewRL1=
+kAChjZGqZqLRcAB6-2BDtoSw2NorZtrs13ljlwKfibYJ5Z0Eq02jsmJVVXijROi9TCoxP8Q27XK=
+ZTojKT7XtlqkGv1zGi1coLEVbI6xnRK25vTYXIcWUqVMhmp6gQ1kNSYEBWEdo75cmP5YTtX0ONd=
+1i5-2F4DxxEEWRv0C-2FyJygkuFwhrjOkaVwaflIIqBTxfsTYv81qxbJaIZcT>
+Yume Murphy, i-D
+A photo can be a repository of a feeling, often tracing the contours of
+memories fallen out of grasp. For Sarah Berglund, photography is a kind of
+storytelling of the past.
+Save to Pocket
+<https://email.getpocket.com/ls/click?upn=3DGrC0u0carddbDdy8VrgWO89cPzIDtDn=
+BHdOW4GQtSl-2BSCV9-2FH5xme2LPDv0RkeAk6iVT8KQTPDdvAEiBSlNeNEQVY6xLOjOpfZqVFv=
+4gj6MzCMOJXcXbdvYUfyy89LdaepiMD1OMSNZ6CZAYLuT1bA-3D-3DvHlI_xm9INnkOe-2BZ-2B=
+8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mw=
+x1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82Ub=
+UGpQt0ZDSgBh6mCairQAmN29dRWXKPDo38sAYaq5DeoQl-2F1-2FBPKYjqj0Op3uX-2BF7x1Lua=
+F9E9P0fxCJHCrFFCZOts3Leql2-2FX99sm2VEUJn0VbDHy1BIkhRM1QEGxTaW-2BYt2waLduKkR=
+1gD8iERpxX0rYyius-2FhIlpp3lhKIGnd1XPWFrKRaVsvNXjWKrDdYG3ckxfjQmsmpKbtPH9fIe=
+-2BpSXyJmeeB0c8>
+[image: Pocket]
+<https://email.getpocket.com/ls/click?upn=3DIX5fWO68cC4NzosZAERptSGgHdI5iRS=
+8iYMG0y8vHng-3DRNVD_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlfln=
+Rhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ9=
+2HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh5kx0-2FRbK4ocL4WMs1sGZCUb99=
+UnHGkxBcsv78J5QQfacA7IUEdScRlYAIZxTtOMPi3mRSUFJhDh80T8gQSyKkleBQzk3I6wR6WRW=
+r7j2RrfF6Xn-2B9w3fSRjlrpiwGRQPMTT1hyctAwNpI-2FnEY1SR6ONfx2VfDJK19NWyaATH7rp=
+8YQ8lMr4oD0rgNonzgMWEj8HZfGF8DUYKmQoSDysEYA>
+Blog
+<https://email.getpocket.com/ls/click?upn=3Dj5Fy4CDTXPbjSSOBhUOsDTqQmuWdqzv=
+g0t5hJiaXmmCTQOAKM5ZdDnAS6v-2FTnPZp9xRk_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKF=
+B0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ=
+6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh4FtiYdK=
+c1QeYdtSewxnts-2F7DT-2B89rQnQcT0y-2Ba3XuMHv3B-2FVJOQNr-2BbkB2l22uTqDZ1MmtNl=
+SFuvx5JsHs9dELhSBDuB9W134umggLqyt9r70Z9BjMZdWPA5owT6gzFrFbsItVgRi6TOzlYC2fr=
+Q7vu34NRneNHF6v60tFycEhn3fHgj2UuuXrVSg-2Fo4z3yCgZo45JNbXbz4WDkK3ezQYD>
+[image:
+tw]
+<https://email.getpocket.com/ls/click?upn=3DqzpuRHJLlW6l0rxksHI796sfyP938TP=
+9LeoZS-2Basn9drDqLAS63EHQKDswhRkgDMlZEs_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKF=
+B0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ=
+6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh7rpvYsb=
+TzC5mEH5QUkOYKSslOChrzJGuvzAhYBXbdvQru-2Fo6ycgNGC4Ac6FzNfJvY7v-2F8ftcAB8ee2=
+pBpXLVlku-2BvytcHpffb-2BPL1NF-2FX8tizaYqbXikDfNtQigVMG65cM6OxOrQUv0sWHTB3G3=
+MKK3Up0nry-2Fs4NAe3gP5atihQTfoa2h23-2B8PdbsfbPTSxnoBfPnZuTQto0i6E9MUt5e>
+[image:
+FB]
+<https://email.getpocket.com/ls/click?upn=3DxmLR8-2Bw1tvsLZoJL9-2Fb-2FNBu79=
+fXZEihDRrRh0mTSG0L-2F3ruH5D3SC6j-2FaOeV83YhJqjR_xm9INnkOe-2BZ-2B8OvS1pmo94I=
+MIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5=
+LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgB=
+h4SesTXaBMQkA-2F-2Frxh5GlE92HeFiy4wcNSObyXAPTYkFByn16K5k-2BDgvIAmAfcdAUfTmI=
+8JHl90gMEs1S0-2Bb52Zn-2BcXIq6r-2FfUFiyB72rr4ebZ8hjDpYapMX23aOcpatNwgwmO3-2B=
+5gUp5BxpMtQ5g-2B2zGZzctPiYsjypjN-2ByVKVVeOd7-2Bub593Nif2HmlZ05ts6uTJ6DfTGgj=
+Ud0GJyO-2F49>
+Get the Pocket app to save and read anywhere:
+<https://email.getpocket.com/ls/click?upn=3DnpsH9WqOMAo40cbLSZTDGlMadmqIFyh=
+UJJfL-2BtnAaZKAU9DmO3sF4LcR8HxpWsMKSxYfF-2BkFjRIAnsgx4o21jOuuWMP9jkd-2Fca2M=
+dYrs7xm8bESzHMVVUXj6T7MFzKeanCriMBzoEUTZbDIibdEuoA-3D-3DwMgS_xm9INnkOe-2BZ-=
+2B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90=
+mwx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82=
+UbUGpQt0ZDSgBh7w6g0-2BBe81tsCcMaO0U7VuvnqATUbzfY6IB50ds6kI1arSfNeH-2FMi3LuI=
+2WAPzCCk5BZptIr1l6q-2BAbK2RenzHf8ZllOAwKQGh1NVGSDxJy6X-2BpLDsBCjIxK-2FOhodi=
+8MHHZigJTkKTSKkUzjv2R0vs-2Fnh7M1sy4ef19cJVVJINT5ZmHAMHUf-2FPE2nJMWKgjnMTj0M=
+jfkPrmV62I8ZLkAYx>
+<https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZOG279kQlTyrK6no2=
+8SN8Z55cCGEr7iUE7fyhGGeLbVt7Hg5qd7sj14-2Bimcm9xTlwDuiIsmrbROSQEITONQwLKnNb2=
+wCAUgL3fgEunsm1-2BpKrArEOJ5EHJj-2FUwoCnA60glx9St3E1BHiO3CFAzl6xZ4tmwLKjvW-2=
+F-2BSF0GlsF46ahymkbhder9sTOWfDX3kzy7hj5Ab7Q-3D-3DKCUn_xm9INnkOe-2BZ-2B8OvS1=
+pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGV=
+CdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt=
+0ZDSgBh5ttdfGIEaLooWBXl4Cr2BG6Qwm5bOXwY2SIg7bFfnFADoybUsPectDguG-2ByZWWxAzj=
+c8ODZgWyUpYX5vcsOO6xWhlTKA-2F9dbXSPj2hTx6BkFZT6pLziNLvgxP-2FluB2Ul7O6HwoRzy=
+1lqIArNBWO9tFiMSh3p0zuFuISaz79hY0zCAGRSGXOEcmANUN9E-2BCvhmxKrUV52OetrLj6aI0=
+k72a>
+Privacy Policy
+<https://email.getpocket.com/ls/click?upn=3DIX5fWO68cC4NzosZAERptYtdeZMss7V=
+A2t-2F73t9K3dJsI0CNBPJNeLgwJe1JEJ3qxDMQ_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKF=
+B0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ=
+6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh4YsGRgV=
+vuRe5GQFDp1tJJph8-2BgUOhwoMiQeSnUES9hgXchRaunLqhw2VttJKf6bVwN3WscC1TXEIPOBZ=
+Fp-2FhtL3-2F9-2BTQ0GOkT-2B2Q4rPbtrWuWIsSmo7Y7RVdkV1Dvk9Sc26D8oCdtpcs5p7axf4=
+Ez-2FZeub-2FIMvt6NROGxmb4G-2FfhqTRKJmgJvrOlSC43Lgjhin-2BB05NlIYNk3HPZd0hGHh=
+>
+ =E2=80=A2
+Help Center
+<https://email.getpocket.com/ls/click?upn=3DmkXE0Ty4K-2FoP1ueqo7lZRcr3LUJw8=
+UGIdABdaXkSYAOrHr-2BTqliRxIghIX5VvZq4YMoO_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJ=
+KFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDW=
+IQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh5R4yV=
+hNsJUHGAW3RyHxduAJSRuwmBWTS4ygQIAgzOXHDKlEc6-2FPnJp6D3elOGr-2Bqg7u6UEMIMURU=
+G7P1rTdegqaV2phb2TEJYEkGdP3JmS4Ndz-2FDQy1ak-2FyirwFQM3aFoLUtcSfNG7sVMj6OL-2=
+FNVq0lsDrGmWYXRbbpNSokB8tnypNHdwB70eu1BDts8Ep5Z-2F4bb-2Fs8FLQYeuArsWZsrTo>
+ =E2=80=A2
+Become a Sponsor
+<https://email.getpocket.com/ls/click?upn=3DIX5fWO68cC4NzosZAERptSaUM2YsJ9J=
+yX9SWxm1cCjLyH-2FWJ0KSt-2BTTwIRmsPxx-2B2bqe_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOc=
+LJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViT=
+DWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh45Y=
+UK9tKIyL54IYDNP4yH1HE9g9Kaog-2BPd5nFKAgOqOYkALdKvwGKC71tH-2BB-2F8X8HBiMAsa-=
+2FBiMDWiyKUE-2FTUxou4tJy6sLWjGg4nYZ1mxz3f3JxxN5bsZzMSZPZY0z1-2FaMGPey5VtT28=
+0KbdV-2F9EhAkNy2f7YRP9n4-2BRQ70xTjUhrJgy0Bkk05SR7KB8lpX5JC5IwD9Ox6PjaDZUMlP=
+6-2F>
+
+Enjoying this newsletter? Share it with your friends. They can subscribe
+here
+<https://email.getpocket.com/ls/click?upn=3DIX5fWO68cC4NzosZAERptXKMciaPR-2=
+FoCkY4-2FNyP7RdsC-2FyIHxdoZT28isL04Y-2FG25zpSiI6ZhHo3rYJtZY3qmPzQNgNlMxK0w1=
+oYCOXqbbPzB-2B3oyWo1ZHGeh9YAyO-2F1iw4pKaApV7FgXf8RC-2BQO2mXJn-2B7HIRRURmQD1=
+HOlD44-3Dhdte_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp=
+1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVh=
+t9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh6D4iNew-2Boxkgd37gUX2yymJGgtjIzGK=
+suBMnqkYw467xELfCsWnqMjkluJ1EIEdlexa-2BZHbKjKjMdu0V8LbIMctue5ioMMkCzW0BXGrM=
+sg6TnoUWEsH07v44qZXBz-2FN2bez1sQI5ZHYNBEv0u37lbC1uPRtuf1rB-2BXyFfE3zHBb8HPd=
+ZABcWXpyD7GsLXndMT8wB6WQj0yX-2F9kbODlnzbr>
+.
+
+You are receiving this email because you signed up for Pocket.
+Want to change how often you receive Pocket Hits newsletters? Update the
+frequency here
+<https://email.getpocket.com/ls/click?upn=3DIX5fWO68cC4NzosZAERptV7y9DCZoG-=
+2BNs0r7Ekpf5FjUH07SyLlyeJgM6CzDL73oQPzPWfDcNZmmtoTAsxv-2B1yK-2FAna5jqV5971B=
+HFTtVCCBf-2FzIxgvfu-2BgMLoPbfX0qn4Ik_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0U=
+op4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ6jJ=
+GfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh5vMN4iObg1=
+CoWtKO3gxBPjnpRdwBRygve9a5rWkwvQtbd9u3rVD1SfI1oyOZ0at40s-2FjgPr-2BxdsFsJyqw=
+4w3ucErNYhbYHju2Zkv8gyClzQx9xcRAr29LeaevKFme-2BU1S5px6Pctma1-2FkupAM1Y-2BAa=
+Kgrs5y9WfKZAA1aOiGvcbxWDQOM3-2BXKoRjO-2FOdfk2Yjs7baVVLN2pBYYuk5emM2S>,
+or unsubscribe
+<https://email.getpocket.com/ls/click?upn=3DIX5fWO68cC4NzosZAERptV7y9DCZoG-=
+2BNs0r7Ekpf5FjUH07SyLlyeJgM6CzDL73oBApDPUdiKEw2g2n-2FYB4caSx5CBRrsBXhEpk5oy=
+mHhMK-2B0YlAar9adw0Mhz4J6M26RwaF_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0Uop4L=
+Eo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ6jJGfoV=
+F8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh7iVMBunpEu4LR8=
+nrBXpZ0jWJJQPBseYnyVbulG72wv6Wt5P-2FFq492lagE5ZcDOW1fm3i4uYslPh-2BO-2FSha7e=
+XosQwRyNKok5XltW5NKIOKevcmZ3P9HY2bHf1XWzcPICgcI6HKTxlYSBMX0uWU-2BrLW4eJrrw8=
+k-2FVTOzYO3AbIjBl3uzDVvW9lhmS2dX8y-2BRg4QGMMeVo-2Fv2R5ygvrYa0MtA>
+.
+
+Mozilla Corporation, 2 Harrison St. #175, San Francisco, CA 94105
+
+--00000000000052381805cf6e44ec
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">---------- Forwarded message ---------<br>Od: <strong class=
+=3D"gmail_sendername" dir=3D"auto">Pocket</strong> <span dir=3D"auto">&lt;<=
+a href=3D"mailto:noreply@getpocket.com">noreply@getpocket.com</a>&gt;</span=
+><br>Date: czw., 28 pa=C5=BA 2021 o 19:29<br>Subject: A Guide to =E2=80=98T=
+he Great Resignation=E2=80=99<br>To:  &lt;<a href=3D"mailto:mjuralowicz@vir=
+tuslab.com">mjuralowicz@virtuslab.com</a>&gt;<br></div><br><br><u></u>
+
+       =20
+
+
+
+
+
+
+
+
+
+
+<div bgcolor=3D"#f3f3f3">
+
+<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0">
+	<tbody><tr>
+		<td valign=3D"top" align=3D"center" bgcolor=3D"#f3f3f3">
+
+
+
+
+<table width=3D"580" border=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+
+
+
+
+ <tbody><tr>
+    <td align=3D"center" style=3D"line-height:0px;font-size:0px"><div style=
+=3D"display:none;font-size:1px;color:#f7f7f7;line-height:1px;font-family:Ar=
+ial,sans-serif;max-height:0px;max-width:0px;opacity:0;overflow:hidden">What=
+ Is It About Peter Thiel? Patti LaBelle=E2=80=99s Self-Care Routine Include=
+s Pies.</div><div style=3D"display:none;max-height:0px;overflow:hidden">
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0
+</div></td>
+  </tr>
+
+
+
+
+
+
+    		<tr>
+			<td width=3D"580" align=3D"center" bgcolor=3D"#ffffff" style=3D"padding-=
+top:35px;padding-right:40px;padding-bottom:35px;padding-left:40px">
+				<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+					<tbody><tr>
+						<td align=3D"center" style=3D"font-family:&#39;Helvetica Neue&#39;,He=
+lvetica,Arial,sans-serif;font-size:15px">
+                                                            <a style=3D"col=
+or:#ef4056;font-weight:bold;text-decoration:none">
+                                    <img src=3D"http://email-assets.getpock=
+et.com/logo-pocketHits-2x.png" width=3D"127" alt=3D"Pocket Hits" style=3D"d=
+isplay:block">
+                                </a>
+                                                    </td>
+					</tr>
+
+					<tr>
+						<td style=3D"font-size:20px;line-height:20px"><img src=3D"http://emai=
+l-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"20" alt=3D"" style=
+=3D"display:block"></td>
+					</tr>
+
+					<tr>
+						<td align=3D"center" style=3D"font-family:&#39;Helvetica Neue&#39;,He=
+lvetica,Arial,sans-serif;font-size:15px">
+                            <a style=3D"color:#313131;text-decoration:none"=
+>
+                                What Is It About Peter Thiel? Patti LaBelle=
+=E2=80=99s Self-Care Routine Includes Pies.
+                            </a>
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+   =20
+
+
+		<tr>
+			<td style=3D"font-size:10px;line-height:10px"><img src=3D"http://email-a=
+ssets.getpocket.com/spacer.gif" width=3D"1" height=3D"10" alt=3D"" style=3D=
+"display:block"></td>
+		</tr>
+
+
+
+		<tr>
+			<td width=3D"580" align=3D"center" bgcolor=3D"#ffffff" style=3D"padding-=
+top:20px;padding-right:20px;padding-bottom:20px;padding-left:20px">
+
+
+				<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+">
+					<tbody><tr>
+						<td align=3D"right" valign=3D"middle" style=3D"font-family:&#39;Helve=
+tica Neue&#39;,Helvetica,Arial,sans-serif;font-size:10px;color:#313131;lett=
+er-spacing:0.2em">
+						Brought to you by:
+						</td>
+
+						<td width=3D"15"><img src=3D"http://email-assets.getpocket.com/spacer=
+.gif" width=3D"15" height=3D"1" alt=3D"" style=3D"display:block"></td>
+
+
+						<td width=3D"67" align=3D"left" valign=3D"middle" style=3D"font-famil=
+y:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;font-size:10px;color:=
+#313131">
+						<a href=3D"https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZ=
+OG279kYntyL10Gqgu-2BW3pggE2MTg-3DtIwc_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0=
+Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ6j=
+JGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh5-2FeXHlz=
+Fz7k3qwea75CJ8mEuYFOpi9CwMxa2VtnhIVm6rMiGI4QNbns51pc2COLAWCjn9-2ByB8IJfBPhh=
+u06o5DnZJHjpBXoY9-2F391ArfqjjdAzX7Wi4NzH0-2B8ldOkaDAjuPwkL6fb9EVgBPmkgUyxcu=
+UmzqUGk32cYf89JJ58qOAE-2BjORfYWPOAn1DsDdmd4Zebq3PnllFfPXGdbqSU-2FKs" style=
+=3D"text-decoration:none" target=3D"_blank">
+							<img src=3D"https://pocket-hits.s3.amazonaws.com/2021_09_11-FinanceB=
+uzz/financebuzz+logo.png" width=3D"100" alt=3D"FinanceBuzz" style=3D"displa=
+y:block"></a></td>
+					=09
+
+
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+
+   =20
+	<tr>
+		<td style=3D"font-size:10px;line-height:10px"><img src=3D"http://email-as=
+sets.getpocket.com/spacer.gif" width=3D"1" height=3D"10" alt=3D"" style=3D"=
+display:block"></td>
+	</tr>
+=09
+
+
+
+
+
+
+		<tr>
+			<td width=3D"580" bgcolor=3D"#ffffff" style=3D"padding-top:35px;padding-=
+right:40px;padding-bottom:35px;padding-left:40px">
+
+
+
+			=09
+
+				<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+					<tbody><tr>
+
+
+						<td width=3D"150" align=3D"center" valign=3D"top" style=3D"font-famil=
+y:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;font-size:15px;paddin=
+g-top:5px;padding-right:0;padding-bottom:0;padding-left:0">
+						<a href=3D"https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZ=
+OG279kaCfchMLTtvCfxJnSF86YBf4MkJKZf0B9MBLs4m32sY751jV_xm9INnkOe-2BZ-2B8OvS1=
+pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGV=
+CdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt=
+0ZDSgBh52BukZhX1trWA4pHOXoihYy-2Bch8AovzLTJw4xC-2FTEbTjzRNuyNvITkA2mtwX4CJ0=
+0To2ibUnf7lXi-2F3FttkshHU9GcQAkQCo0juvSHyGGoxbc8ItGbWamznOaoLWGUl3BgBWbrrCT=
+L-2BC6aoaX9044QxhmXqLgDHjRg-2BZh9haHuhxlRg5XmezM6X61dxhUKuvn5giY5BPN90styXm=
+fLrVF8" style=3D"color:#313131" target=3D"_blank"><img src=3D"http://email-=
+assets.getpocket.com/dd80630b650fd63abc11bf110664b885" width=3D"150" alt=3D=
+"Meet Skimpflation: A Reason Inflation Is Worse Than The Government Says It=
+ Is" style=3D"display:block"></a></td>
+
+
+
+						<td><img src=3D"http://email-assets.getpocket.com/spacer.gif" width=
+=3D"35" height=3D"1" alt=3D"" style=3D"display:block"></td>
+
+
+						<td width=3D"325" align=3D"left" valign=3D"top">
+							<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100=
+%">
+
+							=09
+
+								<tbody><tr>
+									<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;font-size:23px;line-height:28px">
+								<a href=3D"https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4Y=
+aZOG279kaCfchMLTtvCfxJnSF86YBf4MkJKZf0B9MBLs4m32sY7zUr3_xm9INnkOe-2BZ-2B8Ov=
+S1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1K=
+GVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGp=
+Qt0ZDSgBh7oSrNIFVF0JxO3AlJs5yWYGSl0gzUJkQVUpQ3XT38YGeza8-2BpWABsVXzWVkwGfiF=
+UiXJYZSjNvhnIYJAAZ6FBPOwpN-2BPQRoDS7VrbW9O-2BJIqn31OpQUCCX5KKaV3FR5VIhXmzQP=
+ZPzk2SAFYHkQqS-2FuVYv3mgyvRezPyIvgLVU9EqSraRDN3vLK9-2BRkZtqKtEJl-2Fr9oJy03V=
+lbosL1o273" style=3D"font-size:23px;color:#48bbb7;font-weight:bold;text-dec=
+oration:none" target=3D"_blank">Meet Skimpflation: A Reason Inflation Is Wo=
+rse Than The Government Says It Is</a></td>
+								</tr>
+
+
+								<tr>
+									<td style=3D"font-size:10px;line-height:10px"><img src=3D"http://e=
+mail-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"10" alt=3D"" st=
+yle=3D"display:block"></td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;font-size:15px;line-height:19px;color:#313131;font-style:italic"=
+>
+																					 Greg Rosalsky,																															Planet M=
+oney
+																			</td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-size:15px;line-height:15px"><img src=3D"http://e=
+mail-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"15" alt=3D"" st=
+yle=3D"display:block"></td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;font-size:15px;line-height:19px;color:#313131">
+										The economy is malfunctioning. We=E2=80=99re spending more and ge=
+tting less. The problem is bigger than just standard inflation.
+									</td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-size:15px;line-height:15px"><img src=3D"http://e=
+mail-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"15" alt=3D"" st=
+yle=3D"display:block"></td>
+								</tr>
+
+							=09
+
+							=09
+									<tr>
+										<td>
+											<table width=3D"325" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0">
+												<tbody><tr>
+																											<td width=3D"40%" align=3D"left">
+															<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%">
+																<tbody><tr>
+																	<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetic=
+a,Arial,sans-serif;font-size:15px;line-height:19px">
+																	<a href=3D"https://email.getpocket.com/ls/click?upn=3DGrC0=
+u0carddbDdy8VrgWO89cPzIDtDnBHdOW4GQtSl-2BSCV9-2FH5xme2LPDv0RkeAk6iVT8KQTPDd=
+vAEiBSlNeNH9i5nffpm56Dxv63C-2F-2Bxi03JDbp0xctpggWOURJJjU2makaq2TiKtY8cmSMna=
+K2tQ-3D-3D9len_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4s=
+p1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiV=
+ht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh5L35uRmS8jR9P5C9-2F7UE-2B5nAxJL7=
+e5UjyRw-2FtN0eo5zo-2FZVC5SR6qcu56naRIR3H1fiHidM2lqNP8Z1iMuKc5ptr4QCIVjbI8-2=
+FSoHnO4M2S3tUnj8DF1c-2FIRlyPW-2FCAVDsabPkmYtT7b0xT4du9RuH5bFYfmQOoOZFMizQpx=
+m9hTSq-2BcfEHw0R10gduoo7bNXic1QBQ22PgmE72hR-2FPCEm" style=3D"color:#48bbb7;=
+text-decoration:none" target=3D"_blank">Save to Pocket</a></td>
+																</tr>
+															</tbody></table>
+														</td>
+																																						</tr>
+											</tbody></table>
+										</td>
+									</tr>
+
+															=09
+							</tbody></table>
+						</td>
+					</tr>
+
+				</tbody></table>
+
+				=09
+					            <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0">
+              <tbody><tr>
+                <td><img src=3D"http://email-assets.getpocket.com/spacer.gi=
+f" width=3D"1" height=3D"30" alt=3D"" style=3D"display:block"></td>
+              </tr>
+              <tr>
+                <td align=3D"center" bgcolor=3D"#f1f1f3" width=3D"510" heig=
+ht=3D"1" style=3D"font-size:1px;line-height:1px"><img src=3D"http://email-a=
+ssets.getpocket.com/spacer.gif" width=3D"1" height=3D"1" alt=3D"" style=3D"=
+display:block"></td>
+              </tr>
+              <tr>
+                <td><img src=3D"http://email-assets.getpocket.com/spacer.gi=
+f" width=3D"1" height=3D"30" alt=3D"" style=3D"display:block"></td>
+              </tr>
+            </tbody></table>
+         =20
+
+			=09
+
+				<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+					<tbody><tr>
+
+
+						<td width=3D"150" align=3D"center" valign=3D"top" style=3D"font-famil=
+y:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;font-size:15px;paddin=
+g-top:5px;padding-right:0;padding-bottom:0;padding-left:0">
+						<a href=3D"https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZ=
+OG279kTLkG34CUfugGr2K1mpmgZ427dDUtT84BUhxPeZJ2G9rjF8a_xm9INnkOe-2BZ-2B8OvS1=
+pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGV=
+CdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt=
+0ZDSgBh4J-2BdbM4julyYgblKvJDb3tR-2FfN94am0ICNUpbGs9Kl3aQFDzkiGCvI3aJq5Iz5Jq=
+kWSscvoTEDFUK9pCMxdEG5ENmVRO4wmDoCV1IV27l2VxdxxlKPiYV3cHHAL-2BakhuYTy3zCl4M=
+kHFi6F7TOq5P149V62NmD-2FVZaTbUZS5UR3R-2B8JJL0gXRguQrNA4h-2BeeF8T3jONzWGE2Bx=
+3TkNYBy4" style=3D"color:#313131" target=3D"_blank"><img src=3D"http://emai=
+l-assets.getpocket.com/f9a38e05c5a8e34d315a13f326dc8260" width=3D"150" alt=
+=3D"8 Clever Moves When You Have $1,000 In The Bank" style=3D"display:block=
+"></a></td>
+
+
+
+						<td><img src=3D"http://email-assets.getpocket.com/spacer.gif" width=
+=3D"35" height=3D"1" alt=3D"" style=3D"display:block"></td>
+
+
+						<td width=3D"325" align=3D"left" valign=3D"top">
+							<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100=
+%">
+
+																	<tbody><tr>
+										<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial=
+,sans-serif;font-size:10px;letter-spacing:0.2em;color:#313131">SPONSORED</t=
+d>
+									</tr>
+									<tr>
+										<td style=3D"font-size:10px;line-height:10px"><img src=3D"http://=
+email-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"10" alt=3D"" s=
+tyle=3D"display:block"></td>
+									</tr>
+							=09
+
+								<tr>
+									<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;font-size:23px;line-height:28px">
+								<a href=3D"https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4Y=
+aZOG279kTLkG34CUfugGr2K1mpmgZ427dDUtT84BUhxPeZJ2G9rl9RO_xm9INnkOe-2BZ-2B8Ov=
+S1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1K=
+GVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGp=
+Qt0ZDSgBh7LQWBwCpzjxY0aZrrjWV-2F2hJCiKurP7bfTWRUU3GHWgRk1aMmR0hcYT7RoBBopQn=
+47n8sXxOklbczTpU-2BckRiKLOCAA79Ru7KCoTopDKBgeMGpdheKQAitsN1nKDG7-2BAqO7kzqj=
+UQvKtgvad-2BRAxSO-2BkUSnSF6h1yBWD8zks5Es9mTHNEzXC0qGxXRH7gkqYHCK5-2BNqqzYir=
+k1YUhjER-2FD" style=3D"font-size:23px;color:#48bbb7;font-weight:bold;text-d=
+ecoration:none" target=3D"_blank">8 Clever Moves When You Have $1,000 In Th=
+e Bank</a></td>
+								</tr>
+
+
+								<tr>
+									<td style=3D"font-size:10px;line-height:10px"><img src=3D"http://e=
+mail-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"10" alt=3D"" st=
+yle=3D"display:block"></td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;font-size:15px;line-height:19px;color:#313131;font-style:italic"=
+>
+																					Editor,																															FinanceBuzz
+																			</td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-size:15px;line-height:15px"><img src=3D"http://e=
+mail-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"15" alt=3D"" st=
+yle=3D"display:block"></td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;font-size:15px;line-height:19px;color:#313131">
+										If you have $1,000, there are exactly 8 money moves you should ma=
+ke today that could set you up for a lifetime of financial success.
+									</td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-size:15px;line-height:15px"><img src=3D"http://e=
+mail-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"15" alt=3D"" st=
+yle=3D"display:block"></td>
+								</tr>
+
+																	<tr>
+										<td>
+											<table width=3D"325" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0">
+												<tbody><tr>
+													<td width=3D"40%" align=3D"left">
+														<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%">
+															<tbody><tr>
+																<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica=
+,Arial,sans-serif;font-size:15px;line-height:19px">
+																	<a href=3D"https://email.getpocket.com/ls/click?upn=3Dky17=
+TgJ1REx4YaZOG279kTLkG34CUfugGr2K1mpmgZ427dDUtT84BUhxPeZJ2G9rVOLX_xm9INnkOe-=
+2BZ-2B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR=
+3s90mwx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhx=
+Nb82UbUGpQt0ZDSgBh4vptrjBJqKx6mLGg1aPnmwporQu5-2F54IFaLorHz8iDgRpuBuRb1YTcA=
+ekoh1JbRM7ym-2Ff-2B-2FIN4-2BFOxYqTBvGiYn4Uad69-2BargXgiaA2hd8briMc1CouOrafz=
+D6Z5nyu1uKykFpFSZLbypeRvS-2BFUe-2BKyohNH5D6Wusg5uRcVODCNR0Nu6LcrKCWOp6cZQxh=
+YeArJb-2B2FDD04uDl-2Bm2BGnq" style=3D"color:#48bbb7;text-decoration:none" t=
+arget=3D"_blank">Here=E2=80=99s What To Do =C2=BB</a></td>
+															</tr>
+														</tbody></table>
+													</td>
+												</tr>
+											</tbody></table>
+										</td>
+									</tr>
+							=09
+
+															=09
+							</tbody></table>
+						</td>
+					</tr>
+
+				</tbody></table>
+
+				=09
+					            <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0">
+              <tbody><tr>
+                <td><img src=3D"http://email-assets.getpocket.com/spacer.gi=
+f" width=3D"1" height=3D"30" alt=3D"" style=3D"display:block"></td>
+              </tr>
+              <tr>
+                <td align=3D"center" bgcolor=3D"#f1f1f3" width=3D"510" heig=
+ht=3D"1" style=3D"font-size:1px;line-height:1px"><img src=3D"http://email-a=
+ssets.getpocket.com/spacer.gif" width=3D"1" height=3D"1" alt=3D"" style=3D"=
+display:block"></td>
+              </tr>
+              <tr>
+                <td><img src=3D"http://email-assets.getpocket.com/spacer.gi=
+f" width=3D"1" height=3D"30" alt=3D"" style=3D"display:block"></td>
+              </tr>
+            </tbody></table>
+         =20
+
+			=09
+
+				<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+					<tbody><tr>
+
+
+						<td width=3D"150" align=3D"center" valign=3D"top" style=3D"font-famil=
+y:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;font-size:15px;paddin=
+g-top:5px;padding-right:0;padding-bottom:0;padding-left:0">
+						<a href=3D"https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZ=
+OG279kefJ80Nb-2Bw0y8FBve1Z7FqknrsbD6s1wPUotCfvYyFxAP34o_xm9INnkOe-2BZ-2B8Ov=
+S1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1K=
+GVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGp=
+Qt0ZDSgBh7pb3efUr559txTMWeSAO2EJl46MYO34wTMeCEb5K9iPybQF5-2BXZJ4Su-2BaOT-2B=
+l0swzWOyFPorjdAb23SoRn3s4PO7IZbukgwe-2BODwKG6IIJOqYT6D-2FE0vbTAf6l-2Ff6qCOt=
+HkP337KVlFkUWcsECbxA-2F9onrZauGn01RjjS9aabxq7a0TSL2zaVzgtwa6gB6gNEGbgU4MS7m=
+urKbY6W8ZB08" style=3D"color:#313131" target=3D"_blank"><img src=3D"http://=
+email-assets.getpocket.com/e0f3b4fef53f1f08a81882ad31376e9d" width=3D"150" =
+alt=3D"He Unleashed a California Massacre. Should This School Be Named for =
+Him?" style=3D"display:block"></a></td>
+
+
+
+						<td><img src=3D"http://email-assets.getpocket.com/spacer.gif" width=
+=3D"35" height=3D"1" alt=3D"" style=3D"display:block"></td>
+
+
+						<td width=3D"325" align=3D"left" valign=3D"top">
+							<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100=
+%">
+
+							=09
+
+								<tbody><tr>
+									<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;font-size:23px;line-height:28px">
+								<a href=3D"https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4Y=
+aZOG279kefJ80Nb-2Bw0y8FBve1Z7FqknrsbD6s1wPUotCfvYyFxAX1Yt_xm9INnkOe-2BZ-2B8=
+OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx=
+1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbU=
+GpQt0ZDSgBh7Kkhcldnq-2B50X2CpSaFQdnNc4CFM5HWcqHD2oIj6REHf1oVzPfWNkfpkSdG-2B=
+IjZXeC1HxtvCt6k6YhgvOjEG150DpKGxSy4D-2BLg-2B1LmwyL4Vizf-2F-2BS4JtFT4w7nQzPd=
+NsOv0YpaHfDpXi-2BoOFVfqb-2FT9QJ7MpMFZ99KYo2qacTIjtwQKYnmPxjIlhkaVuuOH-2B03M=
+sXDoCmxKN4mbwnmhUD" style=3D"font-size:23px;color:#48bbb7;font-weight:bold;=
+text-decoration:none" target=3D"_blank">He Unleashed a California Massacre.=
+ Should This School Be Named for Him?</a></td>
+								</tr>
+
+
+								<tr>
+									<td style=3D"font-size:10px;line-height:10px"><img src=3D"http://e=
+mail-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"10" alt=3D"" st=
+yle=3D"display:block"></td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;font-size:15px;line-height:19px;color:#313131;font-style:italic"=
+>
+																					Thomas Fuller,																															The New Y=
+ork Times
+																			</td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-size:15px;line-height:15px"><img src=3D"http://e=
+mail-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"15" alt=3D"" st=
+yle=3D"display:block"></td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;font-size:15px;line-height:19px;color:#313131">
+										The founder of the Hastings College of the Law masterminded the k=
+illings of hundreds of Native Americans. The school, tribal members and alu=
+mni disagree about what should be done now.
+									</td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-size:15px;line-height:15px"><img src=3D"http://e=
+mail-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"15" alt=3D"" st=
+yle=3D"display:block"></td>
+								</tr>
+
+							=09
+
+							=09
+									<tr>
+										<td>
+											<table width=3D"325" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0">
+												<tbody><tr>
+																											<td width=3D"40%" align=3D"left">
+															<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%">
+																<tbody><tr>
+																	<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetic=
+a,Arial,sans-serif;font-size:15px;line-height:19px">
+																	<a href=3D"https://email.getpocket.com/ls/click?upn=3DGrC0=
+u0carddbDdy8VrgWO89cPzIDtDnBHdOW4GQtSl-2BSCV9-2FH5xme2LPDv0RkeAk6iVT8KQTPDd=
+vAEiBSlNeNCHgpQQDQuAwhjbl1v9g8B95V2Ct6U0USktUmKjAX74DuggQ9VMAqmmrbiph5KoQLA=
+-3D-3D_L0X_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cM=
+J4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9s=
+vnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh7n5FpjTZTmeJ2BR-2BCzEH4wbH1hYjmkyKF2=
+ujPMSxK-2F9Z7uQ2kq9vpfs2yy-2BgV-2FEPXN-2FACzGtJ1JpVG-2B2DKN0xl7wDthuITWWG1o=
+oopPwpg9Knc1vapoItcJ1xo4cMb9hw6j4cI5pPYJD0W508-2Bu3PQrEt3D7tfx5thEGK2o6iuSE=
+qzRdBawBS80p9BdZtPjbmwX4CmNXtBfWFNSOEoR3F-2B" style=3D"color:#48bbb7;text-d=
+ecoration:none" target=3D"_blank">Save to Pocket</a></td>
+																</tr>
+															</tbody></table>
+														</td>
+																																						</tr>
+											</tbody></table>
+										</td>
+									</tr>
+
+															=09
+							</tbody></table>
+						</td>
+					</tr>
+
+				</tbody></table>
+
+				=09
+					            <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0">
+              <tbody><tr>
+                <td><img src=3D"http://email-assets.getpocket.com/spacer.gi=
+f" width=3D"1" height=3D"30" alt=3D"" style=3D"display:block"></td>
+              </tr>
+              <tr>
+                <td align=3D"center" bgcolor=3D"#f1f1f3" width=3D"510" heig=
+ht=3D"1" style=3D"font-size:1px;line-height:1px"><img src=3D"http://email-a=
+ssets.getpocket.com/spacer.gif" width=3D"1" height=3D"1" alt=3D"" style=3D"=
+display:block"></td>
+              </tr>
+              <tr>
+                <td><img src=3D"http://email-assets.getpocket.com/spacer.gi=
+f" width=3D"1" height=3D"30" alt=3D"" style=3D"display:block"></td>
+              </tr>
+            </tbody></table>
+         =20
+
+			=09
+
+				<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+					<tbody><tr>
+
+
+						<td width=3D"150" align=3D"center" valign=3D"top" style=3D"font-famil=
+y:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;font-size:15px;paddin=
+g-top:5px;padding-right:0;padding-bottom:0;padding-left:0">
+						<a href=3D"https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZ=
+OG279kXw1CrVdrU-2FTYgsCQ4DDZ6UahWn2vxaKOoRE-2Fp40Hu80EOOO_xm9INnkOe-2BZ-2B8=
+OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx=
+1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbU=
+GpQt0ZDSgBh5FlAT7Y-2B3VxJTBoH9r8QK5Ol9fx4Zhji-2F-2BuDdzyxXIZ7fWD-2FrUZh9jhC=
+LXOrCBl9EELMX599RNcTJIAnatmW-2BVpeBm64dSzpVB-2B-2BR1XamAIvly0JACQGYhs6m1zMp=
+QTQLfECYEDd7PTdxLQJ3jSIXsKusO21D3i6vTP4F8RCjUD-2FYJ-2BxoDcA-2Fs77yP4fMBTY5a=
+LPC5k7l4hZX4KktgFWY1" style=3D"color:#313131" target=3D"_blank"><img src=3D=
+"http://email-assets.getpocket.com/b09e4335f9d57dddfed10d621ce8b589" width=
+=3D"150" alt=3D"Quitting Time Everywhere: A Guide to =E2=80=98The Great Res=
+ignation=E2=80=99" style=3D"display:block"></a></td>
+
+
+
+						<td><img src=3D"http://email-assets.getpocket.com/spacer.gif" width=
+=3D"35" height=3D"1" alt=3D"" style=3D"display:block"></td>
+
+
+						<td width=3D"325" align=3D"left" valign=3D"top">
+							<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100=
+%">
+
+							=09
+
+								<tbody><tr>
+									<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;font-size:23px;line-height:28px">
+								<a href=3D"https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4Y=
+aZOG279kXw1CrVdrU-2FTYgsCQ4DDZ6UahWn2vxaKOoRE-2Fp40Hu806f5W_xm9INnkOe-2BZ-2=
+B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90m=
+wx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82U=
+bUGpQt0ZDSgBh7rYRAml2HzjPuGNeWWp0-2BeA480ZfeRofOAvRBKglJU9fSGbksqGSTD1PUnfm=
+nrokHz2q1DfuSxoSlDoJtLL0NWzPAQRmN0Pw6o-2ByTeF9N8s4B4rGx4plNOwFMhT62theirMIv=
+1l4ibrYqxYBekSMGISM7sPG55cANJ1wX39CnBd2BHA-2BrOkD1yrVMhytW8UEZAqu6uBdiy-2Bn=
+hvj-2BOvhmjz" style=3D"font-size:23px;color:#48bbb7;font-weight:bold;text-d=
+ecoration:none" target=3D"_blank">Quitting Time Everywhere: A Guide to =E2=
+=80=98The Great Resignation=E2=80=99</a></td>
+								</tr>
+
+
+								<tr>
+									<td style=3D"font-size:10px;line-height:10px"><img src=3D"http://e=
+mail-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"10" alt=3D"" st=
+yle=3D"display:block"></td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;font-size:15px;line-height:19px;color:#313131;font-style:italic"=
+>
+																					Alex Dalenberg,																															Pocket C=
+ollections
+																			</td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-size:15px;line-height:15px"><img src=3D"http://e=
+mail-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"15" alt=3D"" st=
+yle=3D"display:block"></td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;font-size:15px;line-height:19px;color:#313131">
+										Why so many people are leaving their jobs right now and what it m=
+eans for the economy, the future of work, and your career.
+									</td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-size:15px;line-height:15px"><img src=3D"http://e=
+mail-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"15" alt=3D"" st=
+yle=3D"display:block"></td>
+								</tr>
+
+							=09
+
+							=09
+									<tr>
+										<td>
+											<table width=3D"325" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0">
+												<tbody><tr>
+																											<td width=3D"40%" align=3D"left">
+															<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%">
+																<tbody><tr>
+																	<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetic=
+a,Arial,sans-serif;font-size:15px;line-height:19px">
+																	<a href=3D"https://email.getpocket.com/ls/click?upn=3DGrC0=
+u0carddbDdy8VrgWO89cPzIDtDnBHdOW4GQtSl-2BSCV9-2FH5xme2LPDv0RkeAk6iVT8KQTPDd=
+vAEiBSlNeNJHwX3NMFGj7-2Bd459EeoatjWDKnY44PqSnV3sKwYAZVZr03x-2FAxjIwD5mBDuRz=
+XbMQ-3D-3Dr8rq_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4s=
+p1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiV=
+ht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh5UJLal9-2Be5CPHqYRYbeXjZMf05W-2F=
+dKAI0ENjyDJ8NRbFXhNTuhOC5TxoEhLr75megrEloBZuyQgLOOWGLHMoCcA6KT0FpEhdpES-2Fk=
+Wa-2BSghJVwb9U9dQjSpRgb6q4S5wEWMrSmt5fGDOG0MkamzK5Jbf6XsLHntCA-2FdVQvFehrG1=
+SB-2BdehSKz1LIryq-2BArGi2NrwchW2Znj7YeCeLNDlj6" style=3D"color:#48bbb7;text=
+-decoration:none" target=3D"_blank">Save to Pocket</a></td>
+																</tr>
+															</tbody></table>
+														</td>
+																																						</tr>
+											</tbody></table>
+										</td>
+									</tr>
+
+															=09
+							</tbody></table>
+						</td>
+					</tr>
+
+				</tbody></table>
+
+				=09
+					            <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0">
+              <tbody><tr>
+                <td><img src=3D"http://email-assets.getpocket.com/spacer.gi=
+f" width=3D"1" height=3D"30" alt=3D"" style=3D"display:block"></td>
+              </tr>
+              <tr>
+                <td align=3D"center" bgcolor=3D"#f1f1f3" width=3D"510" heig=
+ht=3D"1" style=3D"font-size:1px;line-height:1px"><img src=3D"http://email-a=
+ssets.getpocket.com/spacer.gif" width=3D"1" height=3D"1" alt=3D"" style=3D"=
+display:block"></td>
+              </tr>
+              <tr>
+                <td><img src=3D"http://email-assets.getpocket.com/spacer.gi=
+f" width=3D"1" height=3D"30" alt=3D"" style=3D"display:block"></td>
+              </tr>
+            </tbody></table>
+         =20
+
+			=09
+
+				<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+					<tbody><tr>
+
+
+						<td width=3D"150" align=3D"center" valign=3D"top" style=3D"font-famil=
+y:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;font-size:15px;paddin=
+g-top:5px;padding-right:0;padding-bottom:0;padding-left:0">
+						<a href=3D"https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZ=
+OG279kdeakmFeWiynCrjkoBvGHJyPMmgFUCMDONQ7bZ69JezqRFMS_xm9INnkOe-2BZ-2B8OvS1=
+pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGV=
+CdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt=
+0ZDSgBh6qcFz-2BaetCeD7R5YZLth7Vf5uKZPjWQcRLjLmtV04qGhSZVey5LHfHrm6o-2BAR-2F=
+DhzkSvH5ZiF2e-2BAGDzFPlHr6NybLIZRzGh50fPL0W0iuSLwdjyJSiWuqpk0TmztcE5Cv9KXK0=
+ZsxkA3-2FpREFOuGFYmoh-2BbiQcNKfG2U-2BDdYSXOpFqV-2FlrHR62O8FPkqzrX-2F53aRCyd=
+6k6MzIFVaesJw9" style=3D"color:#313131" target=3D"_blank"><img src=3D"http:=
+//email-assets.getpocket.com/3349bb9b786e95d86be07e96b00539ed" width=3D"150=
+" alt=3D"Here=E2=80=99s the FBI=E2=80=99s Internal Guide for Getting Data f=
+rom AT&amp;T, T-Mobile, Verizon" style=3D"display:block"></a></td>
+
+
+
+						<td><img src=3D"http://email-assets.getpocket.com/spacer.gif" width=
+=3D"35" height=3D"1" alt=3D"" style=3D"display:block"></td>
+
+
+						<td width=3D"325" align=3D"left" valign=3D"top">
+							<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100=
+%">
+
+							=09
+
+								<tbody><tr>
+									<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;font-size:23px;line-height:28px">
+								<a href=3D"https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4Y=
+aZOG279kdeakmFeWiynCrjkoBvGHJyPMmgFUCMDONQ7bZ69JezqKMx9_xm9INnkOe-2BZ-2B8Ov=
+S1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1K=
+GVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGp=
+Qt0ZDSgBh4XU79zXKXTLoIMAuNJaIkPssSuE4I5WB6nWf7AEXtZt7eKvY1wXBYNChdHli2Byj9B=
+9MGE7coYEM8mhUO2zKkZfpWVMrt9xQ6UsyT3xIhI2UXOFFgH1su6cLpez9d2QRTD09RabidneQb=
+ydjLRMFCWKixKZAh1NVwJQ13-2FsvsKGOgYJGbv6hFRaD-2FL9VJbKWoljeQzlb2wsAJyuxbqI6=
+1Y" style=3D"font-size:23px;color:#48bbb7;font-weight:bold;text-decoration:=
+none" target=3D"_blank">Here=E2=80=99s the FBI=E2=80=99s Internal Guide for=
+ Getting Data from AT&amp;T, T-Mobile, Verizon</a></td>
+								</tr>
+
+
+								<tr>
+									<td style=3D"font-size:10px;line-height:10px"><img src=3D"http://e=
+mail-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"10" alt=3D"" st=
+yle=3D"display:block"></td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;font-size:15px;line-height:19px;color:#313131;font-style:italic"=
+>
+																					Joseph Cox,																															Vice
+																			</td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-size:15px;line-height:15px"><img src=3D"http://e=
+mail-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"15" alt=3D"" st=
+yle=3D"display:block"></td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;font-size:15px;line-height:19px;color:#313131">
+										The newly obtained document shows in granular detail the sort of =
+data that the country=E2=80=99s carriers keep, and for how long.
+									</td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-size:15px;line-height:15px"><img src=3D"http://e=
+mail-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"15" alt=3D"" st=
+yle=3D"display:block"></td>
+								</tr>
+
+							=09
+
+							=09
+									<tr>
+										<td>
+											<table width=3D"325" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0">
+												<tbody><tr>
+																											<td width=3D"40%" align=3D"left">
+															<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%">
+																<tbody><tr>
+																	<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetic=
+a,Arial,sans-serif;font-size:15px;line-height:19px">
+																	<a href=3D"https://email.getpocket.com/ls/click?upn=3DGrC0=
+u0carddbDdy8VrgWO89cPzIDtDnBHdOW4GQtSl-2BSCV9-2FH5xme2LPDv0RkeAk6iVT8KQTPDd=
+vAEiBSlNeNPAmRoxcCGut3K8CsOL-2BLHv0SnMO0Y1CSvsQ5N4OQF9JKw45dLZp3Oc2SzvKSsap=
+ig-3D-3Dj2u3_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1=
+cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht=
+9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh4aO826vgPsjPOqkI2-2FZ5bH1D5B7oyHn2=
+X3s9-2BryZ0nKGPm3Fp27PUYsFyAspzYfQf1deVBXTJwZ1mJgoOs56gKzpvrM9s5UQ-2BICXDVO=
+8iZz2eqbZQNzB6nrMLMqLWFn7k2b16Nd4vnTBNtVj1ItOPRVOjDq5J1Fst8odQzan2-2BhgBLdk=
+VM-2FSThlPkXYNR4ABjDwWgV92Ejcsj5hK5Uysia" style=3D"color:#48bbb7;text-decor=
+ation:none" target=3D"_blank">Save to Pocket</a></td>
+																</tr>
+															</tbody></table>
+														</td>
+																																						</tr>
+											</tbody></table>
+										</td>
+									</tr>
+
+															=09
+							</tbody></table>
+						</td>
+					</tr>
+
+				</tbody></table>
+
+				=09
+					            <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0">
+              <tbody><tr>
+                <td><img src=3D"http://email-assets.getpocket.com/spacer.gi=
+f" width=3D"1" height=3D"30" alt=3D"" style=3D"display:block"></td>
+              </tr>
+              <tr>
+                <td align=3D"center" bgcolor=3D"#f1f1f3" width=3D"510" heig=
+ht=3D"1" style=3D"font-size:1px;line-height:1px"><img src=3D"http://email-a=
+ssets.getpocket.com/spacer.gif" width=3D"1" height=3D"1" alt=3D"" style=3D"=
+display:block"></td>
+              </tr>
+              <tr>
+                <td><img src=3D"http://email-assets.getpocket.com/spacer.gi=
+f" width=3D"1" height=3D"30" alt=3D"" style=3D"display:block"></td>
+              </tr>
+            </tbody></table>
+         =20
+
+			=09
+
+				<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+					<tbody><tr>
+
+
+						<td width=3D"150" align=3D"center" valign=3D"top" style=3D"font-famil=
+y:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;font-size:15px;paddin=
+g-top:5px;padding-right:0;padding-bottom:0;padding-left:0">
+						<a href=3D"https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZ=
+OG279kcXblvLzmTOEPh4WZkmGtoRLykVXvdoG7gbXEVoyKwWkdhSz_xm9INnkOe-2BZ-2B8OvS1=
+pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGV=
+CdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt=
+0ZDSgBh6x5rfumhX4UjzY-2FLstq06Epsw5lE140t9EsSJ8bOgG9MGAQte2oZUp8GUYmCLDRNIQ=
+Mis9EcZ0lQZ6dMU4vNA2dBrZuGDzoRNcukd7naCSZ4HSlrf4Jht-2Fm8-2BbD3SwmbotjDgYjJl=
+grmKTpONN6CttaixAIzzfzVQ08fO577FdtaGcGIpWOhbK7nS5czlCkXQQSvrmAWEfES-2FMSLRv=
+vmjV" style=3D"color:#313131" target=3D"_blank"><img src=3D"http://email-as=
+sets.getpocket.com/8465c9ef1b61299a90234c6d3b55ed3a" width=3D"150" alt=3D"W=
+hat Is It About Peter Thiel?" style=3D"display:block"></a></td>
+
+
+
+						<td><img src=3D"http://email-assets.getpocket.com/spacer.gif" width=
+=3D"35" height=3D"1" alt=3D"" style=3D"display:block"></td>
+
+
+						<td width=3D"325" align=3D"left" valign=3D"top">
+							<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100=
+%">
+
+							=09
+
+								<tbody><tr>
+									<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;font-size:23px;line-height:28px">
+								<a href=3D"https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4Y=
+aZOG279kcXblvLzmTOEPh4WZkmGtoRLykVXvdoG7gbXEVoyKwWkqs1J_xm9INnkOe-2BZ-2B8Ov=
+S1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1K=
+GVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGp=
+Qt0ZDSgBh6eVYc-2FoQgzJOpiH-2FpfuBIRiKAW-2FraVzzpvSfm5m760o-2BGCoQioQJXTSkDo=
+BaOUJ-2F4lOePJroTLcsybajrTFcQ49GMhO3amy-2Bwz24ySYwqn8iglV1xrZp7t1V-2FF2uKnq=
+VgVx58T61zwjXCw4-2BUsOa68wZjLVg-2Bjw5q64-2Bk-2Fr95tOkn0-2FfRL2jAzY8GmCUW1oc=
+We1to1Y07R3ZXUDXM3KYaS" style=3D"font-size:23px;color:#48bbb7;font-weight:b=
+old;text-decoration:none" target=3D"_blank">What Is It About Peter Thiel?</=
+a></td>
+								</tr>
+
+
+								<tr>
+									<td style=3D"font-size:10px;line-height:10px"><img src=3D"http://e=
+mail-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"10" alt=3D"" st=
+yle=3D"display:block"></td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;font-size:15px;line-height:19px;color:#313131;font-style:italic"=
+>
+																					Anna Wiener,																															The New Yor=
+ker
+																			</td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-size:15px;line-height:15px"><img src=3D"http://e=
+mail-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"15" alt=3D"" st=
+yle=3D"display:block"></td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;font-size:15px;line-height:19px;color:#313131">
+										The billionaire venture capitalist has fans and followers. What a=
+re they looking for?
+									</td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-size:15px;line-height:15px"><img src=3D"http://e=
+mail-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"15" alt=3D"" st=
+yle=3D"display:block"></td>
+								</tr>
+
+							=09
+
+							=09
+									<tr>
+										<td>
+											<table width=3D"325" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0">
+												<tbody><tr>
+																											<td width=3D"40%" align=3D"left">
+															<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%">
+																<tbody><tr>
+																	<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetic=
+a,Arial,sans-serif;font-size:15px;line-height:19px">
+																	<a href=3D"https://email.getpocket.com/ls/click?upn=3DGrC0=
+u0carddbDdy8VrgWO89cPzIDtDnBHdOW4GQtSl-2BSCV9-2FH5xme2LPDv0RkeAk6iVT8KQTPDd=
+vAEiBSlNeNJCdEUEodOCnKvce3x8jtuO85kkJ-2FuNS6-2BHD6-2B8qgOXOu6dfABm2E7PZiqFe=
+1HCtTw-3D-3DoXzg_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc=
+4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92Ht=
+iVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh4E8st9DxuOFZX4AvzyWLu-2F-2FKMa=
+dnmCk0uIVR6TU6XvfOae5GLqvEU5WFFrr-2F8MTHhAvqQW0xCzLbgjL5tfDzHaqu4FNwRIKIRki=
+4hm76-2F9qDN-2FuOxTghC665OXnaw9Owoa4R8yk7z1ZP01UUz4iq0trCnaUVI1XEPSk8s-2BNO=
+6yg2xX42nura6wZTfKuXx5ZeU86P6ccCz6XL7DQXverJyi" style=3D"color:#48bbb7;text=
+-decoration:none" target=3D"_blank">Save to Pocket</a></td>
+																</tr>
+															</tbody></table>
+														</td>
+																																						</tr>
+											</tbody></table>
+										</td>
+									</tr>
+
+															=09
+							</tbody></table>
+						</td>
+					</tr>
+
+				</tbody></table>
+
+				=09
+					            <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0">
+              <tbody><tr>
+                <td><img src=3D"http://email-assets.getpocket.com/spacer.gi=
+f" width=3D"1" height=3D"30" alt=3D"" style=3D"display:block"></td>
+              </tr>
+              <tr>
+                <td align=3D"center" bgcolor=3D"#f1f1f3" width=3D"510" heig=
+ht=3D"1" style=3D"font-size:1px;line-height:1px"><img src=3D"http://email-a=
+ssets.getpocket.com/spacer.gif" width=3D"1" height=3D"1" alt=3D"" style=3D"=
+display:block"></td>
+              </tr>
+              <tr>
+                <td><img src=3D"http://email-assets.getpocket.com/spacer.gi=
+f" width=3D"1" height=3D"30" alt=3D"" style=3D"display:block"></td>
+              </tr>
+            </tbody></table>
+         =20
+
+			=09
+
+				<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+					<tbody><tr>
+
+
+						<td width=3D"150" align=3D"center" valign=3D"top" style=3D"font-famil=
+y:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;font-size:15px;paddin=
+g-top:5px;padding-right:0;padding-bottom:0;padding-left:0">
+						<a href=3D"https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZ=
+OG279kRokAmzOU6mrS5UsFVO-2F7GHdzgoYJKqwmvYO9IDqxguytzYD_xm9INnkOe-2BZ-2B8Ov=
+S1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1K=
+GVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGp=
+Qt0ZDSgBh6Gtkj5uFzxdYGg3q1eIqA7fHaulxJEILTAB-2BeUMSugLuzM7-2B5DwY9wJZlOsckR=
+33HcRCRXbFWL0IhnGvm0blHnXMINQezctiWLY211fOqDMm8DQ0aSTs7eZ6W3UbeczwllyQ3hrUn=
+sYWnp1fJEE2w3Q8AGtWReq2le-2FJl4x07u-2F-2BhxDkGa8FL80mrzwHhcUW-2B5p4ZasXkTTS=
+Izdcu629R5" style=3D"color:#313131" target=3D"_blank"><img src=3D"http://em=
+ail-assets.getpocket.com/8b3d6a27a31282b26ade2244f75a00d6" width=3D"150" al=
+t=3D"Patti LaBelle=E2=80=99s Self-Care Routine Includes Pies" style=3D"disp=
+lay:block"></a></td>
+
+
+
+						<td><img src=3D"http://email-assets.getpocket.com/spacer.gif" width=
+=3D"35" height=3D"1" alt=3D"" style=3D"display:block"></td>
+
+
+						<td width=3D"325" align=3D"left" valign=3D"top">
+							<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100=
+%">
+
+							=09
+
+								<tbody><tr>
+									<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;font-size:23px;line-height:28px">
+								<a href=3D"https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4Y=
+aZOG279kRokAmzOU6mrS5UsFVO-2F7GHdzgoYJKqwmvYO9IDqxguyNeVb_xm9INnkOe-2BZ-2B8=
+OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx=
+1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbU=
+GpQt0ZDSgBh5SjY8t2VgbUT3lvUACblxhcUE98wEOkqDL0dQql5sNWfKx8o-2BiS8iaH-2FBx57=
+BhUEeTNMgU2Bht3k4lWz1VDijT1D-2FLFAvrqJXvneDs590ismGnSc9-2F9Qc2ffIASzey-2BzB=
+k8QfBq1LjD-2BAzyMLEWjLY-2BtTzgeVM2vqoe5UqJXmTP7i7nRtzMF3oEi1SwxaQV5DUYGWtPL=
+rWmA49bSwlAdsx" style=3D"font-size:23px;color:#48bbb7;font-weight:bold;text=
+-decoration:none" target=3D"_blank">Patti LaBelle=E2=80=99s Self-Care Routi=
+ne Includes Pies</a></td>
+								</tr>
+
+
+								<tr>
+									<td style=3D"font-size:10px;line-height:10px"><img src=3D"http://e=
+mail-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"10" alt=3D"" st=
+yle=3D"display:block"></td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;font-size:15px;line-height:19px;color:#313131;font-style:italic"=
+>
+																					Asia Milia Ware,																															The Cut
+																			</td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-size:15px;line-height:15px"><img src=3D"http://e=
+mail-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"15" alt=3D"" st=
+yle=3D"display:block"></td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;font-size:15px;line-height:19px;color:#313131">
+										Lilies, shiny floors, and therapy are all ways LaBelle remains st=
+ress-free.
+									</td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-size:15px;line-height:15px"><img src=3D"http://e=
+mail-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"15" alt=3D"" st=
+yle=3D"display:block"></td>
+								</tr>
+
+							=09
+
+							=09
+									<tr>
+										<td>
+											<table width=3D"325" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0">
+												<tbody><tr>
+																											<td width=3D"40%" align=3D"left">
+															<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%">
+																<tbody><tr>
+																	<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetic=
+a,Arial,sans-serif;font-size:15px;line-height:19px">
+																	<a href=3D"https://email.getpocket.com/ls/click?upn=3DGrC0=
+u0carddbDdy8VrgWO89cPzIDtDnBHdOW4GQtSl-2BSCV9-2FH5xme2LPDv0RkeAk6iVT8KQTPDd=
+vAEiBSlNeNCvT1JdUYSN6A1rG6AaAlDRWYm9HhP0AfmIid5QoJMsiOsSN7GP-2B2oUtgBRmXnne=
+Pg-3D-3DBqG-_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1=
+cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht=
+9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh6cONIWXGrEN3OXhF5dgf5A9uGb1BTIfQb7=
+aFeI6v-2F98T9KH6QskRBNcmFJ9WwBXNehJiLvx361UoVsGFBeViP8fzzG7cbFcXejTJWC9Y3Mg=
+aw-2BRlnf-2FN2lAEYm3rZ4xZYkjsBq3i6fNsdRjrTMF3EpBuutU35qKK7wtLK1gyUzJQg1ZbYy=
+J-2FXyWvoyyYqJJzGm7nVTqPpGa15OHwYSfIax" style=3D"color:#48bbb7;text-decorat=
+ion:none" target=3D"_blank">Save to Pocket</a></td>
+																</tr>
+															</tbody></table>
+														</td>
+																																						</tr>
+											</tbody></table>
+										</td>
+									</tr>
+
+															=09
+							</tbody></table>
+						</td>
+					</tr>
+
+				</tbody></table>
+
+				=09
+					            <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0">
+              <tbody><tr>
+                <td><img src=3D"http://email-assets.getpocket.com/spacer.gi=
+f" width=3D"1" height=3D"30" alt=3D"" style=3D"display:block"></td>
+              </tr>
+              <tr>
+                <td align=3D"center" bgcolor=3D"#f1f1f3" width=3D"510" heig=
+ht=3D"1" style=3D"font-size:1px;line-height:1px"><img src=3D"http://email-a=
+ssets.getpocket.com/spacer.gif" width=3D"1" height=3D"1" alt=3D"" style=3D"=
+display:block"></td>
+              </tr>
+              <tr>
+                <td><img src=3D"http://email-assets.getpocket.com/spacer.gi=
+f" width=3D"1" height=3D"30" alt=3D"" style=3D"display:block"></td>
+              </tr>
+            </tbody></table>
+         =20
+
+			=09
+
+				<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+					<tbody><tr>
+
+
+						<td width=3D"150" align=3D"center" valign=3D"top" style=3D"font-famil=
+y:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;font-size:15px;paddin=
+g-top:5px;padding-right:0;padding-bottom:0;padding-left:0">
+						<a href=3D"https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZ=
+OG279kZt-2Fst6GQXh-2Fm5lGzdWSrAwbN7Z58xRHaBbl5-2FU8rpA50B5g_xm9INnkOe-2BZ-2=
+B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90m=
+wx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82U=
+bUGpQt0ZDSgBh6Qec-2Fv-2Bze32LAPl62Ig7VS0BQikrgmfnpUzpTeB3s4Invu9RJxa0ZIlLnd=
+nqY2fRIkFu0p28wJ4c-2BPvbjGqmt0F-2BB8CJxPDX1IqXuBfkHMx7Xts5b26YsKlGkWv0wR-2B=
+U2farr1zYqxB-2FzpCZL3G-2FbLSjiLbd0Z2axwbmPFSQ5fcUjK6-2FPobCpDUc539qn-2BR62M=
+VqATwIbGU4GFLeWOOdRE" style=3D"color:#313131" target=3D"_blank"><img src=3D=
+"http://email-assets.getpocket.com/9081606145ffb358929dadf767aef4a1" width=
+=3D"150" alt=3D"Abba on Their Extraordinary Reunion: =E2=80=98We Are Confro=
+nted by Our Younger Selves All the Time=E2=80=99" style=3D"display:block"><=
+/a></td>
+
+
+
+						<td><img src=3D"http://email-assets.getpocket.com/spacer.gif" width=
+=3D"35" height=3D"1" alt=3D"" style=3D"display:block"></td>
+
+
+						<td width=3D"325" align=3D"left" valign=3D"top">
+							<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100=
+%">
+
+							=09
+
+								<tbody><tr>
+									<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;font-size:23px;line-height:28px">
+								<a href=3D"https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4Y=
+aZOG279kZt-2Fst6GQXh-2Fm5lGzdWSrAwbN7Z58xRHaBbl5-2FU8rpA5fXWH_xm9INnkOe-2BZ=
+-2B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s9=
+0mwx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb8=
+2UbUGpQt0ZDSgBh5yH6-2F1ih66QzpJTEeLoUE2tv-2BH9va4odj9SlUpWF-2BDLZQflFCtCBm6=
+9PzAoP3lBbZnzYSvEoJQrPtNZShKZuOfvpw19iKjvPf0hzy9fyfom7kO5jE5kCIqD-2BYvGkuS3=
+pPMyZs10kMWj2azJclTv7znfXmkRQRkTVj-2FlXQwx-2BPa7KEsNDcVTmyyslZSWNxHl91431q1=
+C87UPjcCKBjUe0oP" style=3D"font-size:23px;color:#48bbb7;font-weight:bold;te=
+xt-decoration:none" target=3D"_blank">Abba on Their Extraordinary Reunion: =
+=E2=80=98We Are Confronted by Our Younger Selves All the Time=E2=80=99</a><=
+/td>
+								</tr>
+
+
+								<tr>
+									<td style=3D"font-size:10px;line-height:10px"><img src=3D"http://e=
+mail-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"10" alt=3D"" st=
+yle=3D"display:block"></td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;font-size:15px;line-height:19px;color:#313131;font-style:italic"=
+>
+																					Alexis Petridis,																															The Gua=
+rdian
+																			</td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-size:15px;line-height:15px"><img src=3D"http://e=
+mail-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"15" alt=3D"" st=
+yle=3D"display:block"></td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;font-size:15px;line-height:19px;color:#313131">
+										Here we go again! After nearly 40 years, Benny, Bj=C3=B6rn, Agnet=
+ha and Anni-Frid are back together. The Guardian gets the inside story of t=
+he greatest reunion in pop.
+									</td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-size:15px;line-height:15px"><img src=3D"http://e=
+mail-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"15" alt=3D"" st=
+yle=3D"display:block"></td>
+								</tr>
+
+							=09
+
+							=09
+									<tr>
+										<td>
+											<table width=3D"325" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0">
+												<tbody><tr>
+																											<td width=3D"40%" align=3D"left">
+															<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%">
+																<tbody><tr>
+																	<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetic=
+a,Arial,sans-serif;font-size:15px;line-height:19px">
+																	<a href=3D"https://email.getpocket.com/ls/click?upn=3DGrC0=
+u0carddbDdy8VrgWO89cPzIDtDnBHdOW4GQtSl-2BSCV9-2FH5xme2LPDv0RkeAk6iVT8KQTPDd=
+vAEiBSlNeNF-2BhSVxHcqIu5s2ynuEOKo5yBsfdHIfj54spj6UZP-2BeRCqAERdwurtehsAvRDZ=
+UbGQ-3D-3D6VtF_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4s=
+p1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiV=
+ht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh5-2BnvUrfniarG2WaUsuGhNmB68EuyGB=
+ZtTgAx7YB-2B1ZNXuAY-2FiZ8zeMD9A3mDWfe2QeAV1rQ0RdTuzopSHbmNsxbrU-2Fc8fUW44j9=
+aqioigKe6cbH-2B-2B6uJj5NvXkKJ4F2J4-2Bl0L6MEQKTxhb9jBKMPurs8ShtgB-2Bjn04tsY0=
+7RLRoRKZYewngu3VQauaFLqtEUlCE31PPzyzJVIYZdYz2aAa" style=3D"color:#48bbb7;te=
+xt-decoration:none" target=3D"_blank">Save to Pocket</a></td>
+																</tr>
+															</tbody></table>
+														</td>
+																																						</tr>
+											</tbody></table>
+										</td>
+									</tr>
+
+															=09
+							</tbody></table>
+						</td>
+					</tr>
+
+				</tbody></table>
+
+				=09
+					            <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0">
+              <tbody><tr>
+                <td><img src=3D"http://email-assets.getpocket.com/spacer.gi=
+f" width=3D"1" height=3D"30" alt=3D"" style=3D"display:block"></td>
+              </tr>
+              <tr>
+                <td align=3D"center" bgcolor=3D"#f1f1f3" width=3D"510" heig=
+ht=3D"1" style=3D"font-size:1px;line-height:1px"><img src=3D"http://email-a=
+ssets.getpocket.com/spacer.gif" width=3D"1" height=3D"1" alt=3D"" style=3D"=
+display:block"></td>
+              </tr>
+              <tr>
+                <td><img src=3D"http://email-assets.getpocket.com/spacer.gi=
+f" width=3D"1" height=3D"30" alt=3D"" style=3D"display:block"></td>
+              </tr>
+            </tbody></table>
+         =20
+
+			=09
+
+				<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+					<tbody><tr>
+
+
+						<td width=3D"150" align=3D"center" valign=3D"top" style=3D"font-famil=
+y:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;font-size:15px;paddin=
+g-top:5px;padding-right:0;padding-bottom:0;padding-left:0">
+						<a href=3D"https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZ=
+OG279kYtaHDXq54IKyHOS1jjAlOsbiJ5EB-2BB9KwIAEW2RTr4iS3M-_xm9INnkOe-2BZ-2B8Ov=
+S1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1K=
+GVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGp=
+Qt0ZDSgBh47T6z09gkOGXRGYdLZ7oLN5JcRl8-2BV3-2F5nygZaIta-2FHeo00FtoBaBxkxMtEb=
+BF2ff1zcVqdDoyngJRLbnhfU30qCMyTJ7ivSj-2BUejW7yywp3MzBRJJqBcqCgdE8B7-2B1jC6p=
+X8QzmyBBxnakCOq5YGX9-2FUDd5Jm7QkX7Z17UwDDUb128idYuxa4uIdSw7mOWHruHcge5YoYTb=
+Ea-2FVKY3cYL" style=3D"color:#313131" target=3D"_blank"><img src=3D"http://=
+email-assets.getpocket.com/4a45585a7722969aa5640663a2f5b7f8" width=3D"150" =
+alt=3D"For the Love of Black Queer Cinema: A Conversation with Stephen Wint=
+er" style=3D"display:block"></a></td>
+
+
+
+						<td><img src=3D"http://email-assets.getpocket.com/spacer.gif" width=
+=3D"35" height=3D"1" alt=3D"" style=3D"display:block"></td>
+
+
+						<td width=3D"325" align=3D"left" valign=3D"top">
+							<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100=
+%">
+
+							=09
+
+								<tbody><tr>
+									<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;font-size:23px;line-height:28px">
+								<a href=3D"https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4Y=
+aZOG279kYtaHDXq54IKyHOS1jjAlOsbiJ5EB-2BB9KwIAEW2RTr4i3nD4_xm9INnkOe-2BZ-2B8=
+OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx=
+1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbU=
+GpQt0ZDSgBh5wDBaZ2HJ-2FhwIDHsMWAD-2FVT3uGJoYWGOZh3IqZ-2FFlkHY9Oz9s2YZHZnCXk=
+mCDiz2hLJREe3YsTaH2Fk6J51Hmvc8WKHAvkpcW3tQsDyNEcAz5PHYoDb3TvONAg8ZIvAs9nv7v=
+tiYFVFgynD0s-2BNm5RS9ZEDgrFcEai3-2F-2BTo1dtJLhwA-2FUMoI8IxZtp5Jbp7UxQPRvvwB=
+jpG77CBPrCgrXN" style=3D"font-size:23px;color:#48bbb7;font-weight:bold;text=
+-decoration:none" target=3D"_blank">For the Love of Black Queer Cinema: A C=
+onversation with Stephen Winter</a></td>
+								</tr>
+
+
+								<tr>
+									<td style=3D"font-size:10px;line-height:10px"><img src=3D"http://e=
+mail-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"10" alt=3D"" st=
+yle=3D"display:block"></td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;font-size:15px;line-height:19px;color:#313131;font-style:italic"=
+>
+																					Conor Williams,																															Criterio=
+n
+																			</td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-size:15px;line-height:15px"><img src=3D"http://e=
+mail-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"15" alt=3D"" st=
+yle=3D"display:block"></td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;font-size:15px;line-height:19px;color:#313131">
+										With his two features now playing on the Criterion Channel, the a=
+udacious and fiercely independent director shares memories of the nineties =
+LGBTQ film scene and his ideas about sensuality on-screen.
+									</td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-size:15px;line-height:15px"><img src=3D"http://e=
+mail-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"15" alt=3D"" st=
+yle=3D"display:block"></td>
+								</tr>
+
+							=09
+
+							=09
+									<tr>
+										<td>
+											<table width=3D"325" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0">
+												<tbody><tr>
+																											<td width=3D"40%" align=3D"left">
+															<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%">
+																<tbody><tr>
+																	<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetic=
+a,Arial,sans-serif;font-size:15px;line-height:19px">
+																	<a href=3D"https://email.getpocket.com/ls/click?upn=3DGrC0=
+u0carddbDdy8VrgWO89cPzIDtDnBHdOW4GQtSl-2BSCV9-2FH5xme2LPDv0RkeAk6iVT8KQTPDd=
+vAEiBSlNeNFenK-2FauAZZnOUGLzT11XkkmZphTZE74Cd8bJ-2FbzBdbwv1mtAbQpaNC3WEVHJ6=
+xMrg-3D-3D60cK_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4s=
+p1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiV=
+ht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh52rKe7TiWzDT3LyTh3VxN30WMaA0J6et=
+O3F8ikFyFPfbK4RrCHYD9Vnss-2FXr2dAdiqaPt-2FrCeokzGP2Xq05B529Iyl9KYuq1GMAoxn7=
+K9oDuvWpnCcjpIAok54KcZVaCfchV-2BReksggvryvGWyK9ME3AoPT2fAaUmWNm4l7BartgD1im=
+uS-2BugSWzqnuxrVoyEtDfyguHFaT5AUV1NESPJb" style=3D"color:#48bbb7;text-decor=
+ation:none" target=3D"_blank">Save to Pocket</a></td>
+																</tr>
+															</tbody></table>
+														</td>
+																																						</tr>
+											</tbody></table>
+										</td>
+									</tr>
+
+															=09
+							</tbody></table>
+						</td>
+					</tr>
+
+				</tbody></table>
+
+				=09
+					            <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0">
+              <tbody><tr>
+                <td><img src=3D"http://email-assets.getpocket.com/spacer.gi=
+f" width=3D"1" height=3D"30" alt=3D"" style=3D"display:block"></td>
+              </tr>
+              <tr>
+                <td align=3D"center" bgcolor=3D"#f1f1f3" width=3D"510" heig=
+ht=3D"1" style=3D"font-size:1px;line-height:1px"><img src=3D"http://email-a=
+ssets.getpocket.com/spacer.gif" width=3D"1" height=3D"1" alt=3D"" style=3D"=
+display:block"></td>
+              </tr>
+              <tr>
+                <td><img src=3D"http://email-assets.getpocket.com/spacer.gi=
+f" width=3D"1" height=3D"30" alt=3D"" style=3D"display:block"></td>
+              </tr>
+            </tbody></table>
+         =20
+
+			=09
+
+				<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+					<tbody><tr>
+
+
+						<td width=3D"150" align=3D"center" valign=3D"top" style=3D"font-famil=
+y:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;font-size:15px;paddin=
+g-top:5px;padding-right:0;padding-bottom:0;padding-left:0">
+						<a href=3D"https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4YaZ=
+OG279kfCNl0VkFyfr77vJ3weoVZdgMoFwFHXLKwNDewEghyUvhAHH_xm9INnkOe-2BZ-2B8OvS1=
+pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGV=
+CdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt=
+0ZDSgBh6l8c4fb9w7gKfDI-2BLDDEyeZApp2eou5t2DvNpYuGltKEYkHlDIIajMMbYtm9Opu5HB=
+tFnFAgRkOuNiYdt6IMyP7o08wIebHh1pSDC6JjgOGkgGJf01q2ljq9DBy-2B8weT2g-2FwHCGnU=
+ZhXVkff-2FsHiIyydUExpS4-2Fyv6QN4edzAFi5eF8DwUneht0zwSGMpJsYowRnRH8elblYaa0C=
+gmNZUo" style=3D"color:#313131" target=3D"_blank"><img src=3D"http://email-=
+assets.getpocket.com/853ed146fdae0945af7386437807b547" width=3D"150" alt=3D=
+"The Toronto Photographer Capturing the Joy of Friendship in Your Early 20s=
+" style=3D"display:block"></a></td>
+
+
+
+						<td><img src=3D"http://email-assets.getpocket.com/spacer.gif" width=
+=3D"35" height=3D"1" alt=3D"" style=3D"display:block"></td>
+
+
+						<td width=3D"325" align=3D"left" valign=3D"top">
+							<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100=
+%">
+
+							=09
+
+								<tbody><tr>
+									<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;font-size:23px;line-height:28px">
+								<a href=3D"https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4Y=
+aZOG279kfCNl0VkFyfr77vJ3weoVZdgMoFwFHXLKwNDewEghyUvz9Bf_xm9INnkOe-2BZ-2B8Ov=
+S1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1K=
+GVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGp=
+Qt0ZDSgBh4oMIewRL1kAChjZGqZqLRcAB6-2BDtoSw2NorZtrs13ljlwKfibYJ5Z0Eq02jsmJVV=
+XijROi9TCoxP8Q27XKZTojKT7XtlqkGv1zGi1coLEVbI6xnRK25vTYXIcWUqVMhmp6gQ1kNSYEB=
+WEdo75cmP5YTtX0ONd1i5-2F4DxxEEWRv0C-2FyJygkuFwhrjOkaVwaflIIqBTxfsTYv81qxbJa=
+IZcT" style=3D"font-size:23px;color:#48bbb7;font-weight:bold;text-decoratio=
+n:none" target=3D"_blank">The Toronto Photographer Capturing the Joy of Fri=
+endship in Your Early 20s</a></td>
+								</tr>
+
+
+								<tr>
+									<td style=3D"font-size:10px;line-height:10px"><img src=3D"http://e=
+mail-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"10" alt=3D"" st=
+yle=3D"display:block"></td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;font-size:15px;line-height:19px;color:#313131;font-style:italic"=
+>
+																					Yume Murphy,																															i-D
+																			</td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-size:15px;line-height:15px"><img src=3D"http://e=
+mail-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"15" alt=3D"" st=
+yle=3D"display:block"></td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;font-size:15px;line-height:19px;color:#313131">
+										A photo can be a repository of a feeling, often tracing the conto=
+urs of memories fallen out of grasp. For Sarah Berglund, photography is a k=
+ind of storytelling of the past.
+									</td>
+								</tr>
+
+
+
+								<tr>
+									<td style=3D"font-size:15px;line-height:15px"><img src=3D"http://e=
+mail-assets.getpocket.com/spacer.gif" width=3D"1" height=3D"15" alt=3D"" st=
+yle=3D"display:block"></td>
+								</tr>
+
+							=09
+
+							=09
+									<tr>
+										<td>
+											<table width=3D"325" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0">
+												<tbody><tr>
+																											<td width=3D"40%" align=3D"left">
+															<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%">
+																<tbody><tr>
+																	<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetic=
+a,Arial,sans-serif;font-size:15px;line-height:19px">
+																	<a href=3D"https://email.getpocket.com/ls/click?upn=3DGrC0=
+u0carddbDdy8VrgWO89cPzIDtDnBHdOW4GQtSl-2BSCV9-2FH5xme2LPDv0RkeAk6iVT8KQTPDd=
+vAEiBSlNeNEQVY6xLOjOpfZqVFv4gj6MzCMOJXcXbdvYUfyy89LdaepiMD1OMSNZ6CZAYLuT1bA=
+-3D-3DvHlI_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cM=
+J4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9s=
+vnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh6mCairQAmN29dRWXKPDo38sAYaq5DeoQl-2F=
+1-2FBPKYjqj0Op3uX-2BF7x1LuaF9E9P0fxCJHCrFFCZOts3Leql2-2FX99sm2VEUJn0VbDHy1B=
+IkhRM1QEGxTaW-2BYt2waLduKkR1gD8iERpxX0rYyius-2FhIlpp3lhKIGnd1XPWFrKRaVsvNXj=
+WKrDdYG3ckxfjQmsmpKbtPH9fIe-2BpSXyJmeeB0c8" style=3D"color:#48bbb7;text-dec=
+oration:none" target=3D"_blank">Save to Pocket</a></td>
+																</tr>
+															</tbody></table>
+														</td>
+																																						</tr>
+											</tbody></table>
+										</td>
+									</tr>
+
+															=09
+							</tbody></table>
+						</td>
+					</tr>
+
+				</tbody></table>
+
+				=09
+					            <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0">
+              <tbody><tr>
+                <td><img src=3D"http://email-assets.getpocket.com/spacer.gi=
+f" width=3D"1" height=3D"30" alt=3D"" style=3D"display:block"></td>
+              </tr>
+            </tbody></table>
+         =20
+
+			=09
+
+
+
+
+
+
+
+
+
+
+			</td>
+		</tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<tr>
+			<td bgcolor=3D"#4c4c4c">
+
+
+
+				<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" bgcolor=3D"#4c4c4c">
+        			<tbody><tr>
+						<td width=3D"15"><img src=3D"http://email-assets.getpocket.com/spacer=
+.gif" width=3D"15" height=3D"1" alt=3D"" style=3D"display:block"></td>
+
+						<td width=3D"90" align=3D"left" style=3D"font-family:&#39;Helvetica N=
+eue&#39;,Arial,Helvetica,sans-serif;color:#ffffff;font-size:12px">
+						<a href=3D"https://email.getpocket.com/ls/click?upn=3DIX5fWO68cC4Nzos=
+ZAERptSGgHdI5iRS8iYMG0y8vHng-3DRNVD_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0Uo=
+p4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ6jJG=
+foVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh5kx0-2FRbK4=
+ocL4WMs1sGZCUb99UnHGkxBcsv78J5QQfacA7IUEdScRlYAIZxTtOMPi3mRSUFJhDh80T8gQSyK=
+kleBQzk3I6wR6WRWr7j2RrfF6Xn-2B9w3fSRjlrpiwGRQPMTT1hyctAwNpI-2FnEY1SR6ONfx2V=
+fDJK19NWyaATH7rp8YQ8lMr4oD0rgNonzgMWEj8HZfGF8DUYKmQoSDysEYA" target=3D"_bla=
+nk"><img src=3D"http://email-assets.getpocket.com/logo-pocket-2x.png" alt=
+=3D"Pocket" width=3D"90" height=3D"24" style=3D"display:block"></a></td>
+
+						<td width=3D"279"><img src=3D"http://email-assets.getpocket.com/space=
+r.gif" width=3D"279" height=3D"1" alt=3D"" style=3D"display:block"></td>
+
+						<td width=3D"114" height=3D"45" align=3D"right" valign=3D"middle" sty=
+le=3D"font-family:&#39;Helvetica Neue&#39;,Arial,Helvetica,sans-serif;color=
+:#ffffff;font-size:12px;font-weight:bold;min-width:114px">
+						<a href=3D"https://email.getpocket.com/ls/click?upn=3Dj5Fy4CDTXPbjSSO=
+BhUOsDTqQmuWdqzvg0t5hJiaXmmCTQOAKM5ZdDnAS6v-2FTnPZp9xRk_xm9INnkOe-2BZ-2B8Ov=
+S1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1K=
+GVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGp=
+Qt0ZDSgBh4FtiYdKc1QeYdtSewxnts-2F7DT-2B89rQnQcT0y-2Ba3XuMHv3B-2FVJOQNr-2Bbk=
+B2l22uTqDZ1MmtNlSFuvx5JsHs9dELhSBDuB9W134umggLqyt9r70Z9BjMZdWPA5owT6gzFrFbs=
+ItVgRi6TOzlYC2frQ7vu34NRneNHF6v60tFycEhn3fHgj2UuuXrVSg-2Fo4z3yCgZo45JNbXbz4=
+WDkK3ezQYD" style=3D"color:#ffffff;text-decoration:none" target=3D"_blank">=
+Blog</a></td>
+
+						<td width=3D"15"><img src=3D"http://email-assets.getpocket.com/spacer=
+.gif" width=3D"15" height=3D"1" alt=3D""></td>
+
+						<td width=3D"17" style=3D"font-family:&#39;Helvetica Neue&#39;,Arial,=
+Helvetica,sans-serif;color:#ffffff;font-size:11px">
+						<a href=3D"https://email.getpocket.com/ls/click?upn=3DqzpuRHJLlW6l0rx=
+ksHI796sfyP938TP9LeoZS-2Basn9drDqLAS63EHQKDswhRkgDMlZEs_xm9INnkOe-2BZ-2B8Ov=
+S1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1K=
+GVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGp=
+Qt0ZDSgBh7rpvYsbTzC5mEH5QUkOYKSslOChrzJGuvzAhYBXbdvQru-2Fo6ycgNGC4Ac6FzNfJv=
+Y7v-2F8ftcAB8ee2pBpXLVlku-2BvytcHpffb-2BPL1NF-2FX8tizaYqbXikDfNtQigVMG65cM6=
+OxOrQUv0sWHTB3G3MKK3Up0nry-2Fs4NAe3gP5atihQTfoa2h23-2B8PdbsfbPTSxnoBfPnZuTQ=
+to0i6E9MUt5e" target=3D"_blank"><img src=3D"http://email-assets.getpocket.c=
+om/icon-twitter-2x.png" width=3D"17" height=3D"13" alt=3D"tw" style=3D"disp=
+lay:block"></a></td>
+
+						<td width=3D"15"><img src=3D"http://email-assets.getpocket.com/spacer=
+.gif" width=3D"15" height=3D"1" alt=3D""></td>
+
+						<td width=3D"20" style=3D"font-family:&#39;Helvetica Neue&#39;,Arial,=
+Helvetica,sans-serif;color:#ffffff;font-size:11px">
+						<a href=3D"https://email.getpocket.com/ls/click?upn=3DxmLR8-2Bw1tvsLZ=
+oJL9-2Fb-2FNBu79fXZEihDRrRh0mTSG0L-2F3ruH5D3SC6j-2FaOeV83YhJqjR_xm9INnkOe-2=
+BZ-2B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3=
+s90mwx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxN=
+b82UbUGpQt0ZDSgBh4SesTXaBMQkA-2F-2Frxh5GlE92HeFiy4wcNSObyXAPTYkFByn16K5k-2B=
+DgvIAmAfcdAUfTmI8JHl90gMEs1S0-2Bb52Zn-2BcXIq6r-2FfUFiyB72rr4ebZ8hjDpYapMX23=
+aOcpatNwgwmO3-2B5gUp5BxpMtQ5g-2B2zGZzctPiYsjypjN-2ByVKVVeOd7-2Bub593Nif2Hml=
+Z05ts6uTJ6DfTGgjUd0GJyO-2F49" target=3D"_blank"><img src=3D"http://email-as=
+sets.getpocket.com/icon-fb-2x.png" border=3D"0" width=3D"8" height=3D"15" a=
+lt=3D"FB"></a></td>
+
+						<td width=3D"15"><img src=3D"http://email-assets.getpocket.com/spacer=
+.gif" width=3D"15" height=3D"1" alt=3D""></td>
+					</tr>
+		        </tbody></table>
+
+
+
+	        </td>
+	    </tr>
+
+
+        <tr>
+        	<td align=3D"center" style=3D"padding-top:30px;padding-right:15px;=
+padding-bottom:30px;padding-left:15px">
+	        	<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0">
+
+	        		<tbody><tr>
+            			<td align=3D"center" valign=3D"top" style=3D"font-family:&#3=
+9;Helvetica Neue&#39;,Arial,Helvetica,sans-serif;color:#777777;font-size:11=
+px;font-weight:bold">Get the Pocket app to save and read anywhere:</td>
+            		</tr>
+
+	        		<tr>
+            			<td align=3D"center" style=3D"padding-top:10px;padding-botto=
+m:30px">
+ 							<table width=3D"" border=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+								<tbody><tr>
+									<td style=3D"padding-right:20px">
+									<a href=3D"https://email.getpocket.com/ls/click?upn=3DnpsH9WqOMAo4=
+0cbLSZTDGlMadmqIFyhUJJfL-2BtnAaZKAU9DmO3sF4LcR8HxpWsMKSxYfF-2BkFjRIAnsgx4o2=
+1jOuuWMP9jkd-2Fca2MdYrs7xm8bESzHMVVUXj6T7MFzKeanCriMBzoEUTZbDIibdEuoA-3D-3D=
+wMgS_xm9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR3=
+1vp2gkeFY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBU=
+BUq9Q-2FCOuTrhxNb82UbUGpQt0ZDSgBh7w6g0-2BBe81tsCcMaO0U7VuvnqATUbzfY6IB50ds6=
+kI1arSfNeH-2FMi3LuI2WAPzCCk5BZptIr1l6q-2BAbK2RenzHf8ZllOAwKQGh1NVGSDxJy6X-2=
+BpLDsBCjIxK-2FOhodi8MHHZigJTkKTSKkUzjv2R0vs-2Fnh7M1sy4ef19cJVVJINT5ZmHAMHUf=
+-2FPE2nJMWKgjnMTj0MjfkPrmV62I8ZLkAYx" target=3D"_blank"><img src=3D"http://=
+email-assets.getpocket.com/icon-apple-store.png" width=3D"115" alt=3D"" sty=
+le=3D"display:block"></a></td>
+									<td>
+									<a href=3D"https://email.getpocket.com/ls/click?upn=3Dky17TgJ1REx4=
+YaZOG279kQlTyrK6no28SN8Z55cCGEr7iUE7fyhGGeLbVt7Hg5qd7sj14-2Bimcm9xTlwDuiIsm=
+rbROSQEITONQwLKnNb2wCAUgL3fgEunsm1-2BpKrArEOJ5EHJj-2FUwoCnA60glx9St3E1BHiO3=
+CFAzl6xZ4tmwLKjvW-2F-2BSF0GlsF46ahymkbhder9sTOWfDX3kzy7hj5Ab7Q-3D-3DKCUn_xm=
+9INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gke=
+FY-2FwOR3s90mwx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2=
+FCOuTrhxNb82UbUGpQt0ZDSgBh5ttdfGIEaLooWBXl4Cr2BG6Qwm5bOXwY2SIg7bFfnFADoybUs=
+PectDguG-2ByZWWxAzjc8ODZgWyUpYX5vcsOO6xWhlTKA-2F9dbXSPj2hTx6BkFZT6pLziNLvgx=
+P-2FluB2Ul7O6HwoRzy1lqIArNBWO9tFiMSh3p0zuFuISaz79hY0zCAGRSGXOEcmANUN9E-2BCv=
+hmxKrUV52OetrLj6aI0k72a" target=3D"_blank"><img src=3D"http://email-assets.=
+getpocket.com/icon-google-play.png" width=3D"115" alt=3D"" style=3D"display=
+:block"></a></td>
+								</tr>
+							</tbody></table>
+ 						</td>
+            		</tr>
+
+	        		<tr>
+            			<td align=3D"center" valign=3D"top" style=3D"font-family:&#3=
+9;Helvetica Neue&#39;,Arial,Helvetica,sans-serif;color:#777777;font-size:11=
+px;line-height:10px">
+		                <a href=3D"https://email.getpocket.com/ls/click?upn=3DIX5=
+fWO68cC4NzosZAERptYtdeZMss7VA2t-2F73t9K3dJsI0CNBPJNeLgwJe1JEJ3qxDMQ_xm9INnk=
+Oe-2BZ-2B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2F=
+wOR3s90mwx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuT=
+rhxNb82UbUGpQt0ZDSgBh4YsGRgVvuRe5GQFDp1tJJph8-2BgUOhwoMiQeSnUES9hgXchRaunLq=
+hw2VttJKf6bVwN3WscC1TXEIPOBZFp-2FhtL3-2F9-2BTQ0GOkT-2B2Q4rPbtrWuWIsSmo7Y7RV=
+dkV1Dvk9Sc26D8oCdtpcs5p7axf4Ez-2FZeub-2FIMvt6NROGxmb4G-2FfhqTRKJmgJvrOlSC43=
+Lgjhin-2BB05NlIYNk3HPZd0hGHh" style=3D"color:#777777;text-decoration:none;f=
+ont-weight:bold" target=3D"_blank">Privacy Policy</a>=C2=A0=C2=A0=E2=80=A2=
+=C2=A0=C2=A0
+		                <a href=3D"https://email.getpocket.com/ls/click?upn=3DmkX=
+E0Ty4K-2FoP1ueqo7lZRcr3LUJw8UGIdABdaXkSYAOrHr-2BTqliRxIghIX5VvZq4YMoO_xm9IN=
+nkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-=
+2FwOR3s90mwx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCO=
+uTrhxNb82UbUGpQt0ZDSgBh5R4yVhNsJUHGAW3RyHxduAJSRuwmBWTS4ygQIAgzOXHDKlEc6-2F=
+PnJp6D3elOGr-2Bqg7u6UEMIMURUG7P1rTdegqaV2phb2TEJYEkGdP3JmS4Ndz-2FDQy1ak-2Fy=
+irwFQM3aFoLUtcSfNG7sVMj6OL-2FNVq0lsDrGmWYXRbbpNSokB8tnypNHdwB70eu1BDts8Ep5Z=
+-2F4bb-2Fs8FLQYeuArsWZsrTo" style=3D"color:#777777;text-decoration:none;fon=
+t-weight:bold" target=3D"_blank">Help Center</a>=C2=A0=C2=A0=E2=80=A2=C2=A0=
+=C2=A0
+		                <a href=3D"https://email.getpocket.com/ls/click?upn=3DIX5=
+fWO68cC4NzosZAERptSaUM2YsJ9JyX9SWxm1cCjLyH-2FWJ0KSt-2BTTwIRmsPxx-2B2bqe_xm9=
+INnkOe-2BZ-2B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeF=
+Y-2FwOR3s90mwx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2F=
+COuTrhxNb82UbUGpQt0ZDSgBh45YUK9tKIyL54IYDNP4yH1HE9g9Kaog-2BPd5nFKAgOqOYkALd=
+KvwGKC71tH-2BB-2F8X8HBiMAsa-2FBiMDWiyKUE-2FTUxou4tJy6sLWjGg4nYZ1mxz3f3JxxN5=
+bsZzMSZPZY0z1-2FaMGPey5VtT280KbdV-2F9EhAkNy2f7YRP9n4-2BRQ70xTjUhrJgy0Bkk05S=
+R7KB8lpX5JC5IwD9Ox6PjaDZUMlP6-2F" style=3D"color:#777777;text-decoration:no=
+ne;font-weight:bold" target=3D"_blank">Become a Sponsor</a><br><br></td>
+                    </tr>
+	        		<tr>
+            			<td align=3D"center" valign=3D"top" style=3D"font-family:&#3=
+9;Helvetica Neue&#39;,Arial,Helvetica,sans-serif;color:#777777;font-size:11=
+px;line-height:14px">
+                       =20
+                        Enjoying this newsletter? Share it with your friend=
+s. They can subscribe=C2=A0<a href=3D"https://email.getpocket.com/ls/click?=
+upn=3DIX5fWO68cC4NzosZAERptXKMciaPR-2FoCkY4-2FNyP7RdsC-2FyIHxdoZT28isL04Y-2=
+FG25zpSiI6ZhHo3rYJtZY3qmPzQNgNlMxK0w1oYCOXqbbPzB-2B3oyWo1ZHGeh9YAyO-2F1iw4p=
+KaApV7FgXf8RC-2BQO2mXJn-2B7HIRRURmQD1HOlD44-3Dhdte_xm9INnkOe-2BZ-2B8OvS1pmo=
+94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx1KGVCdT=
+ir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbUGpQt0ZD=
+SgBh6D4iNew-2Boxkgd37gUX2yymJGgtjIzGKsuBMnqkYw467xELfCsWnqMjkluJ1EIEdlexa-2=
+BZHbKjKjMdu0V8LbIMctue5ioMMkCzW0BXGrMsg6TnoUWEsH07v44qZXBz-2FN2bez1sQI5ZHYN=
+BEv0u37lbC1uPRtuf1rB-2BXyFfE3zHBb8HPdZABcWXpyD7GsLXndMT8wB6WQj0yX-2F9kbODln=
+zbr" style=3D"text-decoration:underline;color:#595959" target=3D"_blank">he=
+re</a>.<br><br>
+                        You are receiving this email because you signed up =
+for Pocket.<br>
+                        Want to change how often you receive Pocket Hits ne=
+wsletters? <a href=3D"https://email.getpocket.com/ls/click?upn=3DIX5fWO68cC=
+4NzosZAERptV7y9DCZoG-2BNs0r7Ekpf5FjUH07SyLlyeJgM6CzDL73oQPzPWfDcNZmmtoTAsxv=
+-2B1yK-2FAna5jqV5971BHFTtVCCBf-2FzIxgvfu-2BgMLoPbfX0qn4Ik_xm9INnkOe-2BZ-2B8=
+OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90mwx=
+1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82UbU=
+GpQt0ZDSgBh5vMN4iObg1CoWtKO3gxBPjnpRdwBRygve9a5rWkwvQtbd9u3rVD1SfI1oyOZ0at4=
+0s-2FjgPr-2BxdsFsJyqw4w3ucErNYhbYHju2Zkv8gyClzQx9xcRAr29LeaevKFme-2BU1S5px6=
+Pctma1-2FkupAM1Y-2BAaKgrs5y9WfKZAA1aOiGvcbxWDQOM3-2BXKoRjO-2FOdfk2Yjs7baVVL=
+N2pBYYuk5emM2S" style=3D"color:#777777" target=3D"_blank">Update the freque=
+ncy here</a>, or <a href=3D"https://email.getpocket.com/ls/click?upn=3DIX5f=
+WO68cC4NzosZAERptV7y9DCZoG-2BNs0r7Ekpf5FjUH07SyLlyeJgM6CzDL73oBApDPUdiKEw2g=
+2n-2FYB4caSx5CBRrsBXhEpk5oymHhMK-2B0YlAar9adw0Mhz4J6M26RwaF_xm9INnkOe-2BZ-2=
+B8OvS1pmo94IMIOcLJKFB0Uop4LEo9RnnFQFlflnRhc4sp1cMJ4yVR31vp2gkeFY-2FwOR3s90m=
+wx1KGVCdTir5LViTDWIQ6jJGfoVF8Os8JWJU6uZ92HtiVht9svnZyBUBUq9Q-2FCOuTrhxNb82U=
+bUGpQt0ZDSgBh7iVMBunpEu4LR8nrBXpZ0jWJJQPBseYnyVbulG72wv6Wt5P-2FFq492lagE5Zc=
+DOW1fm3i4uYslPh-2BO-2FSha7eXosQwRyNKok5XltW5NKIOKevcmZ3P9HY2bHf1XWzcPICgcI6=
+HKTxlYSBMX0uWU-2BrLW4eJrrw8k-2FVTOzYO3AbIjBl3uzDVvW9lhmS2dX8y-2BRg4QGMMeVo-=
+2Fv2R5ygvrYa0MtA" style=3D"color:#777777" target=3D"_blank">unsubscribe</a>=
+.<br><br>=20
+
+		               <span>Mozilla Corporation, 2 Harrison St. #175<span>,</spa=
+n> <span style=3D"white-space:nowrap">San Francisco, CA 94105</span></span>=
+</td>
+            		</tr>
+            	</tbody></table>
+
+
+
+
+
+	        </td>
+	    </tr>
+    </tbody></table>
+
+
+
+
+  		</td>
+	</tr>
+</tbody></table>
+
+<img src=3D"https://email.getpocket.com/wf/open?upn=3DuRaL4-2BY0x-2BjlkAtQ9=
+tRMw-2Bpn9hmVz3HF9MMBd3OsdA7EDA6XvOpnYG2RVFtOOt-2BluswLsE7XaJmTF678djhieriN=
+XkIMGWvl-2FRhufMfbHrcWn0Se9SCkpAClp1-2FXUj-2FTMHsH4b4furrBGh7PxwTNmjcOrJlw1=
+MXhT5lvMVjtBPD77T19VJYcluem9H80rwDjG7e3vlr0sBu38kMalfc-2F6h1MT6D0Bw-2FiNGXJ=
+RWwNolvtdD-2Fh7lwV4L10pK2FbDCjobkpQW8JHDZcyBwkgr-2BCIPxhTumn-2Bt9JI0lbRcSld=
+Ca0tZBFvHaOnEqKXBFGfOpcvOZKpycRZ72Dg75n1qPfbo6ZyDylOgeb1tV70PT20zkQajqIddEh=
+UUNU-2FiDc7O19" alt=3D"" width=3D"1" height=3D"1" border=3D"0" style=3D"hei=
+ght:1px!important;width:1px!important;border-width:0!important;margin-top:0=
+!important;margin-bottom:0!important;margin-right:0!important;margin-left:0=
+!important;padding-top:0!important;padding-bottom:0!important;padding-right=
+:0!important;padding-left:0!important"></div>
+
+ <div id=3D"m_3221435572342410612_two50"></div> <img id=3D"m_32214355723424=
+10612_two50_img" src=3D"https://analytics.getpocket.com/ea/XjNJDBA0Pr/?e=3D=
+[Email+Address]&amp;c=3D[JunePH2020]" width=3D"1" height=3D"1" style=3D"mar=
+gin:0!important;padding:0!important;border:0!important;height:1px!important=
+;width:1px!important">
+
+
+</div></div>
+
+--00000000000052381805cf6e44ec--

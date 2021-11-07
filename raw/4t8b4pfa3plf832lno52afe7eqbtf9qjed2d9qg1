@@ -1,0 +1,2537 @@
+Return-Path: <pzak@virtuslab.com>
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+ by inbound-smtp.eu-west-1.amazonaws.com with SMTP id 4t8b4pfa3plf832lno52afe7eqbtf9qjed2d9qg1
+ for newsletter@ds.vived.io;
+ Mon, 08 Nov 2021 11:11:43 +0000 (UTC)
+X-SES-Spam-Verdict: PASS
+X-SES-Virus-Verdict: PASS
+Received-SPF: pass (spfCheck: domain of virtuslab.com designates 209.85.167.52 as permitted sender) client-ip=209.85.167.52; envelope-from=pzak@virtuslab.com; helo=mail-lf1-f52.google.com;
+Authentication-Results: amazonses.com;
+ spf=pass (spfCheck: domain of virtuslab.com designates 209.85.167.52 as permitted sender) client-ip=209.85.167.52; envelope-from=pzak@virtuslab.com; helo=mail-lf1-f52.google.com;
+ dkim=pass header.i=@virtuslab.com;
+ dmarc=pass header.from=virtuslab.com;
+X-SES-RECEIPT: AEFBQUFBQUFBQUFGQUhNRzdoM25rdmdUM3RyOWJ0UFZEMEF1QlN0Wm5oa0VsaDJTc1gycDdRQ2tGMkIrM2J1MGt0YmNYbVZtM1hhVXlnWU52U1g0WHNRQ1VWTFVjWHI2NnZXcW5SbTY2eW1UZ3pOZjRHNXdDT3BOYnZCeldINjJmckMxTFpFOUVvcWEyUHhnaHladlFHU1k5NEhtcG9TZjdVU1djRjlKc1pnQlVCV0lYbXJwb3QyUHR4eFVzZlNWK3NpNmtvYTAwbUxENUNKVGxBWDhTUk1GNWVrb3lNRXFyUXg1VVphdVJ5Ykg1NzdvWFM3UTdWR0EyWDJOSjI2V3pOSGVJT04wa0hnZ3RjUklTbTZZazh4RDBJRTRCZEpQVko3dW1iMzUySmMvS3QzcmhFNnBDQnc9PQ==
+X-SES-DKIM-SIGNATURE: a=rsa-sha256; q=dns/txt; b=ckflhmHdinrU06Ag3wW0V6q1W6w0F/tWlFksE3dAL7zUQzx8OimA33fSq6W+O8owldtMYm6bnC+VfAd7ku/jYP9RQAGn9FL555EuK24S9b/+NLEr0jPHM8W4v1Ux6TL9Et5SHA7TN8OznmDwzkP0uSEp30OMSFhYQ6MEfnjX0oE=; c=relaxed/simple; s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1636369904; v=1; bh=xWL0ExgEz0iFRTmYNehYPPUMEx7egy4Uj+XH70W+Exw=; h=From:To:Cc:Bcc:Subject:Date:Message-ID:MIME-Version:Content-Type:X-SES-RECEIPT;
+Received: by mail-lf1-f52.google.com with SMTP id l22so8451605lfg.7
+        for <newsletter@ds.vived.io>; Mon, 08 Nov 2021 03:11:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=virtuslab.com; s=google;
+        h=from:mime-version:subject:message-id:references:to:date;
+        bh=FY6mpoHIAvsLLegndS9vdj735gkG6BcB+H5bNgKVzsI=;
+        b=H7o2odNZGQ9bk3hXMf1GVO3fqNaED82t5kXIqVChoG5Oh4P651IXA+yyGm+W5iQkHZ
+         QUuFEN5jh8vyqdQjKXOatu4QdyP7cw1NhEQB8t0fMmYhdjsloPjTpCMjAi/ZSrE0Nbs1
+         OZQxg+7kd8nF+UTNRiG+6QOUPDTb5cJpprY2WLrMg1hnX9GfHAvgf7vPWSnt7E+Bns+h
+         uD4K16pHpAfPbKMhaoyAn3myrmGJ26/4yVzaAUVdjmVfz8wLsm9J6MH8+a5k9IRZTkbn
+         NKQmnK2JZ363twRnBxl1000+eqUfXIkQtdTeBxZdW8Hfle2BzISy57amkI62ff+ulwH8
+         h1/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:mime-version:subject:message-id:references
+         :to:date;
+        bh=FY6mpoHIAvsLLegndS9vdj735gkG6BcB+H5bNgKVzsI=;
+        b=E6svLNe0ojV5fZd90zR7LyiQVr6N6cAEe/J0PSYMIH0WWH/nEMrS4lrth8Go/NbF76
+         BG24IRSowXDANV5heWnpSxKla5r847er2Ze8t3aNgN+Sxcqj24ctnHEpG9wdONXW1Jg8
+         GMwm7QLw3m7BzVjzXiPukUjF2p6BmLeJWALqr6l3Gt3+rC5f+4AQVjWVJEcF3YiebZNC
+         esDDpWVxQheFfB3FVQqddqbH2DEc2YdEDDnjdHPkR+lpiOen+1HIotiCsyOoJLmbzn41
+         SQAEQNN3/7Dl9bYeU2U+9SkQozFZoeKrHaUZm6PcP7G2VYmS3iPcoV1VVLLE3oxDB3bM
+         Rwxg==
+X-Gm-Message-State: AOAM532Q5w8nWxVLkcRXPAKGSa/uzSZAPsABecKe/hP95cVfriBqKq8F
+	VV4985cQAmryEO+anTaGZOst0FhgdTOA4ItA
+X-Google-Smtp-Source: ABdhPJz/Bc3hPcsgOfCbEx1gkf1mAp81Kk5m6E794poubFq1inFPMb/f4HhhTBNC30jEF2LKTex01w==
+X-Received: by 2002:a05:6512:2213:: with SMTP id h19mr70446221lfu.576.1636369902492;
+        Mon, 08 Nov 2021 03:11:42 -0800 (PST)
+Return-Path: <pzak@virtuslab.com>
+Received: from [10.0.128.20] ([80.82.18.146])
+        by smtp.gmail.com with ESMTPSA id i12sm1776773lfb.234.2021.11.08.03.11.42
+        for <newsletter@ds.vived.io>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 08 Nov 2021 03:11:42 -0800 (PST)
+From: =?utf-8?Q?Paulina_=C5=BBak?= <pzak@virtuslab.com>
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_51857A3B-B491-4311-BE3A-F767BC4D8DF7"
+Mime-Version: 1.0 (Mac OS X Mail 13.4 \(3608.120.23.2.4\))
+Subject: Fwd: IBM AI, eBPF, GitHub Universe, Oracle's JDK 17, F# 6,
+ Microservices, Developer Productivity
+Message-Id: <BC78E9E3-3B3D-4423-BF2C-799795114546@virtuslab.com>
+References: <CA+o2A1706Dd6dpShLFBOo9HQnaPjU6g4sXBS0-kD6zVgCyrfMQ@mail.gmail.com>
+To: newsletter@ds.vived.io
+Date: Mon, 8 Nov 2021 12:11:41 +0100
+X-Mailer: Apple Mail (2.3608.120.23.2.4)
+
+
+--Apple-Mail=_51857A3B-B491-4311-BE3A-F767BC4D8DF7
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+
+
+> Begin forwarded message:
+>=20
+> From: Artur Skowro=C5=84ski <artur.skowronski@outlook.com>
+> Subject: Fwd: IBM AI, eBPF, GitHub Universe, Oracle's JDK 17, F# 6, =
+Microservices, Developer Productivity
+> Date: 8 November 2021 at 11:47:37 CET
+> To: pzak+newsletter@virtuslab.com
+>=20
+>=20
+>=20
+> ---------- Forwarded message ---------
+> Od: InfoQ <newsletter@mailer.infoq.com =
+<mailto:newsletter@mailer.infoq.com>>
+> Date: wt., 2 lis 2021 o 10:03
+> Subject: IBM AI, eBPF, GitHub Universe, Oracle's JDK 17, F# 6, =
+Microservices, Developer Productivity
+> To: <artur.skowronski@outlook.com =
+<mailto:artur.skowronski@outlook.com>>
+>=20
+>=20
+> In this issue, November 2, 2021	View it in your browser. =
+<https://links.mailer.infoq.com/ss/c/Pu0HGR1TMxdPMpU2Xnd67_3xY4IYqlfnsw94P=
+aEM1ynI1CnTU72-N6sls0fxqz0sUoaCPOlZ6I6IKE1MmOkuHM9yUI2cVPsrUVlVFbaDGuiiJFo=
+S5to407nlDKXekf_r/3go/PEYUstwfSZ2qcbrMqdLZTQ/h80/fLxnSI7soHabJFv1qGM0opDCr=
+bSeEk_r_APZ6UOPW8I>
+>       =20
+> IBM AI <x-msg://12/#m_-5463852757192155789_IBM>, Google Cloud Skills =
+<x-msg://12/#m_-5463852757192155789_Google>, eBPF =
+<x-msg://12/#m_-5463852757192155789_eBPF>, GitHub Universe =
+<x-msg://12/#m_-5463852757192155789_GitHub>, Oracle's JDK 17 =
+<x-msg://12/#m_-5463852757192155789_Oracle>, F# 6 <>, CSS-in-JS =
+Libraries <x-msg://12/#m_-5463852757192155789_CSS>, JetBrains Compose =
+<x-msg://12/#m_-5463852757192155789_JetBrains>, Microservices =
+<x-msg://12/#m_-5463852757192155789_Microservices>, Psychological Safety =
+<x-msg://12/#m_-5463852757192155789_Psychological>, Developer =
+Productivity <x-msg://12/#m_-5463852757192155789_Developer>
+> =09
+> QCon London 2022: Discover emerging software trends and innovations. =
+<https://links.mailer.infoq.com/ss/c/chqY1_IQzUghhI0YX1Emil-iCBz5avDasvmFf=
+Kclqy29CFUTwpnkpOhju2g_U5e2tcxaJsfRU05cuLLphpCOwq_aGg2tgWZBuuo3bQ-UebrU_XC=
+w-osTQArAe5aV4u9oDBBXUKRUEwm3fKLKRkev7M_AmlcRt34nCYTasLuZ_X0/3go/PEYUstwfS=
+Z2qcbrMqdLZTQ/h81/1uFcfT9g1mnJKtX5T9cfpXSmPLN86dceJLBRVoY8cnM>QCon =
+London, the international software development conference, is returning =
+to London on April 4-6, 2022 =
+<https://links.mailer.infoq.com/ss/c/chqY1_IQzUghhI0YX1Emil-iCBz5avDasvmFf=
+Kclqy29CFUTwpnkpOhju2g_U5e2tcxaJsfRU05cuLLphpCOwq_aGg2tgWZBuuo3bQ-UebrU_XC=
+w-osTQArAe5aV4u9oDBBXUKRUEwm3fKLKRkev7M_AmlcRt34nCYTasLuZ_X0/3go/PEYUstwfS=
+Z2qcbrMqdLZTQ/h82/TCiYctAted2UmQU-l-Trx8ihnS7fOj-HpR3jS-pCE4s>. Find out =
+what should be on your radar from the world=E2=80=99s most innovative =
+software professionals. Take advantage of the lowest early bird price. =
+Save =C2=A3345 if you register before November 8th =
+<https://links.mailer.infoq.com/ss/c/chqY1_IQzUghhI0YX1Emim2LbHhhm7TODv6AD=
+Fqj2_xLrA5lRU00LHruIAgqT7be/3go/PEYUstwfSZ2qcbrMqdLZTQ/h83/tcFix74Fe6EsWSQ=
+XPl8kRStPTgqp25yfyJgUn1Dzfp0>.
+> =20
+> SPONSOR AD
+>=20
+>  =
+<https://links.mailer.infoq.com/ss/c/Pu0HGR1TMxdPMpU2Xnd67_78hlvVF3jWLlRNO=
+RRu6NiBfWLOtw67MHGwNm9L1j2mlP28ywlQNnFaYHi0FHTr-CmUbmCkTRa9AtutcjUplWJ7gPx=
+XeWFoM6eXF5hhjtIx/3go/PEYUstwfSZ2qcbrMqdLZTQ/h84/MSuBapfESi6kZ-tYoloCgh51J=
+OeUCeuZK9F7HAcQCv8>Optimizing your CI/CD Pipeline with Shift-Left =
+Enterprise Observability =
+<https://links.mailer.infoq.com/ss/c/Pu0HGR1TMxdPMpU2Xnd67_78hlvVF3jWLlRNO=
+RRu6NiBfWLOtw67MHGwNm9L1j2mlP28ywlQNnFaYHi0FHTr-CmUbmCkTRa9AtutcjUplWJ7gPx=
+XeWFoM6eXF5hhjtIx/3go/PEYUstwfSZ2qcbrMqdLZTQ/h85/SFtfDOktqq-ya7iLWgFgxfVlp=
+BwHAF7UVV3v5EDMOrQ>
+> Learn how shift-left enterprise observability and machine learning can =
+help you harden software for production release more rigorously than =
+unit and automated testing, detect "unknown unknowns" in the CI/CD =
+pipeline, define recovery guidelines for problems identified using ML, =
+and more. Live Webinar, Nov 10th, 2021 =E2=80=94 Save Your Seat =
+<https://links.mailer.infoq.com/ss/c/Pu0HGR1TMxdPMpU2Xnd67_78hlvVF3jWLlRNO=
+RRu6NiBfWLOtw67MHGwNm9L1j2mlP28ywlQNnFaYHi0FHTr-CmUbmCkTRa9AtutcjUplWJ7gPx=
+XeWFoM6eXF5hhjtIx/3go/PEYUstwfSZ2qcbrMqdLZTQ/h86/CeWYHI9j8gPgV-GkvQfqmYVzv=
+mwV3pAkfTirrVT64aQ>.
+>=20
+>  =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pp3yYJawKDIWuaLAD=
+ND1ijDw7fQvwS0EhWSBxNcAwOSFsS5JzS_wLFut_wjzuJMa08Rz8xjoQeKNx5XwQtYIV3X0SDv=
+6VQQsMS1fgl-w8_B_0U8PTV5Y-5Zc9GqA43n9mebhuVVF9KQHj3VPcWIojhcu0wC54CuoHIQ2Q=
+MM-0XpEmkRDcGOiBrgVe0fR-cbjH6Ahb6sNgNWotakpbMs2gbE/3go/PEYUstwfSZ2qcbrMqdL=
+ZTQ/h87/npQrgbTNcrgxNXQxPwlbynAgdqP_gAlqMDYAYvhtDgc> <>Microsoft's Asim =
+Hussain on Designing Software for Sustainability and the Green Software =
+Foundation =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pp3yYJawKDIWuaLAD=
+ND1ijDw7fQvwS0EhWSBxNcAwOSFsS5JzS_wLFut_wjzuJMa08Rz8xjoQeKNx5XwQtYIV3X0SDv=
+6VQQsMS1fgl-w8_B_0U8PTV5Y-5Zc9GqA43n9mebhuVVF9KQHj3VPcWIojhcu0wC54CuoHIQ2Q=
+MM-0XpEmkRDcGOiBrgVe0fR-cbjH6Ahb6sNgNWotakpbMs2gbE/3go/PEYUstwfSZ2qcbrMqdL=
+ZTQ/h88/f9qftUGTQlYjSAujwof4Jr3VaBi5bygh3Ys2V12WN6k>
+> Charles Humble explores the topic of designing software for =
+sustainability with Microsoft's Asim Hussain, chair of the Green =
+Software Foundation. They discuss techniques such as demand shifting, as =
+well as the current challenges that the Green Software Foundation is =
+aiming to address. (Podcast)
+>=20
+>  =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pp3yYJawKDIWuaLAD=
+ND1ijAVOrQGbTX3rO2SQ9O3EsFekRWctzpr1wxAGGIXF2wp_WYh2b242Rfyh2rhOt3zNnHKzEB=
+yxZENo-sJ2vxIM6Dmd9pApbqfS9lK2kCSKJxCHVoN5y1CX7ZXBUPx3n8zwTKNwNvXaczKYR09-=
+KzcF8shkRmy2i37Najq0300Yv9jmg/3go/PEYUstwfSZ2qcbrMqdLZTQ/h89/0uEB_biqghaZ-=
+J-qkd7YWUfyrn11mxnx0uYnbtqknY4> <>Career and Leadership Advice for =
+Engineers and Technical Professionals =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pp3yYJawKDIWuaLAD=
+ND1ijAVOrQGbTX3rO2SQ9O3EsFekRWctzpr1wxAGGIXF2wp_WYh2b242Rfyh2rhOt3zNnHKzEB=
+yxZENo-sJ2vxIM6Dmd9pApbqfS9lK2kCSKJxCHVoN5y1CX7ZXBUPx3n8zwTKNwNvXaczKYR09-=
+KzcF8shkRmy2i37Najq0300Yv9jmg/3go/PEYUstwfSZ2qcbrMqdLZTQ/h90/mWbdM6_NJhTH3=
+ddmzrytjaCE1SzLJ2C-n9O_SJ3HQ18>
+> In this podcast, Shane Hastie, lead editor for culture & methods, =
+spoke to Jeff Perry about the important leadership and people skills =
+that technologists are often not trained in, why career coaching can be =
+valuable, being deliberate about career choices, and advice for =
+technical leaders. (Podcast)
+>=20
+> AI, ML & Data Engineering Latest Content =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pvedUXkxr0tsh-jfg=
+CmVJEVJMEtFeFswAPDJbQ1wTCuTTCOpnajAAA5b5CZKWjWU1hwbyQL5AmLotKxETwCKjh1-HPu=
+25i49Y8Y1XOX0HiC_N02hBRCkicnD_gwivGgYJ3JFe3TT-jKEti3DlbS5Cb2duSfnDOqIb19nc=
+jHtjf-K/3go/PEYUstwfSZ2qcbrMqdLZTQ/h91/vf7ejyzm-zwKcHP7jXzoOCr13oYYNhe5wv3=
+pJ6fjlU8>
+>  <>IBM Develops Hardware-Based Vector-Symbolic AI Architecture =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9po95ERJwFzPwEJv-Q=
+qs_WUWzagFA1kLawIkeO2U6_bc4Tgz8Y9vwUTiP4MuLuYjk3wQQMev_ufCH6fi6rB1e2J2m1lR=
+smevycVenukY1QB9PAxs9-s-HjCC28ipoCfnlkQkZWt6a7O9c1L-c_05yjZK7B1c1d1BgyfwvT=
+KOO5NR631ypmv7QSeqyspDyTtIurA/3go/PEYUstwfSZ2qcbrMqdLZTQ/h92/74eNsDz9CJZHh=
+ldUWGgeUhQ717-a0yZ846a_Ap-WKLw>
+> IBM Research recently announced a memory-augmented neural network =
+(MANN) AI system consisting of a neural network controller and =
+phase-change memory (PCM) hardware. By performing analog in-memory =
+computation on high-dimensional (HD) binary vectors, the system learns =
+few-shot classification tasks on the Omniglot benchmark with only 2.7% =
+accuracy drop compared to 32-bit software implementations. (News)
+>=20
+> SPONSOR AD
+>=20
+>  =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pq36GkqO0bC2wPTKN=
+SNc1JBd4AOEVgJUyRe9T3ZfO8Ym2xgyB-xo1aOgOKA_kHWt2gu4lSU94G097fbxWak48Or3im0=
+aZTsTb0rNBWm430Gz0ju6DslhmU-tIfuFvclvJqrAXsvPPep5HUKe2_WZUHTsrgpYz9dyqqkh-=
+vL3TsDyA4bhLrBUyPLFb_0cFuoZgwNBvoQRtbAOS7DTH3-3_88rW20M_1MTRKeakt8zwq-WiZe=
+YHr2P4Z4otpLVSHkZXxA_xDh4lgQZdRA2wAxAmCjzx-wiC9kX6kH5U3uxVAuVFguWsyN6hxdS5=
+Uc3jQPqtN_bPC0d1xedSA5ImtrjVY5MTcA60Fbpt60tQpTTm7kUi1z_3FsPKMZXqp-pr747Nq7=
+N25o-QdWEYGZEgeZb1ZA/3go/PEYUstwfSZ2qcbrMqdLZTQ/h93/2esJynTfCkvVtBVLh5Iwl3=
+BiQPqedur0FJteXaDHY-U>Building Serverless Applications with Google Cloud =
+Run =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pq36GkqO0bC2wPTKN=
+SNc1JBd4AOEVgJUyRe9T3ZfO8Ym2xgyB-xo1aOgOKA_kHWt2gu4lSU94G097fbxWak48Or3im0=
+aZTsTb0rNBWm430Gz0ju6DslhmU-tIfuFvclvJqrAXsvPPep5HUKe2_WZUHTsrgpYz9dyqqkh-=
+vL3TsDyA4bhLrBUyPLFb_0cFuoZgwNBvoQRtbAOS7DTH3-3_88rW20M_1MTRKeakt8zwq-WiZe=
+YHr2P4Z4otpLVSHkZXxA_xDh4lgQZdRA2wAxAmCjzx-wiC9kX6kH5U3uxVAuVFguWsyN6hxdS5=
+Uc3jQPqtN_bPC0d1xedSA5ImtrjVY5MTcA60Fbpt60tQpTTm7kUi1z_3FsPKMZXqp-pr747Nq7=
+N25o-QdWEYGZEgeZb1ZA/3go/PEYUstwfSZ2qcbrMqdLZTQ/h94/8IRDaTvKWtP1CNP6SzOtWe=
+7wIa7YLqvyhPUQ4KpElqs>
+> Never babysit infrastructure again. Download this eBook =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pq36GkqO0bC2wPTKN=
+SNc1JBd4AOEVgJUyRe9T3ZfO8Ym2xgyB-xo1aOgOKA_kHWt2gu4lSU94G097fbxWak48Or3im0=
+aZTsTb0rNBWm430Gz0ju6DslhmU-tIfuFvclvJqrAXsvPPep5HUKe2_WZUHTsrgpYz9dyqqkh-=
+vL3TsDyA4bhLrBUyPLFb_0cFuoZgwNBvoQRtbAOS7DTH3-3_88rW20M_1MTRKeakt8zwq-WiZe=
+YHr2P4Z4otpLVSHkZXxA_xDh4lgQZdRA2wAxAmCjzx-wiC9kX6kH5U3uxVAuVFguWsyN6hxdS5=
+Uc3jQPqtN_bPC0d1xedSA5ImtrjVY5MTcA60Fbpt60tQpTTm7kUi1z_3FsPKMZXqp-pr747Nq7=
+N25o-QdWEYGZEgeZb1ZA/3go/PEYUstwfSZ2qcbrMqdLZTQ/h95/v3FZzZULSplH9KxLI5eZi3=
+EeDVZLCf3-7I3s6uefZPA> to learn to build serverless apps.
+>=20
+> DevOps Latest Content =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pprZMKV0fc8DiJ-Rg=
+4c0n6ptG0lqFWMCeDBzicnhL5JNKSillecKs1tVqZLTUy1D4YrwSckND3fcFs24lzTEsFWDarm=
+N8BGmZzHxfkuVLHzoOwygvDsC-R_bzdrY75MXUmrYoIY-LKAk-1zpH2V1tIc/3go/PEYUstwfS=
+Z2qcbrMqdLZTQ/h96/Xb4lYwKh34Xj4xRZO7LIxWDwB_rpr2XVw41-vGErufQ>
+> TOP DevOps NEWS HEADLINES
+>  <> Google Is Aiming to Train 40 Million People with Google Cloud =
+Skills Boost =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9po95ERJwFzPwEJv-Q=
+qs_WUUhlZ0U4dn3M1Vbu3p7PLY_B3JxKNarz7qPODVlMujMPeVjCx9DkZPfGK-vK8-P7mFf1nt=
+Dmw1zuxVjtFnURFIoAnU5hRspSSQy7pMM0wgCg1XENu9BMPS6LysN6CdvdhkNspGjt31mcEsGx=
+5tTUd7BK86kM9LkBa5CpZjUiDVU6w/3go/PEYUstwfSZ2qcbrMqdLZTQ/h97/2Se3xkqcvV7dI=
+iUtpulsq_qSIuidvJw0062zvn4m6-s>
+>  <> Amazon Introduces RDS Custom for Legacy and Custom Oracle =
+Databases =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9po95ERJwFzPwEJv-Q=
+qs_WUV6mDs_hXHGWxq7-BdZ97cTZlhw-JN-9K9ArsaeDf-6c5YLUXQQiNkGgJv5p_QnaCmmtCy=
+4p60XuqT8Q9J_T96A9OCDWuX5utEZ8avi7hQdosxexaTsKqtCwDOpUl7iubkGkMZ-WV9q6Q-tL=
+q7rS0I79ILYgQmbAl3IDgmSrAHQJQ/3go/PEYUstwfSZ2qcbrMqdLZTQ/h98/8qvWQW1zkcama=
+JfDSmT60svjsnLTa3h-wFwYq7wBFLc>
+>  <> Analyze Video Feeds at the Edge with AWS Panorama Appliance =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9po95ERJwFzPwEJv-Q=
+qs_WUVZxzgnrDKQR5Vm0F8pe9oZD7hqoU2GW0s_yb86AaUH-R0JGCh0SPfHixoIqddww3nWeIV=
+Jv2RjnKbIMaIWzVSCiB8PV40KaURJI44hS6ECY9U7rIy1AZy5M8BQ8jk8wm3MW-m5BUPOqBhg7=
+9Y0yR-h/3go/PEYUstwfSZ2qcbrMqdLZTQ/h99/FyCRfUXE_HTV31OX5xKJmjXFwikLBc32A_6=
+mQkx61Ms>
+>  <> AWS Announces the Public Preview of AWS Data Exchange for Amazon =
+Redshift =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9po95ERJwFzPwEJv-Q=
+qs_WUXK5gqyEKLzFjpP7c0g45O9VMLDPtplrv5KCm2Y0VsTiE4Em-zekoBapKZJfs8NbSBzYxh=
+w1GTNCykDnoORFg94dgHzrSE9uY4UKg-sTpYqvxyPsW1rg7fv4ULHqvHOAK5EucOFc5ZbYFa_-=
+DR6HxPkZ3tz84cJo9HJNpE0AsTX2g/3go/PEYUstwfSZ2qcbrMqdLZTQ/h100/5YWKrosnLDkY=
+_YmMUB8Va_xjGse3W9zMiLuoED-e3h4>
+>  <> Google Cloud Spanner Adds PostgreSQL Interface: Is PostgreSQL Now =
+Standard for Cloud Databases? =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9po95ERJwFzPwEJv-Q=
+qs_WUUjGXQwuPTYZd9Y36btzMr1EhEEQmMMjOp5QiDR6mTd-_ibLX_f0rrqMZUA5pYGOVOyNGZ=
+3wl20UuOuunR3lnZjzF-nXRjpV8DXQ7LXeNERK_IwLiZ8DBxuLbySF6_T4_h8k18f7NmLgx98O=
+fhE-4vkqfa4o8x4dL2nIU0OQXfnMw/3go/PEYUstwfSZ2qcbrMqdLZTQ/h101/SilMCnLipDUR=
+HI_7rFfuP79nixqwbBG16w3fqgDeI8I>
+>  <>  =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pr_L9Yj0B6kEUTK2u=
+Iobmod7cZXqTzPX6Bf6bxaB5uQ4gwh2tnaAirh0m9kg4w_rAT1hqGoPNoONZkSOha4oS_asMtY=
+ZuVk_VSoPHvs4RUZUm4ts8PJ31FRfD1cCwniLSg2DkAGDFZeIncI1oibOJUbnCuHkk7FZKbgec=
+91Vo4t6/3go/PEYUstwfSZ2qcbrMqdLZTQ/h102/eGk-CtMEWKTZ7tmhklfPy2cHHVI00AWSOD=
+BKA2f10xo>eBPF - Superpowers for Cloud Native Operations =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pr_L9Yj0B6kEUTK2u=
+Iobmod7cZXqTzPX6Bf6bxaB5uQ4gwh2tnaAirh0m9kg4w_rAT1hqGoPNoONZkSOha4oS_asMtY=
+ZuVk_VSoPHvs4RUZUm4ts8PJ31FRfD1cCwniLSg2DkAGDFZeIncI1oibOJUbnCuHkk7FZKbgec=
+91Vo4t6/3go/PEYUstwfSZ2qcbrMqdLZTQ/h103/oudf4C2juToEwrIJ5KsxIN23-Q5WTNnwB_=
+rWQXt-BYM>
+> Liz Rice discusses how eBPF enables high-performance tools that will =
+help connect, manage and secure applications in the cloud. (Presentation =
+with transcript included)
+>=20
+>  =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pjdbB_mGsOCv_oqWl=
+rp_as9ZZzWopHkX6G1zTMwBAyrUG-9w0WxHcxgTwivrOHxjk3Yv5XfoJIdFJ6xf-txwiXRkkSQ=
+Ri0cNbJkf2OUyn5F5xvv81HGEcq09lBJLncBwq6GAZR3NlVng27UxXESsRvURVPJx71nj2WEbn=
+KHp7U2AuWEklK-SUy-0RbaGUQqg3w/3go/PEYUstwfSZ2qcbrMqdLZTQ/h104/xejVAGh_9vyv=
+DJRSf3yS1OWtqbJdF-XBrTsFf-R_wQg>The InfoQ eMag: Managing Observability, =
+Resilience, and Complexity within Distributed Systems =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pjdbB_mGsOCv_oqWl=
+rp_as9ZZzWopHkX6G1zTMwBAyrUG-9w0WxHcxgTwivrOHxjk3Yv5XfoJIdFJ6xf-txwiXRkkSQ=
+Ri0cNbJkf2OUyn5F5xvv81HGEcq09lBJLncBwq6GAZR3NlVng27UxXESsRvURVPJx71nj2WEbn=
+KHp7U2AuWEklK-SUy-0RbaGUQqg3w/3go/PEYUstwfSZ2qcbrMqdLZTQ/h105/Fm1wl0wOMXf1=
+ozr3uh852b4inubJajYT7dheUy1XeXg>
+> This eMag helps you reflect on the subject of reducing complexity =
+within modern applications and distributed systems, and provides you =
+with different perspectives and learned lessons from people who have =
+already had to deal with challenges from the real world. Download Now =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pjdbB_mGsOCv_oqWl=
+rp_as9ZZzWopHkX6G1zTMwBAyrUG-9w0WxHcxgTwivrOHxjk3Yv5XfoJIdFJ6xf-txwiXRkkSQ=
+Ri0cNbJkf2OUyn5F5xvv81HGEcq09lBJLncBwq6GAZR3NlVng27UxXESsRvURVPJx71nj2WEbn=
+KHp7U2AuWEklK-SUy-0RbaGUQqg3w/3go/PEYUstwfSZ2qcbrMqdLZTQ/h106/vulK3Qbo_nq9=
+sGQPN9XFIYmv27MT6bsd1caclmYP-uQ>.
+>=20
+> SPONSOR AD
+>=20
+>  =
+<https://links.mailer.infoq.com/ss/c/tmZu5pbwkKSbqAENkDDdq24WKQCwFU_80vpb-=
+-a0K-kkLBiS7yn2rFAhIvC4abfoZQqruTdNAVXgDZkbu3a54dOr3h9_pz9NjEUd4IVu-igBMnm=
+Vv7Nc4Xa_yLVo0VvOZDM2eQPuNzq4iuqwUkMrkRWZKB6gLyH0kIg80TNeF4o6sJBdLTOXqr-tU=
+7FCL_bU/3go/PEYUstwfSZ2qcbrMqdLZTQ/h107/AbxLARHNJSh3OL2aRPtbq8D6vjkwjK09Wy=
+BMgCmzZH0>Benefits and hurdles: A snapshot of Kubernetes in 2021 =
+<https://links.mailer.infoq.com/ss/c/tmZu5pbwkKSbqAENkDDdq24WKQCwFU_80vpb-=
+-a0K-kkLBiS7yn2rFAhIvC4abfoZQqruTdNAVXgDZkbu3a54dOr3h9_pz9NjEUd4IVu-igBMnm=
+Vv7Nc4Xa_yLVo0VvOZDM2eQPuNzq4iuqwUkMrkRWZKB6gLyH0kIg80TNeF4o6sJBdLTOXqr-tU=
+7FCL_bU/3go/PEYUstwfSZ2qcbrMqdLZTQ/h108/JoRB91yIGnu9WwRlLsjm99GSs12Bql5tHN=
+mVQ34H0JI>
+> This report highlights three roadblocks on the path toward Kubernetes =
+adoption, the top two benefits from adopting K8s, and describes the most =
+popular deployment strategy that works for both Dev and Ops. Download =
+now =
+<https://links.mailer.infoq.com/ss/c/tmZu5pbwkKSbqAENkDDdq24WKQCwFU_80vpb-=
+-a0K-kkLBiS7yn2rFAhIvC4abfoZQqruTdNAVXgDZkbu3a54dOr3h9_pz9NjEUd4IVu-igBMnm=
+Vv7Nc4Xa_yLVo0VvOZDM2eQPuNzq4iuqwUkMrkRWZKB6gLyH0kIg80TNeF4o6sJBdLTOXqr-tU=
+7FCL_bU/3go/PEYUstwfSZ2qcbrMqdLZTQ/h109/sBDeyy6caG090W-6vflSEBq4JRHowCLfT5=
+8tQecXqns>.
+>=20
+> Development Latest Content =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pprZMKV0fc8DiJ-Rg=
+4c0n6olGIIAK2r9OHNCsSh6m-0dbrYXuduS3zbtEuRLFjAnTavOSO6AdZSaVK5UNmp6wBdyfTT=
+YZ1hMvFXvKV8lCO5YYmmTuBfcJE5ZRWQ1oUhFCArElfIOmYbfc79I4XTetlU/3go/PEYUstwfS=
+Z2qcbrMqdLZTQ/h110/VEn4MKrgx9XiYEv7kFV6m0gENNOV5d4qjkOp97DIMrE>
+> TOP Development NEWS HEADLINES
+>  <> GitHub Introduces Projects, Updates Codespaces, Copilot, Code =
+Scanning, and More =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9po95ERJwFzPwEJv-Q=
+qs_WUWJyAEo7CaOI46tpATQOejw3fqpJGqnAdg0D8L7djud4PH3MeIjl5kwZS_4AD-uU38nZvH=
+uRgp9tMp1rWfwjzJedlaWTXqKdzkiaSbalKaqL074zI4f4TPSg-shOPCEuEF-YNyNeOm8VYlux=
+xaXN0bQtKLPUAzXMH4FQ2Y8t7Cf-A/3go/PEYUstwfSZ2qcbrMqdLZTQ/h111/MDB3RQ5QVGS0=
+81teIXMt-yoYmqHIR3wrPucr1lf7fNk>
+>  <>  =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9phFqofaJZYaiWILSF=
+vpYnyQnQpz7kzUvIGv6A4Kfpnrfq6Vwr8_WmsI8A6dTocoYAGybdTX1YSVCLJeYzqLLB8SETcP=
+oJZ8NG4bOsTEI8AU6kUfgLjQutarRhGZ9k7GbktrzY-1j_xuOE2s1owSijKFcQkN-81aw8TD0W=
+VFKdFbDJxyviLg9xtFmqGW5n4_or4mAvRUyEwez0HKa6-X7GmU/3go/PEYUstwfSZ2qcbrMqdL=
+ZTQ/h112/H7ecS6CLrVqu52AnE5v6i6Pt9HS5WRaIw16wIT6a_j8>Forensic Monitoring =
+of Blockchains is Key for Broader Industry Adoption =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9phFqofaJZYaiWILSF=
+vpYnyQnQpz7kzUvIGv6A4Kfpnrfq6Vwr8_WmsI8A6dTocoYAGybdTX1YSVCLJeYzqLLB8SETcP=
+oJZ8NG4bOsTEI8AU6kUfgLjQutarRhGZ9k7GbktrzY-1j_xuOE2s1owSijKFcQkN-81aw8TD0W=
+VFKdFbDJxyviLg9xtFmqGW5n4_or4mAvRUyEwez0HKa6-X7GmU/3go/PEYUstwfSZ2qcbrMqdL=
+ZTQ/h113/GqL0fjQe9MP-jUNgH-eCNWHk8rD8Lj_Gt6I4jYnQbMQ>
+> This article presents a new blockchain consensus mechanism, XinFin =
+Delegated Proof-of-Stake Consensus Protocol 2.0, that provides a higher =
+level of trust by creating an efficient judiciary system. It has been =
+designed to keep all verifying nodes accountable and allow for bad =
+actors to be identified and effectively neutralized. (Article)
+>=20
+> SPONSOR AD
+>=20
+>  =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pneXAObN-9Bn1uBRU=
+Vka6f1XoMFG3Oro_kFGTMosZ3Q-ej66xI0AJEbFLweN-Mv-glm7_6uJm1bsh8kpbQyY6havyco=
+O41WdrlOnp7QJa4tF3SaF_0QjetnGUXSRq0HDCeUuB0VG0zNlMzQVIbAEva-zeuqROF2I7Sm_g=
+bCPGgDwp6up8dKuYAzS9SxCk5s609RxI-l1Rb-xwE2a5b6KbU6yfDrgAqM5NXGzQM91NDas/3g=
+o/PEYUstwfSZ2qcbrMqdLZTQ/h114/G9CqFLFjDcmR7wh3ReFkmlmC9JAbeXLcmqhghDusRKI>=
+Solo.io | Enterprise Strategy Group =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pneXAObN-9Bn1uBRU=
+Vka6f1XoMFG3Oro_kFGTMosZ3Q-ej66xI0AJEbFLweN-Mv-glm7_6uJm1bsh8kpbQyY6havyco=
+O41WdrlOnp7QJa4tF3SaF_0QjetnGUXSRq0HDCeUuB0VG0zNlMzQVIbAEva-zeuqROF2I7Sm_g=
+bCPGgDwp6up8dKuYAzS9SxCk5s609RxI-l1Rb-xwE2a5b6KbU6yfDrgAqM5NXGzQM91NDas/3g=
+o/PEYUstwfSZ2qcbrMqdLZTQ/h115/myZaRQYOOrczDengPhpynZoLLIG6PZEXAYjoOYbqXNI>=
+
+> Download this white paper =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pneXAObN-9Bn1uBRU=
+Vka6f1XoMFG3Oro_kFGTMosZ3Q-ej66xI0AJEbFLweN-Mv-glm7_6uJm1bsh8kpbQyY6havyco=
+O41WdrlOnp7QJa4tF3SaF_0QjetnGUXSRq0HDCeUuB0VG0zNlMzQVIbAEva-zeuqROF2I7Sm_g=
+bCPGgDwp6up8dKuYAzS9SxCk5s609RxI-l1Rb-xwE2a5b6KbU6yfDrgAqM5NXGzQM91NDas/3g=
+o/PEYUstwfSZ2qcbrMqdLZTQ/h116/Zj-L9TmkcsCawhR97OfZtE1IRqS_gLD64OjeKnK8nnU>=
+ to get the ESG take on enterprise versions of an Istio service mesh and =
+why a service mesh is essential for scaling cloud-native and =
+containerized workloads.
+>=20
+> Java Latest Content =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pkLeWmZKqBrGQOEo7=
+iBqNFji5heKfTdVptKLgocsCZEAsIDRFyM2ZFq5ibN-5wgDZNZz5R-wu8ArBWYQlm62t0iNip3=
+V3DE3ThQmLUsXQu7kj6kZpjz21TE0aFlqkoshFhgPwfT9IbRcJvIRLgL9H_Q/3go/PEYUstwfS=
+Z2qcbrMqdLZTQ/h117/bkY-yZFLJwfwwg_Ph6k0cuaH9Uz8LCVDnV6ptzr0KiE>
+> TOP Java NEWS HEADLINES
+>  <> Java News Roundup: Updates on OpenJDK, Spring, Quarkus, Payara, =
+Hibernate, Quarkus and JakartaOne =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9po95ERJwFzPwEJv-Q=
+qs_WUU4UaosmEubSREicwnwnaS7BQMbn34ncomP1FEhov06qtu24QSzO5pZ0r4nAeKpSsSOrWx=
+t8tT_FVMTqiG_DOSiwwwGoHY2NF2ExKkDTsn_0pxRzDWCRClaeDx1KoJ_A7hA8gJolhD6JajVe=
+s0hC196vRoyalzTR808ttIRSnLumw/3go/PEYUstwfSZ2qcbrMqdLZTQ/h118/z2jiJ7mOLweR=
+Zybwauh25tZqHTZiQpuhg3MU4Swc_5s>
+>  <>Oracle's JDK 17 - Free Again for Commercial Use =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9po95ERJwFzPwEJv-Q=
+qs_WUWB67DMiKnZpPnDL0XBltHAy0PDYllvDtEPqY2fn0XpEPigVbZT3nElV65xkfJZyIQE2r9=
+R0xZVjfFEfs0ATkc406kA18yACRaPrp1ojE9mbqEWlCb4P4-u3RpNdPQC2mUdKLu21KHyCNk8T=
+s8TTLeN/3go/PEYUstwfSZ2qcbrMqdLZTQ/h119/rB9b40mxygrLyPacbephU9AsgUIY0drejj=
+fg7Ab7cxI>
+> The Oracle JDK is available free of charge for production use again - =
+under the new "Oracle No-Fee Terms and Conditions" (NFTC) license. This =
+move reverses a 2018 decision to charge for Oracle JDK production use =
+and does not affect Oracle's OpenJDK distribution. The NFTC applies to =
+the recently released version 17 of Oracle JDK and future versions. =
+(News)
+>=20
+> SPONSOR AD
+>=20
+>  =
+<https://links.mailer.infoq.com/ss/c/zsOvH-twcVj5jHLTmYxH18z_zwPNp0UUJmoga=
+WYPJ7MYICEVp6TQO-SfsjKkLsErK5h0Xwbwp_RODRG7dp_IAw/3go/PEYUstwfSZ2qcbrMqdLZ=
+TQ/h120/uoY3mz-UT_EIDOr8Lur_gLMyVypbgzkdWCB1MmUUKOY>Play in the =
+Lightstep Sandbox =
+<https://links.mailer.infoq.com/ss/c/zsOvH-twcVj5jHLTmYxH18z_zwPNp0UUJmoga=
+WYPJ7MYICEVp6TQO-SfsjKkLsErK5h0Xwbwp_RODRG7dp_IAw/3go/PEYUstwfSZ2qcbrMqdLZ=
+TQ/h121/wRPT7VmLUlPFLqh6ikRrtq3QPPDRDbUzbH7xiYvbXWA>
+> In less than 10 minutes you can debug an error or resolve a =
+performance regression with our free, interactive sandbox experience. =
+Try it now =
+<https://links.mailer.infoq.com/ss/c/zsOvH-twcVj5jHLTmYxH18z_zwPNp0UUJmoga=
+WYPJ7MYICEVp6TQO-SfsjKkLsErK5h0Xwbwp_RODRG7dp_IAw/3go/PEYUstwfSZ2qcbrMqdLZ=
+TQ/h122/fad3ZrH620hRJG1gqamr7dPVIO5Ck05fsqePmwu_Qf0>.
+>=20
+> .NET Latest Content =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pmKmAKogw71fsw9Zl=
+nDYI5uFad_R5GkSj_dQNmppKG-X8SZ4BfO0y8EILQoK4sjI5epxu5xcb7cdO8ihpQKTeKpj7wa=
+i2l1JRjS0JZvHYIVki6JreoR5rroUwukepsdDjI8sTGGwJUgFWYHpXMg7nv0/3go/PEYUstwfS=
+Z2qcbrMqdLZTQ/h123/aBG1s4b2rj2-aU49tFHAtQuAKCgPRblkDkyuVUMw0gw>
+> TOP .NET NEWS HEADLINES
+>  <> F# 6 Introduces Resumable Code, Improvements to Pattern Matching =
+and Tooling, and More =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9po95ERJwFzPwEJv-Q=
+qs_WUVukRFyGMoyUTBN-hN8jPOJvh-6iptDp3meE0bOvNbj5r5c3F_npmopC-JcooxsvQkb2Gq=
+LZSFWfvlt6ubMfc_2T98EBvn0RujvBpCsJXzPn3V-WnHFTPa45CfZXeu-1frd1F-1dPpk69tRk=
+Kx7bHEL57mAEPPIRnqInC_XcvHfpA/3go/PEYUstwfSZ2qcbrMqdLZTQ/h124/C6exVpPSdg5_=
+1o9VQ7cO9NW88eynl5-TolclN47BGTk>
+>  <>  =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9phFqofaJZYaiWILSF=
+vpYnyQhmO_ZkgAv7bItMkfE_-qtzifSIBgMAIpSt5F_1MC0xbugq__NudaNXflkELln2Ktfb_M=
+FvRBD5n8aEKSy8EXH7lkdjsja1ZtxuJGRs2reJ0mSiCOY9_kVun8Dx5t4sTApjqhSmdf3pcoA7=
+A6LMet1/3go/PEYUstwfSZ2qcbrMqdLZTQ/h125/gPF5Ka1HCI6vtH2T3u4vGWv18DpyeaR8Ym=
+CtiIJ80gE>Records in C# 9 =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9phFqofaJZYaiWILSF=
+vpYnyQhmO_ZkgAv7bItMkfE_-qtzifSIBgMAIpSt5F_1MC0xbugq__NudaNXflkELln2Ktfb_M=
+FvRBD5n8aEKSy8EXH7lkdjsja1ZtxuJGRs2reJ0mSiCOY9_kVun8Dx5t4sTApjqhSmdf3pcoA7=
+A6LMet1/3go/PEYUstwfSZ2qcbrMqdLZTQ/h126/66RPO3MhIHqDw_0MA23bWrf5xIIatX0L-Y=
+4vGAK-bOs>
+> In this article, Tugce =C3=96zdeger talks about Records, a new =
+reference type introduced in C# 9 that provides built-in functionality =
+for encapsulating data. The article shows the potential benefits and =
+advantages of using records and how developers can use them in their =
+applications, with code examples and comparisons with classes and =
+structs. (Article)
+>=20
+> Web Development Latest Content =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pmz65E5VB-eIU7-J5=
+3qQG8SfiS5nKnRHaZ7RNNAulCiXIr9msv_RcFofM0ebsSSwQXH7pCr_RESfVEwQLmJ9KyNj_ho=
+C1P4NnRnZ0_Gg3OHKx7H3lpu-Lzp5zo2_cuy-7jMuWHy-7dUqOJrOFpryPDv2ajvbH-yOUvI8j=
+-ZNG3L_/3go/PEYUstwfSZ2qcbrMqdLZTQ/h127/-IsbLk3X-pU1lVi8FIAsePssfcvlCqYXFP=
+Oi5cHaDdo>
+> TOP Web Development NEWS HEADLINES
+>  <> Comparative Study of 11 CSS-in-JS libraries - Andrei Pfeiffer at =
+React Finland 2021 =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9po95ERJwFzPwEJv-Q=
+qs_WUWMq-9KEjDKwv-2WaPt3pM3-MUrsg6rBsfpsYnRfts04XmBEpMItJbIh5Qd6KmpDODNLzl=
+z3-J33dFBHuQ9H6nEeigrrTOY71F4mF_RMsTnIHcBg8_oUdDSRuAZriqSDNKPa06WP2izFgWCy=
+C08ibWPK3VRkgW0Q6F5Y1YKYbuxvg/3go/PEYUstwfSZ2qcbrMqdLZTQ/h128/LXMTXL6W3Q-b=
+IbueYLRGOrawRFc4pJin2U6cPGfN0ss>
+>  <>Grails 5.0 Updates Underlying Frameworks and Consolidates Features =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9po95ERJwFzPwEJv-Q=
+qs_WUXLPmNHWiwSsS0mSyeyQQH0-no3CYJZ2mEzQ54ap6slIEb5DpSNKcyKaA4z6Y5HTaQpceX=
+h2oCLL1dE5NhTSz1t8_zRRfNVv0yNazLm8vvwPgQYBObHJUrf-Ic6Xc9XEMzi8SC-BcGc2upfY=
+VVP6al0BjgTM-Wo4yLYUEgmEr_Uqg/3go/PEYUstwfSZ2qcbrMqdLZTQ/h129/ybURIt8YP99T=
+IFZNLrxgWo3GktxHdwLhj1kQDjXtJZg>
+> Grails 5.0 has been released, featuring deprecation of the "dot"-Based =
+Navigation to configuration, default autowire by type in Data Services, =
+the decoupling of Grails Gradle Plugin from the grails-core and the =
+Grails Gradle Publish plugin was removed from the Grails plugin =
+applications. Also, this release includes Apache Groovy 3, Micronaut 3, =
+Gradle 7, Spring Boot 2.5, Spring 5.3, and Spock 2.0. (News)
+>=20
+> SPONSOR AD
+>=20
+>  =
+<https://links.mailer.infoq.com/ss/c/dKaemBr9Xp16vHPz2K9GjJdzoSJCFFbEmu7LZ=
+rRWFJWxJxs5QCIEdGSi5yu_AAxg/3go/PEYUstwfSZ2qcbrMqdLZTQ/h130/lZyGxh7Zh8F4lr=
+XWQNdfsyly4dVp3rDTADz4Wa2OSVg>Need to Diagnose a Remote API Failure? =
+<https://links.mailer.infoq.com/ss/c/dKaemBr9Xp16vHPz2K9GjJdzoSJCFFbEmu7LZ=
+rRWFJWxJxs5QCIEdGSi5yu_AAxg/3go/PEYUstwfSZ2qcbrMqdLZTQ/h131/b9Bd4HRyXWWxNH=
+kjjRTeaiuodZGyuA6Rc4QjkkGDjTw>
+> Sound familiar? You need to quickly re-create the complete request and =
+inspect/debug the failed response, yet remote resources are out of your =
+control. Learn to quickly =
+<https://links.mailer.infoq.com/ss/c/dKaemBr9Xp16vHPz2K9GjJdzoSJCFFbEmu7LZ=
+rRWFJWxJxs5QCIEdGSi5yu_AAxg/3go/PEYUstwfSZ2qcbrMqdLZTQ/h132/BXQk9Byde0Nkk7=
+d2emjMdkB2_ctFu95V1S8LeKRKys8> diagnose and fix issues when remote APIs =
+fail to contain the damage.
+>=20
+> Mobile and IoT Latest Content =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pgIysr2v8y3-I2JPr=
+5Sf7G9e7bfJFlBMBABaWTFQ-8soeeyDYgt6nJFDKGs8UcxZHkE0NIwRfnyh1aKdB-9ZTbzhnue=
+S6Js_Un1hzuz2aU0kB7sJrrJK_Xs5Jvv7PKUAbVLQDG7IxIRjq2MAAKTQzvQ/3go/PEYUstwfS=
+Z2qcbrMqdLZTQ/h133/o3d2IBDNvcexkClQcH-DNdaQk-JRTpD9lMHrK1c2Jck>
+>  <>JetBrains Compose Multiplatform Reaches Beta =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9po95ERJwFzPwEJv-Q=
+qs_WUWNCXcM2HHa-46e5x76u0Mo6gsHYaEkO6KXMR7gCfWuJ6FylEGzxzqyVFpkkbWIidh9bJn=
+zJJ9OlUwOWDQCLwPyK6wyuVxsuV7YtP-nsnufZnf027b83RWRv0U1h4_LDfAxNo-yiQNuK2lKt=
+M0d-2f7nID-9bPuz5UJTMHXdbDaxg/3go/PEYUstwfSZ2qcbrMqdLZTQ/h134/VisLjH1RAhf1=
+QSV9mmPLNcK5AGgA8kGXajpRgz8IIjs>
+> A few months after its announcement as an alpha version, JetBrains =
+Compose Multiplatform has reached beta, which includes many improvements =
+and stabilizes its APIs as a step towards the 1.0 release. (News)
+>=20
+> Architecture & Design Latest Content =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9plkni3xfMtZ0UEugV=
+K-EPnalcu8Zja7xbQU6gFU0Jl1pu2vMacYmX9cDc-M0sh65EVrYdEQvcC3XGrNPzgLJF2m96hN=
+okjym5U0ypXZOOGgJV9zZTWC9DSdz2pRYNETImJXwKiIPPQfT6IFjY9pFSyrtVayPwdY3rOSJ5=
+O73R0wm/3go/PEYUstwfSZ2qcbrMqdLZTQ/h135/mcrDcU1bsvOj4BompPsfhu_9ZX4JbxJCM9=
+mOhCdBUDA>
+> TOP Architecture & Design NEWS HEADLINES
+>  <> How Pinterest Scaled up Its Ad-Serving Architecture =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9po95ERJwFzPwEJv-Q=
+qs_WUVvNxoXbTCjUCrEn7e1za3HFs1SH7idpu6y_D9hvFtckMUpF8Sp_DjuCLuFtiJUieQaaEW=
+-XPr8Eu4O6RV1tvdroVG58tWDXoi6Kj1gw7r1CgLg5ww211b8DOKQWASw507fQDu-EPCnp_nRJ=
+iJA35SZs4DuHcwsLYZfqAH-AdKtORdBPQQKf0Vy20a2rjFehQw/3go/PEYUstwfSZ2qcbrMqdL=
+ZTQ/h136/uvniwJY2P44OStYBK9Gaq7zvNCZ9w5W4BC5DlApFPZE>
+>  <>  =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pr_L9Yj0B6kEUTK2u=
+IobmodFht52iepegO1zp7WmN_fQEtxiz9ZETLL-yIax0t2OcVrWq6UaJHjqo4d8-gzw5R2UriI=
+ywtI12q7dOzbW3bVfB-p5oU4L7LuMA4kAdAYoseiVwfOzgajZZbQ7RUTqKalXFJK5JWlo3-V77=
+UWdDiEUguA5R_I1OxZvYzd60cjyAobePjORzq384GVxjYTLhTs/3go/PEYUstwfSZ2qcbrMqdL=
+ZTQ/h137/Tt5Uk_ac3H9aUJovpZ59YsHuO1bcJa8woDgeBSmkYMM>Panel: What Have We =
+Learned over the Last Decade of Microservices? =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pr_L9Yj0B6kEUTK2u=
+IobmodFht52iepegO1zp7WmN_fQEtxiz9ZETLL-yIax0t2OcVrWq6UaJHjqo4d8-gzw5R2UriI=
+ywtI12q7dOzbW3bVfB-p5oU4L7LuMA4kAdAYoseiVwfOzgajZZbQ7RUTqKalXFJK5JWlo3-V77=
+UWdDiEUguA5R_I1OxZvYzd60cjyAobePjORzq384GVxjYTLhTs/3go/PEYUstwfSZ2qcbrMqdL=
+ZTQ/h138/0CNM3KLim0MpwYNQmeyG4cD_31FforxJaIfAFjiSnAA>
+> Chris Richardson, James Lewis and Katie Gamanji discuss what the =
+industry has learned over the last decade building and delivering =
+Microservices architectures. (Presentation with transcript included)
+>=20
+> SPONSOR AD
+>=20
+>  =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pphLqL3gbPSiKq7ch=
+0BxFCg6-5ZPYRoCoGkH3UT1F77jmOfDc95o3pDv12em3UDQSr-s-_EBqqkZz7OGBckWvbbrshY=
+7nw8xB_PEtoFri48ySZNm6kCdiFqnQG6UBJO_IxW9M9bu96ghkI_SaPZHQuf6gf-wu-H0E5zIV=
+lNXyAXgQ_AaR0q9PmwEcqZ_9TwpJd4KWjMBiIWi3g-0ojytXr8/3go/PEYUstwfSZ2qcbrMqdL=
+ZTQ/h139/DNTwrGCIbzySQAGRsEjilvXxmmh6L48u9n_THLFCmho>Microservices Up =
+and Running (By O=E2=80=99Reilly) =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pphLqL3gbPSiKq7ch=
+0BxFCg6-5ZPYRoCoGkH3UT1F77jmOfDc95o3pDv12em3UDQSr-s-_EBqqkZz7OGBckWvbbrshY=
+7nw8xB_PEtoFri48ySZNm6kCdiFqnQG6UBJO_IxW9M9bu96ghkI_SaPZHQuf6gf-wu-H0E5zIV=
+lNXyAXgQ_AaR0q9PmwEcqZ_9TwpJd4KWjMBiIWi3g-0ojytXr8/3go/PEYUstwfSZ2qcbrMqdL=
+ZTQ/h140/7ECXvvfwz8nY29ivEr18JmHOcQlBlPT-gsIxoJ52BZI>
+> Learn how to design an effective and explicit microservices system =
+end-to-end, how to slice a big application into a collection of =
+microservices, how to build a simple yet powerful CI/CD pipeline for =
+infrastructure changes, and more. Download now =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pphLqL3gbPSiKq7ch=
+0BxFCg6-5ZPYRoCoGkH3UT1F77jmOfDc95o3pDv12em3UDQSr-s-_EBqqkZz7OGBckWvbbrshY=
+7nw8xB_PEtoFri48ySZNm6kCdiFqnQG6UBJO_IxW9M9bu96ghkI_SaPZHQuf6gf-wu-H0E5zIV=
+lNXyAXgQ_AaR0q9PmwEcqZ_9TwpJd4KWjMBiIWi3g-0ojytXr8/3go/PEYUstwfSZ2qcbrMqdL=
+ZTQ/h141/-oxFYtw6Cbi4NY3kUMFfLHHDfCG6ck7VIVWmcQTpTAs>.
+>=20
+> Culture & Methods Latest Content =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pjongcWznvPJRSzOH=
+zRpTuGb3ksp7846p_lG5sSdJSJETLTAVr26ny5Etn2WrjR1ucSgSzy7YfKhu7HlENSAZije1YE=
+XNFBwk0XGWxFb5cVAFiBn1yD5twV0SVCbwwoAii5QYUFp4Hl5mNgUQeCYNrf96pgYOAWVHgP98=
+iD0B6XN/3go/PEYUstwfSZ2qcbrMqdLZTQ/h142/A6epOkikVt0nxyJbsGuBiPeSfttdDwlmwe=
+IdDxeyq4Y>
+> TOP Culture & Methods NEWS HEADLINES
+>  <> How Organisational Culture and Psychological Safety Fosters Our =
+Creativity =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9po95ERJwFzPwEJv-Q=
+qs_WUXluFODDod8La9FuZ69MbF90cumls-bKKKadvkv4uktVlhF19dwglSAEABMlYNF64Vx0S8=
+GQ6RQjWXJhF3Ib3KqhatSz2GxTba4WIbOX20YU0OyxGGmqiToEOdCCtTjN6yZeCqci1EK0h8-f=
+iJpt1b3dRhtAKL12pUovkdheDWvmQ/3go/PEYUstwfSZ2qcbrMqdLZTQ/h143/N14WznXFsX1B=
+P_UJZX9XQzxGBmMNw4laAnzbT11Q7hU>
+>  <>  =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9phFqofaJZYaiWILSF=
+vpYnyTzceSojgiscElph5H2ZtBm323gv3oWDgqaygK5AUzUXoEeZU_u9G-dIa7T1HnDzgHH2wg=
+R7DGwJNjRix0PHMUfqx0vgSejwTkqQlAN5Gm82akU5vDgtTlPfEBUiQzt0Sz1oiutowb1M40kM=
+zBc0nFsIEFCbX3hWkuc75vEOtP8cQ/3go/PEYUstwfSZ2qcbrMqdLZTQ/h144/bH9yt3C-FnKm=
+41Vl1O7m-O7tEG1dsiwyCaPfeK6asvU>Techstinction - How Technology Use is =
+Having a Severe Impact on our Climate and What We Can Do =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9phFqofaJZYaiWILSF=
+vpYnyTzceSojgiscElph5H2ZtBm323gv3oWDgqaygK5AUzUXoEeZU_u9G-dIa7T1HnDzgHH2wg=
+R7DGwJNjRix0PHMUfqx0vgSejwTkqQlAN5Gm82akU5vDgtTlPfEBUiQzt0Sz1oiutowb1M40kM=
+zBc0nFsIEFCbX3hWkuc75vEOtP8cQ/3go/PEYUstwfSZ2qcbrMqdLZTQ/h145/UZESW4kUo4Kw=
+eILy_hSupnP95a68mDt5z_loGUneDns>
+> Most people don=E2=80=99t realise how their use of technology, both =
+socially and in the workplace, is responsible for an increasingly =
+significant volume of the world's Co2 emissions. In this article, you =
+will learn how our use of technology is having a severe impact on our =
+climate and what we can do about it. (Article)
+>=20
+>  <>  =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9phFqofaJZYaiWILSF=
+vpYnySSMkH-o2NjNNMP9AXznU7qj9FDdFZWobFU08rmWqnQMXbpl_Mrw-oS04vI-DC0-NfenXg=
+XVHIBcpG0-24R6HkSufqlL0tHSC28K_YN14PR6mOgxH-heXoG64VbhBEHAoaKfB0Tef0lnP-La=
+KTRuXrNvi_pGvHFKc-BNhNmkdf0PQ/3go/PEYUstwfSZ2qcbrMqdLZTQ/h146/IHy-2Bcv1EHR=
+fFUT2uocXBrDMfTElsg0RWFDJ6vp9KQ>Maximize Developer Productivity and =
+Engagement with the Developer Experience Engineer =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9phFqofaJZYaiWILSF=
+vpYnySSMkH-o2NjNNMP9AXznU7qj9FDdFZWobFU08rmWqnQMXbpl_Mrw-oS04vI-DC0-NfenXg=
+XVHIBcpG0-24R6HkSufqlL0tHSC28K_YN14PR6mOgxH-heXoG64VbhBEHAoaKfB0Tef0lnP-La=
+KTRuXrNvi_pGvHFKc-BNhNmkdf0PQ/3go/PEYUstwfSZ2qcbrMqdLZTQ/h147/neyTm2xhGahG=
+lhRGMd_Ta9q-v-QR2PgXWeZw8HKZekU>
+> With developers becoming more important than ever, it=E2=80=99s =
+critical to understand how to maximize their productivity and =
+engagement, so in turn, businesses can create better value. The =
+Developer Experience Engineer (DXE) clears the path to developer success =
+by implementing a common set of principles, maintaining the right tools, =
+and creating cohesive standards. (Article)
+>=20
+>  <>  =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9phFqofaJZYaiWILSF=
+vpYnyTTGmK3P7BitLhupH-EkGv9-nU65o5zbgb1rJUQMKTdZ8efnKuXkFqxtklh5Z0tUgflnGZ=
+PI8cslmTUTrCBTmibZxw3G7nY8CH5DbiGyTIKtN5uXEsbkGLGsIbmOnqyyUxI-ry3W98sUSv0b=
+5POUqVWTEmZ9J4fMottHoSxBic4zA/3go/PEYUstwfSZ2qcbrMqdLZTQ/h148/s0HpggWTkBZW=
+ppsWLV0_mUvRMwx0STC-2JMjvymR6Qk>People, Not Screens: Why Soul-Based =
+Leadership Will Change the Nature of Remote and Hybrid Work =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9phFqofaJZYaiWILSF=
+vpYnyTTGmK3P7BitLhupH-EkGv9-nU65o5zbgb1rJUQMKTdZ8efnKuXkFqxtklh5Z0tUgflnGZ=
+PI8cslmTUTrCBTmibZxw3G7nY8CH5DbiGyTIKtN5uXEsbkGLGsIbmOnqyyUxI-ry3W98sUSv0b=
+5POUqVWTEmZ9J4fMottHoSxBic4zA/3go/PEYUstwfSZ2qcbrMqdLZTQ/h149/d308OQF1Res4=
+7WLiG0UYKllZygG2IrmflH4ozTV_nGc>
+> Virtual, remote, or hybrid work is the main leadership challenge of =
+our time. Leaders should focus on bringing out humaneness and people's =
+desire to be seen and heard in respectful and appreciative ways. =
+Soul-based leadership is built on neuroscience and other ways of knowing =
+inspired by eastern philosophies in which aliveness is at the heart of =
+awareness, stillness, and calm. (Article)
+>=20
+>  <>  =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pr_L9Yj0B6kEUTK2u=
+IobmoeSF6G28nqsJJixMKgw3pI-qyyUJw49KQPQLrxzHVL_UfsmRxrQmy1iR_RAwhhdb1Ycjw5=
+x359acuwI7aP78r5uaGd9feBTwsXaBNkXACcHtQB69lWEVEMJPAKmNt_WDugtUkpb7TBb7lAVb=
+IrKo-Tu8BI-ae5SIjlBKjwnexKV2A/3go/PEYUstwfSZ2qcbrMqdLZTQ/h150/0Fv2S2YAft4T=
+adQOymT1ahQShhb0_Ny8usL2tL1-faQ>Hybrid-Remote Done Right: Evaluate the =
+Remote Employee Experience =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pr_L9Yj0B6kEUTK2u=
+IobmoeSF6G28nqsJJixMKgw3pI-qyyUJw49KQPQLrxzHVL_UfsmRxrQmy1iR_RAwhhdb1Ycjw5=
+x359acuwI7aP78r5uaGd9feBTwsXaBNkXACcHtQB69lWEVEMJPAKmNt_WDugtUkpb7TBb7lAVb=
+IrKo-Tu8BI-ae5SIjlBKjwnexKV2A/3go/PEYUstwfSZ2qcbrMqdLZTQ/h151/IaSZVNe5uH2P=
+iaRJc8pOlDGDKi4cs8jwa3wJSEhLKzU>
+> Kaleem Clarkson discusses what to consider before making a decision on =
+the workplace flexibility policy, and how to assess the remote employee =
+experience to help guide decisions. (Presentation with transcript =
+included)
+>=20
+> SPONSORED CONTENT
+>=20
+> Latest White Papers
+>=20
+> [Infographic] The State of Software Code =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pneXAObN-9Bn1uBRU=
+Vka6f1XoMFG3Oro_kFGTMosZ3Q-VQusc0SaX_LAqhRzkw1yI3HzvOzm_Chlki5XEwl5VHgz7Q_=
+sPCGliqJieu3_cO3D-tYftAxWFD0Rs4teRLHXL_jUMjpKxSV1affClG1cSbUkprTTGhzFu5uU0=
+f8Gp5QH8JvEp7Gr0dGEkHvAkxbROTXUjs_WyxoDZQcnx_0eBIbx95MgDqvxyAuSIfKShoEG/3g=
+o/PEYUstwfSZ2qcbrMqdLZTQ/h152/D-BbYAUNsoAq8J8O9rfGi898g3boJ0vhN-MrUD2JMLM>=
+
+> Authentication Survival Guide =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pneXAObN-9Bn1uBRU=
+Vka6f1XoMFG3Oro_kFGTMosZ3Q-YRDmv6Rp0VJMBcfrCh5Uw8DC49rcMSpf96vEnXFHrATdSOx=
+Jcj2aQzTkKRpXM_R1nB2L1O3_nWY3VZkLu6hlpzRThePWJ4JLrVXBg1xQn55Srqu9fYSEHaf8M=
+aoGreoW8Ck3fG3ocjX9um6exkUXZNOablortxGc_-W1mwVKsQqis0snlSVrnOHix2iP-toB/3g=
+o/PEYUstwfSZ2qcbrMqdLZTQ/h153/gKICeZVL0hLjiHABDBeU_ThZxi3VmPgjuvvIIzWRbKM>=
+
+>  =
+<https://links.mailer.infoq.com/ss/c/As_1GkzGdd3PFhq6yHtG3L4EdI8sDM92cQr8A=
+AEZi48Lw42xBGsQzvxP49IFdvMP/3go/PEYUstwfSZ2qcbrMqdLZTQ/h154/-Ia7hyYsnDZ33u=
+CsIm48JYHJlKTZCOc65Sjbm72hFQg>	 =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9povEVRKye_FQGC7_k=
+aD8cLD46etogQlD8kmj3VYhxkzE-dpVshcUDKpmBhwkGXuqUw/3go/PEYUstwfSZ2qcbrMqdLZ=
+TQ/h155/D2O5tFksJyVqvBDNBw9sLA9NFYFDbN4LR_lWJOgJfW0>	 =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9ptBZl6Pqt9bzEaWBk=
+VGCX4pl8CkKG2qprBzfRUu5Qptv/3go/PEYUstwfSZ2qcbrMqdLZTQ/h156/Jhb7juS-ajT9Hf=
+FdQEAoJJ2L5yGQ_Mj9-h7WbabR9Yw>	 =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pqIw_oG1CfYCyJEGI=
+asngaFSZe50Hq7Uar6TtU-sP4to/3go/PEYUstwfSZ2qcbrMqdLZTQ/h157/MbpljI564iv7Ml=
+OmGPkH3d6xsu_TpKhzNsWLbBZOHEk>
+> If you are based in the European Economic Area (EEA) =
+<https://links.mailer.infoq.com/ss/c/wGZaNMrMyAV7nfBLop9xoXqAFD2_qw0u4zu4q=
+1--OqIUVYhUpZnuMxBzXla4bpM4ia2k5a6AWJzPL5JCVvx62A/3go/PEYUstwfSZ2qcbrMqdLZ=
+TQ/h158/KvCCe3Cy3kjn_zt6x62IX1J7aDUeQ1_c1uQB9OCGzKM>, please contact us =
+<mailto:privacy@c4media.com> so we can provide you with the protections =
+afforded to you under the General Data Protection Regulation (GDPR).
+>=20
+> You have received this message because you are subscribed to the "Top =
+Content Newsletter". To stop receiving weekly updates on trends, please =
+click the following link: Unsubscribe =
+<https://links.mailer.infoq.com/asm/unsubscribe/?user_id=3D4127989&data=3D=
+n95HpxONBQeCK1ZQHVcFAlCie5M56DuLXLpKMNSb59xuofkzA81JHaWXtSbby0FfGOV_SkTfxt=
+7XcZc9OGdZwvLG5Tnup9paYEMjfG5h18SvPPKs8eZjPrGEq7DlZZFcdeembWkwGyGmBLqpTscJ=
+TMNFuxihse-57GW2nS9NrfYs5LXNuSGktFWhWopVfPUbomTyJK42scCySTXKuyr1mV-FPKepzN=
+BglsZnhuVr3LUyvXzIcqEsklROeR2uWMSIi2S74kvGnCX8VjR4VTqo1pj-eS_AmgZFeDzyaM5K=
+fFoOHTZ8gYpDdQjziWURDuPZckv0WbJrjIXWjRIdoiQtfzmKVIo8W9W_168wkPWOW4NxBpZ0sw=
+CN24TqaYtU5Gp0ZAVl16PCoOHWbO8CYTI3zfHsGKw6XNoylUrMIctgbeLoXSsq7aLDiSNZ2Xkv=
+394RGChApVvKM5P3p1yE0CX6OG6bTjdin9keFvOzrR7rU7ZmSgWMI6r_M7bKRLM-g8Mtgm_NBS=
+li6d4rOS_wN3wuB1WF9nwfEmvWbIiytoybO7kJPVzfaOE6xCxAVnjSjR7Vvq6Y2I6h8taK5LTm=
+9knD7y8aJHLGCIPNAH8dn4glndVtK0OBS52oxsVuNUJrI5_u>
+> Forwarded newsletter? Register to get your own weekly newsletter. =
+<https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pkXRQuVQKFqhlFkKo=
+o4Izt78Mzuzq5EMbu_e7iEa_Lum/3go/PEYUstwfSZ2qcbrMqdLZTQ/h159/_Hxsj8LX5nx9ux=
+GRWzWtvX8O_4m5_rox5LrjdDBR7yY>- - -
+> C4Media Inc. (InfoQ.com),
+> 2275 Lake Shore Boulevard West, Suite #325, Toronto, Ontario, Canada, =
+M8V 3Y3
+>=20
+>=20
+
+
+--Apple-Mail=_51857A3B-B491-4311-BE3A-F767BC4D8DF7
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;" class=3D""><br =
+class=3D""><div><br class=3D""><blockquote type=3D"cite" class=3D""><div =
+class=3D"">Begin forwarded message:</div><br =
+class=3D"Apple-interchange-newline"><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px;" class=3D""><span=
+ style=3D"font-family: -webkit-system-font, Helvetica Neue, Helvetica, =
+sans-serif; color:rgba(0, 0, 0, 1.0);" class=3D""><b class=3D"">From: =
+</b></span><span style=3D"font-family: -webkit-system-font, Helvetica =
+Neue, Helvetica, sans-serif;" class=3D"">Artur Skowro=C5=84ski &lt;<a =
+href=3D"mailto:artur.skowronski@outlook.com" =
+class=3D"">artur.skowronski@outlook.com</a>&gt;<br =
+class=3D""></span></div><div style=3D"margin-top: 0px; margin-right: =
+0px; margin-bottom: 0px; margin-left: 0px;" class=3D""><span =
+style=3D"font-family: -webkit-system-font, Helvetica Neue, Helvetica, =
+sans-serif; color:rgba(0, 0, 0, 1.0);" class=3D""><b class=3D"">Subject: =
+</b></span><span style=3D"font-family: -webkit-system-font, Helvetica =
+Neue, Helvetica, sans-serif;" class=3D""><b class=3D"">Fwd: IBM AI, =
+eBPF, GitHub Universe, Oracle's JDK 17, F# 6, Microservices, Developer =
+Productivity</b><br class=3D""></span></div><div style=3D"margin-top: =
+0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px;" =
+class=3D""><span style=3D"font-family: -webkit-system-font, Helvetica =
+Neue, Helvetica, sans-serif; color:rgba(0, 0, 0, 1.0);" class=3D""><b =
+class=3D"">Date: </b></span><span style=3D"font-family: =
+-webkit-system-font, Helvetica Neue, Helvetica, sans-serif;" class=3D"">8 =
+November 2021 at 11:47:37 CET<br class=3D""></span></div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px;" class=3D""><span style=3D"font-family: =
+-webkit-system-font, Helvetica Neue, Helvetica, sans-serif; =
+color:rgba(0, 0, 0, 1.0);" class=3D""><b class=3D"">To: </b></span><span =
+style=3D"font-family: -webkit-system-font, Helvetica Neue, Helvetica, =
+sans-serif;" class=3D""><a href=3D"mailto:pzak+newsletter@virtuslab.com" =
+class=3D"">pzak+newsletter@virtuslab.com</a><br =
+class=3D""></span></div><br class=3D""><div class=3D""><div dir=3D"ltr" =
+class=3D""><br class=3D""><br class=3D""><div class=3D"gmail_quote"><div =
+dir=3D"ltr" class=3D"gmail_attr">---------- Forwarded message =
+---------<br class=3D"">Od: <strong class=3D"gmail_sendername" =
+dir=3D"auto">InfoQ</strong> <span dir=3D"auto" class=3D"">&lt;<a =
+href=3D"mailto:newsletter@mailer.infoq.com" =
+class=3D"">newsletter@mailer.infoq.com</a>&gt;</span><br class=3D"">Date: =
+wt., 2 lis 2021 o 10:03<br class=3D"">Subject: IBM AI, eBPF, GitHub =
+Universe, Oracle's JDK 17, F# 6, Microservices, Developer =
+Productivity<br class=3D"">To:  &lt;<a =
+href=3D"mailto:artur.skowronski@outlook.com" =
+class=3D"">artur.skowronski@outlook.com</a>&gt;<br class=3D""></div><br =
+class=3D""><br class=3D""><u class=3D""></u>
+
+
+=09
+=09
+=09
+
+<div bgcolor=3D"#ffffff" =
+style=3D"font-family:-apple-system,BlinkMacSystemFont,'Segoe =
+UI',Roboto,Helvetica,Arial,sans-serif!important;font-size:14px;color:#3333=
+33;line-height:1.6;margin:0;padding:0;text-align:left" class=3D"">
+
+
+<table align=3D"center" bgcolor=3D"#ffffff" border=3D"0" cellpadding=3D"0"=
+ cellspacing=3D"0" style=3D"table-layout:fixed;margin:0 =
+auto;text-align:left" width=3D"100%" class=3D"">
+	<tbody class=3D"">
+		<tr class=3D"">
+			<td align=3D"center" bgcolor=3D"#ffffff" =
+style=3D"background-color:#ffffff" class=3D"">
+			<table align=3D"center" border=3D"0" =
+cellpadding=3D"0" cellspacing=3D"0" =
+class=3D"m_-5463852757192155789container" width=3D"700">
+				<tbody class=3D"">
+					<tr class=3D"">
+						<td style=3D"padding:17px =
+0;font-size:11px;color:#888888" class=3D"">
+						<table border=3D"0" =
+cellspacing=3D"0" width=3D"100%" class=3D"">
+							<tbody class=3D"">=
+
+								<tr =
+class=3D"">
+									=
+<td style=3D"text-align:left" class=3D"">In this issue, November 2, =
+2021</td>
+									=
+<td align=3D"right" style=3D"text-align:right" class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/Pu0HGR1TMxdPMpU2Xnd67_3xY4IYql=
+fnsw94PaEM1ynI1CnTU72-N6sls0fxqz0sUoaCPOlZ6I6IKE1MmOkuHM9yUI2cVPsrUVlVFbaD=
+GuiiJFoS5to407nlDKXekf_r/3go/PEYUstwfSZ2qcbrMqdLZTQ/h80/fLxnSI7soHabJFv1qG=
+M0opDCrbSeEk_r_APZ6UOPW8I" style=3D"text-decoration:none" =
+target=3D"_blank" class=3D"">View it in your browser.</a></td>
+								</tr>
+							</tbody>
+						</table>
+						</td>
+					</tr>
+				=09
+					<tr class=3D"">
+						<td =
+class=3D"m_-5463852757192155789header" =
+style=3D"background-color:#ffffff"><img alt=3D"" height=3D"110" =
+src=3D"https://assets.infoq.com/newsletter/regular/en/template/nl-top-head=
+er.jpg" style=3D"max-width:100%;width:700px" class=3D"">
+						<table align=3D"center" =
+cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" class=3D"">
+							<tbody class=3D"">=
+
+								<tr =
+class=3D"">
+									=
+<td style=3D"padding:16px;text-align:left" class=3D"">
+									=
+<h1 class=3D"m_-5463852757192155789main-title" =
+style=3D"font-size:20px;margin:0;text-align:left"><a =
+href=3D"x-msg://12/#m_-5463852757192155789_IBM" style=3D"text-decoration: =
+none;" class=3D"">IBM AI</a>, <a =
+href=3D"x-msg://12/#m_-5463852757192155789_Google" =
+style=3D"text-decoration: none;" class=3D"">Google Cloud Skills</a>, <a =
+href=3D"x-msg://12/#m_-5463852757192155789_eBPF" style=3D"text-decoration:=
+ none;" class=3D"">eBPF</a>, <a =
+href=3D"x-msg://12/#m_-5463852757192155789_GitHub" =
+style=3D"text-decoration: none;" class=3D"">GitHub Universe</a>, <a =
+href=3D"x-msg://12/#m_-5463852757192155789_Oracle" =
+style=3D"text-decoration: none;" class=3D"">Oracle's JDK 17</a>, <a =
+style=3D"text-decoration: none;" class=3D"">F# 6</a>, <a =
+href=3D"x-msg://12/#m_-5463852757192155789_CSS" style=3D"text-decoration: =
+none;" class=3D"">CSS-in-JS Libraries</a>, <a =
+href=3D"x-msg://12/#m_-5463852757192155789_JetBrains" =
+style=3D"text-decoration: none;" class=3D"">JetBrains Compose</a>, <a =
+href=3D"x-msg://12/#m_-5463852757192155789_Microservices" =
+style=3D"text-decoration: none;" class=3D"">Microservices</a>, <a =
+href=3D"x-msg://12/#m_-5463852757192155789_Psychological" =
+style=3D"text-decoration: none;" class=3D"">Psychological Safety</a>, <a =
+href=3D"x-msg://12/#m_-5463852757192155789_Developer" =
+style=3D"text-decoration: none;" class=3D"">Developer =
+Productivity</a></h1>
+									=
+</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<table bgcolor=3D"#DFF0FF"=
+ cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" class=3D"">
+							<tbody class=3D"">=
+
+								<tr =
+class=3D"">
+<td style=3D"text-align:right;padding:20px" valign=3D"top" class=3D""><img=
+ alt=3D"" class=3D"m_-5463852757192155789i_bubble" height=3D"50px" =
+src=3D"https://assets.infoq.com/newsletter/regular/en/template/icon-conver=
+sational.png" width=3D"50px"></td>
+<td bgcolor=3D"#DFF0FF" style=3D"padding:20px 20px 20px =
+0;text-align:left" valign=3D"top" class=3D"">
+<h3 style=3D"margin:0 0 10px =
+0;font-size:18px;font-weight:600;text-align:left" class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/chqY1_IQzUghhI0YX1Emil-iCBz5av=
+DasvmFfKclqy29CFUTwpnkpOhju2g_U5e2tcxaJsfRU05cuLLphpCOwq_aGg2tgWZBuuo3bQ-U=
+ebrU_XCw-osTQArAe5aV4u9oDBBXUKRUEwm3fKLKRkev7M_AmlcRt34nCYTasLuZ_X0/3go/PE=
+YUstwfSZ2qcbrMqdLZTQ/h81/1uFcfT9g1mnJKtX5T9cfpXSmPLN86dceJLBRVoY8cnM" =
+style=3D"text-decoration:none" target=3D"_blank" class=3D"">QCon London =
+2022: Discover emerging software trends and innovations.</a></h3>
+QCon London, the international software development conference, is <a =
+href=3D"https://links.mailer.infoq.com/ss/c/chqY1_IQzUghhI0YX1Emil-iCBz5av=
+DasvmFfKclqy29CFUTwpnkpOhju2g_U5e2tcxaJsfRU05cuLLphpCOwq_aGg2tgWZBuuo3bQ-U=
+ebrU_XCw-osTQArAe5aV4u9oDBBXUKRUEwm3fKLKRkev7M_AmlcRt34nCYTasLuZ_X0/3go/PE=
+YUstwfSZ2qcbrMqdLZTQ/h82/TCiYctAted2UmQU-l-Trx8ihnS7fOj-HpR3jS-pCE4s" =
+style=3D"text-decoration:none" target=3D"_blank" class=3D""><b =
+class=3D"">returning to London on April 4-6, 2022</b></a>. Find out what =
+should be on your radar from the world=E2=80=99s most innovative =
+software professionals. Take advantage of the <b class=3D"">lowest early =
+bird price</b>. Save =C2=A3345 if you <a =
+href=3D"https://links.mailer.infoq.com/ss/c/chqY1_IQzUghhI0YX1Emim2LbHhhm7=
+TODv6ADFqj2_xLrA5lRU00LHruIAgqT7be/3go/PEYUstwfSZ2qcbrMqdLZTQ/h83/tcFix74F=
+e6EsWSQXPl8kRStPTgqp25yfyJgUn1Dzfp0" style=3D"text-decoration:none" =
+target=3D"_blank" class=3D""><b class=3D"">register before November =
+8th</b></a>.</td>
+</tr>
+							</tbody>
+						</table>
+						</td>
+					</tr>
+				=09
+					<tr class=3D"">
+						<td class=3D"">
+						<div style=3D"height:17px"=
+ class=3D"">&nbsp;</div>
+						</td>
+					</tr>
+				=09
+					<tr class=3D"">
+						<td =
+style=3D"text-align:left" class=3D"">
+						<table =
+style=3D"width:100%" class=3D"">
+							<tbody class=3D"">=
+
+								<tr =
+bgcolor=3D"#ffffff" style=3D"vertical-align:top" class=3D"">
+									=
+<td class=3D"m_-5463852757192155789wrapper" =
+style=3D"vertical-align:top;text-align:left">
+									=
+<table align=3D"left" cellpadding=3D"0" cellspacing=3D"0" =
+class=3D"m_-5463852757192155789main" width=3D"696px">
+										=
+<tbody class=3D"">
+										=
+	<tr class=3D"">
+										=
+		<td class=3D"">
+										=
+		<table bgcolor=3D"#ffffff" cellpadding=3D"20" =
+cellspacing=3D"0" width=3D"100%" class=3D"">
+										=
+			<tbody class=3D"">
+										=
+				<tr style=3D"background-color:#eee" =
+class=3D"">
+<td class=3D"">
+<h3 style=3D"font-size:14px;font-weight:700;margin:0 0 10px =
+0;color:#cccccc" class=3D"">SPONSOR AD</h3>
+<a =
+href=3D"https://links.mailer.infoq.com/ss/c/Pu0HGR1TMxdPMpU2Xnd67_78hlvVF3=
+jWLlRNORRu6NiBfWLOtw67MHGwNm9L1j2mlP28ywlQNnFaYHi0FHTr-CmUbmCkTRa9AtutcjUp=
+lWJ7gPxXeWFoM6eXF5hhjtIx/3go/PEYUstwfSZ2qcbrMqdLZTQ/h84/MSuBapfESi6kZ-tYol=
+oCgh51JOeUCeuZK9F7HAcQCv8" style=3D"text-decoration: none;" =
+target=3D"_blank" class=3D""><img align=3D"right" alt=3D"Cockroach Labs" =
+border=3D"=E2=80=9D0=E2=80=B3" height=3D"104" =
+src=3D"https://assets.infoq.com/newsletter/regular/en/assets/InstanaWebina=
+r10nov2021.png" style=3D"float:right;margin:0px 0px 10px 10px" =
+width=3D"82" class=3D""> </a>
+
+<h3 style=3D"font-size:18px;font-weight:600;margin:0 0 10px 0" =
+class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/Pu0HGR1TMxdPMpU2Xnd67_78hlvVF3=
+jWLlRNORRu6NiBfWLOtw67MHGwNm9L1j2mlP28ywlQNnFaYHi0FHTr-CmUbmCkTRa9AtutcjUp=
+lWJ7gPxXeWFoM6eXF5hhjtIx/3go/PEYUstwfSZ2qcbrMqdLZTQ/h85/SFtfDOktqq-ya7iLWg=
+FgxfVlpBwHAF7UVV3v5EDMOrQ" style=3D"text-decoration: none;" =
+target=3D"_blank" class=3D"">Optimizing your CI/CD Pipeline with =
+Shift-Left Enterprise Observability</a></h3><p =
+style=3D"margin-top:0;padding-top:0" class=3D"">Learn how shift-left =
+enterprise observability and machine learning can help you harden =
+software for production release more rigorously than unit and automated =
+testing, detect "unknown unknowns" in the CI/CD pipeline, define =
+recovery guidelines for problems identified using ML, and more. <a =
+href=3D"https://links.mailer.infoq.com/ss/c/Pu0HGR1TMxdPMpU2Xnd67_78hlvVF3=
+jWLlRNORRu6NiBfWLOtw67MHGwNm9L1j2mlP28ywlQNnFaYHi0FHTr-CmUbmCkTRa9AtutcjUp=
+lWJ7gPxXeWFoM6eXF5hhjtIx/3go/PEYUstwfSZ2qcbrMqdLZTQ/h86/CeWYHI9j8gPgV-GkvQ=
+fqmYVzvmwV3pAkfTirrVT64aQ" style=3D"text-decoration:none" =
+target=3D"_blank" class=3D""><strong class=3D"">Live Webinar, Nov 10th, =
+2021 =E2=80=94 Save Your Seat</strong></a>.</p>
+</td>
+</tr>
+										=
+				<tr class=3D"">
+										=
+					<td class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pp3yYJawKD=
+IWuaLADND1ijDw7fQvwS0EhWSBxNcAwOSFsS5JzS_wLFut_wjzuJMa08Rz8xjoQeKNx5XwQtYI=
+V3X0SDv6VQQsMS1fgl-w8_B_0U8PTV5Y-5Zc9GqA43n9mebhuVVF9KQHj3VPcWIojhcu0wC54C=
+uoHIQ2QMM-0XpEmkRDcGOiBrgVe0fR-cbjH6Ahb6sNgNWotakpbMs2gbE/3go/PEYUstwfSZ2q=
+cbrMqdLZTQ/h87/npQrgbTNcrgxNXQxPwlbynAgdqP_gAlqMDYAYvhtDgc" =
+target=3D"_blank" class=3D""><img align=3D"right" =
+alt=3D"https://res.infoq.com/podcasts/asim-hussain-sustainable-software-gs=
+f/en/smallimage/infoq-podcast-200-1635165032793.jpg" border=3D"0" =
+height=3D"100" =
+src=3D"https://res.infoq.com/podcasts/asim-hussain-sustainable-software-gs=
+f/en/smallimage/infoq-podcast-200-1635165032793.jpg" =
+style=3D"float:right;margin:0 0 10px 10px" width=3D"100" class=3D""> =
+</a>
+										=
+					<h3 =
+style=3D"font-size:18px;font-weight:600;margin:0 0 10px 0" class=3D""><a =
+id=3D"m_-5463852757192155789eMag" name=3D"m_-5463852757192155789_eMag" =
+class=3D""></a> <a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pp3yYJawKD=
+IWuaLADND1ijDw7fQvwS0EhWSBxNcAwOSFsS5JzS_wLFut_wjzuJMa08Rz8xjoQeKNx5XwQtYI=
+V3X0SDv6VQQsMS1fgl-w8_B_0U8PTV5Y-5Zc9GqA43n9mebhuVVF9KQHj3VPcWIojhcu0wC54C=
+uoHIQ2QMM-0XpEmkRDcGOiBrgVe0fR-cbjH6Ahb6sNgNWotakpbMs2gbE/3go/PEYUstwfSZ2q=
+cbrMqdLZTQ/h88/f9qftUGTQlYjSAujwof4Jr3VaBi5bygh3Ys2V12WN6k" =
+style=3D"text-decoration: none;" target=3D"_blank" class=3D""> =
+Microsoft's Asim Hussain on Designing Software for Sustainability and =
+the Green Software Foundation </a></h3><p class=3D"">Charles Humble =
+explores the topic of designing software for sustainability with =
+Microsoft's Asim Hussain, chair of the Green Software Foundation. They =
+discuss techniques such as demand shifting, as well as the current =
+challenges that the Green Software Foundation is aiming to address. =
+(Podcast)</p>
+										=
+					</td>
+										=
+				</tr>
+										=
+				<tr class=3D"">
+										=
+					<td class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pp3yYJawKD=
+IWuaLADND1ijAVOrQGbTX3rO2SQ9O3EsFekRWctzpr1wxAGGIXF2wp_WYh2b242Rfyh2rhOt3z=
+NnHKzEByxZENo-sJ2vxIM6Dmd9pApbqfS9lK2kCSKJxCHVoN5y1CX7ZXBUPx3n8zwTKNwNvXac=
+zKYR09-KzcF8shkRmy2i37Najq0300Yv9jmg/3go/PEYUstwfSZ2qcbrMqdLZTQ/h89/0uEB_b=
+iqghaZ-J-qkd7YWUfyrn11mxnx0uYnbtqknY4" target=3D"_blank" class=3D""><img =
+align=3D"right" =
+alt=3D"https://res.infoq.com/podcasts/career-leadership-advice-engineers/e=
+n/smallimage/engineering-culture-200x200-1635403839814.jpg" border=3D"0" =
+height=3D"100" =
+src=3D"https://res.infoq.com/podcasts/career-leadership-advice-engineers/e=
+n/smallimage/engineering-culture-200x200-1635403839814.jpg" =
+style=3D"float:right;margin:0 0 10px 10px" width=3D"100" class=3D""> =
+</a>
+										=
+					<h3 =
+style=3D"font-size:18px;font-weight:600;margin:0 0 10px 0" class=3D""><a =
+id=3D"m_-5463852757192155789eMag" name=3D"m_-5463852757192155789_eMag" =
+class=3D""></a> <a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pp3yYJawKD=
+IWuaLADND1ijAVOrQGbTX3rO2SQ9O3EsFekRWctzpr1wxAGGIXF2wp_WYh2b242Rfyh2rhOt3z=
+NnHKzEByxZENo-sJ2vxIM6Dmd9pApbqfS9lK2kCSKJxCHVoN5y1CX7ZXBUPx3n8zwTKNwNvXac=
+zKYR09-KzcF8shkRmy2i37Najq0300Yv9jmg/3go/PEYUstwfSZ2qcbrMqdLZTQ/h90/mWbdM6=
+_NJhTH3ddmzrytjaCE1SzLJ2C-n9O_SJ3HQ18" style=3D"text-decoration: none;" =
+target=3D"_blank" class=3D""> Career and Leadership Advice for Engineers =
+and Technical Professionals </a></h3><p class=3D"">In this podcast, =
+Shane Hastie, lead editor for culture &amp; methods, spoke to Jeff Perry =
+about the important leadership and people skills that technologists are =
+often not trained in, why career coaching can be valuable, being =
+deliberate about career choices, and advice for technical leaders. =
+(Podcast)</p>
+										=
+					</td>
+										=
+				</tr>
+										=
+				<tr class=3D"">
+										=
+					<td =
+style=3D"color:#ffffff;background-color:#2d99d1" class=3D"">
+										=
+					<div style=3D"font-size:22px" =
+class=3D"">
+										=
+					<div =
+style=3D"font-size:24px;margin-bottom:5px;padding-bottom:0;line-height:22p=
+x" class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pvedUXkxr0=
+tsh-jfgCmVJEVJMEtFeFswAPDJbQ1wTCuTTCOpnajAAA5b5CZKWjWU1hwbyQL5AmLotKxETwCK=
+jh1-HPu25i49Y8Y1XOX0HiC_N02hBRCkicnD_gwivGgYJ3JFe3TT-jKEti3DlbS5Cb2duSfnDO=
+qIb19ncjHtjf-K/3go/PEYUstwfSZ2qcbrMqdLZTQ/h91/vf7ejyzm-zwKcHP7jXzoOCr13oYY=
+Nhe5wv3pJ6fjlU8" =
+style=3D"color:#ffffff;text-decoration:none;font-family:Helvetica,Arial,sa=
+ns-serif" target=3D"_blank" class=3D""><strong class=3D"">AI, ML &amp; =
+Data Engineering</strong> <span =
+class=3D"m_-5463852757192155789mobile-hide" style=3D"font-weight:normal"> =
+Latest Content </span> </a></div>
+										=
+					</div>
+										=
+					</td>
+										=
+				</tr>
+										=
+			=09
+										=
+				<tr class=3D"">
+										=
+					<td class=3D"">
+										=
+					<h3 =
+style=3D"font-size:17px;font-weight:700;margin-bottom:0px" class=3D""><a =
+name=3D"m_-5463852757192155789_IBM" class=3D""></a> <a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9po95ERJwFz=
+PwEJv-Qqs_WUWzagFA1kLawIkeO2U6_bc4Tgz8Y9vwUTiP4MuLuYjk3wQQMev_ufCH6fi6rB1e=
+2J2m1lRsmevycVenukY1QB9PAxs9-s-HjCC28ipoCfnlkQkZWt6a7O9c1L-c_05yjZK7B1c1d1=
+BgyfwvTKOO5NR631ypmv7QSeqyspDyTtIurA/3go/PEYUstwfSZ2qcbrMqdLZTQ/h92/74eNsD=
+z9CJZHhldUWGgeUhQ717-a0yZ846a_Ap-WKLw" style=3D"text-decoration: none;" =
+target=3D"_blank" class=3D""> IBM Develops Hardware-Based =
+Vector-Symbolic AI Architecture </a></h3><p class=3D"">IBM Research =
+recently announced a memory-augmented neural network (MANN) AI system =
+consisting of a neural network controller and phase-change memory (PCM) =
+hardware. By performing analog in-memory computation on high-dimensional =
+(HD) binary vectors, the system learns few-shot classification tasks on =
+the Omniglot benchmark with only 2.7% accuracy drop compared to 32-bit =
+software implementations. (News)</p>
+										=
+					</td>
+										=
+				</tr>
+										=
+				<tr style=3D"background-color:#eee" =
+class=3D"">
+<td class=3D"">
+<h3 style=3D"font-size:14px;font-weight:700;margin:0 0 10px =
+0;color:#cccccc" class=3D"">SPONSOR AD</h3>
+<a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pq36GkqO0b=
+C2wPTKNSNc1JBd4AOEVgJUyRe9T3ZfO8Ym2xgyB-xo1aOgOKA_kHWt2gu4lSU94G097fbxWak4=
+8Or3im0aZTsTb0rNBWm430Gz0ju6DslhmU-tIfuFvclvJqrAXsvPPep5HUKe2_WZUHTsrgpYz9=
+dyqqkh-vL3TsDyA4bhLrBUyPLFb_0cFuoZgwNBvoQRtbAOS7DTH3-3_88rW20M_1MTRKeakt8z=
+wq-WiZeYHr2P4Z4otpLVSHkZXxA_xDh4lgQZdRA2wAxAmCjzx-wiC9kX6kH5U3uxVAuVFguWsy=
+N6hxdS5Uc3jQPqtN_bPC0d1xedSA5ImtrjVY5MTcA60Fbpt60tQpTTm7kUi1z_3FsPKMZXqp-p=
+r747Nq7N25o-QdWEYGZEgeZb1ZA/3go/PEYUstwfSZ2qcbrMqdLZTQ/h93/2esJynTfCkvVtBV=
+Lh5Iwl3BiQPqedur0FJteXaDHY-U" style=3D"text-decoration: none;" =
+target=3D"_blank" class=3D""><img align=3D"right" alt=3D"Cockroach Labs" =
+border=3D"=E2=80=9D0=E2=80=B3" height=3D"100" =
+src=3D"https://assets.infoq.com/newsletter/regular/en/assets/CockroachLabs=
+OReillyGoogleCloudRun.png" style=3D"float:right;margin:0px 0px 10px =
+10px" width=3D"103" class=3D""> </a>
+
+<h3 style=3D"font-size:18px;font-weight:600;margin:0 0 10px 0" =
+class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pq36GkqO0b=
+C2wPTKNSNc1JBd4AOEVgJUyRe9T3ZfO8Ym2xgyB-xo1aOgOKA_kHWt2gu4lSU94G097fbxWak4=
+8Or3im0aZTsTb0rNBWm430Gz0ju6DslhmU-tIfuFvclvJqrAXsvPPep5HUKe2_WZUHTsrgpYz9=
+dyqqkh-vL3TsDyA4bhLrBUyPLFb_0cFuoZgwNBvoQRtbAOS7DTH3-3_88rW20M_1MTRKeakt8z=
+wq-WiZeYHr2P4Z4otpLVSHkZXxA_xDh4lgQZdRA2wAxAmCjzx-wiC9kX6kH5U3uxVAuVFguWsy=
+N6hxdS5Uc3jQPqtN_bPC0d1xedSA5ImtrjVY5MTcA60Fbpt60tQpTTm7kUi1z_3FsPKMZXqp-p=
+r747Nq7N25o-QdWEYGZEgeZb1ZA/3go/PEYUstwfSZ2qcbrMqdLZTQ/h94/8IRDaTvKWtP1CNP=
+6SzOtWe7wIa7YLqvyhPUQ4KpElqs" style=3D"text-decoration: none;" =
+target=3D"_blank" class=3D"">Building Serverless Applications with =
+Google Cloud Run</a></h3><p style=3D"margin-top:0;padding-top:0" =
+class=3D"">Never babysit infrastructure again. <a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pq36GkqO0b=
+C2wPTKNSNc1JBd4AOEVgJUyRe9T3ZfO8Ym2xgyB-xo1aOgOKA_kHWt2gu4lSU94G097fbxWak4=
+8Or3im0aZTsTb0rNBWm430Gz0ju6DslhmU-tIfuFvclvJqrAXsvPPep5HUKe2_WZUHTsrgpYz9=
+dyqqkh-vL3TsDyA4bhLrBUyPLFb_0cFuoZgwNBvoQRtbAOS7DTH3-3_88rW20M_1MTRKeakt8z=
+wq-WiZeYHr2P4Z4otpLVSHkZXxA_xDh4lgQZdRA2wAxAmCjzx-wiC9kX6kH5U3uxVAuVFguWsy=
+N6hxdS5Uc3jQPqtN_bPC0d1xedSA5ImtrjVY5MTcA60Fbpt60tQpTTm7kUi1z_3FsPKMZXqp-p=
+r747Nq7N25o-QdWEYGZEgeZb1ZA/3go/PEYUstwfSZ2qcbrMqdLZTQ/h95/v3FZzZULSplH9Kx=
+LI5eZi3EeDVZLCf3-7I3s6uefZPA" style=3D"text-decoration:none" =
+target=3D"_blank" class=3D""><strong class=3D"">Download this =
+eBook</strong></a> to learn to build serverless apps.</p>
+</td>
+</tr>
+<tr class=3D"">
+<td class=3D"">
+<div style=3D"height:1px" class=3D""> </div>
+</td>
+</tr>
+										=
+				<tr class=3D"">
+										=
+					<td =
+style=3D"color:#ffffff;background-color:#aeb4c0" class=3D"">
+										=
+					<div style=3D"font-size:22px" =
+class=3D"">
+										=
+					<div =
+style=3D"font-size:24px;margin-bottom:5px;padding-bottom:0;line-height:22p=
+x" class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pprZMKV0fc=
+8DiJ-Rg4c0n6ptG0lqFWMCeDBzicnhL5JNKSillecKs1tVqZLTUy1D4YrwSckND3fcFs24lzTE=
+sFWDarmN8BGmZzHxfkuVLHzoOwygvDsC-R_bzdrY75MXUmrYoIY-LKAk-1zpH2V1tIc/3go/PE=
+YUstwfSZ2qcbrMqdLZTQ/h96/Xb4lYwKh34Xj4xRZO7LIxWDwB_rpr2XVw41-vGErufQ" =
+style=3D"color:#ffffff;text-decoration:none;font-family:Helvetica,Arial,sa=
+ns-serif" target=3D"_blank" class=3D""><strong class=3D"">DevOps</strong> =
+<span class=3D"m_-5463852757192155789mobile-hide" =
+style=3D"font-weight:normal"> Latest Content </span> </a></div>
+										=
+					</div>
+										=
+					</td>
+										=
+				</tr>
+										=
+				<tr class=3D"">
+										=
+					<td =
+style=3D"background-color:#ffffff;padding-bottom:0px" class=3D"">
+										=
+					<h3 =
+style=3D"font-size:22px;margin:0 0 0 0;padding:10px 0 0 =
+0;font-weight:600" class=3D""><span style=3D"color:#4fb769" class=3D"">TOP=
+ DevOps NEWS HEADLINES</span></h3>
+										=
+					</td>
+										=
+				</tr>
+										=
+			=09
+										=
+				<tr class=3D"">
+										=
+					<td style=3D"border-bottom:1px =
+solid #ddd" class=3D"">
+										=
+					<ol class=3D"">
+										=
+						<li class=3D"">
+										=
+						<h3 =
+style=3D"font-size:18px;font-weight:600;margin:0 0 10px 0" class=3D""><a =
+name=3D"m_-5463852757192155789_Google" class=3D""></a> <a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9po95ERJwFz=
+PwEJv-Qqs_WUUhlZ0U4dn3M1Vbu3p7PLY_B3JxKNarz7qPODVlMujMPeVjCx9DkZPfGK-vK8-P=
+7mFf1ntDmw1zuxVjtFnURFIoAnU5hRspSSQy7pMM0wgCg1XENu9BMPS6LysN6CdvdhkNspGjt3=
+1mcEsGx5tTUd7BK86kM9LkBa5CpZjUiDVU6w/3go/PEYUstwfSZ2qcbrMqdLZTQ/h97/2Se3xk=
+qcvV7dIiUtpulsq_qSIuidvJw0062zvn4m6-s" style=3D"text-decoration: none;" =
+target=3D"_blank" class=3D""> Google Is Aiming to Train 40 Million =
+People with Google Cloud Skills Boost </a></h3>
+										=
+						</li>
+										=
+						<li class=3D"">
+										=
+						<h3 =
+style=3D"font-size:18px;font-weight:600;margin:0 0 10px 0" class=3D""><a =
+name=3D"m_-5463852757192155789_cb71304c-dc31-4288-a654-babefd8682c1" =
+class=3D""></a> <a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9po95ERJwFz=
+PwEJv-Qqs_WUV6mDs_hXHGWxq7-BdZ97cTZlhw-JN-9K9ArsaeDf-6c5YLUXQQiNkGgJv5p_Qn=
+aCmmtCy4p60XuqT8Q9J_T96A9OCDWuX5utEZ8avi7hQdosxexaTsKqtCwDOpUl7iubkGkMZ-WV=
+9q6Q-tLq7rS0I79ILYgQmbAl3IDgmSrAHQJQ/3go/PEYUstwfSZ2qcbrMqdLZTQ/h98/8qvWQW=
+1zkcamaJfDSmT60svjsnLTa3h-wFwYq7wBFLc" style=3D"text-decoration: none;" =
+target=3D"_blank" class=3D""> Amazon Introduces RDS Custom for Legacy =
+and Custom Oracle Databases </a></h3>
+										=
+						</li>
+										=
+						<li class=3D"">
+										=
+						<h3 =
+style=3D"font-size:18px;font-weight:600;margin:0 0 10px 0" class=3D""><a =
+name=3D"m_-5463852757192155789_59ab829c-074b-4ce1-9f53-6c9407662697" =
+class=3D""></a> <a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9po95ERJwFz=
+PwEJv-Qqs_WUVZxzgnrDKQR5Vm0F8pe9oZD7hqoU2GW0s_yb86AaUH-R0JGCh0SPfHixoIqddw=
+w3nWeIVJv2RjnKbIMaIWzVSCiB8PV40KaURJI44hS6ECY9U7rIy1AZy5M8BQ8jk8wm3MW-m5BU=
+POqBhg79Y0yR-h/3go/PEYUstwfSZ2qcbrMqdLZTQ/h99/FyCRfUXE_HTV31OX5xKJmjXFwikL=
+Bc32A_6mQkx61Ms" style=3D"text-decoration: none;" target=3D"_blank" =
+class=3D""> Analyze Video Feeds at the Edge with AWS Panorama Appliance =
+</a></h3>
+										=
+						</li>
+										=
+						<li class=3D"">
+										=
+						<h3 =
+style=3D"font-size:18px;font-weight:600;margin:0 0 10px 0" class=3D""><a =
+name=3D"m_-5463852757192155789_ff79155a-f1c3-434b-8680-1a2b2d6f93a3" =
+class=3D""></a> <a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9po95ERJwFz=
+PwEJv-Qqs_WUXK5gqyEKLzFjpP7c0g45O9VMLDPtplrv5KCm2Y0VsTiE4Em-zekoBapKZJfs8N=
+bSBzYxhw1GTNCykDnoORFg94dgHzrSE9uY4UKg-sTpYqvxyPsW1rg7fv4ULHqvHOAK5EucOFc5=
+ZbYFa_-DR6HxPkZ3tz84cJo9HJNpE0AsTX2g/3go/PEYUstwfSZ2qcbrMqdLZTQ/h100/5YWKr=
+osnLDkY_YmMUB8Va_xjGse3W9zMiLuoED-e3h4" style=3D"text-decoration: none;" =
+target=3D"_blank" class=3D""> AWS Announces the Public Preview of AWS =
+Data Exchange for Amazon Redshift </a></h3>
+										=
+						</li>
+										=
+						<li class=3D"">
+										=
+						<h3 =
+style=3D"font-size:18px;font-weight:600;margin:0 0 10px 0" class=3D""><a =
+name=3D"m_-5463852757192155789_ff79155a-f1c3-434b-8680-1a2b2d6f93a3" =
+class=3D""></a> <a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9po95ERJwFz=
+PwEJv-Qqs_WUUjGXQwuPTYZd9Y36btzMr1EhEEQmMMjOp5QiDR6mTd-_ibLX_f0rrqMZUA5pYG=
+OVOyNGZ3wl20UuOuunR3lnZjzF-nXRjpV8DXQ7LXeNERK_IwLiZ8DBxuLbySF6_T4_h8k18f7N=
+mLgx98OfhE-4vkqfa4o8x4dL2nIU0OQXfnMw/3go/PEYUstwfSZ2qcbrMqdLZTQ/h101/SilMC=
+nLipDURHI_7rFfuP79nixqwbBG16w3fqgDeI8I" style=3D"text-decoration: none;" =
+target=3D"_blank" class=3D""> Google Cloud Spanner Adds PostgreSQL =
+Interface: Is PostgreSQL Now Standard for Cloud Databases? </a></h3>
+										=
+						</li>
+										=
+					</ol>
+										=
+					</td>
+										=
+				</tr>
+										=
+			=09
+										=
+				<tr class=3D"">
+										=
+					<td class=3D""><a =
+name=3D"m_-5463852757192155789_eBPF" class=3D""></a> <a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pr_L9Yj0B6=
+kEUTK2uIobmod7cZXqTzPX6Bf6bxaB5uQ4gwh2tnaAirh0m9kg4w_rAT1hqGoPNoONZkSOha4o=
+S_asMtYZuVk_VSoPHvs4RUZUm4ts8PJ31FRfD1cCwniLSg2DkAGDFZeIncI1oibOJUbnCuHkk7=
+FZKbgec91Vo4t6/3go/PEYUstwfSZ2qcbrMqdLZTQ/h102/eGk-CtMEWKTZ7tmhklfPy2cHHVI=
+00AWSODBKA2f10xo" target=3D"_blank" class=3D""> <img align=3D"right" =
+alt=3D"" border=3D"0" height=3D"100" =
+src=3D"https://s3.amazonaws.com/infoq.content.live.0/presentations/ebpf-cl=
+oud-native/en/smallimage/Liz-Rice-s-1635755483320.jpg" =
+style=3D"float:right;margin:0 0 10px 10px" width=3D"100" class=3D""> =
+</a>
+										=
+					<h3 =
+style=3D"font-size:18px;font-weight:600;margin:0 0 10px 0" class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pr_L9Yj0B6=
+kEUTK2uIobmod7cZXqTzPX6Bf6bxaB5uQ4gwh2tnaAirh0m9kg4w_rAT1hqGoPNoONZkSOha4o=
+S_asMtYZuVk_VSoPHvs4RUZUm4ts8PJ31FRfD1cCwniLSg2DkAGDFZeIncI1oibOJUbnCuHkk7=
+FZKbgec91Vo4t6/3go/PEYUstwfSZ2qcbrMqdLZTQ/h103/oudf4C2juToEwrIJ5KsxIN23-Q5=
+WTNnwB_rWQXt-BYM" style=3D"text-decoration: none;" target=3D"_blank" =
+class=3D"">eBPF - Superpowers for Cloud Native Operations </a></h3><p =
+class=3D"">Liz Rice discusses how eBPF enables high-performance tools =
+that will help connect, manage and secure applications in the cloud. =
+(Presentation with transcript included)</p>
+										=
+					</td>
+										=
+				</tr>
+										=
+				<tr class=3D"">
+<td class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pjdbB_mGsO=
+Cv_oqWlrp_as9ZZzWopHkX6G1zTMwBAyrUG-9w0WxHcxgTwivrOHxjk3Yv5XfoJIdFJ6xf-txw=
+iXRkkSQRi0cNbJkf2OUyn5F5xvv81HGEcq09lBJLncBwq6GAZR3NlVng27UxXESsRvURVPJx71=
+nj2WEbnKHp7U2AuWEklK-SUy-0RbaGUQqg3w/3go/PEYUstwfSZ2qcbrMqdLZTQ/h104/xejVA=
+Gh_9vyvDJRSf3yS1OWtqbJdF-XBrTsFf-R_wQg" target=3D"_blank" class=3D""><img =
+align=3D"right" =
+alt=3D"https://res.infoq.com/minibooks/distributed-systems/en/smallimage/M=
+anaging-Observability-Distributed-Systems-s-1610538431380.jpg" =
+border=3D"0" height=3D"100" =
+src=3D"https://res.infoq.com/minibooks/distributed-systems/en/smallimage/M=
+anaging-Observability-Distributed-Systems-s-1610538431380.jpg" =
+style=3D"float:right;margin:0 0 10px 10px" width=3D"100" class=3D""> =
+</a>
+<h3 style=3D"font-size:18px;font-weight:600;margin:0 0 10px 0" =
+class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pjdbB_mGsO=
+Cv_oqWlrp_as9ZZzWopHkX6G1zTMwBAyrUG-9w0WxHcxgTwivrOHxjk3Yv5XfoJIdFJ6xf-txw=
+iXRkkSQRi0cNbJkf2OUyn5F5xvv81HGEcq09lBJLncBwq6GAZR3NlVng27UxXESsRvURVPJx71=
+nj2WEbnKHp7U2AuWEklK-SUy-0RbaGUQqg3w/3go/PEYUstwfSZ2qcbrMqdLZTQ/h105/Fm1wl=
+0wOMXf1ozr3uh852b4inubJajYT7dheUy1XeXg" style=3D"text-decoration: none;" =
+target=3D"_blank" class=3D"">The InfoQ eMag: Managing Observability, =
+Resilience, and Complexity within Distributed Systems</a></h3><p =
+class=3D"">This eMag helps you reflect on the subject of reducing =
+complexity within modern applications and distributed systems, and =
+provides you with different perspectives and learned lessons from people =
+who have already had to deal with challenges from the real world. <a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pjdbB_mGsO=
+Cv_oqWlrp_as9ZZzWopHkX6G1zTMwBAyrUG-9w0WxHcxgTwivrOHxjk3Yv5XfoJIdFJ6xf-txw=
+iXRkkSQRi0cNbJkf2OUyn5F5xvv81HGEcq09lBJLncBwq6GAZR3NlVng27UxXESsRvURVPJx71=
+nj2WEbnKHp7U2AuWEklK-SUy-0RbaGUQqg3w/3go/PEYUstwfSZ2qcbrMqdLZTQ/h106/vulK3=
+Qbo_nq9sGQPN9XFIYmv27MT6bsd1caclmYP-uQ" style=3D"text-decoration:none" =
+target=3D"_blank" class=3D""> <strong class=3D"">Download =
+Now</strong></a>.</p>
+</td>
+</tr>
+<tr style=3D"background-color:#eee" class=3D"">
+<td class=3D"">
+<h3 style=3D"font-size:14px;font-weight:700;margin:0 0 10px =
+0;color:#cccccc" class=3D"">SPONSOR AD</h3>
+<a =
+href=3D"https://links.mailer.infoq.com/ss/c/tmZu5pbwkKSbqAENkDDdq24WKQCwFU=
+_80vpb--a0K-kkLBiS7yn2rFAhIvC4abfoZQqruTdNAVXgDZkbu3a54dOr3h9_pz9NjEUd4IVu=
+-igBMnmVv7Nc4Xa_yLVo0VvOZDM2eQPuNzq4iuqwUkMrkRWZKB6gLyH0kIg80TNeF4o6sJBdLT=
+OXqr-tU7FCL_bU/3go/PEYUstwfSZ2qcbrMqdLZTQ/h107/AbxLARHNJSh3OL2aRPtbq8D6vjk=
+wjK09WyBMgCmzZH0" style=3D"text-decoration: none;" target=3D"_blank" =
+class=3D""><img align=3D"right" alt=3D"VMware" border=3D"=E2=80=9D0=E2=80=B3=
+" height=3D"104" =
+src=3D"https://assets.infoq.com/newsletter/regular/en/assets/VMwareStateKu=
+bernetes2021.png" style=3D"float:right;margin:0px 0px 10px 10px" =
+width=3D"82" class=3D""> </a>
+
+<h3 style=3D"font-size:18px;font-weight:600;margin:0 0 10px 0" =
+class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/tmZu5pbwkKSbqAENkDDdq24WKQCwFU=
+_80vpb--a0K-kkLBiS7yn2rFAhIvC4abfoZQqruTdNAVXgDZkbu3a54dOr3h9_pz9NjEUd4IVu=
+-igBMnmVv7Nc4Xa_yLVo0VvOZDM2eQPuNzq4iuqwUkMrkRWZKB6gLyH0kIg80TNeF4o6sJBdLT=
+OXqr-tU7FCL_bU/3go/PEYUstwfSZ2qcbrMqdLZTQ/h108/JoRB91yIGnu9WwRlLsjm99GSs12=
+Bql5tHNmVQ34H0JI" style=3D"text-decoration: none;" target=3D"_blank" =
+class=3D"">Benefits and hurdles: A snapshot of Kubernetes in =
+2021</a></h3><p style=3D"margin-top:0;padding-top:0" class=3D"">This =
+report highlights three roadblocks on the path toward Kubernetes =
+adoption, the top two benefits from adopting K8s, and describes the most =
+popular deployment strategy that works for both Dev and Ops. <a =
+href=3D"https://links.mailer.infoq.com/ss/c/tmZu5pbwkKSbqAENkDDdq24WKQCwFU=
+_80vpb--a0K-kkLBiS7yn2rFAhIvC4abfoZQqruTdNAVXgDZkbu3a54dOr3h9_pz9NjEUd4IVu=
+-igBMnmVv7Nc4Xa_yLVo0VvOZDM2eQPuNzq4iuqwUkMrkRWZKB6gLyH0kIg80TNeF4o6sJBdLT=
+OXqr-tU7FCL_bU/3go/PEYUstwfSZ2qcbrMqdLZTQ/h109/sBDeyy6caG090W-6vflSEBq4JRH=
+owCLfT58tQecXqns" style=3D"text-decoration:none" target=3D"_blank" =
+class=3D""> <strong class=3D"">Download now</strong></a>.</p>
+</td>
+</tr>
+<tr class=3D"">
+<td class=3D"">
+<div style=3D"height:1px" class=3D""> </div>
+</td>
+</tr>
+										=
+				<tr class=3D"">
+										=
+					<td =
+style=3D"color:#ffffff;background-color:#1d8f76" class=3D"">
+										=
+					<div style=3D"font-size:22px" =
+class=3D"">
+										=
+					<div =
+style=3D"font-size:24px;margin-bottom:5px;padding-bottom:0;line-height:22p=
+x" class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pprZMKV0fc=
+8DiJ-Rg4c0n6olGIIAK2r9OHNCsSh6m-0dbrYXuduS3zbtEuRLFjAnTavOSO6AdZSaVK5UNmp6=
+wBdyfTTYZ1hMvFXvKV8lCO5YYmmTuBfcJE5ZRWQ1oUhFCArElfIOmYbfc79I4XTetlU/3go/PE=
+YUstwfSZ2qcbrMqdLZTQ/h110/VEn4MKrgx9XiYEv7kFV6m0gENNOV5d4qjkOp97DIMrE" =
+style=3D"color:#ffffff;text-decoration:none;font-family:Helvetica,Arial,sa=
+ns-serif" target=3D"_blank" class=3D""><strong =
+class=3D"">Development</strong> <span =
+class=3D"m_-5463852757192155789mobile-hide" style=3D"font-weight:normal"> =
+Latest Content </span> </a></div>
+										=
+					</div>
+										=
+					</td>
+										=
+				</tr>
+										=
+				<tr class=3D"">
+										=
+					<td =
+style=3D"background-color:#ffffff;padding-bottom:0px" class=3D"">
+										=
+					<h3 =
+style=3D"font-size:22px;margin:0 0 0 0;padding:10px 0 0 =
+0;font-weight:600" class=3D""><span style=3D"color:#4fb769" class=3D"">TOP=
+ Development NEWS HEADLINES</span></h3>
+										=
+					</td>
+										=
+				</tr>
+										=
+			=09
+										=
+				<tr class=3D"">
+										=
+					<td style=3D"border-bottom:1px =
+solid #ddd" class=3D"">
+										=
+					<ol class=3D"">
+										=
+						<li class=3D"">
+										=
+						<h3 =
+style=3D"font-size:18px;font-weight:600;margin:0 0 10px 0" class=3D""><a =
+name=3D"m_-5463852757192155789_GitHub" class=3D""></a> <a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9po95ERJwFz=
+PwEJv-Qqs_WUWJyAEo7CaOI46tpATQOejw3fqpJGqnAdg0D8L7djud4PH3MeIjl5kwZS_4AD-u=
+U38nZvHuRgp9tMp1rWfwjzJedlaWTXqKdzkiaSbalKaqL074zI4f4TPSg-shOPCEuEF-YNyNeO=
+m8VYluxxaXN0bQtKLPUAzXMH4FQ2Y8t7Cf-A/3go/PEYUstwfSZ2qcbrMqdLZTQ/h111/MDB3R=
+Q5QVGS081teIXMt-yoYmqHIR3wrPucr1lf7fNk" style=3D"text-decoration: none;" =
+target=3D"_blank" class=3D""> GitHub Introduces Projects, Updates =
+Codespaces, Copilot, Code Scanning, and More </a></h3>
+										=
+						</li>
+										=
+					</ol>
+										=
+					</td>
+										=
+				</tr>
+										=
+			=09
+										=
+				<tr class=3D"">
+										=
+					<td class=3D""><a =
+name=3D"m_-5463852757192155789_c8e05b7c-7e96-4e61-abac-ca9b4f53a18b" =
+class=3D""></a> <a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9phFqofaJZY=
+aiWILSFvpYnyQnQpz7kzUvIGv6A4Kfpnrfq6Vwr8_WmsI8A6dTocoYAGybdTX1YSVCLJeYzqLL=
+B8SETcPoJZ8NG4bOsTEI8AU6kUfgLjQutarRhGZ9k7GbktrzY-1j_xuOE2s1owSijKFcQkN-81=
+aw8TD0WVFKdFbDJxyviLg9xtFmqGW5n4_or4mAvRUyEwez0HKa6-X7GmU/3go/PEYUstwfSZ2q=
+cbrMqdLZTQ/h112/H7ecS6CLrVqu52AnE5v6i6Pt9HS5WRaIw16wIT6a_j8" =
+target=3D"_blank" class=3D""> <img align=3D"right" alt=3D"" border=3D"0" =
+height=3D"100" =
+src=3D"https://res.infoq.com/articles/blockchain-forensic-monitoring-xdpos=
+2/en/smallimage/logo-1635366051273.jpg" style=3D"float:right;margin:0 0 =
+10px 10px" width=3D"100" class=3D""> </a>
+										=
+					<h3 =
+style=3D"font-size:18px;font-weight:600;margin:0 0 10px 0" class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9phFqofaJZY=
+aiWILSFvpYnyQnQpz7kzUvIGv6A4Kfpnrfq6Vwr8_WmsI8A6dTocoYAGybdTX1YSVCLJeYzqLL=
+B8SETcPoJZ8NG4bOsTEI8AU6kUfgLjQutarRhGZ9k7GbktrzY-1j_xuOE2s1owSijKFcQkN-81=
+aw8TD0WVFKdFbDJxyviLg9xtFmqGW5n4_or4mAvRUyEwez0HKa6-X7GmU/3go/PEYUstwfSZ2q=
+cbrMqdLZTQ/h113/GqL0fjQe9MP-jUNgH-eCNWHk8rD8Lj_Gt6I4jYnQbMQ" =
+style=3D"text-decoration: none;" target=3D"_blank" class=3D"">Forensic =
+Monitoring of Blockchains is Key for Broader Industry Adoption =
+</a></h3><p class=3D"">This article presents a new blockchain consensus =
+mechanism, XinFin Delegated Proof-of-Stake Consensus Protocol 2.0, that =
+provides a higher level of trust by creating an efficient judiciary =
+system. It has been designed to keep all verifying nodes accountable and =
+allow for bad actors to be identified and effectively neutralized. =
+(Article)</p>
+										=
+					</td>
+										=
+				</tr>
+										=
+				<tr style=3D"background-color:#eee" =
+class=3D"">
+<td class=3D"">
+<h3 style=3D"font-size:14px;font-weight:700;margin:0 0 10px =
+0;color:#cccccc" class=3D"">SPONSOR AD</h3>
+<a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pneXAObN-9=
+Bn1uBRUVka6f1XoMFG3Oro_kFGTMosZ3Q-ej66xI0AJEbFLweN-Mv-glm7_6uJm1bsh8kpbQyY=
+6havycoO41WdrlOnp7QJa4tF3SaF_0QjetnGUXSRq0HDCeUuB0VG0zNlMzQVIbAEva-zeuqROF=
+2I7Sm_gbCPGgDwp6up8dKuYAzS9SxCk5s609RxI-l1Rb-xwE2a5b6KbU6yfDrgAqM5NXGzQM91=
+NDas/3go/PEYUstwfSZ2qcbrMqdLZTQ/h114/G9CqFLFjDcmR7wh3ReFkmlmC9JAbeXLcmqhgh=
+DusRKI" style=3D"text-decoration: none;" target=3D"_blank" class=3D""><img=
+ align=3D"right" alt=3D"Solo.io" border=3D"=E2=80=9D0=E2=80=B3" =
+height=3D"100" =
+src=3D"https://assets.infoq.com/newsletter/regular/en/assets/Solo_InfoQ_In=
+-Line-tile_100x100_v1.png" style=3D"float:right;margin:0px 0px 10px =
+10px" width=3D"100" class=3D""> </a>
+
+<h3 style=3D"font-size:18px;font-weight:600;margin:0 0 10px 0" =
+class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pneXAObN-9=
+Bn1uBRUVka6f1XoMFG3Oro_kFGTMosZ3Q-ej66xI0AJEbFLweN-Mv-glm7_6uJm1bsh8kpbQyY=
+6havycoO41WdrlOnp7QJa4tF3SaF_0QjetnGUXSRq0HDCeUuB0VG0zNlMzQVIbAEva-zeuqROF=
+2I7Sm_gbCPGgDwp6up8dKuYAzS9SxCk5s609RxI-l1Rb-xwE2a5b6KbU6yfDrgAqM5NXGzQM91=
+NDas/3go/PEYUstwfSZ2qcbrMqdLZTQ/h115/myZaRQYOOrczDengPhpynZoLLIG6PZEXAYjoO=
+YbqXNI" style=3D"text-decoration: none;" target=3D"_blank" =
+class=3D"">Solo.io | Enterprise Strategy Group</a></h3><p =
+style=3D"margin-top:0;padding-top:0" class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pneXAObN-9=
+Bn1uBRUVka6f1XoMFG3Oro_kFGTMosZ3Q-ej66xI0AJEbFLweN-Mv-glm7_6uJm1bsh8kpbQyY=
+6havycoO41WdrlOnp7QJa4tF3SaF_0QjetnGUXSRq0HDCeUuB0VG0zNlMzQVIbAEva-zeuqROF=
+2I7Sm_gbCPGgDwp6up8dKuYAzS9SxCk5s609RxI-l1Rb-xwE2a5b6KbU6yfDrgAqM5NXGzQM91=
+NDas/3go/PEYUstwfSZ2qcbrMqdLZTQ/h116/Zj-L9TmkcsCawhR97OfZtE1IRqS_gLD64OjeK=
+nK8nnU" style=3D"text-decoration:none" target=3D"_blank" =
+class=3D""><strong class=3D"">Download this white paper</strong></a> to =
+get the ESG take on enterprise versions of an Istio service mesh and why =
+a service mesh is essential for scaling cloud-native and containerized =
+workloads.</p>
+</td>
+</tr>
+<tr class=3D"">
+<td class=3D"">
+<div style=3D"height:1px" class=3D""> </div>
+</td>
+</tr>
+										=
+				<tr class=3D"">
+										=
+					<td =
+style=3D"color:#ffffff;background-color:#1d8f76" class=3D"">
+										=
+					<div style=3D"font-size:22px" =
+class=3D"">
+										=
+					<div =
+style=3D"font-size:24px;margin-bottom:5px;padding-bottom:0;line-height:22p=
+x" class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pkLeWmZKqB=
+rGQOEo7iBqNFji5heKfTdVptKLgocsCZEAsIDRFyM2ZFq5ibN-5wgDZNZz5R-wu8ArBWYQlm62=
+t0iNip3V3DE3ThQmLUsXQu7kj6kZpjz21TE0aFlqkoshFhgPwfT9IbRcJvIRLgL9H_Q/3go/PE=
+YUstwfSZ2qcbrMqdLZTQ/h117/bkY-yZFLJwfwwg_Ph6k0cuaH9Uz8LCVDnV6ptzr0KiE" =
+style=3D"color:#ffffff;text-decoration:none;font-family:Helvetica,Arial,sa=
+ns-serif" target=3D"_blank" class=3D""><strong class=3D"">Java</strong> =
+<span class=3D"m_-5463852757192155789mobile-hide" =
+style=3D"font-weight:normal"> Latest Content </span> </a></div>
+										=
+					</div>
+										=
+					</td>
+										=
+				</tr>
+										=
+				<tr class=3D"">
+										=
+					<td =
+style=3D"background-color:#ffffff;padding-bottom:0px" class=3D"">
+										=
+					<h3 =
+style=3D"font-size:22px;margin:0 0 0 0;padding:10px 0 0 =
+0;font-weight:600" class=3D""><span style=3D"color:#4fb769" class=3D"">TOP=
+ Java NEWS HEADLINES</span></h3>
+										=
+					</td>
+										=
+				</tr>
+										=
+			=09
+										=
+				<tr class=3D"">
+										=
+					<td style=3D"border-bottom:1px =
+solid #ddd" class=3D"">
+										=
+					<ol class=3D"">
+										=
+					=09
+										=
+						<li class=3D"">
+										=
+						<h3 =
+style=3D"font-size:18px;font-weight:600;margin:0 0 10px 0" class=3D""><a =
+name=3D"m_-5463852757192155789_6e9c2494-97c8-4708-a33c-2ffe41fec7c8" =
+class=3D""></a> <a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9po95ERJwFz=
+PwEJv-Qqs_WUU4UaosmEubSREicwnwnaS7BQMbn34ncomP1FEhov06qtu24QSzO5pZ0r4nAeKp=
+SsSOrWxt8tT_FVMTqiG_DOSiwwwGoHY2NF2ExKkDTsn_0pxRzDWCRClaeDx1KoJ_A7hA8gJolh=
+D6JajVes0hC196vRoyalzTR808ttIRSnLumw/3go/PEYUstwfSZ2qcbrMqdLZTQ/h118/z2jiJ=
+7mOLweRZybwauh25tZqHTZiQpuhg3MU4Swc_5s" style=3D"text-decoration: none;" =
+target=3D"_blank" class=3D""> Java News Roundup: Updates on OpenJDK, =
+Spring, Quarkus, Payara, Hibernate, Quarkus and JakartaOne </a></h3>
+										=
+						</li>
+										=
+					</ol>
+										=
+					</td>
+										=
+				</tr>
+										=
+			=09
+										=
+			=09
+										=
+				<tr class=3D"">
+										=
+					<td class=3D"">
+										=
+					<h3 =
+style=3D"font-size:17px;font-weight:700;margin-bottom:0px" class=3D""><a =
+name=3D"m_-5463852757192155789_Oracle" class=3D""></a> <a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9po95ERJwFz=
+PwEJv-Qqs_WUWB67DMiKnZpPnDL0XBltHAy0PDYllvDtEPqY2fn0XpEPigVbZT3nElV65xkfJZ=
+yIQE2r9R0xZVjfFEfs0ATkc406kA18yACRaPrp1ojE9mbqEWlCb4P4-u3RpNdPQC2mUdKLu21K=
+HyCNk8Ts8TTLeN/3go/PEYUstwfSZ2qcbrMqdLZTQ/h119/rB9b40mxygrLyPacbephU9AsgUI=
+Y0drejjfg7Ab7cxI" style=3D"text-decoration: none;" target=3D"_blank" =
+class=3D""> Oracle's JDK 17 - Free Again for Commercial Use </a></h3><p =
+class=3D"">The Oracle JDK is available free of charge for production use =
+again - under the new "Oracle No-Fee Terms and Conditions" (NFTC) =
+license. This move reverses a 2018 decision to charge for Oracle JDK =
+production use and does not affect Oracle's OpenJDK distribution. The =
+NFTC applies to the recently released version 17 of Oracle JDK and =
+future versions. (News)</p>
+										=
+					</td>
+										=
+				</tr>
+										=
+				<tr style=3D"background-color:#eee" =
+class=3D"">
+<td class=3D"">
+<h3 style=3D"font-size:14px;font-weight:700;margin:0 0 10px =
+0;color:#cccccc" class=3D"">SPONSOR AD</h3>
+<a =
+href=3D"https://links.mailer.infoq.com/ss/c/zsOvH-twcVj5jHLTmYxH18z_zwPNp0=
+UUJmogaWYPJ7MYICEVp6TQO-SfsjKkLsErK5h0Xwbwp_RODRG7dp_IAw/3go/PEYUstwfSZ2qc=
+brMqdLZTQ/h120/uoY3mz-UT_EIDOr8Lur_gLMyVypbgzkdWCB1MmUUKOY" =
+style=3D"text-decoration: none;" target=3D"_blank" class=3D""><img =
+align=3D"right" alt=3D"Lightstep" border=3D"=E2=80=9D0=E2=80=B3" =
+height=3D"100" =
+src=3D"https://assets.infoq.com/newsletter/regular/en/assets/LightStepLogo=
+100x100.png" style=3D"float:right;margin:0px 0px 10px 10px" width=3D"100" =
+class=3D""> </a>
+
+<h3 style=3D"font-size:18px;font-weight:600;margin:0 0 10px 0" =
+class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/zsOvH-twcVj5jHLTmYxH18z_zwPNp0=
+UUJmogaWYPJ7MYICEVp6TQO-SfsjKkLsErK5h0Xwbwp_RODRG7dp_IAw/3go/PEYUstwfSZ2qc=
+brMqdLZTQ/h121/wRPT7VmLUlPFLqh6ikRrtq3QPPDRDbUzbH7xiYvbXWA" =
+style=3D"text-decoration: none;" target=3D"_blank" class=3D"">Play in =
+the Lightstep Sandbox</a></h3><p style=3D"margin-top:0;padding-top:0" =
+class=3D"">In less than 10 minutes you can debug an error or resolve a =
+performance regression with our free, interactive sandbox experience. <a =
+href=3D"https://links.mailer.infoq.com/ss/c/zsOvH-twcVj5jHLTmYxH18z_zwPNp0=
+UUJmogaWYPJ7MYICEVp6TQO-SfsjKkLsErK5h0Xwbwp_RODRG7dp_IAw/3go/PEYUstwfSZ2qc=
+brMqdLZTQ/h122/fad3ZrH620hRJG1gqamr7dPVIO5Ck05fsqePmwu_Qf0" =
+style=3D"text-decoration:none" target=3D"_blank" class=3D""><strong =
+class=3D"">Try it now</strong></a>.</p>
+</td>
+</tr>
+<tr class=3D"">
+<td class=3D"">
+<div style=3D"height:1px" class=3D""> </div>
+</td>
+</tr>
+										=
+				<tr class=3D"">
+										=
+					<td =
+style=3D"color:#ffffff;background-color:#1d8f76" class=3D"">
+										=
+					<div style=3D"font-size:22px" =
+class=3D"">
+										=
+					<div =
+style=3D"font-size:24px;margin-bottom:5px;padding-bottom:0;line-height:22p=
+x" class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pmKmAKogw7=
+1fsw9ZlnDYI5uFad_R5GkSj_dQNmppKG-X8SZ4BfO0y8EILQoK4sjI5epxu5xcb7cdO8ihpQKT=
+eKpj7wai2l1JRjS0JZvHYIVki6JreoR5rroUwukepsdDjI8sTGGwJUgFWYHpXMg7nv0/3go/PE=
+YUstwfSZ2qcbrMqdLZTQ/h123/aBG1s4b2rj2-aU49tFHAtQuAKCgPRblkDkyuVUMw0gw" =
+style=3D"color:#ffffff;text-decoration:none;font-family:Helvetica,Arial,sa=
+ns-serif" target=3D"_blank" class=3D""><strong class=3D"">.NET</strong> =
+<span class=3D"m_-5463852757192155789mobile-hide" =
+style=3D"font-weight:normal"> Latest Content </span> </a></div>
+										=
+					</div>
+										=
+					</td>
+										=
+				</tr>
+										=
+				<tr class=3D"">
+										=
+					<td =
+style=3D"background-color:#ffffff;padding-bottom:0px" class=3D"">
+										=
+					<h3 =
+style=3D"font-size:22px;margin:0 0 0 0;padding:10px 0 0 =
+0;font-weight:600" class=3D""><span style=3D"color:#4fb769" class=3D"">TOP=
+ .NET NEWS HEADLINES</span></h3>
+										=
+					</td>
+										=
+				</tr>
+										=
+			=09
+										=
+				<tr class=3D"">
+										=
+					<td style=3D"border-bottom:1px =
+solid #ddd" class=3D"">
+										=
+					<ol class=3D"">
+										=
+						<li class=3D"">
+										=
+						<h3 =
+style=3D"font-size:18px;font-weight:600;margin:0 0 10px 0" class=3D""><a =
+name=3D"m_-5463852757192155789_F#" class=3D""></a> <a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9po95ERJwFz=
+PwEJv-Qqs_WUVukRFyGMoyUTBN-hN8jPOJvh-6iptDp3meE0bOvNbj5r5c3F_npmopC-Jcooxs=
+vQkb2GqLZSFWfvlt6ubMfc_2T98EBvn0RujvBpCsJXzPn3V-WnHFTPa45CfZXeu-1frd1F-1dP=
+pk69tRkKx7bHEL57mAEPPIRnqInC_XcvHfpA/3go/PEYUstwfSZ2qcbrMqdLZTQ/h124/C6exV=
+pPSdg5_1o9VQ7cO9NW88eynl5-TolclN47BGTk" style=3D"text-decoration: none;" =
+target=3D"_blank" class=3D""> F# 6 Introduces Resumable Code, =
+Improvements to Pattern Matching and Tooling, and More </a></h3>
+										=
+						</li>
+										=
+					</ol>
+										=
+					</td>
+										=
+				</tr>
+										=
+			=09
+										=
+				<tr class=3D"">
+										=
+					<td class=3D""><a =
+name=3D"m_-5463852757192155789_fa4a3c7c-0fc8-45b3-8923-f848cbae500a" =
+class=3D""></a> <a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9phFqofaJZY=
+aiWILSFvpYnyQhmO_ZkgAv7bItMkfE_-qtzifSIBgMAIpSt5F_1MC0xbugq__NudaNXflkELln=
+2Ktfb_MFvRBD5n8aEKSy8EXH7lkdjsja1ZtxuJGRs2reJ0mSiCOY9_kVun8Dx5t4sTApjqhSmd=
+f3pcoA7A6LMet1/3go/PEYUstwfSZ2qcbrMqdLZTQ/h125/gPF5Ka1HCI6vtH2T3u4vGWv18Dp=
+yeaR8YmCtiIJ80gE" target=3D"_blank" class=3D""> <img align=3D"right" =
+alt=3D"" border=3D"0" height=3D"100" =
+src=3D"https://res.infoq.com/articles/records-c9-tugce-ozdeger/en/smallima=
+ge/logo-1635178528926.jpg" style=3D"float:right;margin:0 0 10px 10px" =
+width=3D"100" class=3D""> </a>
+										=
+					<h3 =
+style=3D"font-size:18px;font-weight:600;margin:0 0 10px 0" class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9phFqofaJZY=
+aiWILSFvpYnyQhmO_ZkgAv7bItMkfE_-qtzifSIBgMAIpSt5F_1MC0xbugq__NudaNXflkELln=
+2Ktfb_MFvRBD5n8aEKSy8EXH7lkdjsja1ZtxuJGRs2reJ0mSiCOY9_kVun8Dx5t4sTApjqhSmd=
+f3pcoA7A6LMet1/3go/PEYUstwfSZ2qcbrMqdLZTQ/h126/66RPO3MhIHqDw_0MA23bWrf5xII=
+atX0L-Y4vGAK-bOs" style=3D"text-decoration: none;" target=3D"_blank" =
+class=3D"">Records in C# 9 </a></h3><p class=3D"">In this article, Tugce =
+=C3=96zdeger talks about Records, a new reference type introduced in C# =
+9 that provides built-in functionality for encapsulating data. The =
+article shows the potential benefits and advantages of using records and =
+how developers can use them in their applications, with code examples =
+and comparisons with classes and structs. (Article)</p>
+										=
+					</td>
+										=
+				</tr>
+										=
+				<tr class=3D"">
+										=
+					<td =
+style=3D"color:#ffffff;background-color:#1d8f76" class=3D"">
+										=
+					<div style=3D"font-size:22px" =
+class=3D"">
+										=
+					<div =
+style=3D"font-size:24px;margin-bottom:5px;padding-bottom:0;line-height:22p=
+x" class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pmz65E5VB-=
+eIU7-J53qQG8SfiS5nKnRHaZ7RNNAulCiXIr9msv_RcFofM0ebsSSwQXH7pCr_RESfVEwQLmJ9=
+KyNj_hoC1P4NnRnZ0_Gg3OHKx7H3lpu-Lzp5zo2_cuy-7jMuWHy-7dUqOJrOFpryPDv2ajvbH-=
+yOUvI8j-ZNG3L_/3go/PEYUstwfSZ2qcbrMqdLZTQ/h127/-IsbLk3X-pU1lVi8FIAsePssfcv=
+lCqYXFPOi5cHaDdo" =
+style=3D"color:#ffffff;text-decoration:none;font-family:Helvetica,Arial,sa=
+ns-serif" target=3D"_blank" class=3D""><strong class=3D"">Web =
+Development</strong> <span class=3D"m_-5463852757192155789mobile-hide" =
+style=3D"font-weight:normal"> Latest Content </span> </a></div>
+										=
+					</div>
+										=
+					</td>
+										=
+				</tr>
+										=
+				<tr class=3D"">
+										=
+					<td =
+style=3D"background-color:#ffffff;padding-bottom:0px" class=3D"">
+										=
+					<h3 =
+style=3D"font-size:22px;margin:0 0 0 0;padding:10px 0 0 =
+0;font-weight:600" class=3D""><span style=3D"color:#4fb769" class=3D"">TOP=
+ Web Development NEWS HEADLINES</span></h3>
+										=
+					</td>
+										=
+				</tr>
+										=
+			=09
+										=
+				<tr class=3D"">
+										=
+					<td style=3D"border-bottom:1px =
+solid #ddd" class=3D"">
+										=
+					<ol class=3D"">
+										=
+						<li class=3D"">
+										=
+						<h3 =
+style=3D"font-size:18px;font-weight:600;margin:0 0 10px 0" class=3D""><a =
+name=3D"m_-5463852757192155789_CSS" class=3D""></a> <a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9po95ERJwFz=
+PwEJv-Qqs_WUWMq-9KEjDKwv-2WaPt3pM3-MUrsg6rBsfpsYnRfts04XmBEpMItJbIh5Qd6Kmp=
+DODNLzlz3-J33dFBHuQ9H6nEeigrrTOY71F4mF_RMsTnIHcBg8_oUdDSRuAZriqSDNKPa06WP2=
+izFgWCyC08ibWPK3VRkgW0Q6F5Y1YKYbuxvg/3go/PEYUstwfSZ2qcbrMqdLZTQ/h128/LXMTX=
+L6W3Q-bIbueYLRGOrawRFc4pJin2U6cPGfN0ss" style=3D"text-decoration: none;" =
+target=3D"_blank" class=3D""> Comparative Study of 11 CSS-in-JS =
+libraries - Andrei Pfeiffer at React Finland 2021 </a></h3>
+										=
+						</li>
+										=
+					=09
+										=
+					</ol>
+										=
+					</td>
+										=
+				</tr>
+										=
+			=09
+										=
+			=09
+										=
+				<tr class=3D"">
+										=
+					<td class=3D"">
+										=
+					<h3 =
+style=3D"font-size:17px;font-weight:700;margin-bottom:0px" class=3D""><a =
+name=3D"m_-5463852757192155789_5c067fc0-685d-4afb-ae3e-f36f068711f9" =
+class=3D""></a> <a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9po95ERJwFz=
+PwEJv-Qqs_WUXLPmNHWiwSsS0mSyeyQQH0-no3CYJZ2mEzQ54ap6slIEb5DpSNKcyKaA4z6Y5H=
+TaQpceXh2oCLL1dE5NhTSz1t8_zRRfNVv0yNazLm8vvwPgQYBObHJUrf-Ic6Xc9XEMzi8SC-Bc=
+Gc2upfYVVP6al0BjgTM-Wo4yLYUEgmEr_Uqg/3go/PEYUstwfSZ2qcbrMqdLZTQ/h129/ybURI=
+t8YP99TIFZNLrxgWo3GktxHdwLhj1kQDjXtJZg" style=3D"text-decoration: none;" =
+target=3D"_blank" class=3D""> Grails 5.0 Updates Underlying Frameworks =
+and Consolidates Features </a></h3><p class=3D"">Grails 5.0 has been =
+released, featuring deprecation of the "dot"-Based Navigation to =
+configuration, default autowire by type in Data Services, the decoupling =
+of Grails Gradle Plugin from the grails-core and the Grails Gradle =
+Publish plugin was removed from the Grails plugin applications. Also, =
+this release includes Apache Groovy 3, Micronaut 3, Gradle 7, Spring =
+Boot 2.5, Spring 5.3, and Spock 2.0. (News)</p>
+										=
+					</td>
+										=
+				</tr>
+										=
+				<tr style=3D"background-color:#eee" =
+class=3D"">
+<td class=3D"">
+<h3 style=3D"font-size:14px;font-weight:700;margin:0 0 10px =
+0;color:#cccccc" class=3D"">SPONSOR AD</h3>
+<a =
+href=3D"https://links.mailer.infoq.com/ss/c/dKaemBr9Xp16vHPz2K9GjJdzoSJCFF=
+bEmu7LZrRWFJWxJxs5QCIEdGSi5yu_AAxg/3go/PEYUstwfSZ2qcbrMqdLZTQ/h130/lZyGxh7=
+Zh8F4lrXWQNdfsyly4dVp3rDTADz4Wa2OSVg" style=3D"text-decoration: none;" =
+target=3D"_blank" class=3D""><img align=3D"right" alt=3D"Progress =
+Software" border=3D"=E2=80=9D0=E2=80=B3" height=3D"100" =
+src=3D"https://assets.infoq.com/newsletter/regular/en/assets/ProgressSoftw=
+areRemoteAPI.png" style=3D"float:right;margin:0px 0px 10px 10px" =
+width=3D"100" class=3D""> </a>
+
+<h3 style=3D"font-size:18px;font-weight:600;margin:0 0 10px 0" =
+class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/dKaemBr9Xp16vHPz2K9GjJdzoSJCFF=
+bEmu7LZrRWFJWxJxs5QCIEdGSi5yu_AAxg/3go/PEYUstwfSZ2qcbrMqdLZTQ/h131/b9Bd4HR=
+yXWWxNHkjjRTeaiuodZGyuA6Rc4QjkkGDjTw" style=3D"text-decoration: none;" =
+target=3D"_blank" class=3D"">Need to Diagnose a Remote API =
+Failure?</a></h3><p style=3D"margin-top:0;padding-top:0" class=3D"">Sound =
+familiar? You need to quickly re-create the complete request and =
+inspect/debug the failed response, yet remote resources are out of your =
+control. <a =
+href=3D"https://links.mailer.infoq.com/ss/c/dKaemBr9Xp16vHPz2K9GjJdzoSJCFF=
+bEmu7LZrRWFJWxJxs5QCIEdGSi5yu_AAxg/3go/PEYUstwfSZ2qcbrMqdLZTQ/h132/BXQk9By=
+de0Nkk7d2emjMdkB2_ctFu95V1S8LeKRKys8" style=3D"text-decoration:none" =
+target=3D"_blank" class=3D""><strong class=3D"">Learn to =
+quickly</strong></a> diagnose and fix issues when remote APIs fail to =
+contain the damage.</p>
+</td>
+</tr>
+<tr class=3D"">
+<td class=3D"">
+<div style=3D"height:1px" class=3D""> </div>
+</td>
+</tr>
+										=
+				<tr class=3D"">
+										=
+					<td =
+style=3D"color:#ffffff;background-color:#1d8f76" class=3D"">
+										=
+					<div style=3D"font-size:22px" =
+class=3D"">
+										=
+					<div =
+style=3D"font-size:24px;margin-bottom:5px;padding-bottom:0;line-height:22p=
+x" class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pgIysr2v8y=
+3-I2JPr5Sf7G9e7bfJFlBMBABaWTFQ-8soeeyDYgt6nJFDKGs8UcxZHkE0NIwRfnyh1aKdB-9Z=
+TbzhnueS6Js_Un1hzuz2aU0kB7sJrrJK_Xs5Jvv7PKUAbVLQDG7IxIRjq2MAAKTQzvQ/3go/PE=
+YUstwfSZ2qcbrMqdLZTQ/h133/o3d2IBDNvcexkClQcH-DNdaQk-JRTpD9lMHrK1c2Jck" =
+style=3D"color:#ffffff;text-decoration:none;font-family:Helvetica,Arial,sa=
+ns-serif" target=3D"_blank" class=3D""><strong class=3D"">Mobile and IoT =
+</strong> <span class=3D"m_-5463852757192155789mobile-hide" =
+style=3D"font-weight:normal"> Latest Content </span> </a></div>
+										=
+					</div>
+										=
+					</td>
+										=
+				</tr>
+										=
+			=09
+										=
+				<tr class=3D"">
+										=
+					<td class=3D"">
+										=
+					<h3 =
+style=3D"font-size:17px;font-weight:700;margin-bottom:0px" class=3D""><a =
+name=3D"m_-5463852757192155789_JetBrains" class=3D""></a> <a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9po95ERJwFz=
+PwEJv-Qqs_WUWNCXcM2HHa-46e5x76u0Mo6gsHYaEkO6KXMR7gCfWuJ6FylEGzxzqyVFpkkbWI=
+idh9bJnzJJ9OlUwOWDQCLwPyK6wyuVxsuV7YtP-nsnufZnf027b83RWRv0U1h4_LDfAxNo-yiQ=
+NuK2lKtM0d-2f7nID-9bPuz5UJTMHXdbDaxg/3go/PEYUstwfSZ2qcbrMqdLZTQ/h134/VisLj=
+H1RAhf1QSV9mmPLNcK5AGgA8kGXajpRgz8IIjs" style=3D"text-decoration: none;" =
+target=3D"_blank" class=3D""> JetBrains Compose Multiplatform Reaches =
+Beta </a></h3><p class=3D"">A few months after its announcement as an =
+alpha version, JetBrains Compose Multiplatform has reached beta, which =
+includes many improvements and stabilizes its APIs as a step towards the =
+1.0 release. (News)</p>
+										=
+					</td>
+										=
+				</tr>
+										=
+				<tr class=3D"">
+										=
+					<td =
+style=3D"color:#ffffff;background-color:#108593" class=3D"">
+										=
+					<div style=3D"font-size:22px" =
+class=3D"">
+										=
+					<div =
+style=3D"font-size:24px;margin-bottom:5px;padding-bottom:0;line-height:22p=
+x" class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9plkni3xfMt=
+Z0UEugVK-EPnalcu8Zja7xbQU6gFU0Jl1pu2vMacYmX9cDc-M0sh65EVrYdEQvcC3XGrNPzgLJ=
+F2m96hNokjym5U0ypXZOOGgJV9zZTWC9DSdz2pRYNETImJXwKiIPPQfT6IFjY9pFSyrtVayPwd=
+Y3rOSJ5O73R0wm/3go/PEYUstwfSZ2qcbrMqdLZTQ/h135/mcrDcU1bsvOj4BompPsfhu_9ZX4=
+JbxJCM9mOhCdBUDA" =
+style=3D"color:#ffffff;text-decoration:none;font-family:Helvetica,Arial,sa=
+ns-serif" target=3D"_blank" class=3D""><strong class=3D"">Architecture =
+&amp; Design</strong> <span class=3D"m_-5463852757192155789mobile-hide" =
+style=3D"font-weight:normal"> Latest Content </span> </a></div>
+										=
+					</div>
+										=
+					</td>
+										=
+				</tr>
+										=
+				<tr class=3D"">
+										=
+					<td =
+style=3D"background-color:#ffffff;padding-bottom:0px" class=3D"">
+										=
+					<h3 =
+style=3D"font-size:22px;margin:0 0 0 0;padding:10px 0 0 =
+0;font-weight:600" class=3D""><span style=3D"color:#4fb769" class=3D"">TOP=
+ Architecture &amp; Design NEWS HEADLINES</span></h3>
+										=
+					</td>
+										=
+				</tr>
+										=
+			=09
+										=
+				<tr class=3D"">
+										=
+					<td style=3D"border-bottom:1px =
+solid #ddd" class=3D"">
+										=
+					<ol class=3D"">
+										=
+						<li class=3D"">
+										=
+						<h3 =
+style=3D"font-size:18px;font-weight:600;margin:0 0 10px 0" class=3D""><a =
+name=3D"m_-5463852757192155789_95fbe492-aec2-4fcb-a97a-197269084ead" =
+class=3D""></a> <a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9po95ERJwFz=
+PwEJv-Qqs_WUVvNxoXbTCjUCrEn7e1za3HFs1SH7idpu6y_D9hvFtckMUpF8Sp_DjuCLuFtiJU=
+ieQaaEW-XPr8Eu4O6RV1tvdroVG58tWDXoi6Kj1gw7r1CgLg5ww211b8DOKQWASw507fQDu-EP=
+Cnp_nRJiJA35SZs4DuHcwsLYZfqAH-AdKtORdBPQQKf0Vy20a2rjFehQw/3go/PEYUstwfSZ2q=
+cbrMqdLZTQ/h136/uvniwJY2P44OStYBK9Gaq7zvNCZ9w5W4BC5DlApFPZE" =
+style=3D"text-decoration: none;" target=3D"_blank" class=3D""> How =
+Pinterest Scaled up Its Ad-Serving Architecture </a></h3>
+										=
+						</li>
+										=
+					</ol>
+										=
+					</td>
+										=
+				</tr>
+										=
+			=09
+										=
+				<tr class=3D"">
+										=
+					<td class=3D""><a =
+name=3D"m_-5463852757192155789_Microservices" class=3D""></a> <a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pr_L9Yj0B6=
+kEUTK2uIobmodFht52iepegO1zp7WmN_fQEtxiz9ZETLL-yIax0t2OcVrWq6UaJHjqo4d8-gzw=
+5R2UriIywtI12q7dOzbW3bVfB-p5oU4L7LuMA4kAdAYoseiVwfOzgajZZbQ7RUTqKalXFJK5JW=
+lo3-V77UWdDiEUguA5R_I1OxZvYzd60cjyAobePjORzq384GVxjYTLhTs/3go/PEYUstwfSZ2q=
+cbrMqdLZTQ/h137/Tt5Uk_ac3H9aUJovpZ59YsHuO1bcJa8woDgeBSmkYMM" =
+target=3D"_blank" class=3D""> <img align=3D"right" alt=3D"" border=3D"0" =
+height=3D"100" =
+src=3D"https://s3.amazonaws.com/infoq.content.live.0/presentations/panel-m=
+icroservices-architecture/en/smallimage/microservices-s-1635754586337.jpg"=
+ style=3D"float:right;margin:0 0 10px 10px" width=3D"100" class=3D""> =
+</a>
+										=
+					<h3 =
+style=3D"font-size:18px;font-weight:600;margin:0 0 10px 0" class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pr_L9Yj0B6=
+kEUTK2uIobmodFht52iepegO1zp7WmN_fQEtxiz9ZETLL-yIax0t2OcVrWq6UaJHjqo4d8-gzw=
+5R2UriIywtI12q7dOzbW3bVfB-p5oU4L7LuMA4kAdAYoseiVwfOzgajZZbQ7RUTqKalXFJK5JW=
+lo3-V77UWdDiEUguA5R_I1OxZvYzd60cjyAobePjORzq384GVxjYTLhTs/3go/PEYUstwfSZ2q=
+cbrMqdLZTQ/h138/0CNM3KLim0MpwYNQmeyG4cD_31FforxJaIfAFjiSnAA" =
+style=3D"text-decoration: none;" target=3D"_blank" class=3D"">Panel: =
+What Have We Learned over the Last Decade of Microservices? </a></h3><p =
+class=3D"">Chris Richardson, James Lewis and Katie Gamanji discuss what =
+the industry has learned over the last decade building and delivering =
+Microservices architectures. (Presentation with transcript included)</p>
+										=
+					</td>
+										=
+				</tr>
+										=
+				<tr style=3D"background-color:#eee" =
+class=3D"">
+<td class=3D"">
+<h3 style=3D"font-size:14px;font-weight:700;margin:0 0 10px =
+0;color:#cccccc" class=3D"">SPONSOR AD</h3>
+<a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pphLqL3gbP=
+SiKq7ch0BxFCg6-5ZPYRoCoGkH3UT1F77jmOfDc95o3pDv12em3UDQSr-s-_EBqqkZz7OGBckW=
+vbbrshY7nw8xB_PEtoFri48ySZNm6kCdiFqnQG6UBJO_IxW9M9bu96ghkI_SaPZHQuf6gf-wu-=
+H0E5zIVlNXyAXgQ_AaR0q9PmwEcqZ_9TwpJd4KWjMBiIWi3g-0ojytXr8/3go/PEYUstwfSZ2q=
+cbrMqdLZTQ/h139/DNTwrGCIbzySQAGRsEjilvXxmmh6L48u9n_THLFCmho" =
+style=3D"text-decoration: none;" target=3D"_blank" class=3D""><img =
+align=3D"right" alt=3D"NGINX" border=3D"=E2=80=9D0=E2=80=B3" =
+height=3D"104" =
+src=3D"https://assets.infoq.com/newsletter/regular/en/assets/NGINXmicroser=
+vicesUpRunning.png" style=3D"float:right;margin:0px 0px 10px 10px" =
+width=3D"82" class=3D""> </a>
+
+<h3 style=3D"font-size:18px;font-weight:600;margin:0 0 10px 0" =
+class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pphLqL3gbP=
+SiKq7ch0BxFCg6-5ZPYRoCoGkH3UT1F77jmOfDc95o3pDv12em3UDQSr-s-_EBqqkZz7OGBckW=
+vbbrshY7nw8xB_PEtoFri48ySZNm6kCdiFqnQG6UBJO_IxW9M9bu96ghkI_SaPZHQuf6gf-wu-=
+H0E5zIVlNXyAXgQ_AaR0q9PmwEcqZ_9TwpJd4KWjMBiIWi3g-0ojytXr8/3go/PEYUstwfSZ2q=
+cbrMqdLZTQ/h140/7ECXvvfwz8nY29ivEr18JmHOcQlBlPT-gsIxoJ52BZI" =
+style=3D"text-decoration: none;" target=3D"_blank" =
+class=3D"">Microservices Up and Running (By O=E2=80=99Reilly)</a></h3><p =
+style=3D"margin-top:0;padding-top:0" class=3D"">Learn how to design an =
+effective and explicit microservices system end-to-end, how to slice a =
+big application into a collection of microservices, how to build a =
+simple yet powerful CI/CD pipeline for infrastructure changes, and more. =
+<a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pphLqL3gbP=
+SiKq7ch0BxFCg6-5ZPYRoCoGkH3UT1F77jmOfDc95o3pDv12em3UDQSr-s-_EBqqkZz7OGBckW=
+vbbrshY7nw8xB_PEtoFri48ySZNm6kCdiFqnQG6UBJO_IxW9M9bu96ghkI_SaPZHQuf6gf-wu-=
+H0E5zIVlNXyAXgQ_AaR0q9PmwEcqZ_9TwpJd4KWjMBiIWi3g-0ojytXr8/3go/PEYUstwfSZ2q=
+cbrMqdLZTQ/h141/-oxFYtw6Cbi4NY3kUMFfLHHDfCG6ck7VIVWmcQTpTAs" =
+style=3D"text-decoration:none" target=3D"_blank" class=3D""> <strong =
+class=3D"">Download now</strong></a>.</p>
+</td>
+</tr>
+<tr class=3D"">
+<td class=3D"">
+<div style=3D"height:1px" class=3D""> </div>
+</td>
+</tr>
+										=
+				<tr class=3D"">
+										=
+					<td =
+style=3D"color:#ffffff;background-color:#2e81ac" class=3D"">
+										=
+					<div style=3D"font-size:22px" =
+class=3D"">
+										=
+					<div =
+style=3D"font-size:24px;margin-bottom:5px;padding-bottom:0;line-height:22p=
+x" class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pjongcWznv=
+PJRSzOHzRpTuGb3ksp7846p_lG5sSdJSJETLTAVr26ny5Etn2WrjR1ucSgSzy7YfKhu7HlENSA=
+Zije1YEXNFBwk0XGWxFb5cVAFiBn1yD5twV0SVCbwwoAii5QYUFp4Hl5mNgUQeCYNrf96pgYOA=
+WVHgP98iD0B6XN/3go/PEYUstwfSZ2qcbrMqdLZTQ/h142/A6epOkikVt0nxyJbsGuBiPeSftt=
+dDwlmweIdDxeyq4Y" =
+style=3D"color:#ffffff;text-decoration:none;font-family:Helvetica,Arial,sa=
+ns-serif" target=3D"_blank" class=3D""><strong class=3D"">Culture &amp; =
+Methods</strong> <span class=3D"m_-5463852757192155789mobile-hide" =
+style=3D"font-weight:normal"> Latest Content </span> </a></div>
+										=
+					</div>
+										=
+					</td>
+										=
+				</tr>
+										=
+				<tr class=3D"">
+										=
+					<td =
+style=3D"background-color:#ffffff;padding-bottom:0px" class=3D"">
+										=
+					<h3 =
+style=3D"font-size:22px;margin:0 0 0 0;padding:10px 0 0 =
+0;font-weight:600" class=3D""><span style=3D"color:#4fb769" class=3D"">TOP=
+ Culture &amp; Methods NEWS HEADLINES</span></h3>
+										=
+					</td>
+										=
+				</tr>
+										=
+			=09
+										=
+				<tr class=3D"">
+										=
+					<td style=3D"border-bottom:1px =
+solid #ddd" class=3D"">
+										=
+					<ol class=3D"">
+										=
+						<li class=3D"">
+										=
+						<h3 =
+style=3D"font-size:18px;font-weight:600;margin:0 0 10px 0" class=3D""><a =
+name=3D"m_-5463852757192155789_Psychological" class=3D""></a> <a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9po95ERJwFz=
+PwEJv-Qqs_WUXluFODDod8La9FuZ69MbF90cumls-bKKKadvkv4uktVlhF19dwglSAEABMlYNF=
+64Vx0S8GQ6RQjWXJhF3Ib3KqhatSz2GxTba4WIbOX20YU0OyxGGmqiToEOdCCtTjN6yZeCqci1=
+EK0h8-fiJpt1b3dRhtAKL12pUovkdheDWvmQ/3go/PEYUstwfSZ2qcbrMqdLZTQ/h143/N14Wz=
+nXFsX1BP_UJZX9XQzxGBmMNw4laAnzbT11Q7hU" style=3D"text-decoration: none;" =
+target=3D"_blank" class=3D""> How Organisational Culture and =
+Psychological Safety Fosters Our Creativity </a></h3>
+										=
+						</li>
+										=
+					</ol>
+										=
+					</td>
+										=
+				</tr>
+										=
+			=09
+										=
+				<tr class=3D"">
+										=
+					<td class=3D""><a =
+name=3D"m_-5463852757192155789_eb9d5bf6-454a-49b1-adca-6ecf98a08376" =
+class=3D""></a> <a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9phFqofaJZY=
+aiWILSFvpYnyTzceSojgiscElph5H2ZtBm323gv3oWDgqaygK5AUzUXoEeZU_u9G-dIa7T1HnD=
+zgHH2wgR7DGwJNjRix0PHMUfqx0vgSejwTkqQlAN5Gm82akU5vDgtTlPfEBUiQzt0Sz1oiutow=
+b1M40kMzBc0nFsIEFCbX3hWkuc75vEOtP8cQ/3go/PEYUstwfSZ2qcbrMqdLZTQ/h144/bH9yt=
+3C-FnKm41Vl1O7m-O7tEG1dsiwyCaPfeK6asvU" target=3D"_blank" class=3D""> =
+<img align=3D"right" alt=3D"" border=3D"0" height=3D"100" =
+src=3D"https://res.infoq.com/articles/techstinction-impact-climate/en/smal=
+limage/techstinction-how-technology-use-is-having-severe-impact-on-climate=
+-small-image-1635337908838.jpg" style=3D"float:right;margin:0 0 10px =
+10px" width=3D"100" class=3D""> </a>
+										=
+					<h3 =
+style=3D"font-size:18px;font-weight:600;margin:0 0 10px 0" class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9phFqofaJZY=
+aiWILSFvpYnyTzceSojgiscElph5H2ZtBm323gv3oWDgqaygK5AUzUXoEeZU_u9G-dIa7T1HnD=
+zgHH2wgR7DGwJNjRix0PHMUfqx0vgSejwTkqQlAN5Gm82akU5vDgtTlPfEBUiQzt0Sz1oiutow=
+b1M40kMzBc0nFsIEFCbX3hWkuc75vEOtP8cQ/3go/PEYUstwfSZ2qcbrMqdLZTQ/h145/UZESW=
+4kUo4KweILy_hSupnP95a68mDt5z_loGUneDns" style=3D"text-decoration: none;" =
+target=3D"_blank" class=3D"">Techstinction - How Technology Use is =
+Having a Severe Impact on our Climate and What We Can Do </a></h3><p =
+class=3D"">Most people don=E2=80=99t realise how their use of =
+technology, both socially and in the workplace, is responsible for an =
+increasingly significant volume of the world's Co2 emissions. In this =
+article, you will learn how our use of technology is having a severe =
+impact on our climate and what we can do about it. (Article)</p>
+										=
+					</td>
+										=
+				</tr>
+										=
+				<tr class=3D"">
+										=
+					<td class=3D""><a =
+name=3D"m_-5463852757192155789_Developer" class=3D""></a> <a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9phFqofaJZY=
+aiWILSFvpYnySSMkH-o2NjNNMP9AXznU7qj9FDdFZWobFU08rmWqnQMXbpl_Mrw-oS04vI-DC0=
+-NfenXgXVHIBcpG0-24R6HkSufqlL0tHSC28K_YN14PR6mOgxH-heXoG64VbhBEHAoaKfB0Tef=
+0lnP-LaKTRuXrNvi_pGvHFKc-BNhNmkdf0PQ/3go/PEYUstwfSZ2qcbrMqdLZTQ/h146/IHy-2=
+Bcv1EHRfFUT2uocXBrDMfTElsg0RWFDJ6vp9KQ" target=3D"_blank" class=3D""> =
+<img align=3D"right" alt=3D"" border=3D"0" height=3D"100" =
+src=3D"https://res.infoq.com/articles/developer-experience-engineer/en/sma=
+llimage/logo-1635335131908.jpg" style=3D"float:right;margin:0 0 10px =
+10px" width=3D"100" class=3D""> </a>
+										=
+					<h3 =
+style=3D"font-size:18px;font-weight:600;margin:0 0 10px 0" class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9phFqofaJZY=
+aiWILSFvpYnySSMkH-o2NjNNMP9AXznU7qj9FDdFZWobFU08rmWqnQMXbpl_Mrw-oS04vI-DC0=
+-NfenXgXVHIBcpG0-24R6HkSufqlL0tHSC28K_YN14PR6mOgxH-heXoG64VbhBEHAoaKfB0Tef=
+0lnP-LaKTRuXrNvi_pGvHFKc-BNhNmkdf0PQ/3go/PEYUstwfSZ2qcbrMqdLZTQ/h147/neyTm=
+2xhGahGlhRGMd_Ta9q-v-QR2PgXWeZw8HKZekU" style=3D"text-decoration: none;" =
+target=3D"_blank" class=3D"">Maximize Developer Productivity and =
+Engagement with the Developer Experience Engineer </a></h3><p =
+class=3D"">With developers becoming more important than ever, it=E2=80=99s=
+ critical to understand how to maximize their productivity and =
+engagement, so in turn, businesses can create better value. The =
+Developer Experience Engineer (DXE) clears the path to developer success =
+by implementing a common set of principles, maintaining the right tools, =
+and creating cohesive standards. (Article)</p>
+										=
+					</td>
+										=
+				</tr>
+										=
+				<tr class=3D"">
+										=
+					<td class=3D""><a =
+name=3D"m_-5463852757192155789_50bd9b4d-e514-4085-86a8-27f2d4a2f997" =
+class=3D""></a> <a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9phFqofaJZY=
+aiWILSFvpYnyTTGmK3P7BitLhupH-EkGv9-nU65o5zbgb1rJUQMKTdZ8efnKuXkFqxtklh5Z0t=
+UgflnGZPI8cslmTUTrCBTmibZxw3G7nY8CH5DbiGyTIKtN5uXEsbkGLGsIbmOnqyyUxI-ry3W9=
+8sUSv0b5POUqVWTEmZ9J4fMottHoSxBic4zA/3go/PEYUstwfSZ2qcbrMqdLZTQ/h148/s0Hpg=
+gWTkBZWppsWLV0_mUvRMwx0STC-2JMjvymR6Qk" target=3D"_blank" class=3D""> =
+<img align=3D"right" alt=3D"" border=3D"0" height=3D"100" =
+src=3D"https://res.infoq.com/articles/soul-based-leadership-remote/en/smal=
+limage/sOnz62nQ-1634912651874.jpg" style=3D"float:right;margin:0 0 10px =
+10px" width=3D"100" class=3D""> </a>
+										=
+					<h3 =
+style=3D"font-size:18px;font-weight:600;margin:0 0 10px 0" class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9phFqofaJZY=
+aiWILSFvpYnyTTGmK3P7BitLhupH-EkGv9-nU65o5zbgb1rJUQMKTdZ8efnKuXkFqxtklh5Z0t=
+UgflnGZPI8cslmTUTrCBTmibZxw3G7nY8CH5DbiGyTIKtN5uXEsbkGLGsIbmOnqyyUxI-ry3W9=
+8sUSv0b5POUqVWTEmZ9J4fMottHoSxBic4zA/3go/PEYUstwfSZ2qcbrMqdLZTQ/h149/d308O=
+QF1Res47WLiG0UYKllZygG2IrmflH4ozTV_nGc" style=3D"text-decoration: none;" =
+target=3D"_blank" class=3D"">People, Not Screens: Why Soul-Based =
+Leadership Will Change the Nature of Remote and Hybrid Work </a></h3><p =
+class=3D"">Virtual, remote, or hybrid work is the main leadership =
+challenge of our time. Leaders should focus on bringing out humaneness =
+and people's desire to be seen and heard in respectful and appreciative =
+ways. Soul-based leadership is built on neuroscience and other ways of =
+knowing inspired by eastern philosophies in which aliveness is at the =
+heart of awareness, stillness, and calm. (Article)</p>
+										=
+					</td>
+										=
+				</tr>
+										=
+				<tr class=3D"">
+										=
+					<td class=3D""><a =
+name=3D"m_-5463852757192155789_54580ca3-266e-42b1-aa88-328f1c6dd908" =
+class=3D""></a> <a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pr_L9Yj0B6=
+kEUTK2uIobmoeSF6G28nqsJJixMKgw3pI-qyyUJw49KQPQLrxzHVL_UfsmRxrQmy1iR_RAwhhd=
+b1Ycjw5x359acuwI7aP78r5uaGd9feBTwsXaBNkXACcHtQB69lWEVEMJPAKmNt_WDugtUkpb7T=
+Bb7lAVbIrKo-Tu8BI-ae5SIjlBKjwnexKV2A/3go/PEYUstwfSZ2qcbrMqdLZTQ/h150/0Fv2S=
+2YAft4TadQOymT1ahQShhb0_Ny8usL2tL1-faQ" target=3D"_blank" class=3D""> =
+<img align=3D"right" alt=3D"" border=3D"0" height=3D"100" =
+src=3D"https://s3.amazonaws.com/infoq.content.live.0/presentations/hybrid-=
+remote-work/en/smallimage/Kaleem_Clarkson-s-1635754879493.jpg" =
+style=3D"float:right;margin:0 0 10px 10px" width=3D"100" class=3D""> =
+</a>
+										=
+					<h3 =
+style=3D"font-size:18px;font-weight:600;margin:0 0 10px 0" class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pr_L9Yj0B6=
+kEUTK2uIobmoeSF6G28nqsJJixMKgw3pI-qyyUJw49KQPQLrxzHVL_UfsmRxrQmy1iR_RAwhhd=
+b1Ycjw5x359acuwI7aP78r5uaGd9feBTwsXaBNkXACcHtQB69lWEVEMJPAKmNt_WDugtUkpb7T=
+Bb7lAVbIrKo-Tu8BI-ae5SIjlBKjwnexKV2A/3go/PEYUstwfSZ2qcbrMqdLZTQ/h151/IaSZV=
+Ne5uH2PiaRJc8pOlDGDKi4cs8jwa3wJSEhLKzU" style=3D"text-decoration: none;" =
+target=3D"_blank" class=3D"">Hybrid-Remote Done Right: Evaluate the =
+Remote Employee Experience </a></h3><p class=3D"">Kaleem Clarkson =
+discusses what to consider before making a decision on the workplace =
+flexibility policy, and how to assess the remote employee experience to =
+help guide decisions. (Presentation with transcript included)</p>
+										=
+					</td>
+										=
+				</tr>
+										=
+			=09
+										=
+				<tr style=3D"background-color:#54779a" =
+class=3D"">
+										=
+					<td class=3D"">
+										=
+					<h3 =
+style=3D"font-size:14px;font-weight:700;margin:0 0 10px 0;color:#172823" =
+class=3D"">SPONSORED CONTENT</h3>
+
+										=
+					<h3 =
+style=3D"font-size:18px;font-weight:600;margin:0 0 10px 0;color:#fff" =
+class=3D"">Latest White Papers</h3><p style=3D"margin-top:0;padding-top:0"=
+ class=3D""><img align=3D"left" alt=3D"" height=3D"19" =
+src=3D"https://assets.infoq.com/newsletter/regular/en/template/i_pdf.png" =
+style=3D"margin-right:4px" width=3D"24" class=3D""> <a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pneXAObN-9=
+Bn1uBRUVka6f1XoMFG3Oro_kFGTMosZ3Q-VQusc0SaX_LAqhRzkw1yI3HzvOzm_Chlki5XEwl5=
+VHgz7Q_sPCGliqJieu3_cO3D-tYftAxWFD0Rs4teRLHXL_jUMjpKxSV1affClG1cSbUkprTTGh=
+zFu5uU0f8Gp5QH8JvEp7Gr0dGEkHvAkxbROTXUjs_WyxoDZQcnx_0eBIbx95MgDqvxyAuSIfKS=
+hoEG/3go/PEYUstwfSZ2qcbrMqdLZTQ/h152/D-BbYAUNsoAq8J8O9rfGi898g3boJ0vhN-MrU=
+D2JMLM" style=3D"color:#ffffff;text-decoration:none" target=3D"_blank" =
+class=3D""> <span style=3D"color:#ffffff" class=3D"">[Infographic] The =
+State of Software Code</span> </a></p><p =
+style=3D"margin-top:0;padding-top:0" class=3D""><img align=3D"left" =
+alt=3D"" height=3D"19" =
+src=3D"https://assets.infoq.com/newsletter/regular/en/template/i_pdf.png" =
+style=3D"margin-right:4px" width=3D"24" class=3D""> <a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pneXAObN-9=
+Bn1uBRUVka6f1XoMFG3Oro_kFGTMosZ3Q-YRDmv6Rp0VJMBcfrCh5Uw8DC49rcMSpf96vEnXFH=
+rATdSOxJcj2aQzTkKRpXM_R1nB2L1O3_nWY3VZkLu6hlpzRThePWJ4JLrVXBg1xQn55Srqu9fY=
+SEHaf8MaoGreoW8Ck3fG3ocjX9um6exkUXZNOablortxGc_-W1mwVKsQqis0snlSVrnOHix2iP=
+-toB/3go/PEYUstwfSZ2qcbrMqdLZTQ/h153/gKICeZVL0hLjiHABDBeU_ThZxi3VmPgjuvvII=
+zWRbKM" style=3D"color:#ffffff;text-decoration:none" target=3D"_blank" =
+class=3D""> <span style=3D"color:#ffffff" class=3D"">Authentication =
+Survival Guide</span> </a></p>
+										=
+					</td>
+										=
+				</tr>
+										=
+			=09
+										=
+			=09
+										=
+			=09
+										=
+			</tbody>
+										=
+		</table>
+										=
+		</td>
+										=
+	</tr>
+										=
+</tbody>
+									=
+</table>
+									=
+</td>
+								</tr>
+							</tbody>
+						</table>
+						</td>
+					</tr>
+				=09
+					<tr class=3D"">
+						<td align=3D"center" =
+style=3D"padding:17px =
+0;text-align:center;color:#888888;text-align:center" class=3D"">
+						<table align=3D"center" =
+cellpadding=3D"10" cellspacing=3D"0" style=3D"margin:0 auto" width=3D"200"=
+ class=3D"">
+							<tbody class=3D"">=
+
+								<tr =
+class=3D"">
+									=
+<td align=3D"center" style=3D"text-align:center" class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/As_1GkzGdd3PFhq6yHtG3L4EdI8sDM=
+92cQr8AAEZi48Lw42xBGsQzvxP49IFdvMP/3go/PEYUstwfSZ2qcbrMqdLZTQ/h154/-Ia7hyY=
+snDZ33uCsIm48JYHJlKTZCOc65Sjbm72hFQg" target=3D"_blank" class=3D""><img =
+alt=3D"" border=3D"0" height=3D"30px;" =
+src=3D"https://assets.infoq.com/newsletter/regular/en/template/sc-twitter.=
+jpg" width=3D"30px" class=3D""> </a></td>
+									=
+<td align=3D"center" style=3D"text-align:center" class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9povEVRKye_=
+FQGC7_kaD8cLD46etogQlD8kmj3VYhxkzE-dpVshcUDKpmBhwkGXuqUw/3go/PEYUstwfSZ2qc=
+brMqdLZTQ/h155/D2O5tFksJyVqvBDNBw9sLA9NFYFDbN4LR_lWJOgJfW0" =
+target=3D"_blank" class=3D""><img alt=3D"" border=3D"0" height=3D"30px;" =
+src=3D"https://assets.infoq.com/newsletter/regular/en/template/sc-fb.jpg" =
+width=3D"30px" class=3D""> </a></td>
+									=
+<td align=3D"center" style=3D"text-align:center" class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9ptBZl6Pqt9=
+bzEaWBkVGCX4pl8CkKG2qprBzfRUu5Qptv/3go/PEYUstwfSZ2qcbrMqdLZTQ/h156/Jhb7juS=
+-ajT9HfFdQEAoJJ2L5yGQ_Mj9-h7WbabR9Yw" target=3D"_blank" class=3D""><img =
+alt=3D"" border=3D"0" height=3D"30px;" =
+src=3D"https://assets.infoq.com/newsletter/regular/en/template/sc-linkedin=
+.jpg" width=3D"30px" class=3D""> </a></td>
+									=
+<td align=3D"center" style=3D"text-align:center" class=3D""><a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pqIw_oG1Cf=
+YCyJEGIasngaFSZe50Hq7Uar6TtU-sP4to/3go/PEYUstwfSZ2qcbrMqdLZTQ/h157/MbpljI5=
+64iv7MlOmGPkH3d6xsu_TpKhzNsWLbBZOHEk" target=3D"_blank" class=3D""><img =
+alt=3D"" border=3D"0" height=3D"30px;" =
+src=3D"https://assets.infoq.com/newsletter/regular/en/template/sc-yt.jpg" =
+width=3D"30px" class=3D""> </a></td>
+								</tr>
+							</tbody>
+						</table><p =
+style=3D"text-align:center" class=3D"">If you are based in the
+                                        <a =
+href=3D"https://links.mailer.infoq.com/ss/c/wGZaNMrMyAV7nfBLop9xoXqAFD2_qw=
+0u4zu4q1--OqIUVYhUpZnuMxBzXla4bpM4ia2k5a6AWJzPL5JCVvx62A/3go/PEYUstwfSZ2qc=
+brMqdLZTQ/h158/KvCCe3Cy3kjn_zt6x62IX1J7aDUeQ1_c1uQB9OCGzKM" =
+target=3D"_blank" class=3D"">European Economic Area (EEA)</a>, please <a =
+href=3D"mailto:privacy@c4media.com" target=3D"_blank" class=3D"">contact =
+us</a> so we can provide you with the protections afforded to you under =
+the General Data Protection Regulation (GDPR).
+</p><p style=3D"text-align:center" class=3D"">You have received this =
+message because you are subscribed to the "Top Content Newsletter". To =
+stop receiving weekly updates on trends, please click the following =
+link: <a =
+href=3D"https://links.mailer.infoq.com/asm/unsubscribe/?user_id=3D4127989&=
+amp;data=3Dn95HpxONBQeCK1ZQHVcFAlCie5M56DuLXLpKMNSb59xuofkzA81JHaWXtSbby0F=
+fGOV_SkTfxt7XcZc9OGdZwvLG5Tnup9paYEMjfG5h18SvPPKs8eZjPrGEq7DlZZFcdeembWkwG=
+yGmBLqpTscJTMNFuxihse-57GW2nS9NrfYs5LXNuSGktFWhWopVfPUbomTyJK42scCySTXKuyr=
+1mV-FPKepzNBglsZnhuVr3LUyvXzIcqEsklROeR2uWMSIi2S74kvGnCX8VjR4VTqo1pj-eS_Am=
+gZFeDzyaM5KfFoOHTZ8gYpDdQjziWURDuPZckv0WbJrjIXWjRIdoiQtfzmKVIo8W9W_168wkPW=
+OW4NxBpZ0swCN24TqaYtU5Gp0ZAVl16PCoOHWbO8CYTI3zfHsGKw6XNoylUrMIctgbeLoXSsq7=
+aLDiSNZ2Xkv394RGChApVvKM5P3p1yE0CX6OG6bTjdin9keFvOzrR7rU7ZmSgWMI6r_M7bKRLM=
+-g8Mtgm_NBSli6d4rOS_wN3wuB1WF9nwfEmvWbIiytoybO7kJPVzfaOE6xCxAVnjSjR7Vvq6Y2=
+I6h8taK5LTm9knD7y8aJHLGCIPNAH8dn4glndVtK0OBS52oxsVuNUJrI5_u" =
+target=3D"_blank" class=3D"">Unsubscribe</a></p><p =
+style=3D"font-size:12px;margin-top:0;padding-top:0;text-align:center" =
+class=3D"">Forwarded newsletter? <a =
+href=3D"https://links.mailer.infoq.com/ss/c/PFS05Y5ZOmEj2GPp1Vk9pkXRQuVQKF=
+qhlFkKoo4Izt78Mzuzq5EMbu_e7iEa_Lum/3go/PEYUstwfSZ2qcbrMqdLZTQ/h159/_Hxsj8L=
+X5nx9uxGRWzWtvX8O_4m5_rox5LrjdDBR7yY" style=3D"text-decoration:none" =
+target=3D"_blank" class=3D""> Register to get your own weekly =
+newsletter. </a></p>
+						- - -
+
+						<p =
+style=3D"font-size:12px;margin-top:0;padding-top:0;text-align:center" =
+class=3D""><strong class=3D"">C4Media Inc. (<a href=3D"http://InfoQ.com" =
+class=3D"">InfoQ.com</a>),</strong><br class=3D"">
+						2275 Lake Shore =
+Boulevard West, Suite #325, Toronto, Ontario, Canada, M8V 3Y3</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<img =
+src=3D"https://links.mailer.infoq.com/ss/o/hyCVTyD0keuYheMB7FqOtQ/3go/PEYU=
+stwfSZ2qcbrMqdLZTQ/ho.gif" alt=3D"" width=3D"1" height=3D"1" border=3D"0" =
+style=3D"height:1px!important;width:1px!important;border-width:0!important=
+;margin-top:0!important;margin-bottom:0!important;margin-right:0!important=
+;margin-left:0!important;padding-top:0!important;padding-bottom:0!importan=
+t;padding-right:0!important;padding-left:0!important" class=3D""></div>
+
+</div></div>
+</div></blockquote></div><br class=3D""></body></html>=
+
+--Apple-Mail=_51857A3B-B491-4311-BE3A-F767BC4D8DF7--
