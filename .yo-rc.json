@@ -42,6 +42,9 @@
     "devServerPort": 9060,
     "clientPackageManager": "npm",
     "enableGradleEnterprise": false,
-    "languages": ["en", "fr"]
+    "languages": ["en", "fr"],
+    "herokuAppName": "immense-peak-89255",
+    "herokuDeployType": "git",
+    "herokuJavaVersion": "14"
   }
 }

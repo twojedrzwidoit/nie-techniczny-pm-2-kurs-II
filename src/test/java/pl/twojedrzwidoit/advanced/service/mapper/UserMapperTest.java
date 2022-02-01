@@ -52,19 +52,4 @@ class UserMapperTest {
 
         assertThat(userDTOS).isNotEmpty().size().isEqualTo(1);
     }
-
-    //Ten test pokaże błąd
-    @Test
-    @Ignore
-    void usersToUserDTOsShouldMapOnlyNonNullUsersWillFail() {
-        List<User> users = new ArrayList<>();
-        users.add(user);
-        users.add(null);
-
-        List<UserDTO> userDTOS = userMapper.usersToUserDTOs(users);
-
-        assertThat(userDTOS).isNotEmpty().size().isEqualTo(2);
-    }
-
-
 }
