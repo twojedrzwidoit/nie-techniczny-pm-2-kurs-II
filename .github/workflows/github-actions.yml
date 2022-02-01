@@ -48,3 +48,10 @@ jobs:
                 CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
             - name: 'E2E: Teardown'
               run: npm run ci:e2e:teardown
+            - name: Deploy to Heroku
+              uses: AkhileshNS/heroku-deploy@v3.12.12
+              with:
+                heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+                heroku_app_name: "immense-peak-89255" 
+                heroku_email: "me@arturskowronski.com"
+
