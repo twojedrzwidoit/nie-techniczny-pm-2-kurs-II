@@ -101,7 +101,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .and()
             .httpBasic()
         .and()
-            .apply(securityConfigurerAdapter());
+            .apply(securityConfigurerAdapter())
+        .and().headers()
+                .contentSecurityPolicy("default-src 'self'; frame-src 'self' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.mapbox.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: *.olxcdn.com; font-src 'self' data:")
+        ;
         // @formatter:on
     }
 
