@@ -9,6 +9,8 @@ import { Button, Col, Row } from 'reactstrap';
 import { Modal, ModalFooter, ModalHeader, ModalBody } from 'reactstrap';
 
 const CarCurrentRow = ({ imageUrl, model, status, statusMessage, func, from, to }) => {
+
+
   return (
     <Row style={{ marginTop: 10, height: 180, backgroundColor: '#FFCC00' }}>
       <Col>
