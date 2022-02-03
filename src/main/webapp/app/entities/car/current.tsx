@@ -7,6 +7,7 @@ import { Button, Col, Row } from 'reactstrap';
 
 /* jhipster-needle-add-route-import  */
 import { Modal, ModalFooter, ModalHeader, ModalBody } from 'reactstrap';
+import ReturnCarButton from "app/entities/car/returnButton";
 
 const CarCurrentRow = ({ imageUrl, model, status, statusMessage, func, from, to }) => {
 
@@ -32,6 +33,7 @@ const CarCurrentRow = ({ imageUrl, model, status, statusMessage, func, from, to 
           </div>
         </div>
       </Col>
+      <ReturnCarButton func={func} />
     </Row>
   );
 };
