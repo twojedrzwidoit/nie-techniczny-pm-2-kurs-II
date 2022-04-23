@@ -17,7 +17,7 @@ const initialState = {
     {
       id: 2,
       imageUrl:
-        'https://ireland.apollo.olxcdn.com/v1/files/eyJmbiI6Ind0anlxMHR1bTN2aC1PVE9NT1RPUEwiLCJ3IjpbeyJmbiI6IndnNGducXA2eTFmLU9UT01PVE9QTCIsInMiOiIxNiIsInAiOiIxMCwtMTAiLCJhIjoiMCJ9XX0.xxz-ECZ2uD4COwlOAGE7L5SJvLpVHnzi9d1qRSAtTkE/image;s=320x240',
+        'https://ireland.apollo.olxcdn.com/v1/files/eyJmbiI6InEyZndwZWs4N2VudTItT1RPTU9UT1BMIiwidyI6W3siZm4iOiJ3ZzRnbnFwNnkxZi1PVE9NT1RPUEwiLCJzIjoiMTYiLCJwIjoiMTAsLTEwIiwiYSI6IjAifV19.5eX7EsWkrsGRAT0dtXTIsPBwjhk5NDgL2G6AZssAxKc/image;s=320x240',
       model: 'BMW X5',
       range: '260 000 km',
       petrol: 'Diesel',
