@@ -20,7 +20,7 @@ const CarRow = ({ selector, isAuthenticated, imageUrl, model, range, petrol, ava
           <b>Paliwo:</b> {petrol}
         </div>
         <div>
-          <b>Dostępny:</b> {available ? "Tak" : "Nie"}
+          <b>Dostępny:</b> {available}
         </div>
       </div>
     </Col>
