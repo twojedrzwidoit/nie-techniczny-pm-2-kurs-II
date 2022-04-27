@@ -38,7 +38,7 @@ const CarCurrentRow = ({ imageUrl, model, status, statusMessage, func, from, to 
         <div style={{ height: 150, marginTop: 55 }}>
           <Button color="primary" onClick={toggle}>
             {' '}
-            <FontAwesomeIcon icon="home" /> Zwróć wcześniej !
+            <FontAwesomeIcon icon="home" /> Zwróć wcześniej
           </Button>
         </div>
       </Col>
