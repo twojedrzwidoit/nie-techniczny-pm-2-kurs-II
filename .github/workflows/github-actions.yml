@@ -30,10 +30,4 @@ jobs:
               run: npm install
             - name: Package application
               run: npm run java:jar:prod
-            - name: Deploy to Heroku
-              uses: AkhileshNS/heroku-deploy@v3.12.12
-              with:
-                heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-                heroku_app_name: "immense-peak-89255"
-                heroku_email: "me@arturskowronski.com"
 
