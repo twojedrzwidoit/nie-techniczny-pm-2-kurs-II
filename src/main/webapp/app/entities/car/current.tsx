@@ -42,17 +42,6 @@ const CarCurrentRow = ({ imageUrl, model, status, statusMessage, func, from, to 
           </Button>
         </div>
       </Col>
-      <Modal isOpen={modal} toggle={toggle}>
-        <ModalBody>
-          <div> Potwierdź zwrot samochodu. Pojazd należy odprowadzić do najbliższego punktu w ciągu 24h.</div>
-          <div style={{ marginTop: 10 }}>
-            <Button onClick={func} color="primary">
-              {' '}
-              <FontAwesomeIcon icon="home" /> Potwierdzam zwrot
-            </Button>
-          </div>
-        </ModalBody>
-      </Modal>
     </Row>
   );
 };
